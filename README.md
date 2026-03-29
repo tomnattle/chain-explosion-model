@@ -82,6 +82,30 @@ This repository implements a **2D discrete lattice propagation model** (“chain
 
 ---
 
+## Gallery / 图例（仓库内 PNG）
+
+以下为首屏可浏览的代表性输出（完整列表见上表）。若本地无图，可运行 `python run_all_simulations.py` 重新生成。
+
+Below: a few representative figures from this repo (regenerate via `python run_all_simulations.py` if missing).
+
+**Interference visibility vs. screen distance (`ce_01`)** / 对比度随屏幕距离：
+
+![interference_decay](interference_decay.png)
+
+**Measurement / absorption at slit (`ce_04`)** / 缝后吸收对条纹的影响：
+
+![measurement_effect](measurement_effect.png)
+
+**Measurement parameter scan (`ce_07`)** / 测量参量扫描：
+
+![measurement_phase_diagram](measurement_phase_diagram.png)
+
+**Entanglement-style split packets with phase (`ce_09`)** / 分裂波包与相位场：
+
+![entanglement_with_phase](entanglement_with_phase.png)
+
+---
+
 ## Installation / 安装与运行
 
 ```bash
@@ -95,6 +119,9 @@ python -m venv .venv
 
 pip install -r requirements.txt
 python ce_00_double_slit_demo.py
+
+# 一键重跑全部仿真并检查 PNG（可选）
+# python run_all_simulations.py
 ```
 
 依赖见根目录 **`requirements.txt`**：**`numba` 为必选**（所有 `ce_*` 传播主循环均通过其加速）；另需 `numpy`、`matplotlib`。
@@ -111,6 +138,8 @@ This model and the code in this repository are **independently developed** by th
 
 ## License / 许可
 
-This project is shared for **research, study, and reuse with clear attribution**. You may run, adapt, and cite this work; please **credit the original author and link this repository** when you publish derivatives or reports based on it.
+Code is released under the **MIT License** — see [`LICENSE`](LICENSE) for the full text. You must **keep the copyright and permission notice** in substantial portions of the Software (standard MIT condition).
 
-本项目供**研究、学习及注明来源后的再利用**。基于本工作的衍生或公开报告，请**标注原作者并附上本仓库链接**。
+学术或技术报告中若使用本仓库的思想、图像或结论，**建议**引用并注明仓库链接，以利于可重复性与致谢（MIT 本身不强制论文引用格式）。
+
+The Software is provided “as is”, without warranty of any kind.

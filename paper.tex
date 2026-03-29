@@ -1,0 +1,158 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\begin{document}
+
+\title{
+Chain Explosion Model:\\
+A Local Discrete Propagation Model for Interference, Measurement, and Entanglement
+}
+
+\author{
+Independent Researcher \\
+\href{https://github.com/tomnattle/chain-explosion-model}{github.com/tomnattle/chain-explosion-model}
+}
+
+\date{\today}
+
+\maketitle
+
+\begin{abstract}
+We introduce a local, discrete, causal lattice propagation model termed the \emph{chain explosion model}.
+Energy propagates on a 2D grid using nearest-neighbor and diagonal coupling with directional strength
+parameters and uniform attenuation. The model naturally reproduces double-slit interference,
+which-way measurement via local absorption, delayed-choice-like behavior, and entangled wave-packet
+correlations without nonlocality or wavefunction collapse.
+
+A unique, testable prediction of the model is that \emph{interference visibility decays with propagation distance},
+while phase correlations between split wave packets remain stable even as amplitude decays exponentially.
+This separates the model from standard quantum mechanics and classical wave optics.
+All simulations are reproducible via open-source Python code.
+\end{abstract}
+
+\section{Introduction}
+Standard quantum mechanics exhibits highly nonintuitive features including nonlocality,
+wavefunction collapse, and entanglement that appears independent of distance.
+Many attempts have been made to construct underlying realistic models,
+including pilot-wave theories and lattice-based cellular automata.
+
+This work presents a purely discrete, local, causal model:
+the \emph{chain explosion model}. It is defined entirely by
+grid-based energy propagation rules, without Hilbert spaces,
+complex amplitudes, or nonlocal interactions.
+
+Despite its simplicity, the model reproduces key phenomena:
+\begin{itemize}
+\item Double-slit interference fringes
+\item Visibility reduction due to which-way measurement
+\item Delayed-choice behavior
+\item Entangled-like correlations from symmetric wave-packet splitting
+\item Stable phase correlation with decaying amplitude
+\end{itemize}
+
+\section{Model Definition}
+The model evolves on a 2D lattice $(x,y)$ with a real-valued energy field $E(x,y)$.
+At each time step, energy propagates to neighboring lattice sites
+with fixed directional coupling strengths:
+\begin{align*}
+A &: \text{forward (right) coupling} \\
+S &: \text{lateral (up/down) coupling} \\
+B &: \text{backward (left) coupling}
+\end{align*}
+An attenuation factor $\lambda \in (0,1)$ is applied at each step.
+
+Propagation rule summary:
+\begin{enumerate}
+\item Energy at each site is attenuated by $\lambda$.
+\item Energy is distributed to adjacent and diagonal sites according to $A,S,B$.
+\item Barriers block propagation; slits allow transmission.
+\item Detectors/measurements are implemented as local absorption.
+\item Split wave packets maintain consistent phase evolution without decay.
+\end{enumerate}
+
+The model is \emph{strictly local}:
+no site influences any other site except through step-by-step propagation.
+
+\section{Double-Slit Interference}
+A barrier with two slits is placed at fixed $x$.
+The initial source emits a narrow beam.
+Interference fringes form naturally on a distant screen.
+
+The model predicts a novel effect:
+\textbf{interference visibility decreases with increasing screen distance}.
+This is not predicted by standard quantum or classical optics
+and provides a direct experimental test.
+
+Visibility is defined as:
+\[
+V = \frac{I_{\text{max}} - I_{\text{min}}}{I_{\text{max}} + I_{\text{min}}}
+\]
+
+Simulations show $V$ decreases smoothly as distance increases,
+while total energy on the screen decays exponentially.
+
+\section{Measurement and Which-Wat Information}
+Measurement is modeled as \emph{local absorption} at one slit.
+Three regimes are simulated:
+\begin{itemize}
+\item No absorption: full interference
+\item Partial absorption: reduced visibility
+\item Full absorption: no interference
+\end{itemize}
+
+No collapse postulate is needed.
+Decoherence emerges purely from local energy removal.
+
+\section{Delayed-Choice Behavior}
+Absorption is activated \emph{after} the wave front has passed the slits.
+The model still shows suppression of interference,
+consistent with delayed-choice experiments.
+
+This occurs without retrocausality:
+absorption removes energy from the propagating front,
+erasing the superposition required for fringes.
+
+\section{Entanglement-Like Correlations}
+A symmetric beam splitter divides the wave into two spatially separated packets.
+Two distant detectors measure energy and phase.
+
+Key results:
+\begin{itemize}
+\item Energy at detectors decays exponentially with distance
+\item Phase correlation remains nearly perfect ($\cos(\Delta\phi)\approx 1$)
+\item No nonlocal interaction is required
+\end{itemize}
+
+The model explains entanglement as \emph{shared origin and consistent phase evolution},
+not as nonlocal connection.
+
+\section{Unique Testable Predictions}
+The chain explosion model makes predictions that distinguish it from standard theory:
+\begin{enumerate}
+\item Interference visibility decreases with propagation distance
+\item Entangled signal amplitude decays, but phase correlation does not
+\item Measurement is local absorption; no collapse needed
+\end{enumerate}
+
+These can be tested in precision optical experiments.
+
+\section{Code and Reproducibility}
+All simulations are open-source Python code available at:
+\\
+\href{https://github.com/tomnattle/chain-explosion-model}{https://github.com/tomnattle/chain-explosion-model}
+
+Dependencies: numpy, matplotlib, numba (for accelerated scans).
+
+\section{Conclusion}
+The chain explosion model provides a local, realistic, discrete framework
+that reproduces interference, measurement, delayed choice, and entanglement-like correlations.
+It eliminates nonlocality and wavefunction collapse while making novel, testable predictions.
+
+The model suggests that quantum phenomena may emerge from
+simple local propagation rules at a discrete underlying level.
+
+\end{document}
