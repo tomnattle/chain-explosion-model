@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from chain_explosion_numba import propagate_double_slit_absorber_mask, set_circle_mask
+
 # ============================================================
 # 参数配置
 # ============================================================
@@ -48,58 +50,9 @@ barrier[SLIT1_Y:SLIT1_Y+SLIT_WIDTH, BARRIER_X] = False
 barrier[SLIT2_Y:SLIT2_Y+SLIT_WIDTH, BARRIER_X] = False
 
 # 吸收器区域（圆形）
-absorber = np.zeros((HEIGHT, WIDTH), dtype=bool)
+absorber = np.zeros((HEIGHT, WIDTH), dtype=np.bool_)
 if ENABLE_ABSORBER:
-    for y in range(HEIGHT):
-        for x in range(WIDTH):
-            dx = x - ABSORBER_CENTER_X
-            dy = y - ABSORBER_CENTER_Y
-            if dx*dx + dy*dy <= ABSORBER_RADIUS*ABSORBER_RADIUS:
-                absorber[y, x] = True
-
-# ============================================================
-# 传播函数（支持吸收器）
-# ============================================================
-
-def propagate(grid, barrier, absorber, absorb_ratio):
-    new_grid = np.zeros_like(grid)
-    h, w = grid.shape
-    for y in range(h):
-        for x in range(w):
-            energy = grid[y, x]
-            if energy <= 0:
-                continue
-            
-            # 吸收器：如果当前格子处于吸收器区域内，按比例吸收
-            if absorber[y, x]:
-                energy *= (1 - absorb_ratio)
-                # 如果吸收后能量为0，跳过后续传播
-                if energy <= 0:
-                    continue
-            
-            energy *= LAMBDA
-            
-            # 主方向（右）
-            if x + 1 < w and not barrier[y, x+1]:
-                new_grid[y, x+1] += energy * A
-            # 后方向（左）
-            if x - 1 >= 0 and not barrier[y, x-1]:
-                new_grid[y, x-1] += energy * B
-            # 上下
-            if y - 1 >= 0 and not barrier[y-1, x]:
-                new_grid[y-1, x] += energy * S
-            if y + 1 < h and not barrier[y+1, x]:
-                new_grid[y+1, x] += energy * S
-            # 对角
-            if x-1>=0 and y-1>=0 and not barrier[y-1, x-1]:
-                new_grid[y-1, x-1] += energy * S * 0.5
-            if x+1<w and y-1>=0 and not barrier[y-1, x+1]:
-                new_grid[y-1, x+1] += energy * S * 0.5
-            if x-1>=0 and y+1<h and not barrier[y+1, x-1]:
-                new_grid[y+1, x-1] += energy * S * 0.5
-            if x+1<w and y+1<h and not barrier[y+1, x+1]:
-                new_grid[y+1, x+1] += energy * S * 0.5
-    return new_grid
+    set_circle_mask(absorber, ABSORBER_CENTER_X, ABSORBER_CENTER_Y, ABSORBER_RADIUS)
 
 # ============================================================
 # 计算干涉对比度
@@ -125,8 +78,9 @@ def compute_visibility(screen):
 # 运行模拟
 # ============================================================
 
+_ar = ABSORB_RATIO if ENABLE_ABSORBER else 0.0
 for step in range(STEPS):
-    grid = propagate(grid, barrier, absorber, ABSORB_RATIO if ENABLE_ABSORBER else 0.0)
+    grid = propagate_double_slit_absorber_mask(grid, barrier, absorber, _ar, A, S, B, LAMBDA)
     if (step + 1) % 100 == 0:
         print(f"进度: {step+1}/{STEPS}")
 

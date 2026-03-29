@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from chain_explosion_numba import propagate_double_slit
+
 # ============================================================
 # 参数配置（可随意调整，感受不同效果）
 # ============================================================
@@ -48,62 +50,12 @@ barrier[SLIT2_Y:SLIT2_Y+SLIT_WIDTH, BARRIER_X] = False   # 开下缝
 screen = np.zeros(HEIGHT)
 
 # ============================================================
-# 传播函数（实现你的链式爆炸规则）
-# ============================================================
-
-def propagate(grid, barrier):
-    """一次传播步：每个有能量的格子向四周触发"""
-    new_grid = np.zeros_like(grid)
-    h, w = grid.shape
-    
-    for y in range(h):
-        for x in range(w):
-            energy = grid[y, x]
-            if energy <= 0:
-                continue
-            
-            # 能量衰减（每次触发都会损耗）
-            energy *= LAMBDA
-            
-            # 向右（主方向，最强）
-            if x + 1 < w and not barrier[y, x+1]:
-                new_grid[y, x+1] += energy * A
-            
-            # 向左（后向，最弱）
-            if x - 1 >= 0 and not barrier[y, x-1]:
-                new_grid[y, x-1] += energy * B
-            
-            # 向上（侧向）
-            if y - 1 >= 0 and not barrier[y-1, x]:
-                new_grid[y-1, x] += energy * S
-            
-            # 向下（侧向）
-            if y + 1 < h and not barrier[y+1, x]:
-                new_grid[y+1, x] += energy * S
-            
-            # 可选：对角方向（涟漪更丰富）
-            # 左上
-            if x - 1 >= 0 and y - 1 >= 0 and not barrier[y-1, x-1]:
-                new_grid[y-1, x-1] += energy * S * 0.5
-            # 右上
-            if x + 1 < w and y - 1 >= 0 and not barrier[y-1, x+1]:
-                new_grid[y-1, x+1] += energy * S * 0.5
-            # 左下
-            if x - 1 >= 0 and y + 1 < h and not barrier[y+1, x-1]:
-                new_grid[y+1, x-1] += energy * S * 0.5
-            # 右下
-            if x + 1 < w and y + 1 < h and not barrier[y+1, x+1]:
-                new_grid[y+1, x+1] += energy * S * 0.5
-    
-    return new_grid
-
-# ============================================================
 # 运行模拟
 # ============================================================
 
 print("正在运行模拟...")
 for step in range(STEPS):
-    grid = propagate(grid, barrier)
+    grid = propagate_double_slit(grid, barrier, A, S, B, LAMBDA)
     # 记录屏幕（右侧边界）能量
     screen += grid[:, -1]
     

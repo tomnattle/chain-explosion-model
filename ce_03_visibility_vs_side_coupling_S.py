@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from chain_explosion_numba import propagate_double_slit
+
 # ============================================================
 # 固定参数（除了 S 以外都保持不变）
 # ============================================================
@@ -21,41 +23,6 @@ SCREEN_X = WIDTH - 10
 
 # 要扫描的 S 值列表（侧向强度，从弱到强）
 S_values = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
-
-# ============================================================
-# 传播函数（与之前相同）
-# ============================================================
-
-def propagate(grid, barrier, A, S, B, LAMBDA):
-    new_grid = np.zeros_like(grid)
-    h, w = grid.shape
-    for y in range(h):
-        for x in range(w):
-            energy = grid[y, x]
-            if energy <= 0:
-                continue
-            energy *= LAMBDA
-            # 主方向（右）
-            if x + 1 < w and not barrier[y, x+1]:
-                new_grid[y, x+1] += energy * A
-            # 后方向（左）
-            if x - 1 >= 0 and not barrier[y, x-1]:
-                new_grid[y, x-1] += energy * B
-            # 上下
-            if y - 1 >= 0 and not barrier[y-1, x]:
-                new_grid[y-1, x] += energy * S
-            if y + 1 < h and not barrier[y+1, x]:
-                new_grid[y+1, x] += energy * S
-            # 对角（增强涟漪）
-            if x-1>=0 and y-1>=0 and not barrier[y-1, x-1]:
-                new_grid[y-1, x-1] += energy * S * 0.5
-            if x+1<w and y-1>=0 and not barrier[y-1, x+1]:
-                new_grid[y-1, x+1] += energy * S * 0.5
-            if x-1>=0 and y+1<h and not barrier[y+1, x-1]:
-                new_grid[y+1, x-1] += energy * S * 0.5
-            if x+1<w and y+1<h and not barrier[y+1, x+1]:
-                new_grid[y+1, x+1] += energy * S * 0.5
-    return new_grid
 
 # ============================================================
 # 计算干涉对比度
@@ -94,7 +61,7 @@ def run_simulation(S):
     
     # 传播
     for _ in range(STEPS):
-        grid = propagate(grid, barrier, A, S, B, LAMBDA)
+        grid = propagate_double_slit(grid, barrier, A, S, B, LAMBDA)
     
     # 提取屏幕数据
     screen = grid[:, SCREEN_X]

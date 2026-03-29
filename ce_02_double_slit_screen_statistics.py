@@ -1,5 +1,7 @@
 import numpy as np
 
+from chain_explosion_numba import propagate_double_slit
+
 # ============================================================
 # 参数配置（你可以随意修改）
 # ============================================================
@@ -33,41 +35,6 @@ barrier[SLIT1_Y:SLIT1_Y+SLIT_WIDTH, BARRIER_X] = False
 barrier[SLIT2_Y:SLIT2_Y+SLIT_WIDTH, BARRIER_X] = False
 
 # ============================================================
-# 传播函数
-# ============================================================
-
-def propagate(grid, barrier):
-    new_grid = np.zeros_like(grid)
-    h, w = grid.shape
-    for y in range(h):
-        for x in range(w):
-            energy = grid[y, x]
-            if energy <= 0:
-                continue
-            energy *= LAMBDA
-            # 主方向（右）
-            if x + 1 < w and not barrier[y, x+1]:
-                new_grid[y, x+1] += energy * A
-            # 后方向（左）
-            if x - 1 >= 0 and not barrier[y, x-1]:
-                new_grid[y, x-1] += energy * B
-            # 上下
-            if y - 1 >= 0 and not barrier[y-1, x]:
-                new_grid[y-1, x] += energy * S
-            if y + 1 < h and not barrier[y+1, x]:
-                new_grid[y+1, x] += energy * S
-            # 对角（增强涟漪）
-            if x-1>=0 and y-1>=0 and not barrier[y-1, x-1]:
-                new_grid[y-1, x-1] += energy * S * 0.5
-            if x+1<w and y-1>=0 and not barrier[y-1, x+1]:
-                new_grid[y-1, x+1] += energy * S * 0.5
-            if x-1>=0 and y+1<h and not barrier[y+1, x-1]:
-                new_grid[y+1, x-1] += energy * S * 0.5
-            if x+1<w and y+1<h and not barrier[y+1, x+1]:
-                new_grid[y+1, x+1] += energy * S * 0.5
-    return new_grid
-
-# ============================================================
 # 运行模拟
 # ============================================================
 
@@ -79,7 +46,7 @@ print(f"传播步数: {STEPS}, 屏幕X={SCREEN_X}")
 print("=" * 60)
 
 for step in range(STEPS):
-    grid = propagate(grid, barrier)
+    grid = propagate_double_slit(grid, barrier, A, S, B, LAMBDA)
     if (step + 1) % 100 == 0:
         print(f"进度: {step+1}/{STEPS}")
 

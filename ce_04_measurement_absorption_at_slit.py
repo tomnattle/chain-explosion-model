@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from chain_explosion_numba import propagate_double_slit_slit_absorb
+
 # ============================================================
 # 参数配置
 # ============================================================
@@ -23,47 +25,7 @@ SCREEN_X = WIDTH - 10
 # 吸收参数
 ABSORB_RATIO = 0.5   # 吸收比例（0=无吸收，1=完全吸收）
 
-# ============================================================
-# 传播函数（支持吸收）
-# ============================================================
-
-def propagate(grid, barrier, absorb_ratio):
-    new_grid = np.zeros_like(grid)
-    h, w = grid.shape
-    for y in range(h):
-        for x in range(w):
-            energy = grid[y, x]
-            if energy <= 0:
-                continue
-            
-            # === 吸收器：在上缝右侧紧邻的格子处吸收能量 ===
-            if absorb_ratio > 0:
-                if x == BARRIER_X + 1 and (y >= SLIT1_Y and y < SLIT1_Y + SLIT_WIDTH):
-                    energy *= (1 - absorb_ratio)
-            
-            energy *= LAMBDA
-            
-            # 主方向（右）
-            if x + 1 < w and not barrier[y, x+1]:
-                new_grid[y, x+1] += energy * A
-            # 后方向（左）
-            if x - 1 >= 0 and not barrier[y, x-1]:
-                new_grid[y, x-1] += energy * B
-            # 上下
-            if y - 1 >= 0 and not barrier[y-1, x]:
-                new_grid[y-1, x] += energy * S
-            if y + 1 < h and not barrier[y+1, x]:
-                new_grid[y+1, x] += energy * S
-            # 对角（增强涟漪）
-            if x-1>=0 and y-1>=0 and not barrier[y-1, x-1]:
-                new_grid[y-1, x-1] += energy * S * 0.5
-            if x+1<w and y-1>=0 and not barrier[y-1, x+1]:
-                new_grid[y-1, x+1] += energy * S * 0.5
-            if x-1>=0 and y+1<h and not barrier[y+1, x-1]:
-                new_grid[y+1, x-1] += energy * S * 0.5
-            if x+1<w and y+1<h and not barrier[y+1, x+1]:
-                new_grid[y+1, x+1] += energy * S * 0.5
-    return new_grid
+ABSORB_X = BARRIER_X + 1  # 上缝右侧一列
 
 # ============================================================
 # 计算干涉对比度
@@ -104,7 +66,18 @@ def run_simulation(absorb_ratio, label):
     
     # 传播
     for step in range(STEPS):
-        grid = propagate(grid, barrier, absorb_ratio)
+        grid = propagate_double_slit_slit_absorb(
+            grid,
+            barrier,
+            absorb_ratio,
+            ABSORB_X,
+            SLIT1_Y,
+            SLIT1_Y + SLIT_WIDTH,
+            A,
+            S,
+            B,
+            LAMBDA,
+        )
         if (step+1) % 100 == 0:
             print(f"  进度: {step+1}/{STEPS}")
     

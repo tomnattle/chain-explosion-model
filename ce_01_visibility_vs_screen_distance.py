@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from chain_explosion_numba import propagate_double_slit
+
 # ============================================================
 # 参数配置
 # ============================================================
@@ -48,51 +50,6 @@ def create_grid_and_barrier(width, barrier_x):
         barrier[SLIT2_Y:SLIT2_Y+SLIT_WIDTH, barrier_x] = False
     
     return grid, barrier
-
-# ============================================================
-# 传播函数（链式爆炸）
-# ============================================================
-
-def propagate(grid, barrier):
-    """一次传播步"""
-    new_grid = np.zeros_like(grid)
-    h, w = grid.shape
-    
-    for y in range(h):
-        for x in range(w):
-            energy = grid[y, x]
-            if energy <= 0:
-                continue
-            
-            energy *= LAMBDA
-            
-            # 向右（主方向）
-            if x + 1 < w and not barrier[y, x+1]:
-                new_grid[y, x+1] += energy * A
-            
-            # 向左（后向）
-            if x - 1 >= 0 and not barrier[y, x-1]:
-                new_grid[y, x-1] += energy * B
-            
-            # 向上（侧向）
-            if y - 1 >= 0 and not barrier[y-1, x]:
-                new_grid[y-1, x] += energy * S
-            
-            # 向下（侧向）
-            if y + 1 < h and not barrier[y+1, x]:
-                new_grid[y+1, x] += energy * S
-            
-            # 对角方向（让涟漪更丰富）
-            if x - 1 >= 0 and y - 1 >= 0 and not barrier[y-1, x-1]:
-                new_grid[y-1, x-1] += energy * S * 0.5
-            if x + 1 < w and y - 1 >= 0 and not barrier[y-1, x+1]:
-                new_grid[y-1, x+1] += energy * S * 0.5
-            if x - 1 >= 0 and y + 1 < h and not barrier[y+1, x-1]:
-                new_grid[y+1, x-1] += energy * S * 0.5
-            if x + 1 < w and y + 1 < h and not barrier[y+1, x+1]:
-                new_grid[y+1, x+1] += energy * S * 0.5
-    
-    return new_grid
 
 # ============================================================
 # 计算对比度
@@ -144,7 +101,7 @@ for screen_x in SCREEN_DISTANCES:
     
     # 运行模拟
     for step in range(STEPS):
-        grid = propagate(grid, barrier)
+        grid = propagate_double_slit(grid, barrier, A, S, B, LAMBDA)
     
     # 提取屏幕能量（屏幕在 X = screen_x 处）
     if screen_x < grid.shape[1]:

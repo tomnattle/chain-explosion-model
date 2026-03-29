@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from numba import jit
 import time
+
+from chain_explosion_numba import propagate_split_phase
 
 # ============================================================
 # 参数配置
@@ -19,71 +20,6 @@ STEPS = 800
 SPLIT_X = WIDTH // 4
 SPLIT_ANGLE = 15
 DETECTOR_DISTANCES = [150, 250, 350]
-
-# ============================================================
-# Numba加速的传播函数（关键优化）
-# ============================================================
-
-@jit(nopython=True)
-def propagate_numba(energy_grid, phase_grid, split_mask, lambda_val, A_val, S_val, B_val):
-    """单步传播 - 使用numba加速"""
-    h, w = energy_grid.shape
-    new_energy = np.zeros((h, w))
-    new_phase = np.zeros((h, w))
-    
-    for y in range(h):
-        for x in range(w):
-            energy = energy_grid[y, x]
-            if energy <= 0:
-                continue
-            
-            phase = phase_grid[y, x]
-            energy *= lambda_val
-            
-            # 分裂区域
-            if split_mask[y, x]:
-                # 上方向
-                if y - 1 >= 0 and x + 1 < w:
-                    new_energy[y-1, x+1] += energy * A_val * 0.5
-                    new_phase[y-1, x+1] = phase
-                # 下方向
-                if y + 1 < h and x + 1 < w:
-                    new_energy[y+1, x+1] += energy * A_val * 0.5
-                    new_phase[y+1, x+1] = phase
-            else:
-                # 正常传播
-                if x + 1 < w:
-                    new_energy[y, x+1] += energy * A_val
-                    new_phase[y, x+1] = phase
-                if x - 1 >= 0:
-                    new_energy[y, x-1] += energy * B_val
-                    new_phase[y, x-1] = phase
-                if y - 1 >= 0:
-                    new_energy[y-1, x] += energy * S_val
-                    new_phase[y-1, x] = phase
-                if y + 1 < h:
-                    new_energy[y+1, x] += energy * S_val
-                    new_phase[y+1, x] = phase
-                # 对角方向
-                if x-1>=0 and y-1>=0:
-                    new_energy[y-1, x-1] += energy * S_val * 0.5
-                    new_phase[y-1, x-1] = phase
-                if x+1<w and y-1>=0:
-                    new_energy[y-1, x+1] += energy * S_val * 0.5
-                    new_phase[y-1, x+1] = phase
-                if x-1>=0 and y+1<h:
-                    new_energy[y+1, x-1] += energy * S_val * 0.5
-                    new_phase[y+1, x-1] = phase
-                if x+1<w and y+1<h:
-                    new_energy[y+1, x+1] += energy * S_val * 0.5
-                    new_phase[y+1, x+1] = phase
-    
-    # 归一化
-    total = np.sum(new_energy)
-    if total > 1e-9:
-        new_energy /= total
-    
-    return new_energy, new_phase
 
 # ============================================================
 # 初始化函数（不需要加速）
@@ -120,8 +56,8 @@ def run_simulation(detector_x, detector_y1, detector_y2):
     energies1, energies2, phases1, phases2 = [], [], [], []
     
     for step in range(STEPS):
-        energy_grid, phase_grid = propagate_numba(
-            energy_grid, phase_grid, split_mask, LAMBDA, A, S, B
+        energy_grid, phase_grid = propagate_split_phase(
+            energy_grid, phase_grid, split_mask, A, S, B, LAMBDA, True
         )
         
         energies1.append(energy_grid[detector_y1, detector_x])

@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.patches import Circle
-import time
+
+from chain_explosion_numba import propagate_double_slit_absorber_mask, set_circle_mask
 
 # ============================================================
 # 固定参数
@@ -21,45 +21,6 @@ SLIT2_Y = HEIGHT // 2 + 25
 SLIT_WIDTH = 6
 STEPS = 500
 SCREEN_X = WIDTH - 10
-
-# ============================================================
-# 传播函数
-# ============================================================
-
-def propagate(grid, barrier, absorber, absorb_ratio):
-    new_grid = np.zeros_like(grid)
-    h, w = grid.shape
-    for y in range(h):
-        for x in range(w):
-            energy = grid[y, x]
-            if energy <= 0:
-                continue
-            if absorber[y, x]:
-                energy *= (1 - absorb_ratio)
-                if energy <= 0:
-                    continue
-            energy *= LAMBDA
-            # 右
-            if x + 1 < w and not barrier[y, x+1]:
-                new_grid[y, x+1] += energy * A
-            # 左
-            if x - 1 >= 0 and not barrier[y, x-1]:
-                new_grid[y, x-1] += energy * B
-            # 上下
-            if y - 1 >= 0 and not barrier[y-1, x]:
-                new_grid[y-1, x] += energy * S
-            if y + 1 < h and not barrier[y+1, x]:
-                new_grid[y+1, x] += energy * S
-            # 对角
-            if x-1>=0 and y-1>=0 and not barrier[y-1, x-1]:
-                new_grid[y-1, x-1] += energy * S * 0.5
-            if x+1<w and y-1>=0 and not barrier[y-1, x+1]:
-                new_grid[y-1, x+1] += energy * S * 0.5
-            if x-1>=0 and y+1<h and not barrier[y+1, x-1]:
-                new_grid[y+1, x-1] += energy * S * 0.5
-            if x+1<w and y+1<h and not barrier[y+1, x+1]:
-                new_grid[y+1, x+1] += energy * S * 0.5
-    return new_grid
 
 def compute_visibility(screen):
     peaks = []
@@ -85,21 +46,18 @@ def run_simulation(absorber_center_y, absorber_radius, absorb_ratio, absorber_x=
     grid = np.zeros((HEIGHT, WIDTH))
     grid[SOURCE_Y, SOURCE_X] = 100.0
     
-    barrier = np.zeros((HEIGHT, WIDTH), dtype=bool)
+    barrier = np.zeros((HEIGHT, WIDTH), dtype=np.bool_)
     barrier[:, BARRIER_X] = True
     barrier[SLIT1_Y:SLIT1_Y+SLIT_WIDTH, BARRIER_X] = False
     barrier[SLIT2_Y:SLIT2_Y+SLIT_WIDTH, BARRIER_X] = False
     
-    absorber = np.zeros((HEIGHT, WIDTH), dtype=bool)
-    for y in range(HEIGHT):
-        for x in range(WIDTH):
-            dx = x - absorber_x
-            dy = y - absorber_center_y
-            if dx*dx + dy*dy <= absorber_radius*absorber_radius:
-                absorber[y, x] = True
+    absorber = np.zeros((HEIGHT, WIDTH), dtype=np.bool_)
+    set_circle_mask(absorber, absorber_x, absorber_center_y, absorber_radius)
     
     for _ in range(STEPS):
-        grid = propagate(grid, barrier, absorber, absorb_ratio)
+        grid = propagate_double_slit_absorber_mask(
+            grid, barrier, absorber, absorb_ratio, A, S, B, LAMBDA
+        )
     
     screen = grid[:, SCREEN_X]
     visibility = compute_visibility(screen)

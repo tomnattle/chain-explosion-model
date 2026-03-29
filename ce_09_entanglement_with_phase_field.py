@@ -1,6 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from chain_explosion_numba import propagate_split_phase
+
 # ============================================================
 # 参数配置
 # ============================================================
@@ -46,7 +48,7 @@ for y in range(HEIGHT):
     phase_grid[y, SOURCE_X] = 0.0  # 初始相位为0
 
 # 分裂掩码（将波包分成两路，并保持相位同步）
-split_mask = np.zeros((HEIGHT, WIDTH), dtype=bool)
+split_mask = np.zeros((HEIGHT, WIDTH), dtype=np.bool_)
 for y in range(HEIGHT):
     for x in range(SPLIT_X, SPLIT_X + 20):
         # 上路径
@@ -57,64 +59,6 @@ for y in range(HEIGHT):
         target_y_down = SOURCE_Y + int((x - SPLIT_X) * np.tan(np.radians(SPLIT_ANGLE)))
         if 0 <= target_y_down < HEIGHT:
             split_mask[target_y_down, x] = True
-
-# ============================================================
-# 传播函数（能量 + 相位）
-# ============================================================
-
-def propagate_with_phase(energy_grid, phase_grid, split_mask):
-    new_energy = np.zeros_like(energy_grid)
-    new_phase = np.zeros_like(phase_grid)
-    h, w = energy_grid.shape
-    
-    for y in range(h):
-        for x in range(w):
-            energy = energy_grid[y, x]
-            if energy <= 0:
-                continue
-            
-            phase = phase_grid[y, x]
-            energy *= LAMBDA
-            
-            # 如果在分裂区域，强制分成两路，相位保持不变
-            if split_mask[y, x]:
-                # 上方向
-                if y - 1 >= 0 and x + 1 < w:
-                    new_energy[y-1, x+1] += energy * A * 0.5
-                    new_phase[y-1, x+1] = phase  # 相位同步！
-                # 下方向
-                if y + 1 < h and x + 1 < w:
-                    new_energy[y+1, x+1] += energy * A * 0.5
-                    new_phase[y+1, x+1] = phase  # 相位同步！
-            else:
-                # 正常传播（四个方向）
-                if x + 1 < w:
-                    new_energy[y, x+1] += energy * A
-                    new_phase[y, x+1] = phase
-                if x - 1 >= 0:
-                    new_energy[y, x-1] += energy * B
-                    new_phase[y, x-1] = phase
-                if y - 1 >= 0:
-                    new_energy[y-1, x] += energy * S
-                    new_phase[y-1, x] = phase
-                if y + 1 < h:
-                    new_energy[y+1, x] += energy * S
-                    new_phase[y+1, x] = phase
-                # 对角方向（减半强度）
-                if x-1>=0 and y-1>=0:
-                    new_energy[y-1, x-1] += energy * S * 0.5
-                    new_phase[y-1, x-1] = phase
-                if x+1<w and y-1>=0:
-                    new_energy[y-1, x+1] += energy * S * 0.5
-                    new_phase[y-1, x+1] = phase
-                if x-1>=0 and y+1<h:
-                    new_energy[y+1, x-1] += energy * S * 0.5
-                    new_phase[y+1, x-1] = phase
-                if x+1<w and y+1<h:
-                    new_energy[y+1, x+1] += energy * S * 0.5
-                    new_phase[y+1, x+1] = phase
-    
-    return new_energy, new_phase
 
 # ============================================================
 # 计算相位相关性
@@ -135,7 +79,9 @@ energies2 = []
 phase_corrs = []
 
 for step in range(STEPS):
-    energy_grid, phase_grid = propagate_with_phase(energy_grid, phase_grid, split_mask)
+    energy_grid, phase_grid = propagate_split_phase(
+        energy_grid, phase_grid, split_mask, A, S, B, LAMBDA, False
+    )
     
     # 记录探测器数据
     e1 = energy_grid[DETECTOR1_Y, DETECTOR1_X]

@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
+
+from chain_explosion_numba import propagate_split_energy
 
 # ============================================================
 # 参数配置
@@ -44,7 +45,7 @@ for y in range(HEIGHT):
     grid[y, SOURCE_X] = 100.0 * np.exp(-dy**2 / (2 * WAVEPACKET_WIDTH**2))
 
 # 分裂掩码（将波包分成两路）
-split_mask = np.zeros((HEIGHT, WIDTH), dtype=bool)
+split_mask = np.zeros((HEIGHT, WIDTH), dtype=np.bool_)
 for y in range(HEIGHT):
     for x in range(SPLIT_X, SPLIT_X + 10):
         # 上路径
@@ -55,50 +56,6 @@ for y in range(HEIGHT):
         target_y_down = SOURCE_Y + int((x - SPLIT_X) * np.tan(np.radians(SPLIT_ANGLE)))
         if 0 <= target_y_down < HEIGHT:
             split_mask[target_y_down, x] = True
-
-# ============================================================
-# 传播函数（支持分裂）
-# ============================================================
-
-def propagate_with_split(grid, split_mask):
-    new_grid = np.zeros_like(grid)
-    h, w = grid.shape
-    for y in range(h):
-        for x in range(w):
-            energy = grid[y, x]
-            if energy <= 0:
-                continue
-            
-            energy *= LAMBDA
-            
-            # 如果在分裂区域，强制分成两路
-            if split_mask[y, x]:
-                # 上方向
-                if y - 1 >= 0:
-                    new_grid[y-1, x+1] += energy * A * 0.5
-                # 下方向
-                if y + 1 < h:
-                    new_grid[y+1, x+1] += energy * A * 0.5
-            else:
-                # 正常传播
-                if x + 1 < w:
-                    new_grid[y, x+1] += energy * A
-                if x - 1 >= 0:
-                    new_grid[y, x-1] += energy * B
-                if y - 1 >= 0:
-                    new_grid[y-1, x] += energy * S
-                if y + 1 < h:
-                    new_grid[y+1, x] += energy * S
-                # 对角
-                if x-1>=0 and y-1>=0:
-                    new_grid[y-1, x-1] += energy * S * 0.5
-                if x+1<w and y-1>=0:
-                    new_grid[y-1, x+1] += energy * S * 0.5
-                if x-1>=0 and y+1<h:
-                    new_grid[y+1, x-1] += energy * S * 0.5
-                if x+1<w and y+1<h:
-                    new_grid[y+1, x+1] += energy * S * 0.5
-    return new_grid
 
 # ============================================================
 # 计算两个探测器的相关性
@@ -122,7 +79,7 @@ energies1 = []
 energies2 = []
 
 for step in range(STEPS):
-    grid = propagate_with_split(grid, split_mask)
+    grid = propagate_split_energy(grid, split_mask, A, S, B, LAMBDA)
     
     # 记录探测器数据
     e1 = grid[DETECTOR1_Y, DETECTOR1_X]
