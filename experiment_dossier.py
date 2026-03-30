@@ -416,7 +416,35 @@ DOSSIER_BASE = {
         "procedure_zh": ["运行", "savefig"],
         "engine": "ce_engine_v2",
     },
+    "chain_explosion_numba.py": {
+        "purpose_zh": "为各 `ce_*` 仿真提供共享的二维格点传播核（Numba JIT）。",
+        "purpose_en": "Shared 2D lattice propagation kernels (Numba JIT) for ce_* scripts.",
+        "code_principle_zh": "每步：格点能量乘衰减 λ，再按轴向权重 A/B 与侧向/对角 S 分配到邻格；`barrier` 布尔挡板禁止向被挡格转移；变体在缝列或布尔掩模上对能量做乘法吸收；另有 `propagate_split_energy` / `propagate_split_phase` 分支与相位更新。",
+        "code_principle_en": "Per step: λ damping, A/B/S neighbor split, barrier mask; variants absorb on slit column or mask; split and phase kernels.",
+        "assumptions_zh": [
+            "场量为非负标量「能量」而非量子振幅；不宣称等价于含时薛定谔方程。",
+            "耦合权重 A,S,B,λ 由调用脚本给定；无量纲格点单位。",
+            "具体几何（缝位、屏列）由各 `ce_*` 脚本与 barrier 矩阵定义。",
+        ],
+        "expected_zh": "被 `ce_*` 逐步调用后得到与参数一致的离散演化。",
+        "expected_en": "Stepwise calls yield consistent discrete evolution.",
+        "procedure_zh": ["由仿真脚本逐步调用各 `propagate_*` 函数"],
+        "engine": "numba @jit (this module)",
+    },
 }
+
+
+def dossier_fields_for_readme(script_name):
+    """
+    供 README / suite 报告注入：目的、实现机制、假设列表（与 emit 档案一致）。
+    script_name: 例如 'ce_00_double_slit_demo.py'
+    """
+    base = DOSSIER_BASE.get(script_name) or _default_base(script_name)
+    return {
+        "purpose_zh": base.get("purpose_zh") or "",
+        "code_principle_zh": base.get("code_principle_zh") or "",
+        "assumptions_zh": list(base.get("assumptions_zh") or []),
+    }
 
 
 def _default_base(script_name):

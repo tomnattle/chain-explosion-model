@@ -46,6 +46,7 @@ import matplotlib.image as mpimg
 import numpy as np
 
 import suite_artifacts as sa
+from experiment_dossier import dossier_fields_for_readme
 
 REPO_ROOT = Path(__file__).resolve().parent
 # 子进程先加载 mpl_compat，避免 Agg 下中文缺字形刷 RuntimeWarning
@@ -1056,15 +1057,18 @@ def main(argv: Optional[List[str]] = None) -> int:
             results.append((job, "FAIL", "missing_file", str(path)))
             failed += 1
             report_rows.append(
-                {
-                    "script": job.script,
-                    "group": job.group,
-                    "title": job.title,
-                    "status": "FAIL",
-                    "reason": "missing_file -> %s" % path,
-                    "stdout_tail": "",
-                    "archived_figure": None,
-                }
+                dict(
+                    dossier_fields_for_readme(job.script),
+                    **{
+                        "script": job.script,
+                        "group": job.group,
+                        "title": job.title,
+                        "status": "FAIL",
+                        "reason": "missing_file -> %s" % path,
+                        "stdout_tail": "",
+                        "archived_figure": None,
+                    },
+                )
             )
             continue
 
@@ -1081,15 +1085,20 @@ def main(argv: Optional[List[str]] = None) -> int:
             results.append((job, "FAIL", f"exit_{rc}", ""))
             failed += 1
             report_rows.append(
-                {
-                    "script": job.script,
-                    "group": job.group,
-                    "title": job.title,
-                    "status": "FAIL",
-                    "reason": "exit_%d" % rc,
-                    "stdout_tail": "\n".join(((out or "") + "\n" + (err or "")).strip().splitlines()[-20:]),
-                    "archived_figure": None,
-                }
+                dict(
+                    dossier_fields_for_readme(job.script),
+                    **{
+                        "script": job.script,
+                        "group": job.group,
+                        "title": job.title,
+                        "status": "FAIL",
+                        "reason": "exit_%d" % rc,
+                        "stdout_tail": "\n".join(
+                            ((out or "") + "\n" + (err or "")).strip().splitlines()[-20:]
+                        ),
+                        "archived_figure": None,
+                    },
+                )
             )
             continue
 
@@ -1112,17 +1121,20 @@ def main(argv: Optional[List[str]] = None) -> int:
                 REPO_ROOT, figures_dir, job.group, job.script, job.expect_png
             )
         report_rows.append(
-            {
-                "script": job.script,
-                "group": job.group,
-                "title": job.title,
-                "expect_png": job.expect_png,
-                "status": status,
-                "reason": reason,
-                "elapsed_s": round(elapsed, 3),
-                "stdout_tail": stdout_tail,
-                "archived_figure": archived,
-            }
+            dict(
+                dossier_fields_for_readme(job.script),
+                **{
+                    "script": job.script,
+                    "group": job.group,
+                    "title": job.title,
+                    "expect_png": job.expect_png,
+                    "status": status,
+                    "reason": reason,
+                    "elapsed_s": round(elapsed, 3),
+                    "stdout_tail": stdout_tail,
+                    "archived_figure": archived,
+                },
+            )
         )
 
     total = time.perf_counter() - t0
