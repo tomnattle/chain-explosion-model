@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -90,6 +92,9 @@ plt.colorbar(label='log(1+能量)')
 plt.legend()
 
 plt.tight_layout()
+_out = os.path.join(os.path.dirname(__file__), "ce_00_double_slit_demo.png")
+plt.savefig(_out, dpi=120, bbox_inches="tight")
+print("Saved:", _out)
 plt.show()
 
 # 3. 打印参数和观察结果

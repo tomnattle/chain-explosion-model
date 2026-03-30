@@ -131,3 +131,20 @@ print(f"  传播距离: {SCREEN_X - BARRIER_X} 像素")
 print(f"  总能量: {total_energy:.4f}")
 print(f"  干涉对比度: {visibility:.4f}")
 print("=" * 60)
+
+import os
+import matplotlib
+
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
+
+plt.figure(figsize=(10, 4))
+plt.plot(screen, "b-", lw=1)
+plt.xlabel("Y index")
+plt.ylabel("Screen intensity")
+plt.title("ce_02: screen column after propagation")
+plt.grid(alpha=0.3)
+_p = os.path.join(os.path.dirname(__file__), "ce_02_double_slit_screen_statistics.png")
+plt.tight_layout()
+plt.savefig(_p, dpi=120, bbox_inches="tight")
+print("Saved:", _p)

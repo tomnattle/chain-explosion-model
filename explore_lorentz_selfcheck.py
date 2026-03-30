@@ -61,6 +61,27 @@ def main():
         and abs(vp - C) < 1e-5
         and w < C
     )
+    import os
+
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    names = ["|a⊕b-b⊕a|", "|assoc|", "|v'-c|"]
+    vals = [max(d, 1e-16), max(abs(x - y), 1e-16), max(abs(vp - C), 1e-16)]
+    plt.figure(figsize=(6, 3.5))
+    plt.bar(names, vals, color=["#238636", "#1f6feb", "#d29922"])
+    plt.ylabel("error (log scale)")
+    plt.yscale("log")
+    plt.title("Lorentz composition selfcheck (algebra only)")
+    for i, v in enumerate(vals):
+        plt.text(i, v, "%.1e" % v, ha="center", va="bottom", fontsize=8)
+    _p = os.path.join(os.path.dirname(__file__), "explore_lorentz_selfcheck.png")
+    plt.tight_layout()
+    plt.savefig(_p, dpi=120, bbox_inches="tight")
+    print("Saved:", _p)
+
     if ok:
         print("VERDICT: PASS (lorentz_algebra)")
     else:

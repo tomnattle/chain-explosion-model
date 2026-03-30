@@ -13,7 +13,9 @@
   - 与 critique 同批收紧的 explore 质疑 3 条：因果锥各向异性比、双缝镜像宇称（公式层光速不变已硬比）。
 
 用法（仓库根目录）:
-    python run_unified_suite.py              # ce+verify+explore+critique
+    python run_unified_suite.py              # ce+verify+explore+critique；默认写入 test_artifacts/ 并更新 README 动态区块
+    python run_unified_suite.py --no-artifacts
+    python run_unified_suite.py --no-readme-patch
     python run_unified_suite.py -g verify    # 仅验证+发现（5 个）
     python run_unified_suite.py -g explore
     python run_unified_suite.py -g critique # 仅 7 条质疑脚本
@@ -42,6 +44,8 @@ from typing import Callable, List, Optional, Tuple
 
 import matplotlib.image as mpimg
 import numpy as np
+
+import suite_artifacts as sa
 
 REPO_ROOT = Path(__file__).resolve().parent
 # 子进程先加载 mpl_compat，避免 Agg 下中文缺字形刷 RuntimeWarning
@@ -393,6 +397,22 @@ def validate_lorentz() -> Validator:
     return _v
 
 
+def validate_lorentz_with_png(png: str) -> Validator:
+    """洛伦兹数值门禁 + 归档用 PNG 须存在。"""
+
+    def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
+        ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
+        if not ok_png:
+            return False, msg_png
+        inner = validate_lorentz()
+        ok2, msg2 = inner(text, repo, relaxed)
+        if not ok2:
+            return False, msg2
+        return True, "%s；%s" % (msg_png, msg2)
+
+    return _v
+
+
 def validate_visibility_loss(png: str) -> Validator:
     def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
@@ -710,22 +730,22 @@ def build_jobs() -> List[Job]:
             "ce_00_double_slit_demo.py",
             "ce",
             "CE-00 双缝演示",
-            None,
-            make_default(None),
+            "ce_00_double_slit_demo.png",
+            make_default("ce_00_double_slit_demo.png"),
         ),
         Job(
             "ce_01_visibility_vs_screen_distance.py",
             "ce",
             "CE-01 对比度-屏距",
-            None,
-            make_default(None),
+            "interference_decay.png",
+            make_default("interference_decay.png"),
         ),
         Job(
             "ce_02_double_slit_screen_statistics.py",
             "ce",
             "CE-02 屏上统计",
-            None,
-            make_default(None),
+            "ce_02_double_slit_screen_statistics.png",
+            make_default("ce_02_double_slit_screen_statistics.png"),
         ),
         Job(
             "ce_03_visibility_vs_side_coupling_S.py",
@@ -822,8 +842,8 @@ def build_jobs() -> List[Job]:
             "explore_lorentz_selfcheck.py",
             "explore",
             "探索 洛伦兹代数自检",
-            None,
-            validate_lorentz(),
+            "explore_lorentz_selfcheck.png",
+            validate_lorentz_with_png("explore_lorentz_selfcheck.png"),
         ),
         Job(
             "explore_visibility_vs_uniform_loss.py",
@@ -983,6 +1003,16 @@ def main(argv: Optional[List[str]] = None) -> int:
         action="store_true",
         help="仅列出将运行的任务",
     )
+    parser.add_argument(
+        "--no-artifacts",
+        action="store_true",
+        help="不写 test_artifacts/ 与 README 替换块",
+    )
+    parser.add_argument(
+        "--no-readme-patch",
+        action="store_true",
+        help="仍写 JSON/figures，但不改 README.md（可配合 --no-artifacts 无效）",
+    )
     args = parser.parse_args(argv)
 
     all_jobs = build_jobs()
@@ -1008,6 +1038,12 @@ def main(argv: Optional[List[str]] = None) -> int:
         return 0
 
     results: List[Tuple[Job, str, str, str]] = []
+    report_rows: List[dict] = []
+    artifact_root = None
+    figures_dir = None
+    if not args.no_artifacts:
+        artifact_root, figures_dir = sa.ensure_dirs(REPO_ROOT)
+
     failed = 0
     t0 = time.perf_counter()
 
@@ -1019,6 +1055,17 @@ def main(argv: Optional[List[str]] = None) -> int:
             print(f"  原因: 路径不存在 -> {path}")
             results.append((job, "FAIL", "missing_file", str(path)))
             failed += 1
+            report_rows.append(
+                {
+                    "script": job.script,
+                    "group": job.group,
+                    "title": job.title,
+                    "status": "FAIL",
+                    "reason": "missing_file -> %s" % path,
+                    "stdout_tail": "",
+                    "archived_figure": None,
+                }
+            )
             continue
 
         t1 = time.perf_counter()
@@ -1033,6 +1080,17 @@ def main(argv: Optional[List[str]] = None) -> int:
                 print(f"  stderr/stdout 尾部: {line}")
             results.append((job, "FAIL", f"exit_{rc}", ""))
             failed += 1
+            report_rows.append(
+                {
+                    "script": job.script,
+                    "group": job.group,
+                    "title": job.title,
+                    "status": "FAIL",
+                    "reason": "exit_%d" % rc,
+                    "stdout_tail": "\n".join(((out or "") + "\n" + (err or "")).strip().splitlines()[-20:]),
+                    "archived_figure": None,
+                }
+            )
             continue
 
         ok, reason = job.validate(out, REPO_ROOT, args.relaxed)
@@ -1047,7 +1105,50 @@ def main(argv: Optional[List[str]] = None) -> int:
                 print(f"    {line}")
         results.append((job, status, reason, ""))
 
+        stdout_tail = "\n".join((out or "").strip().splitlines()[-20:])
+        archived = None
+        if not args.no_artifacts and figures_dir is not None and job.expect_png:
+            archived = sa.archive_job_figure(
+                REPO_ROOT, figures_dir, job.group, job.script, job.expect_png
+            )
+        report_rows.append(
+            {
+                "script": job.script,
+                "group": job.group,
+                "title": job.title,
+                "expect_png": job.expect_png,
+                "status": status,
+                "reason": reason,
+                "elapsed_s": round(elapsed, 3),
+                "stdout_tail": stdout_tail,
+                "archived_figure": archived,
+            }
+        )
+
     total = time.perf_counter() - t0
+
+    if not args.no_artifacts and artifact_root is not None:
+        payload = {
+            "generated_at": time.strftime("%Y-%m-%dT%H:%M:%S"),
+            "python": sys.version.split()[0],
+            "platform": platform.platform(),
+            "suite_pass": failed == 0,
+            "elapsed_s": round(total, 3),
+            "groups_ran": groups,
+            "relaxed": args.relaxed,
+            "rows": report_rows,
+        }
+        sa.write_report_json(artifact_root / "suite_report.json", payload)
+        md_block = sa.build_markdown(report_rows, failed == 0, total)
+        (artifact_root / "README_TEST_REPORT.md").write_text(
+            md_block, encoding="utf-8"
+        )
+        if not args.no_readme_patch:
+            sa.patch_readme(REPO_ROOT / "README.md", md_block)
+        print()
+        print("已写入: test_artifacts/figures/, suite_report.json, README_TEST_REPORT.md", flush=True)
+        if not args.no_readme_patch:
+            print("已更新: README.md 中 SUITE_ARTIFACTS 区块", flush=True)
 
     print()
     print("=" * 72)
