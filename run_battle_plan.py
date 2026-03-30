@@ -19,6 +19,20 @@ import matplotlib.image as mpimg
 
 TARGETS = [
     {
+        "script": "explore_chsh_strict_protocol.py",
+        "must_contain": [
+            "Strict CHSH protocol",
+            "S = ",
+            "saved: chsh_strict_protocol.png",
+        ],
+        "extract_regex": {
+            "chsh_strict_S": r"S = ([0-9.+-]+)\s+\(",
+        },
+        "max_metrics": {
+            "chsh_strict_S": 2.02,
+        },
+    },
+    {
         "script": "explore_directional_emission.py",
         "must_contain": [
             "Directional emission comparison complete.",
@@ -54,6 +68,76 @@ TARGETS = [
         "extract_regex": {
             "S_strict": r"S = ([0-9.+-]+)\s+\(",
             "S_wave_like": r"S_like = ([0-9.+-]+)\s+\(",
+        },
+    },
+    {
+        "script": "explore_directionality_phase_diagram.py",
+        "must_contain": [
+            "Directionality phase diagram complete.",
+            "corr(V, log10(D))",
+            "saved: directionality_phase_diagram.png",
+        ],
+        "extract_regex": {
+            "corr_V_logD": r"corr\(V, log10\(D\)\)\s*=\s*([0-9.+-]+)",
+            "fit_rmse": r"rmse=([0-9.+-]+)",
+        },
+        "min_metrics": {
+            "corr_V_logD": 0.45,
+        },
+    },
+    {
+        "script": "explore_chsh_strict_vs_postselected_compare.py",
+        "must_contain": [
+            "CHSH strict-vs-postselected compare complete.",
+            "saved: chsh_strict_vs_postselected.png",
+        ],
+    },
+    {
+        "script": "explore_chsh_closure_protocol.py",
+        "must_contain": [
+            "CHSH closure-protocol audit",
+            "preregistered verdict = PASS",
+            "saved: chsh_closure_protocol.png",
+        ],
+        "extract_regex": {
+            "closure_strict_max_S": r"strict max S = ([0-9.+-]+)",
+            "closure_post_max_S": r"postselected max S = ([0-9.+-]+)",
+            "closure_gap": r"gap\(post - strict\) = ([0-9.+-]+)",
+        },
+        "max_metrics": {
+            "closure_strict_max_S": 2.02,
+        },
+    },
+    {
+        "script": "explore_chsh_local_wave_closure_full.py",
+        "must_contain": [
+            "CHSH local-wave closure full audit",
+            "scan max strict S =",
+            "scan max post S =",
+            "saved: chsh_local_wave_closure_full.png",
+        ],
+        "extract_regex": {
+            "full_scan_strict_max_S": r"scan max strict S = ([0-9.+-]+)",
+            "full_scan_post_max_S": r"scan max post S = ([0-9.+-]+)",
+            "full_scan_gap": r"scan gap\(post-strict\) = ([0-9.+-]+)",
+        },
+        "max_metrics": {
+            "full_scan_strict_max_S": 2.02,
+        },
+    },
+    {
+        "script": "explore_threshold_detector_clicks.py",
+        "must_contain": [
+            "Threshold detector clicks experiment complete.",
+            "pearson_r =",
+            "saved: threshold_detector_clicks.png",
+        ],
+        "extract_regex": {
+            "threshold_hit_rate": r"hit_rate = ([0-9.+-]+)",
+            "threshold_pearson_r": r"pearson_r = ([0-9.+-]+)",
+        },
+        "min_metrics": {
+            "threshold_pearson_r": 0.35,
         },
     },
 ]
@@ -95,6 +179,29 @@ def run_one(script_cfg):
             except ValueError:
                 extracted[k] = m.group(1)
 
+    min_metrics = script_cfg.get("min_metrics", {})
+    for mk, mv in min_metrics.items():
+        got = extracted.get(mk)
+        if got is None:
+            ok = False
+            continue
+        try:
+            if float(got) < float(mv):
+                ok = False
+        except Exception:
+            ok = False
+    max_metrics = script_cfg.get("max_metrics", {})
+    for mk, mv in max_metrics.items():
+        got = extracted.get(mk)
+        if got is None:
+            ok = False
+            continue
+        try:
+            if float(got) > float(mv):
+                ok = False
+        except Exception:
+            ok = False
+
     return {
         "script": script,
         "ok": ok,
@@ -125,14 +232,19 @@ def build_dashboard(results, out_png):
             sp.set_color("#30363d")
 
     tiles = [
+        ("chsh_strict_vs_postselected.png", "CHSH strict vs postselected"),
+        ("chsh_closure_protocol.png", "CHSH closure protocol"),
+        ("chsh_local_wave_closure_full.png", "CHSH local-wave closure full"),
         ("directional_emission_comparison.png", "Directional emission"),
         ("directional_double_slit_compare.png", "Directional double slit"),
+        ("directionality_phase_diagram.png", "Directionality phase diagram"),
+        ("threshold_detector_clicks.png", "Threshold detector clicks"),
         ("quantum_eraser_delayed_choice.png", "Quantum eraser"),
         ("bell_chsh_two_tracks.png", "Bell two tracks"),
         ("red_green_interference_analogy.png", "Red/green analogy"),
     ]
 
-    for i, (fname, title) in enumerate(tiles):
+    for i, (fname, title) in enumerate(tiles[:5]):
         ax = axes.flat[i]
         img = _safe_read_image(fname)
         if img is not None:

@@ -9,7 +9,13 @@ Chain Explosion Engine v2
 """
 
 import numpy as np
-from numba import jit
+try:
+    from numba import jit
+except Exception:  # no extra dependency required
+    def jit(*args, **kwargs):
+        def _wrap(func):
+            return func
+        return _wrap
 
 
 # ============================================================

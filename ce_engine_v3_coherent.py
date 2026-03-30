@@ -1,5 +1,11 @@
 import numpy as np
-from numba import jit
+try:
+    from numba import jit
+except Exception:  # no extra dependency required
+    def jit(*args, **kwargs):
+        def _wrap(func):
+            return func
+        return _wrap
 
 @jit(nopython=True)
 def propagate_coherent(U, barrier, A, S, LAM, k):

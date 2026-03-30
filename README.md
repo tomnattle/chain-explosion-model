@@ -226,6 +226,45 @@ This repository implements a **2D discrete lattice propagation model** (“chain
 - **产物：** `quantum_eraser_delayed_choice.png`
 - **判读：** 对比 `which-way marginal`、`eraser +/-` 与 `eraser marginal`。
 
+### P4. 方向性指标 D 与可见度 V 是否存在稳定关系
+
+- **命题：** 在固定几何下，方向性指标 `D=A/(S+B)` 与可见度 `V` 存在可重复的统计相关。
+- **脚本：** `explore_directionality_phase_diagram.py`
+- **产物：** `directionality_phase_diagram.png`
+- **判读：** 关注 `corr(V, log10(D))` 与拟合残差 `rmse`，用于回归门禁。
+
+### P5. 连续波 + 阈值探测是否出现“点击统计”
+
+- **命题：** 连续波到达屏幕后，经阈值探测与噪声可出现“单次点击”式统计分布。
+- **脚本：** `explore_threshold_detector_clicks.py`
+- **产物：** `threshold_detector_clicks.png`
+- **判读：** 点击分布与连续强度分布的形状相关（`pearson_r`）及命中率。
+
+### P6. 阈值 + 后筛选会不会制造“看起来像违反贝尔”的 S？
+
+- **命题：** 在同一套局域连续信号 + 阈值探测规则下：
+  - 不做后筛选（缺测映射为固定输出）时应满足 `S <= 2`；
+  - 只保留“双击”的后筛选时，`S` 可能超 2（对应实验里的公平采样/探测效率漏洞）。
+- **脚本：** `explore_chsh_operation_audit.py`
+- **产物：** `chsh_operation_audit.png`
+- **判读：** 比较 `no_postselection` 曲线与 `postselection` 曲线在 `eta`（探测效率）上的差异。
+
+> 直观结论：如果你用阈值“点击”再只选中少数探测成功事件，你就等价于允许一个“统计漏洞”；贝尔不等式就是在排除这种前提。
+
+### P7. 闭环协议下的局域波动 CHSH 审计（时序+效率+窗口）
+
+- **命题：** 在显式时序、效率、窗口的闭环风格协议中，strict 与 postselected 仍会分叉。
+- **脚本：**
+  - `explore_chsh_closure_protocol.py`
+  - `explore_chsh_local_wave_closure_full.py`
+- **产物：**
+  - `chsh_closure_protocol.png`
+  - `chsh_local_wave_closure_full.png`
+- **判读：**
+  - strict 分支最大值是否保持在门禁内（如 `S<=2.02`）
+  - postselected 分支是否出现显著抬升
+  - 两分支 gap 是否稳定存在
+
 ---
 
 ## New exploration gallery / 新增探索图
@@ -237,9 +276,15 @@ This repository implements a **2D discrete lattice propagation model** (“chain
 | `battle_plan_dashboard.png` | 战斗路线总览：汇总关键探索图与核心指标（V、S）。 | Battle plan dashboard: key figures and core metrics (V, S). |
 | `directional_emission_comparison.png` | 方向性扩散对比：近各向同性 vs 强前向传播；含前/侧/后能量占比。 | Directional spread comparison with forward/side/back partition. |
 | `directional_double_slit_compare.png` | 双缝方向权重开关对比：场分布 + 屏幕曲线 + 可见度 `V`。 | Double-slit comparison under isotropic-like vs directional weights. |
+| `directionality_phase_diagram.png` | 方向性相图：`(S,B)` 扫描下 `V` 热图及 `V-log10(D)` 关系。 | Directionality phase diagram with `V` heatmap and `V-log10(D)` relation. |
+| `threshold_detector_clicks.png` | 阈值探测点击：连续波强度与点击统计形状对比。 | Threshold detector clicks vs continuous intensity shape. |
 | `quantum_eraser_delayed_choice.png` | 量子擦除风格统计对照：边缘与条件分布差异。 | Quantum-eraser-style marginal vs conditional patterns. |
 | `bell_chsh_two_tracks.png` | CHSH 双轨：严格二值本地统计 vs 连续波相关统计。 | Two-track Bell/CHSH comparison. |
 | `red_green_interference_analogy.png` | 红/绿两路类比：交叉项如何产生/抹掉细条纹。 | Red/green two-path analogy for cross-term interference. |
+| `chsh_operation_audit.png` | 阈值探测 CHSH 审计：无后筛选 vs 后筛选导致 S 超 2 的来源。 | CHSH threshold audit: no-postselection vs postselection. |
+| `chsh_closure_protocol.png` | 闭环协议审计：时序/效率/窗口下 strict 与 postselected 对照。 | Closure-style audit under timing/efficiency/window. |
+| `chsh_local_wave_closure_full.png` | 局域连续波完整闭环扫描：strict 与 postselected 的全流程分叉。 | Full local-wave closure scan with strict/postselected split. |
+| `wave_particle_interaction.gif` | 波-粒交互 toy 动画：局域吸收、阈值再发射。 | Wave-particle toy: local absorption and threshold re-emission. |
 
 ---
 

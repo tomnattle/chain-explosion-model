@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-03-30T22:41:19",
+  "generated_at": "2026-03-30T22:53:42",
   "python": "3.6.5",
   "platform": "Windows-10-10.0.26100-SP0",
   "suite_pass": true,
-  "elapsed_s": 12.402,
+  "elapsed_s": 22.645,
   "groups_ran": [
     "research"
   ],
@@ -20,9 +20,9 @@
       "title": "战斗路线聚合回归",
       "expect_png": "battle_plan_dashboard.png",
       "status": "PASS",
-      "reason": "battle plan PASS（results=4；PNG OK(size=257490B, std=0.1724)）",
-      "elapsed_s": 12.257,
-      "stdout_tail": "[PASS] explore_directional_emission.py (2.572s)\n[PASS] explore_directional_double_slit_compare.py (3.33s)\n  metrics: {'V_near_isotropic': 0.4421, 'V_directional': 0.7788}\n[PASS] explore_quantum_eraser_delayed_choice.py (2.993s)\n[PASS] explore_bell_chsh_two_tracks.py (1.591s)\n  metrics: {'S_strict': 0.4968, 'S_wave_like': 2.8284}\n\nBattle plan run complete.\noverall: PASS\nsummary: test_artifacts\\battle_plan_summary.json\ndashboard: battle_plan_dashboard.png",
+      "reason": "battle plan PASS（results=5；PNG OK(size=257997B, std=0.1825)）",
+      "elapsed_s": 22.511,
+      "stdout_tail": "[PASS] explore_directional_emission.py (2.595s)\n[PASS] explore_directional_double_slit_compare.py (3.499s)\n  metrics: {'V_near_isotropic': 0.4421, 'V_directional': 0.7788}\n[PASS] explore_quantum_eraser_delayed_choice.py (2.961s)\n[PASS] explore_bell_chsh_two_tracks.py (1.571s)\n  metrics: {'S_strict': 0.4968, 'S_wave_like': 2.8284}\n[PASS] explore_directionality_phase_diagram.py (10.119s)\n  metrics: {'corr_V_logD': 0.5486, 'fit_rmse': 0.0883}\n\nBattle plan run complete.\noverall: PASS\nsummary: test_artifacts\\battle_plan_summary.json\ndashboard: battle_plan_dashboard.png",
       "archived_figure": "test_artifacts/figures/research__run_battle_plan.png"
     }
   ]

@@ -1,13 +1,23 @@
 {
-  "started_at": "2026-03-30 22:41:07",
+  "started_at": "2026-03-30 23:43:04",
   "python": "3.6.5",
   "all_ok": true,
   "results": [
     {
+      "script": "explore_chsh_strict_protocol.py",
+      "ok": true,
+      "return_code": 0,
+      "elapsed_sec": 1.053,
+      "extracted": {
+        "chsh_strict_S": 2.00127
+      },
+      "stdout_tail": "Strict CHSH protocol (no postselection, binary outputs, local response)\ncounts (ab,ab',a'b,a'b') = [125018, 125102, 124782, 125098]\nE(a,b)   = 0.74908\nE(a,b')  = 0.75041\nE(a',b)  = 0.75224\nE(a',b') = 0.25046\nS = 2.00127  (95% CI approx: 1.99296 ~ 2.00958)\nnoise=0.000 -> S=2.01037\nnoise=0.020 -> S=2.00200\nnoise=0.050 -> S=1.99847\nnoise=0.080 -> S=1.99053\nnoise=0.120 -> S=1.98812\nnoise=0.180 -> S=1.97241\nsaved: chsh_strict_protocol.png"
+    },
+    {
       "script": "explore_directional_emission.py",
       "ok": true,
       "return_code": 0,
-      "elapsed_sec": 2.572,
+      "elapsed_sec": 2.784,
       "extracted": {},
       "stdout_tail": "Directional emission comparison complete.\nnear-isotropic weights: A=0.42, S=0.3, B=0.28\ndirectional   weights: A=1.0, S=0.16, B=0.01\nenergy partitions [forward, side, backward]:\n  near-isotropic = [0.5406, 0.3736, 0.0858]\n  directional    = [1.0, 0.0, 0.0]\nsaved: directional_emission_comparison.png"
     },
@@ -15,7 +25,7 @@
       "script": "explore_directional_double_slit_compare.py",
       "ok": true,
       "return_code": 0,
-      "elapsed_sec": 3.33,
+      "elapsed_sec": 3.593,
       "extracted": {
         "V_near_isotropic": 0.4421,
         "V_directional": 0.7788
@@ -26,7 +36,7 @@
       "script": "explore_quantum_eraser_delayed_choice.py",
       "ok": true,
       "return_code": 0,
-      "elapsed_sec": 2.993,
+      "elapsed_sec": 3.186,
       "extracted": {},
       "stdout_tail": "=== quantum eraser / delayed-choice toy (hard metric) ===\ninterference cross-term ratio = RMS(interf)/RMS(I_both) = 0.000004\n(I_plus - I_minus) RMS normalized = 0.000008\neraser marginal RMSE vs which-way marginal = 4.345e-17\nV(which-way marginal) = 0.0000\nV(coherent both)      = 1.0000\nV(eraser plus)       = 1.0000\nV(eraser minus)      = 1.0000\nV(eraser marginal)   = 0.0000\nInterpretation: look at interference cross-term metric, not just V.\nsaved: quantum_eraser_delayed_choice.png"
     },
@@ -34,12 +44,66 @@
       "script": "explore_bell_chsh_two_tracks.py",
       "ok": true,
       "return_code": 0,
-      "elapsed_sec": 1.591,
+      "elapsed_sec": 1.809,
       "extracted": {
         "S_strict": 0.4968,
         "S_wave_like": 2.8284
       },
-      "stdout_tail": "  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 32454 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 26465 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 32441 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 20132 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 21449 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 39033 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 34987 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 25273 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 25481 missing from current font.\n  font.set_text(s, 0, flags=flags)\n已保存图像: red_green_interference_analogy.png"
+      "stdout_tail": "E(a',b)  = -0.2506\nE(a',b') = -0.7495\nS = 0.4968  (理论上界 2.0)\n说明: 严格CHSH：二值±1、本地响应、无后筛选\n\n[轨道2] 经典波连续相关（投影强度/连续变量）\nC(a,b)   = 0.7071\nC(a,b')  = 0.7071\nC(a',b)  = 0.7071\nC(a',b') = -0.7071\nS_like = 2.8284  (2*sqrt(2)=2.8284)\n说明: 经典波连续相关：不是二值CHSH E(±1,±1)\n\n结论（朴素版）:\n- CHSH <= 2 约束的是‘二值输出 + 本地隐藏变量 + 无后筛选’这一类模型。\n- 连续波强度相关可以接近 2.828，但那已不是同一个CHSH统计对象。\n- 所以不是数学错了，而是‘你在算不同问题’。\n\n已保存图像: bell_chsh_two_tracks.png\n已保存图像: red_green_interference_analogy.png"
+    },
+    {
+      "script": "explore_directionality_phase_diagram.py",
+      "ok": true,
+      "return_code": 0,
+      "elapsed_sec": 10.515,
+      "extracted": {
+        "corr_V_logD": 0.5486,
+        "fit_rmse": 0.0883
+      },
+      "stdout_tail": "Directionality phase diagram complete.\nA fixed = 1.0\ncorr(V, log10(D)) = 0.5486\nfit: V ~= 0.2877 * log10(D) + 0.6024, rmse=0.0883\nsaved: directionality_phase_diagram.png"
+    },
+    {
+      "script": "explore_chsh_strict_vs_postselected_compare.py",
+      "ok": true,
+      "return_code": 0,
+      "elapsed_sec": 3.023,
+      "extracted": {},
+      "stdout_tail": "CHSH strict-vs-postselected compare complete.\nstrict S range: [1.9702, 2.0087]\npostselected max S: 3.0000\nsaved: chsh_strict_vs_postselected.png"
+    },
+    {
+      "script": "explore_chsh_closure_protocol.py",
+      "ok": true,
+      "return_code": 0,
+      "elapsed_sec": 2.696,
+      "extracted": {
+        "closure_strict_max_S": 1.81026,
+        "closure_post_max_S": 2.02391,
+        "closure_gap": 0.21364
+      },
+      "stdout_tail": "CHSH closure-protocol audit\nstrict max S = 1.81026 (limit 2.02)\npostselected max S = 2.02391\ngap(post - strict) = 0.21364 (min 0.20)\nmax coincidence rate = 0.85069 (min 0.03)\npreregistered verdict = PASS\nsaved: chsh_closure_protocol.png"
+    },
+    {
+      "script": "explore_chsh_local_wave_closure_full.py",
+      "ok": true,
+      "return_code": 0,
+      "elapsed_sec": 8.446,
+      "extracted": {
+        "full_scan_strict_max_S": 1.67871,
+        "full_scan_post_max_S": 2.66667,
+        "full_scan_gap": 0.98796
+      },
+      "stdout_tail": "CHSH local-wave closure full audit\nbase: S_strict=1.44612, S_post=0.00000, coinc_rate=0.0000, late_setting=0.0000\nscan max strict S = 1.67871\nscan max post S = 2.66667\nscan gap(post-strict) = 0.98796\nsaved: chsh_local_wave_closure_full.png"
+    },
+    {
+      "script": "explore_threshold_detector_clicks.py",
+      "ok": true,
+      "return_code": 0,
+      "elapsed_sec": 3.386,
+      "extracted": {
+        "threshold_hit_rate": 1.0,
+        "threshold_pearson_r": 0.9227
+      },
+      "stdout_tail": "Threshold detector clicks experiment complete.\nshots = 1200\nhit_rate = 1.0000\npearson_r = 0.9227\nstd_cont = 0.210628, std_click = 0.207351\nsaved: threshold_detector_clicks.png"
     }
   ]
 }
