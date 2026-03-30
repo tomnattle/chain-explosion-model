@@ -1,0 +1,45 @@
+{
+  "title": "NIST completeblind CHSH 双协议开盲（工程归档）",
+  "archived_date_iso": "2026-03-31",
+  "run_label": "nist_completeblind_17_04_CH_pockel_100kHz_2015-09-19",
+  "repository": "chain-explosion-model",
+  "git_commit": "dd990ae19577d2a44d785cfc399153dd7806a148",
+  "data_source": {
+    "description": "NIST Bell Test processed HDF5 (complete blind run)",
+    "filename": "17_04_CH_pockel_100kHz.run.completeblind.dat.compressed.build.hdf5",
+    "path_relative": "data/17_04_CH_pockel_100kHz.run.completeblind.dat.compressed.build.hdf5",
+    "reference": "https://www.nist.gov/document/bell-test-data-file-folder-descriptions"
+  },
+  "pipeline": {
+    "convert": {
+      "script": "convert_nist_hdf5_to_events_csv.py",
+      "config_snapshot": "nist_convert_config.snapshot.json",
+      "events_csv_relative": "data/nist_completeblind_side_streams.csv",
+      "events_rows_approx": 1045645
+    },
+    "alignment": {
+      "script": "explore_chsh_experiment_alignment.py",
+      "config_snapshot": "chsh_preregistered_config_nist_index.snapshot.json",
+      "commands_example": [
+        "python convert_nist_hdf5_to_events_csv.py --hdf5 data/17_04_CH_pockel_100kHz.run.completeblind.dat.compressed.build.hdf5 --config nist_convert_config.json --output data/nist_completeblind_side_streams.csv",
+        "python explore_chsh_experiment_alignment.py --events-csv data/nist_completeblind_side_streams.csv --config chsh_preregistered_config_nist_index.json --out-json chsh_battle_result_nist.json --out-png chsh_experiment_alignment.png"
+      ]
+    }
+  },
+  "verdict_summary": {
+    "engineering_pass": true,
+    "thesis_pass": false,
+    "strict": { "window": 0.0, "pair_count": 136632, "S": 2.336275858171887 },
+    "standard": { "window": 15.0, "pair_count": 148670, "S": 2.8393872150319877 },
+    "thesis_fail_reason_primary": "strict S > strict_max_S (2.02) under archived thesis_gate"
+  },
+  "artifacts_in_this_folder": [
+    "README.md",
+    "BATTLE_ARCHIVE.json",
+    "battle_result.json",
+    "nist_convert_config.snapshot.json",
+    "chsh_preregistered_config_nist_index.snapshot.json",
+    "figure_chsh_alignment.png"
+  ],
+  "note": "本归档固定当时快照；后续若要复现实验请用仓库根目录最新脚本与配置，并递增预注册版本号而非覆盖本目录文件。"
+}
