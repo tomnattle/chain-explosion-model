@@ -4,6 +4,7 @@
 设计态度（自检）：
   - 子进程 returncode==0 不代表物理正确；本脚本对若干脚本尝试解析 stdout 做额外门禁。
   - 门禁阈值可能被参数漂移打破；失败时请先看「原因」再决定是否改模型或放宽 --relaxed。
+  - 默认 strict：`explore_fringe_spacing_vs_slit.py` 外均需实质 PNG（字节数+方差）、更严的数值带；`--relaxed` 略放宽若干 explore/critique/verify 阈值。
   - 探索类脚本部分是「记录现象」而非教科书定理；门禁只做空值/一致性 sanity check。
   - 不包含 verify_A_fraunhofer：离散链式传播与连续夫琅禾费解析式不对等，用皮尔逊 r 做硬门禁易误判（类「拿错尺子」）。
   - verify_uncertainty：记录拟合指数 alpha，不设与 -1 硬比；discover_measurement_continuity：[警告] 仍为探索软通过。
@@ -22,7 +23,7 @@
     python run_unified_suite.py -g ce
     python run_unified_suite.py -g extended  # 额外 verify_*（若存在）
     python run_unified_suite.py --dry-run
-    python run_unified_suite.py --relaxed    # 放宽 verify B / critique05 r_V / critique06 R_E / critique07 & 各向异性 & 宇称带
+    python run_unified_suite.py --relaxed    # 放宽 Born r、discover_E([警告]可过)、PNG 尺寸/对比度下限及若干 critique/explore 数值带
 
 环境:
   - 强制 MPLBACKEND=Agg，避免阻塞。
@@ -171,8 +172,12 @@ def parse_causal_dx_median(text: str) -> Optional[float]:
 
 
 def parse_fringe_slope(text: str) -> Optional[float]:
+    """匹配 explore_fringe_spacing_vs_slit  stdout；亦可从 dossier JSON 回退解析。"""
     m = re.search(r"拟合斜率\s*=\s*([0-9.eE+-]+)", text)
-    return _f(m.group(1)) if m else None
+    if m:
+        return _f(m.group(1))
+    m2 = re.search(r'"loglog_slope_fitted"\s*:\s*([0-9.eE+-]+)', text)
+    return _f(m2.group(1)) if m2 else None
 
 
 def parse_causal_aniso_ratio(text: str) -> Optional[float]:
@@ -230,15 +235,21 @@ def parse_critique06_median_Eratio(text: str) -> Optional[float]:
 
 # critique_07：远场连续近似下 reference=-1；本仓库 CE v2 在此脚本固定参数下可复现斜率约 -0.12。
 CRITIQUE07_FITTED_LOG_SLOPE_GOLD = -0.1181
-CRITIQUE07_FITTED_TOL = 0.045
+CRITIQUE07_FITTED_TOL = 0.032
 
 # explore_causal_cone_anisotropy：曼哈顿前缘 vs L1 前缘中位比（4/3 邻域类离散常见值）。
 CAUSAL_ANISO_RATIO_GOLD = 1.3333
-CAUSAL_ANISO_RATIO_TOL = 0.07
+CAUSAL_ANISO_RATIO_TOL = 0.045
 
 # explore_double_slit_mirror_parity：B>0 时残差为主；与当前内核参数对齐的回归带。
-MIRROR_ASYM_LO, MIRROR_ASYM_HI = 0.22, 0.42
-MIRROR_R_LO, MIRROR_R_HI = 0.88, 0.96
+MIRROR_ASYM_LO, MIRROR_ASYM_HI = 0.24, 0.40
+MIRROR_R_LO, MIRROR_R_HI = 0.89, 0.95
+
+# CE / verify 类：实质 PNG 下限（strict）；relaxed 用较宽一档。
+CE_PNG_MIN_BYTES_STRICT = 9000
+CE_PNG_MIN_STD_STRICT = 0.018
+CE_PNG_MIN_BYTES_RELAXED = 5200
+CE_PNG_MIN_STD_RELAXED = 0.011
 
 
 # ---------------------------------------------------------------------------
@@ -286,22 +297,41 @@ def make_default(png: Optional[str]) -> Validator:
     return _v
 
 
+def make_ce_substantive_png(png: Optional[str]) -> Validator:
+    """CE / extended verify_*：须非空白、有足够对比度的 PNG。"""
+
+    def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
+        if not png:
+            return True, "(无期望 PNG)"
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        return assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
+
+    return _v
+
+
 def validate_pearson(script_hint: str, parser: Callable[[str], Optional[float]], png: str) -> Validator:
     def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
+        if not ok_s:
+            return False, msg_s
         r = parser(text)
         if r is None:
             return False, f"无法从 stdout 解析皮尔逊 r（{script_hint}），输出可能改版"
-        lo = 0.70 if relaxed else 0.90
+        # strict 高于旧版 0.90；略低于 0.965 以容纳 born MC 涨落（~0.93 仍应稳定通过）
+        lo = 0.85 if relaxed else 0.93
         if r < lo:
             return (
                 False,
-                f"r={r:.4f} < 门禁 {lo:.2f}（{'relaxed' if relaxed else 'strict'}）；"
+                f"r={r:.4f} < 门禁 {lo:.3f}（{'relaxed' if relaxed else 'strict'}）；"
                 f"相关系数不足，优先怀疑参数/网格/解析失败",
             )
-        return True, f"r={r:.4f} >= {lo:.2f}"
+        return True, f"{msg_s}；r={r:.4f} >= {lo:.3f}"
 
     return _v
 
@@ -313,13 +343,20 @@ def validate_verify_uncertainty_phenomenon(png: str) -> Validator:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
+        if not ok_s:
+            return False, msg_s
         a = parse_alpha_verify_c(text)
         if a is None:
             return False, "无法解析幂律指数 α（verify_uncertainty 输出改版？）"
+        if not math.isfinite(a) or abs(a) > 6.0:
+            return False, f"α={a} 非有限或超出合理现象范围（|α|≤6）"
         dev = abs(a - (-1.0))
         return (
             True,
-            f"现象已记录: α={a:.4f}，|Δα|={dev:.3f}（不设与 −1 硬门禁；见脚本）",
+            f"{msg_s}；alpha={a:.4f}，|Δalpha|={dev:.3f}（不与 -1 硬比；见脚本）",
         )
 
     return _v
@@ -330,6 +367,11 @@ def validate_discover_d(png: str) -> Validator:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
+        if not ok_s:
+            return False, msg_s
         v0, v1 = parse_discover_d_vis(text)
         if v0 is None or v1 is None:
             return False, "无法解析初始/末端对比度（discover_visibility_decay 改版？）"
@@ -339,25 +381,43 @@ def validate_discover_d(png: str) -> Validator:
                 f"对比度未随距离下降（V初={v0:.4f}, V末={v1:.4f}）；"
                 f"与脚本叙事不符，怀疑参数或可见度计算",
             )
-        return True, f"V: {v0:.4f} -> {v1:.4f}（衰减方向正确）"
+        rel_drop = (v0 - v1) / max(v0, 1e-9)
+        min_rel = 0.012 if relaxed else 0.028
+        if rel_drop < min_rel:
+            return (
+                False,
+                "相对降幅 %.4f < 门禁 %.4f（V初=%.4f,V末=%.4f）；衰减过弱"
+                % (rel_drop, min_rel, v0, v1),
+            )
+        return True, f"{msg_s}；V: {v0:.4f}->{v1:.4f}（降幅≈{100*rel_drop:.1f}%）"
 
     return _v
 
 
 def validate_discover_e(png: str) -> Validator:
-    """discover_E：吸收在核心里连续；V(η) 陡变多来自可见度算法，runner 不把 [警告] 记 FAIL。"""
+    """discover_E：strict 要求 [OK]；relaxed 仍允许 [警告]（可见度算法敏感）。"""
 
     def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
+        if not ok_s:
+            return False, msg_s
         line = parse_discover_e_verdict(text)
         if line is None:
             return False, "未找到 [OK]/[警告] 判语（discover_measurement_continuity 改版？）"
         if line.startswith("[警告]"):
-            return True, f"探索项通过（软预警）: {line}"
+            if relaxed:
+                return True, f"{msg_s}；relaxed 通过: {line[:120]}..."
+            return (
+                False,
+                "strict 要求 [OK]；当前为 [警告]（可加 --relaxed 或调脚本尖峰阈）",
+            )
         if line.startswith("[OK]"):
-            return True, line
+            return True, f"{msg_s}；{line[:160]}"
         return False, f"未识别判语: {line}"
 
     return _v
@@ -368,13 +428,18 @@ def validate_discover_f(png: str) -> Validator:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
+        if not ok_s:
+            return False, msg_s
         m = re.search(r"最优S/A\s*=\s*([0-9.eE+-]+)", text)
         if not m:
-            return True, "未解析最优 S/A（仅 smoke）；PNG 已生成"
+            return False, "未解析最优 S/A（discover_coupling_constant 须打印最终数值）"
         r = _f(m.group(1))
         if not (r > 0.0) or not (r < 1.0 + 1e6):
             return False, f"最优 S/A={r} 非有限正数？"
-        return True, f"最优 S/A={r:.6f}（探索项，无语义阈值）"
+        return True, f"{msg_s}；最优 S/A={r:.6f}"
 
     return _v
 
@@ -386,30 +451,37 @@ def validate_lorentz() -> Validator:
         c, assoc, vp = parse_lorentz(text)
         if c is None or assoc is None or vp is None:
             return False, "无法解析洛伦兹自检数值（输出改版？）"
-        if c > 1e-9 or assoc > 1e-9:
+        lim_c = 5e-9 if relaxed else 8e-12
+        lim_vp = 3e-5 if relaxed else 5e-7
+        if c > lim_c or assoc > lim_c:
             return (
                 False,
-                f"交换/结合误差过大: commute={c:.3e}, assoc={assoc:.3e}",
+                f"交换/结合误差过大: commute={c:.3e}, assoc={assoc:.3e}（阈≈{lim_c:.1e}）",
             )
-        if abs(vp - 1.0) > 1e-5:
-            return False, f"v' 应≈1，得 {vp:.6f}"
-        return True, f"commute={c:.3e}, assoc={assoc:.3e}, v'={vp:.6f}"
+        if abs(vp - 1.0) > lim_vp:
+            return False, f"v' 应≈1，得 {vp:.9f}（|Δ|≤{lim_vp:.1e}）"
+        return True, f"commute={c:.3e}, assoc={assoc:.3e}, v'={vp:.9f}"
 
     return _v
 
 
 def validate_lorentz_with_png(png: str) -> Validator:
-    """洛伦兹数值门禁 + 归档用 PNG 须存在。"""
+    """洛伦兹数值门禁 + 归档用 PNG 须存在且非空白。"""
 
     def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
+        if not ok_s:
+            return False, msg_s
         inner = validate_lorentz()
         ok2, msg2 = inner(text, repo, relaxed)
         if not ok2:
             return False, msg2
-        return True, "%s；%s" % (msg_png, msg2)
+        return True, "%s；%s" % (msg_s, msg2)
 
     return _v
 
@@ -419,18 +491,24 @@ def validate_visibility_loss(png: str) -> Validator:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
+        if not ok_s:
+            return False, msg_s
         ratio = parse_median_intensity_ratio(text)
         if ratio is None:
             return False, "无法解析 median(loss/base)（脚本改版？）"
-        if ratio >= 1.0 - 1e-6:
+        cap = 0.992 if relaxed else 0.975
+        if ratio >= cap:
             return (
                 False,
-                f"median(loss/base)={ratio:.6f} 应明显 <1；"
-                f"均匀损耗未压低总强度，怀疑未应用 loss 或步数/η 异常",
+                f"median(loss/base)={ratio:.6f} 应 < {cap:.3f}；"
+                f"均匀损耗未足够压低总强度",
             )
         return (
             True,
-            f"强度比={ratio:.4f}<1（V 对全局标度不变是预期；见脚本说明）",
+            f"{msg_s}；强度比={ratio:.4f}（V 对全局标度不变是预期）",
         )
 
     return _v
@@ -441,18 +519,23 @@ def validate_energy_budget(png: str) -> Validator:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
+        if not ok_s:
+            return False, msg_s
         med = parse_median_energy_step_ratio(text)
         if med is None:
             return False, "无法解析 median E_{t+1}/E_t"
-        if med <= 1.0:
+        floor = 1.004 if relaxed else 1.018
+        if med <= floor:
             return (
                 False,
-                f"步间中位比={med:.6g}；当前 ce_engine_v2 文档预期常>1（总量增长）。"
-                f"若已改内核或归一化，请更新门禁或脚本说明",
+                f"步间中位比={med:.6g}；应 > {floor:.3f}（未归一核总量增长须可分辨）",
             )
         return (
             True,
-            f"步间中位比={med:.4f}>1（与「未全局归一、sum(E) 常增长」一致；非守恒检验）",
+            f"{msg_s}；步间中位比={med:.4f}>1",
         )
 
     return _v
@@ -463,15 +546,21 @@ def validate_causal_front(png: str) -> Validator:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
+        if not ok_s:
+            return False, msg_s
         dx = parse_causal_dx_median(text)
         if dx is None:
             return False, "无法解析 dx/dt 中位数"
-        if not (0.85 <= dx <= 1.15):
+        lo, hi = (0.88, 1.12) if relaxed else (0.94, 1.06)
+        if not (lo <= dx <= hi):
             return (
                 False,
-                f"dx/dt 中位数={dx:.4f} 超出 [0.85,1.15]；怀疑传播核或步进定义变更",
+                f"dx/dt 中位数={dx:.4f} 超出 [{lo:.2f},{hi:.2f}]",
             )
-        return True, f"dx/dt 中位数={dx:.4f}（因果前缘 ~1 格/步）"
+        return True, f"{msg_s}；dx/dt 中位数={dx:.4f}"
 
     return _v
 
@@ -480,11 +569,13 @@ def validate_causal_anisotropy_probe(png: str) -> Validator:
     """CE 因果前缘 L1 vs 轴向比须落在离散核可复现带内。"""
 
     def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
-        tol = CAUSAL_ANISO_RATIO_TOL * (1.25 if relaxed else 1.0)
+        tol = CAUSAL_ANISO_RATIO_TOL * (1.12 if relaxed else 1.0)
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
-        ok_s, msg_s = assert_png_substantive(repo, png)
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
         if not ok_s:
             return False, msg_s
         r = parse_causal_aniso_ratio(text)
@@ -507,7 +598,9 @@ def validate_relativity_formula_layer(png: str) -> Validator:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
-        ok_s, msg_s = assert_png_substantive(repo, png)
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
         if not ok_s:
             return False, msg_s
         vp = parse_relativity_v_prime(text)
@@ -529,7 +622,9 @@ def validate_critique_doc_png(png: str, ok_line: str) -> Validator:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
-        ok_s, msg_s = assert_png_substantive(repo, png)
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
         if not ok_s:
             return False, msg_s
         if ok_line not in text:
@@ -546,7 +641,9 @@ def validate_critique_04_sr_boundary(png: str) -> Validator:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
-        ok_s, msg_s = assert_png_substantive(repo, png)
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
         if not ok_s:
             return False, msg_s
         if "[OK] critique_04_sr_not_derived" not in text:
@@ -555,22 +652,26 @@ def validate_critique_04_sr_boundary(png: str) -> Validator:
         vp = parse_critique04_v_prime(text)
         if vg is None or vp is None:
             return False, "无法解析格点 v_grid 或公式层 v'（输出改版？）"
-        if not (0.9 <= vg <= 1.1):
-            return False, "格点 dx/dt 中位数=%.4f 超出 [0.9,1.1]" % vg
-        if abs(vp - 1.0) > 1e-5:
-            return False, "公式层 v'=%.8f c 应≈1" % vp
-        return True, "%s；v_grid=%.4f, v'=%.6fc" % (msg_s, vg, vp)
+        v_lo, v_hi = (0.90, 1.10) if relaxed else (0.96, 1.04)
+        if not (v_lo <= vg <= v_hi):
+            return False, "格点 dx/dt 中位数=%.4f 超出 [%.2f,%.2f]" % (vg, v_lo, v_hi)
+        vp_lim = 2e-5 if relaxed else 6e-7
+        if abs(vp - 1.0) > vp_lim:
+            return False, "公式层 v'=%.9f c 应≈1（|Δ|≤%.1e）" % (vp, vp_lim)
+        return True, "%s；v_grid=%.4f, v'=%.9fc" % (msg_s, vg, vp)
 
     return _v
 
 
 def validate_critique_05_with_rv(png: str) -> Validator:
     def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
-        lo_r = 0.98 if relaxed else 0.993
+        lo_r = 0.988 if relaxed else 0.998
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
-        ok_s, msg_s = assert_png_substantive(repo, png)
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
         if not ok_s:
             return False, msg_s
         if "[OK] critique_05_decay_nonuniqueness" not in text:
@@ -594,7 +695,9 @@ def validate_critique_06_energy(png: str) -> Validator:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
-        ok_s, msg_s = assert_png_substantive(repo, png)
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
         if not ok_s:
             return False, msg_s
         if "[OK] critique_06_energy_growth" not in text:
@@ -607,16 +710,18 @@ def validate_critique_06_energy(png: str) -> Validator:
         med = parse_critique06_median_Eratio(text)
         if med is None or not math.isfinite(med):
             return False, "无法解析步间中位比"
-        r_floor = 1e40 if relaxed else 1e80
+        r_floor = 1e35 if relaxed else 1e115
         if r < r_floor:
             return (
                 False,
-                "R_E=%.4g 应 ≫1（非守恒增长）；低于门禁可能是核/步数变更" % r,
+                "R_E=%.4g 应 ≥1e%.0f量级（非守恒增长）；低于门禁可能是核/步数变更"
+                % (r, math.log10(r_floor)),
             )
-        if med <= 1.002:
+        med_min = 1.006 if relaxed else 1.014
+        if med <= med_min:
             return (
                 False,
-                "步间中位比=%.4f 应明确 >1（总量增长预期）" % med,
+                "步间中位比=%.4f 应 > %.3f（总量增长须清晰）" % (med, med_min),
             )
         return True, "%s；R_E=%.3g，median(Et+1/Et)=%.4f" % (msg_s, r, med)
 
@@ -627,11 +732,13 @@ def validate_critique_07_fringe(png: str) -> Validator:
     """可复现斜率相对 GOLD 回归；不声称已对齐远场 −1。"""
 
     def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
-        tol = CRITIQUE07_FITTED_TOL * (1.5 if relaxed else 1.0)
+        tol = CRITIQUE07_FITTED_TOL * (1.35 if relaxed else 1.0)
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
-        ok_s, msg_s = assert_png_substantive(repo, png)
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
         if not ok_s:
             return False, msg_s
         if "[OK] critique_07_fringe_theory_gap" not in text:
@@ -669,7 +776,9 @@ def validate_double_slit_mirror_parity(png: str) -> Validator:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
-        ok_s, msg_s = assert_png_substantive(repo, png)
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
         if not ok_s:
             return False, msg_s
         a = parse_mirror_asym(text)
@@ -677,7 +786,7 @@ def validate_double_slit_mirror_parity(png: str) -> Validator:
         if a is None or rm is None:
             return False, "无法解析 asym 或 r_mirror（脚本改版？）"
         if relaxed:
-            alo, ahi = MIRROR_ASYM_LO - 0.04, MIRROR_ASYM_HI + 0.06
+            alo, ahi = MIRROR_ASYM_LO - 0.05, MIRROR_ASYM_HI + 0.05
             rlo, rhi = MIRROR_R_LO - 0.04, MIRROR_R_HI + 0.03
         else:
             alo, ahi = MIRROR_ASYM_LO, MIRROR_ASYM_HI
@@ -732,77 +841,77 @@ def build_jobs() -> List[Job]:
             "ce",
             "CE-00 双缝演示",
             "ce_00_double_slit_demo.png",
-            make_default("ce_00_double_slit_demo.png"),
+            make_ce_substantive_png("ce_00_double_slit_demo.png"),
         ),
         Job(
             "ce_01_visibility_vs_screen_distance.py",
             "ce",
             "CE-01 对比度-屏距",
             "interference_decay.png",
-            make_default("interference_decay.png"),
+            make_ce_substantive_png("interference_decay.png"),
         ),
         Job(
             "ce_02_double_slit_screen_statistics.py",
             "ce",
             "CE-02 屏上统计",
             "ce_02_double_slit_screen_statistics.png",
-            make_default("ce_02_double_slit_screen_statistics.png"),
+            make_ce_substantive_png("ce_02_double_slit_screen_statistics.png"),
         ),
         Job(
             "ce_03_visibility_vs_side_coupling_S.py",
             "ce",
             "CE-03 V vs S",
             "V_vs_S.png",
-            make_default("V_vs_S.png"),
+            make_ce_substantive_png("V_vs_S.png"),
         ),
         Job(
             "ce_04_measurement_absorption_at_slit.py",
             "ce",
             "CE-04 缝口吸收",
             "measurement_effect.png",
-            make_default("measurement_effect.png"),
+            make_ce_substantive_png("measurement_effect.png"),
         ),
         Job(
             "ce_05_finite_absorber_detector.py",
             "ce",
             "CE-05 有限吸收体",
             "finite_absorber.png",
-            make_default("finite_absorber.png"),
+            make_ce_substantive_png("finite_absorber.png"),
         ),
         Job(
             "ce_06_delayed_choice_absorber.py",
             "ce",
             "CE-06 延迟选择",
             "delayed_choice.png",
-            make_default("delayed_choice.png"),
+            make_ce_substantive_png("delayed_choice.png"),
         ),
         Job(
             "ce_07_measurement_phase_diagram_scan.py",
             "ce",
             "CE-07 测量相图",
             "measurement_phase_diagram.png",
-            make_default("measurement_phase_diagram.png"),
+            make_ce_substantive_png("measurement_phase_diagram.png"),
         ),
         Job(
             "ce_08_entanglement_split_wavepackets.py",
             "ce",
             "CE-08 纠缠分包",
             "entanglement_simulation.png",
-            make_default("entanglement_simulation.png"),
+            make_ce_substantive_png("entanglement_simulation.png"),
         ),
         Job(
             "ce_09_entanglement_with_phase_field.py",
             "ce",
             "CE-09 相位场纠缠",
             "entanglement_with_phase.png",
-            make_default("entanglement_with_phase.png"),
+            make_ce_substantive_png("entanglement_with_phase.png"),
         ),
         Job(
             "ce_10_entanglement_distance_scan.py",
             "ce",
             "CE-10 纠缠距离扫描",
             "ce_10_entanglement_scan.png",
-            make_default("ce_10_entanglement_scan.png"),
+            make_ce_substantive_png("ce_10_entanglement_scan.png"),
         ),
         Job(
             "verify_born_rule.py",
@@ -958,21 +1067,21 @@ def build_jobs() -> List[Job]:
             "extended",
             "验证 干涉衰减",
             "verify_interference_decay.png",
-            make_default("verify_interference_decay.png"),
+            make_ce_substantive_png("verify_interference_decay.png"),
         ),
         Job(
             "verify_delayed_choice.py",
             "extended",
             "验证 延迟选择",
             "verify_delayed_choice.png",
-            make_default("verify_delayed_choice.png"),
+            make_ce_substantive_png("verify_delayed_choice.png"),
         ),
         Job(
             "verify_which_way.py",
             "extended",
             "验证 Which-way",
             "verify_which_way.png",
-            make_default("verify_which_way.png"),
+            make_ce_substantive_png("verify_which_way.png"),
         ),
     ]
 

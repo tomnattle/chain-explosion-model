@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-03-30T12:07:29",
+  "generated_at": "2026-03-30T13:53:33",
   "python": "3.6.5",
   "platform": "Windows-10-10.0.26100-SP0",
   "suite_pass": true,
-  "elapsed_s": 156.833,
+  "elapsed_s": 163.447,
   "groups_ran": [
     "ce",
     "verify",
@@ -25,8 +25,8 @@
       "title": "CE-00 双缝演示",
       "expect_png": "ce_00_double_slit_demo.png",
       "status": "PASS",
-      "reason": "PNG 已生成: ce_00_double_slit_demo.png",
-      "elapsed_s": 2.104,
+      "reason": "PNG OK(size=103388B, std=0.2808)",
+      "elapsed_s": 1.974,
       "stdout_tail": "  ],\n  \"artifacts_produced\": [\n    \"ce_00_double_slit_demo.png\"\n  ],\n  \"observed_outcome\": {\n    \"screen_column_x\": 160,\n    \"local_max_count_on_screen\": 2,\n    \"fringe_verdict\": \"weak\",\n    \"screen_max\": 724817324102231.8\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"若将 WIDTH/HEIGHT 加倍，peak_count 与 fringe_verdict 是否稳定？\",\n    \"screen 取 BARRIER_X+10 是否代表「远场」？若改取近场列，叙事是否仍成立？\",\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/ce__ce_00_double_slit_demo.png"
     },
@@ -42,8 +42,8 @@
       "title": "CE-01 对比度-屏距",
       "expect_png": "interference_decay.png",
       "status": "PASS",
-      "reason": "PNG 已生成: interference_decay.png",
-      "elapsed_s": 2.788,
+      "reason": "PNG OK(size=78919B, std=0.1451)",
+      "elapsed_s": 3.282,
       "stdout_tail": "      0.8385566249431338,\n      0.7834515201542659,\n      0.748428949896497,\n      0.7298185158689824,\n      0.7251161988045919,\n      0.7347336746357279,\n      0.7557140608868808,\n      0.7866582012082951\n    ]\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"total_energy 量级暴涨时，V 的定义是否仍与「物理对比度」同义？\",\n    \"若改用 ce_engine_v2 与 numba 核，衰减百分比是否定性一致？\",\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/ce__ce_01_visibility_vs_screen_distance.png"
     },
@@ -58,8 +58,8 @@
       "title": "CE-02 屏上统计",
       "expect_png": "ce_02_double_slit_screen_statistics.png",
       "status": "PASS",
-      "reason": "PNG 已生成: ce_02_double_slit_screen_statistics.png",
-      "elapsed_s": 1.944,
+      "reason": "PNG OK(size=37678B, std=0.1148)",
+      "elapsed_s": 1.951,
       "stdout_tail": "  ],\n  \"artifacts_produced\": [\n    \"ce_02_double_slit_screen_statistics.png\"\n  ],\n  \"observed_outcome\": {\n    \"num_peaks_heuristic\": 2,\n    \"visibility_heuristic\": 0.8065231732738968,\n    \"symmetry_ratio_LR\": 0.3448978898869395,\n    \"total_energy_on_screen_column\": 2.5256852530207134e+150\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"峰检测阈值 mean*0.5 是否导致峰值数对噪声过敏？\",\n    \"左右半屏能量比能否在严格镜像几何下仍偏离 1？原因是否为离散奇偶网格？\",\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/ce__ce_02_double_slit_screen_statistics.png"
     },
@@ -75,8 +75,8 @@
       "title": "CE-03 V vs S",
       "expect_png": "V_vs_S.png",
       "status": "PASS",
-      "reason": "PNG 已生成: V_vs_S.png",
-      "elapsed_s": 3.479,
+      "reason": "PNG OK(size=57359B, std=0.1238)",
+      "elapsed_s": 3.619,
       "stdout_tail": "      0.8633079537779301,\n      0.8065231732738968,\n      0.7572481389223561,\n      0.7149907657208718,\n      0.6787832146218584,\n      0.6476307913107947,\n      0.620663202317755,\n      0.5971598746206241\n    ],\n    \"V_min\": 0.5971598746206241,\n    \"V_max\": 0.9831694586545983\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/ce__ce_03_visibility_vs_side_coupling_S.png"
     },
@@ -92,8 +92,8 @@
       "title": "CE-04 缝口吸收",
       "expect_png": "measurement_effect.png",
       "status": "PASS",
-      "reason": "PNG 已生成: measurement_effect.png",
-      "elapsed_s": 2.503,
+      "reason": "PNG OK(size=134640B, std=0.1309)",
+      "elapsed_s": 2.609,
       "stdout_tail": "    \"多场景循环\",\n    \"传播\",\n    \" subplot 对比\"\n  ],\n  \"artifacts_produced\": [\n    \"measurement_effect.png\"\n  ],\n  \"observed_outcome\": {\n    \"visibility_none_absorb\": 0.8065231732738968,\n    \"visibility_partial_absorb\": 0.771935351643393,\n    \"visibility_one_slit_gone\": 0.8431246731642354\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/ce__ce_04_measurement_absorption_at_slit.png"
     },
@@ -108,8 +108,8 @@
       "title": "CE-05 有限吸收体",
       "expect_png": "finite_absorber.png",
       "status": "PASS",
-      "reason": "PNG 已生成: finite_absorber.png",
-      "elapsed_s": 2.418,
+      "reason": "PNG OK(size=119921B, std=0.1841)",
+      "elapsed_s": 2.466,
       "stdout_tail": "  \"steps_executed_zh\": [\n    \"设圆掩模\",\n    \"传播\",\n    \"成像\"\n  ],\n  \"artifacts_produced\": [\n    \"finite_absorber.png\"\n  ],\n  \"observed_outcome\": {\n    \"visibility_final\": 0.0,\n    \"grid_sum_final\": 3.971748560556857e+190\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/ce__ce_05_finite_absorber_detector.png"
     },
@@ -124,8 +124,8 @@
       "title": "CE-06 延迟选择",
       "expect_png": "delayed_choice.png",
       "status": "PASS",
-      "reason": "PNG 已生成: delayed_choice.png",
-      "elapsed_s": 2.367,
+      "reason": "PNG OK(size=125157B, std=0.1834)",
+      "elapsed_s": 2.629,
       "stdout_tail": "  \"steps_executed_zh\": [\n    \"前半传播\",\n    \"变更吸收/掩模\",\n    \"后半传播\"\n  ],\n  \"artifacts_produced\": [\n    \"delayed_choice.png\"\n  ],\n  \"observed_outcome\": {\n    \"visibility_final\": 0.8065230572322235\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"INSERT_STEP 与物理“延迟”的映射是否在一行注释里写清？\",\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/ce__ce_06_delayed_choice_absorber.png"
     },
@@ -140,8 +140,8 @@
       "title": "CE-07 测量相图",
       "expect_png": "measurement_phase_diagram.png",
       "status": "PASS",
-      "reason": "PNG 已生成: measurement_phase_diagram.png",
-      "elapsed_s": 5.528,
+      "reason": "PNG OK(size=89405B, std=0.2171)",
+      "elapsed_s": 5.669,
       "stdout_tail": "      0.0,\n      0.0\n    ],\n    \"absorb_ratio_values\": [\n      0.0,\n      0.2,\n      0.4,\n      0.6,\n      0.8,\n      1.0\n    ]\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/ce__ce_07_measurement_phase_diagram_scan.png"
     },
@@ -156,8 +156,8 @@
       "title": "CE-08 纠缠分包",
       "expect_png": "entanglement_simulation.png",
       "status": "PASS",
-      "reason": "PNG 已生成: entanglement_simulation.png",
-      "elapsed_s": 2.198,
+      "reason": "PNG OK(size=118291B, std=0.2499)",
+      "elapsed_s": 2.256,
       "stdout_tail": "  \"steps_executed_zh\": [\n    \"初始化\",\n    \"split 传播\",\n    \"双探测器统计/绘图\"\n  ],\n  \"artifacts_produced\": [\n    \"entanglement_simulation.png\"\n  ],\n  \"observed_outcome\": {\n    \"final_correlation_last\": Infinity,\n    \"final_energy1_last\": 4.0665191759384804e+295\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/ce__ce_08_entanglement_split_wavepackets.png"
     },
@@ -172,8 +172,8 @@
       "title": "CE-09 相位场纠缠",
       "expect_png": "entanglement_with_phase.png",
       "status": "PASS",
-      "reason": "PNG 已生成: entanglement_with_phase.png",
-      "elapsed_s": 4.163,
+      "reason": "PNG OK(size=99703B, std=0.3251)",
+      "elapsed_s": 4.619,
       "stdout_tail": "  },\n  \"steps_executed_zh\": [\n    \"split+phase 传播\",\n    \"成像\"\n  ],\n  \"artifacts_produced\": [\n    \"entanglement_with_phase.png\"\n  ],\n  \"observed_outcome\": {\n    \"phase_corr_final\": 1.0,\n    \"energy1_final\": Infinity\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/ce__ce_09_entanglement_with_phase_field.png"
     },
@@ -188,8 +188,8 @@
       "title": "CE-10 纠缠距离扫描",
       "expect_png": "ce_10_entanglement_scan.png",
       "status": "PASS",
-      "reason": "PNG 已生成: ce_10_entanglement_scan.png",
-      "elapsed_s": 2.332,
+      "reason": "PNG OK(size=61559B, std=0.1162)",
+      "elapsed_s": 2.445,
       "stdout_tail": "    ],\n    \"e1_series\": [\n      2.336165811436114e-09\n    ],\n    \"phase_corr_series\": [\n      1.0\n    ],\n    \"energy_decay_ratio\": 0.0,\n    \"delta_phase_corr_endpoints\": 0.0\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"propagate_split_phase 第 7 个参数 True 的含义是否写进此处 observed？若否请补上版本号。\",\n    \"phase_corr 用 cos(Δφ) 是否掩盖 2π 缠绕？\",\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/ce__ce_10_entanglement_distance_scan.png"
     },
@@ -206,9 +206,9 @@
       "title": "验证 波恩规则",
       "expect_png": "verify_born_rule.png",
       "status": "PASS",
-      "reason": "r=0.9364 >= 0.90",
-      "elapsed_s": 5.276,
-      "stdout_tail": "  \"artifacts_produced\": [\n    \"verify_born_rule.png\"\n  ],\n  \"observed_outcome\": {\n    \"pearson_r_continuous_vs_mc\": 0.9363853693304632,\n    \"visibility_continuous\": 0.6858761261454981,\n    \"visibility_mc\": 0.17166666666666663,\n    \"hit_rate\": 0.04138,\n    \"verdict_line\": \"✅ 高度吻合——CE模型天然实现了波恩规则\"\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"N_PHOTONS、MAX_STEPS 同时缩小一个数量级，r 是否仍过门禁？涨落如何定量？\",\n    \"连续场与 MC 使用同一套 A,S,B,λ 映射吗？有无隐式归一或不同初值？\",\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
+      "reason": "PNG OK(size=211721B, std=0.2494)；r=0.9357 >= 0.930",
+      "elapsed_s": 5.689,
+      "stdout_tail": "  \"artifacts_produced\": [\n    \"verify_born_rule.png\"\n  ],\n  \"observed_outcome\": {\n    \"pearson_r_continuous_vs_mc\": 0.935722110208427,\n    \"visibility_continuous\": 0.6858761261454981,\n    \"visibility_mc\": 0.17870408584399508,\n    \"hit_rate\": 0.04164,\n    \"verdict_line\": \"✅ 高度吻合——CE模型天然实现了波恩规则\"\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"N_PHOTONS、MAX_STEPS 同时缩小一个数量级，r 是否仍过门禁？涨落如何定量？\",\n    \"连续场与 MC 使用同一套 A,S,B,λ 映射吗？有无隐式归一或不同初值？\",\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/verify__verify_born_rule.png"
     },
     {
@@ -223,8 +223,8 @@
       "title": "验证 不确定性(现象记录)",
       "expect_png": "verify_uncertainty.png",
       "status": "PASS",
-      "reason": "现象已记录: α=0.0521，|Δα|=1.052（不设与 −1 硬门禁；见脚本）",
-      "elapsed_s": 6.403,
+      "reason": "PNG OK(size=206058B, std=0.0870)；alpha=0.0521，|Δalpha|=1.052（不与 -1 硬比；见脚本）",
+      "elapsed_s": 6.662,
       "stdout_tail": "    \"传播\",\n    \"拟合\",\n    \"拼图保存\"\n  ],\n  \"artifacts_produced\": [\n    \"verify_uncertainty.png\"\n  ],\n  \"observed_outcome\": {\n    \"fitted_alpha_slope_loglog\": 0.05207142878853493,\n    \"delta_alpha_from_minus_one\": 1.0520714287885349\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"sigma_theta 的操作定义对 alpha 的敏感性？换一种定义 alpha 会变多少？\",\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/verify__verify_uncertainty.png"
     },
@@ -239,8 +239,8 @@
       "title": "发现 对比度衰减",
       "expect_png": "discover_visibility_decay.png",
       "status": "PASS",
-      "reason": "V: 0.9966 -> 0.4486（衰减方向正确）",
-      "elapsed_s": 11.848,
+      "reason": "PNG OK(size=396451B, std=0.1036)；V: 0.9966->0.4486（降幅≈55.0%）",
+      "elapsed_s": 12.416,
       "stdout_tail": "    \"每点完整传播\",\n    \"衰减率总结图\"\n  ],\n  \"artifacts_produced\": [\n    \"discover_visibility_decay.png\"\n  ],\n  \"observed_outcome\": {\n    \"V_initial\": 0.9966112206842594,\n    \"V_final\": 0.4486074066871123,\n    \"total_decay_percent_str\": \"55.0%\",\n    \"d0_exponential_fit\": 203.02437545818228\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/verify__discover_visibility_decay.png"
     },
@@ -248,16 +248,17 @@
       "purpose_zh": "吸收率缓慢增加时可见度轨迹是否呈现突变阈（坍缩叙事对照）。",
       "code_principle_zh": "带吸收掩模多步传播 + 扫描 ratio 序列。",
       "assumptions_zh": [
-        "[OK]/[警告] 判据阈值 0.15 为脚本常数"
+        "尖峰判据：max|ΔV_smooth|>0.50 且相对中位梯度比>10 才标 [警告]（减少假阳性）。",
+        "strict 套件要求首段扫描 stdout 为 [OK]；--relaxed 仍允许 [警告]。"
       ],
       "script": "discover_measurement_continuity.py",
       "group": "verify",
       "title": "发现 测量连续性",
       "expect_png": "discover_measurement_continuity.png",
       "status": "PASS",
-      "reason": "探索项通过（软预警）: [警告] V(eta) 在 eta~0.30->0.35 相对邻段偏陡（相对中位梯度比=11.92）；多见于可见度算法对条纹拓扑敏感，非 (1-eta) 吸收不连续",
-      "elapsed_s": 14.767,
-      "stdout_tail": "    \"扫描吸收率\",\n    \"记录 V\",\n    \"第二扫描（若存在）\"\n  ],\n  \"artifacts_produced\": [\n    \"discover_measurement_continuity.png\"\n  ],\n  \"observed_outcome\": {\n    \"threshold_verdict_line\": \"[警告] V(eta) 在 eta~0.30->0.35 相对邻段偏陡（相对中位梯度比=11.92）；多见于可见度算法对条纹拓扑敏感，非 (1-eta) 吸收不连续\",\n    \"max_abs_smoothed_dV\": 0.47668867810190263,\n    \"relative_gradient_ratio\": 11.917216952547566\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
+      "reason": "PNG OK(size=226499B, std=0.1329)；[OK] 吸收率扫描下未见异常尖峰（max|dV|=0.4767，相对中位梯度比=11.92）",
+      "elapsed_s": 14.96,
+      "stdout_tail": "    \"扫描吸收率\",\n    \"记录 V\",\n    \"第二扫描（若存在）\"\n  ],\n  \"artifacts_produced\": [\n    \"discover_measurement_continuity.png\"\n  ],\n  \"observed_outcome\": {\n    \"threshold_verdict_line\": \"[OK] 吸收率扫描下未见异常尖峰（max|dV|=0.4767，相对中位梯度比=11.92）\",\n    \"max_abs_smoothed_dV\": 0.47668867810190263,\n    \"relative_gradient_ratio\": 11.917216952547566\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/verify__discover_measurement_continuity.png"
     },
     {
@@ -271,8 +272,8 @@
       "title": "发现 耦合常数",
       "expect_png": "discover_coupling_constant.png",
       "status": "PASS",
-      "reason": "最优 S/A=0.015871（探索项，无语义阈值）",
-      "elapsed_s": 34.014,
+      "reason": "PNG OK(size=330999B, std=0.1038)；最优 S/A=0.015871",
+      "elapsed_s": 33.865,
       "stdout_tail": "  \"steps_executed_zh\": [\n    \"粗扫\",\n    \"细扫\",\n    \"保存相图/曲线\"\n  ],\n  \"artifacts_produced\": [\n    \"discover_coupling_constant.png\"\n  ],\n  \"observed_outcome\": {\n    \"fine_best_S\": 0.015870910698496905,\n    \"S_over_A_ratio\": 0.015870910698496905\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/verify__discover_coupling_constant.png"
     },
@@ -288,8 +289,8 @@
       "title": "探索 洛伦兹代数自检",
       "expect_png": "explore_lorentz_selfcheck.png",
       "status": "PASS",
-      "reason": "PNG 已生成: explore_lorentz_selfcheck.png；commute=0.000e+00, assoc=0.000e+00, v'=1.000000",
-      "elapsed_s": 0.909,
+      "reason": "PNG OK(size=20294B, std=0.3090)；commute=0.000e+00, assoc=0.000e+00, v'=1.000000000",
+      "elapsed_s": 0.851,
       "stdout_tail": "  \"artifacts_produced\": [\n    \"explore_lorentz_selfcheck.png\"\n  ],\n  \"observed_outcome\": {\n    \"commute_error_abs_a_plus_b_minus_b_plus_a\": 0.0,\n    \"associativity_error_abs\": 0.0,\n    \"w_from_add_vc_plus_02c\": 0.993322203672788,\n    \"v_prime_from_inv_boost_c_at_V_half_c\": 1.0,\n    \"verdict_pass\": true\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"本检验仅覆盖一维同向合成；反对称或多维合成未测，遗漏是否会掩盖 bug？\",\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========\nVERDICT: PASS (lorentz_algebra)",
       "archived_figure": "test_artifacts/figures/explore__explore_lorentz_selfcheck.png"
     },
@@ -304,8 +305,8 @@
       "title": "探索 均匀损耗 vs V",
       "expect_png": "explore_visibility_loss_compare.png",
       "status": "PASS",
-      "reason": "强度比=0.0027<1（V 对全局标度不变是预期；见脚本说明）",
-      "elapsed_s": 13.566,
+      "reason": "PNG OK(size=86975B, std=0.1622)；强度比=0.0027（V 对全局标度不变是预期）",
+      "elapsed_s": 13.635,
       "stdout_tail": "    \"多屏距\",\n    \"有/无 loss 双轨\",\n    \"对比 V 与 sum I\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_visibility_loss_compare.png\"\n  ],\n  \"observed_outcome\": {\n    \"V_baseline_last\": 0.0,\n    \"V_with_loss_last\": 0.0,\n    \"median_intensity_ratio_loss_over_base\": 0.002729474449961265\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/explore__explore_visibility_vs_uniform_loss.png"
     },
@@ -320,8 +321,8 @@
       "title": "探索 能量预算 sum(E)",
       "expect_png": "explore_energy_budget.png",
       "status": "PASS",
-      "reason": "步间中位比=2.0695>1（与「未全局归一、sum(E) 常增长」一致；非守恒检验）",
-      "elapsed_s": 2.095,
+      "reason": "PNG OK(size=53545B, std=0.1381)；步间中位比=2.0695>1",
+      "elapsed_s": 2.046,
       "stdout_tail": "    \"双缝设置\",\n    \"MAX_STEPS 循环\",\n    \"画图\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_energy_budget.png\"\n  ],\n  \"observed_outcome\": {\n    \"final_total_E\": 7.74801479487724e+127,\n    \"ratio_final_over_initial\": 7.74801479487724e+124,\n    \"median_stepwise_factor\": 2.0695352638329454\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/explore__explore_energy_budget.png"
     },
@@ -336,8 +337,8 @@
       "title": "探索 因果前缘 2D",
       "expect_png": "explore_causal_front.png",
       "status": "PASS",
-      "reason": "dx/dt 中位数=1.0000（因果前缘 ~1 格/步）",
-      "elapsed_s": 1.907,
+      "reason": "PNG OK(size=38609B, std=0.1338)；dx/dt 中位数=1.0000",
+      "elapsed_s": 1.881,
       "stdout_tail": "    \"点源\",\n    \"逐步推进\",\n    \"记录 front 序列\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_causal_front.png\"\n  ],\n  \"observed_outcome\": {\n    \"median_dx_dt_cells_per_step\": 1.0,\n    \"x_right_first\": 8.0,\n    \"x_right_last\": 128.0\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/explore__explore_causal_front.png"
     },
@@ -352,9 +353,9 @@
       "title": "探索 条纹间隔 vs 缝距",
       "expect_png": "explore_fringe_spacing.png",
       "status": "PASS",
-      "reason": "斜率=-0.118 与远场 Δy∝1/d（期望约 -1）偏离大；可能是离散/近场/有效波长定义，非 runner 硬失败条件",
-      "elapsed_s": 4.836,
-      "stdout_tail": "  ],\n  \"observed_outcome\": {\n    \"loglog_slope_fitted\": -0.1181282270902332,\n    \"visibility_per_d\": [\n      0.16967974829180754,\n      0.39587293248625033,\n      0.6215913348062153,\n      0.7981539404263717,\n      0.9082326879954662,\n      0.9640926111409936\n    ]\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
+      "reason": "斜率=0.762 与远场 Δy∝1/d（期望约 -1）偏离大；可能是离散/近场/有效波长定义，非 runner 硬失败条件",
+      "elapsed_s": 4.965,
+      "stdout_tail": "      0.9082326879954662,\n      0.9640926111409936\n    ],\n    \"spacing_per_d\": [\n      100.33333333333334,\n      50.16666666666667,\n      60.199999999999996,\n      60.199999999999996,\n      75.25,\n      75.25\n    ]\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/explore__explore_fringe_spacing_vs_slit.png"
     },
     {
@@ -369,7 +370,7 @@
       "expect_png": "explore_causal_cone_anisotropy.png",
       "status": "PASS",
       "reason": "PNG OK(size=61214B, std=0.1235)；ratio=1.3333≈1.3333",
-      "elapsed_s": 1.909,
+      "elapsed_s": 1.851,
       "stdout_tail": "    \"传播\",\n    \"比 R\",\n    \"savefig\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_causal_cone_anisotropy.png\"\n  ],\n  \"observed_outcome\": {\n    \"median_anisotropy_ratio_R_L1_over_Rplus\": 1.3333333333333333,\n    \"median_dRplus_dt\": 1.0,\n    \"median_dR_L1_dt\": 1.0\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/explore__explore_causal_cone_anisotropy.png"
     },
@@ -385,7 +386,7 @@
       "expect_png": "explore_relativity_light_speed_invariant.png",
       "status": "PASS",
       "reason": "PNG OK(size=60384B, std=0.1422)；v'=1.000000000c",
-      "elapsed_s": 0.701,
+      "elapsed_s": 0.658,
       "stdout_tail": "    \"计算\",\n    \"打印标记\",\n    \"简单图\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_relativity_light_speed_invariant.png\"\n  ],\n  \"observed_outcome\": {\n    \"v_track_COM\": 0.9950000000000001,\n    \"v_transformed_printed\": 1.0,\n    \"formula_layer_ok\": true\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/explore__explore_relativity_light_speed_invariant.png"
     },
@@ -401,7 +402,7 @@
       "expect_png": "explore_double_slit_mirror_parity.png",
       "status": "PASS",
       "reason": "PNG OK(size=66338B, std=0.1269)；asym=0.3139, r_mirror=0.9158",
-      "elapsed_s": 2.088,
+      "elapsed_s": 2.072,
       "stdout_tail": "  \"steps_executed_zh\": [\n    \"跑双缝\",\n    \"镜像比较\",\n    \"savefig\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_double_slit_mirror_parity.png\"\n  ],\n  \"observed_outcome\": {\n    \"asym_L1\": 0.3138621114599421,\n    \"pearson_I_vs_mirror_I\": 0.9157686341737531\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/explore__explore_double_slit_mirror_parity.png"
     },
@@ -417,7 +418,7 @@
       "expect_png": "explore_critique_01_unification_scope.png",
       "status": "PASS",
       "reason": "PNG OK(size=60909B, std=0.1365)；[OK] critique_01_unification_scope",
-      "elapsed_s": 0.605,
+      "elapsed_s": 0.614,
       "stdout_tail": "  },\n  \"steps_executed_zh\": [\n    \"打印行\",\n    \"matplotlib text\",\n    \"savefig\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_critique_01_unification_scope.png\"\n  ],\n  \"observed_outcome\": {\n    \"checklist_items_printed\": 6\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/critique__explore_critique_01_unification_scope.png"
     },
@@ -431,7 +432,7 @@
       "expect_png": "explore_critique_02_bell_hypothesis.png",
       "status": "PASS",
       "reason": "PNG OK(size=54741B, std=0.1465)；[OK] critique_02_bell_boundary",
-      "elapsed_s": 0.591,
+      "elapsed_s": 0.619,
       "stdout_tail": "    \"en\": \"Marker + PNG.\"\n  },\n  \"steps_executed_zh\": [\n    \"文本\",\n    \"savefig\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_critique_02_bell_hypothesis.png\"\n  ],\n  \"observed_outcome\": {\n    \"marker\": \"[OK] critique_02_bell_boundary\"\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/critique__explore_critique_02_bell_hypothesis_boundary.png"
     },
@@ -445,7 +446,7 @@
       "expect_png": "explore_critique_03_analogy_vs_mechanism.png",
       "status": "PASS",
       "reason": "PNG OK(size=42830B, std=0.1440)；[OK] critique_03_analogy_language",
-      "elapsed_s": 0.583,
+      "elapsed_s": 0.575,
       "stdout_tail": "    \"zh\": \"critique_03 标记。\",\n    \"en\": \"OK line.\"\n  },\n  \"steps_executed_zh\": [\n    \"savefig\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_critique_03_analogy_vs_mechanism.png\"\n  ],\n  \"observed_outcome\": {\n    \"marker\": \"[OK] critique_03_analogy_language\"\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/critique__explore_critique_03_analogy_vs_mechanism.png"
     },
@@ -460,8 +461,8 @@
       "title": "质疑04 SR 非从格点推导",
       "expect_png": "explore_critique_04_sr_not_derived.png",
       "status": "PASS",
-      "reason": "PNG OK(size=31235B, std=0.1467)；v_grid=1.0000, v'=1.000000c",
-      "elapsed_s": 1.899,
+      "reason": "PNG OK(size=31235B, std=0.1467)；v_grid=1.0000, v'=1.000000000c",
+      "elapsed_s": 1.918,
       "stdout_tail": "    \"print OK\",\n    \"fig\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_critique_04_sr_not_derived.png\"\n  ],\n  \"observed_outcome\": {\n    \"v_grid_median_dx_per_step\": 1.0,\n    \"v_prime_Lorentz_formula\": 1.0,\n    \"marker\": \"[OK] critique_04_sr_not_derived\"\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"v_grid 与「因果光锥」定义是否一致？前 5 步丢弃是否掩盖瞬态？\",\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/critique__explore_critique_04_sr_not_derived_from_lattice.png"
     },
@@ -476,8 +477,8 @@
       "title": "质疑05 干涉衰减非唯一",
       "expect_png": "explore_critique_05_decay_nonuniqueness.png",
       "status": "PASS",
-      "reason": "PNG OK(size=38240B, std=0.1312)；r_V=1.0000（≥0.993）",
-      "elapsed_s": 13.201,
+      "reason": "PNG OK(size=38240B, std=0.1312)；r_V=1.0000（≥0.998）",
+      "elapsed_s": 14.527,
       "stdout_tail": "      0.0\n    ],\n    \"V_ce_plus_uniform_loss\": [\n      0.9440918630298669,\n      0.7080922557873685,\n      0.502859884578026,\n      0.3783627234903803,\n      0.0\n    ],\n    \"marker\": \"[OK] critique_05_decay_nonuniqueness\"\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"若提高 ETA 或换损耗模型，r_V 仍可很高吗？结论是否对 eta 仅局部成立？\",\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/critique__explore_critique_05_decay_nonuniqueness.png"
     },
@@ -493,7 +494,7 @@
       "expect_png": "explore_critique_06_energy_growth.png",
       "status": "PASS",
       "reason": "PNG OK(size=25580B, std=0.1266)；R_E=9.55e+141，median(Et+1/Et)=2.0832",
-      "elapsed_s": 2.341,
+      "elapsed_s": 2.303,
       "stdout_tail": "  \"artifacts_produced\": [\n    \"explore_critique_06_energy_growth.png\"\n  ],\n  \"observed_outcome\": {\n    \"E_final\": 9.548726645006248e+144,\n    \"R_E\": 9.548726645006248e+141,\n    \"median_step_ratio_Etp1_over_Et\": 2.0831798689253924,\n    \"energy_nonfinite_fail\": false,\n    \"R_extreme_gt_1e100\": true,\n    \"marker\": \"[OK] critique_06_energy_growth\"\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"若在每步后做 sum 归一化，条纹与可见度结论是否完全改变？\",\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/critique__explore_critique_06_energy_growth_explosion.png"
     },
@@ -508,8 +509,8 @@
       "title": "质疑07 条纹斜率与远场-1偏差",
       "expect_png": "explore_critique_07_fringe_theory_gap.png",
       "status": "PASS",
-      "reason": "PNG OK(size=61800B, std=0.1447)；slope=-0.1181≈GOLD(-0.1181±0.045)；|与远场-1|=0.882",
-      "elapsed_s": 4.973,
+      "reason": "PNG OK(size=61800B, std=0.1447)；slope=-0.1181≈GOLD(-0.1181±0.032)；|与远场-1|=0.882",
+      "elapsed_s": 5.34,
       "stdout_tail": "    \"d_values\": [\n      36.0,\n      44.0,\n      52.0,\n      60.0,\n      68.0,\n      76.0\n    ],\n    \"valid_points_used\": 6,\n    \"marker\": \"[OK] critique_07_fringe_theory_gap\"\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"dominant_peak_spacing 与 FFT 回退两种算法是否系统性偏斜 log-log 斜率？\",\n    \"上述 constants 是否与物理文献标准符号一一对应？若不对应，混淆点在哪里？\",\n    \"observed 中的量是否对网格分辨率/边界条件敏感？能否做一个粗收敛性实验？\",\n    \"assumptions 中哪一条若违背后会推翻结论？\",\n    \"engine 调用链是否可能在某次重构中被悄悄替换？如何冻结回归？\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
       "archived_figure": "test_artifacts/figures/critique__explore_critique_07_fringe_spacing_theory_gap.png"
     }

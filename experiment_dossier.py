@@ -201,8 +201,11 @@ DOSSIER_BASE = {
         "purpose_en": "Visibility vs absorption ratio continuity check.",
         "code_principle_zh": "带吸收掩模多步传播 + 扫描 ratio 序列。",
         "code_principle_en": "Absorber mask kernel; scan absorption ratio.",
-        "assumptions_zh": ["[OK]/[警告] 判据阈值 0.15 为脚本常数"],
-        "expected_zh": "stdout 出现 [OK] 或 [警告]；后者 suite 仍可能 PASS（软通过）。",
+        "assumptions_zh": [
+            "尖峰判据：max|ΔV_smooth|>0.50 且相对中位梯度比>10 才标 [警告]（减少假阳性）。",
+            "strict 套件要求首段扫描 stdout 为 [OK]；--relaxed 仍允许 [警告]。",
+        ],
+        "expected_zh": "常规参数下首段判语为 [OK]；仅极端阶跃时 [警告]。",
         "expected_en": "Threshold verdict line for suite parser.",
         "procedure_zh": ["扫描吸收率", "记录 V", "第二扫描（若存在）"],
         "engine": "ce_engine_v2 + chain_explosion set_circle_mask等",
