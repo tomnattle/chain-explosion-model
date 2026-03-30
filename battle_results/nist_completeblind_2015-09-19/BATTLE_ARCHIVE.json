@@ -35,6 +35,7 @@
   },
   "artifacts_in_this_folder": [
     "README.md",
+    "INTERPRETATION_NOTE.md",
     "BATTLE_ARCHIVE.json",
     "battle_result.json",
     "nist_convert_config.snapshot.json",

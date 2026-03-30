@@ -20,6 +20,7 @@
 
 ## 文件说明
 
+- `INTERPRETATION_NOTE.md`：**解读边界注记**（不修改数值与判决，仅说明物理/统计含义与过度解读边界）
 - `BATTLE_ARCHIVE.json`：归档元数据、数据来源、示例命令、git commit
 - `battle_result.json`：判辞与四路 `E`、`S`
 - `nist_convert_config.snapshot.json`：HDF5→CSV 参数快照（含槽位 ±1 预注册）
