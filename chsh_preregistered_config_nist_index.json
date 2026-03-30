@@ -1,0 +1,44 @@
+{
+  "version": "2.0-nist-index",
+  "protocol_name": "CHSH_BATTLE_PREREGISTRATION_NIST_GRID_INDEX",
+  "battle_criteria": {
+    "engineering": "同 chsh_preregistered_config.json；t 为 HDF5 网格索引（float）。",
+    "thesis": "同主配置；仅 pairing.window 使用索引单位（非秒）。",
+    "non_toy_label": "同主配置。"
+  },
+  "notes": "completeblind：t = 并列 alice/bob clicks 数组下标。strict 窗取 0=仅最近邻重合；standard 窗取预注册宽配对（禁止事后扫 S 调窗）。",
+  "event_fields": {
+    "side": "side",
+    "time": "t",
+    "setting": "setting",
+    "outcome": "outcome"
+  },
+  "accepted_values": {
+    "side_A": "A",
+    "side_B": "B",
+    "setting": [0, 1],
+    "outcome": [-1, 1]
+  },
+  "protocols": {
+    "strict": {
+      "id": "strict_minimal_coincidence_index",
+      "pairing": { "window": 0.0, "strategy": "nearest_unused_b" }
+    },
+    "standard": {
+      "id": "experiment_wide_coincidence_index",
+      "pairing": { "window": 15.0, "strategy": "nearest_unused_b" }
+    }
+  },
+  "engineering_gate": {
+    "min_pairs_each_protocol": 500,
+    "standard_vs_literature": { "enabled": false }
+  },
+  "thesis_gate": {
+    "strict_max_S": 2.02,
+    "standard_min_S": 2.0,
+    "requires_both": true,
+    "require_standard_S_gt_strict_S": true,
+    "comment": "锁死判据：S_standard > S_strict 且阈值同上。"
+  },
+  "blinding": { "allow_parameter_change_after_first_run": false }
+}

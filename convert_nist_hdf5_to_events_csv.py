@@ -4,11 +4,14 @@ convert_nist_hdf5_to_events_csv.py
 Convert Bell-test HDF5 data into locked-protocol CSV:
   side,t,setting,outcome
 
-Supports 2 strategies:
+Supports 3 strategies:
 1) direct_fields
    HDF5 already contains arrays for side/time/setting/outcome.
 2) timetag_channels
    Reconstruct events from per-side timetag streams (channel + time).
+3) nist_hdf5_grid
+   NIST processed HDF5: parallel alice/bob clicks (uint16 one-hot slot) + settings (uint8).
+   Use emit_mode=side_streams so A/B times differ and coincidence window changes pairing.
 
 Usage examples:
   python convert_nist_hdf5_to_events_csv.py --hdf5 data/run.hdf5 --config nist_convert_config.json --inspect
@@ -124,6 +127,109 @@ def _reconstruct_side_events(arr, mapping, col_channel, col_time, max_setting_ag
     return out
 
 
+def _nist_slot_outcome(click_val, plus_slots, minus_slots):
+    v = int(click_val)
+    if v <= 0:
+        return None
+    k = v.bit_length() - 1
+    if (1 << k) != v:
+        return None
+    if k in plus_slots:
+        return 1
+    if k in minus_slots:
+        return -1
+    return None
+
+
+def convert_nist_hdf5_grid(h5, cfg, out_path, chunk=None):
+    """
+    Stream NIST bell-test HDF5 to CSV (low memory).
+
+    emit_mode:
+      side_streams: one row per detector click; t = grid index (float).
+                    Enables strict vs wide coincidence in explore_chsh_experiment_alignment.
+      joint_same_t: only indices with both alice and bob click; emit A and B with identical t.
+                    (pairing then identical across windows — use only for sanity checks.)
+    """
+    import numpy as np
+
+    def _outcome_lut(plus_slots, minus_slots):
+        lut = np.full(65536, -999, dtype=np.int16)
+        for p in plus_slots:
+            if 0 <= p < 16:
+                lut[1 << p] = 1
+        for p in minus_slots:
+            if 0 <= p < 16:
+                lut[1 << p] = -1
+        return lut
+
+    m = cfg["nist_hdf5_grid"]
+    apath = m["alice_clicks"]
+    bpath = m["bob_clicks"]
+    aset_p = m["alice_settings"]
+    bset_p = m["bob_settings"]
+    emit_mode = str(m.get("emit_mode", "side_streams")).strip()
+    if chunk is None:
+        chunk = int(m.get("chunk", 8000000))
+    plus = set(int(x) for x in m.get("outcome_plus_slots", list(range(8))))
+    minus = set(int(x) for x in m.get("outcome_minus_slots", list(range(8, 16))))
+    lut = _outcome_lut(plus, minus)
+
+    os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
+    n_grid = int(h5[apath].shape[0])
+    n_written = 0
+
+    with open(out_path, "w", encoding="utf-8", newline="") as fout:
+        w = csv.writer(fout)
+        w.writerow(["side", "t", "setting", "outcome"])
+
+        for start in range(0, n_grid, chunk):
+            end = min(start + chunk, n_grid)
+            ca = h5[apath][start:end]
+            cb = h5[bpath][start:end]
+            sa = h5[aset_p][start:end]
+            sb = h5[bset_p][start:end]
+
+            if emit_mode == "joint_same_t":
+                msk = (ca[:] > 0) & (cb[:] > 0)
+                idx = np.nonzero(msk)[0]
+                for j in idx:
+                    i = start + int(j)
+                    oa = _nist_slot_outcome(int(ca[j]), plus, minus)
+                    ob = _nist_slot_outcome(int(cb[j]), plus, minus)
+                    if oa is None or ob is None:
+                        continue
+                    ssa, ssb = int(sa[j]), int(sb[j])
+                    if ssa not in (1, 2) or ssb not in (1, 2):
+                        continue
+                    tt = float(i)
+                    w.writerow(["A", tt, ssa - 1, oa])
+                    w.writerow(["B", tt, ssb - 1, ob])
+                    n_written += 2
+            elif emit_mode == "side_streams":
+                oa = lut[ca]
+                ob = lut[cb]
+                ok_a = (ca > 0) & (oa != -999) & ((sa == 1) | (sa == 2))
+                ok_b = (cb > 0) & (ob != -999) & ((sb == 1) | (sb == 2))
+                ja = np.nonzero(ok_a)[0]
+                jb = np.nonzero(ok_b)[0]
+                for j in ja:
+                    jj = int(j)
+                    w.writerow(["A", float(start + jj), int(sa[jj]) - 1, int(oa[jj])])
+                    n_written += 1
+                for j in jb:
+                    jj = int(j)
+                    w.writerow(["B", float(start + jj), int(sb[jj]) - 1, int(ob[jj])])
+                    n_written += 1
+
+            if emit_mode not in ("joint_same_t", "side_streams"):
+                raise ValueError("unknown emit_mode: %s" % emit_mode)
+
+            print("grid %d/%d rows, events written %d" % (end, n_grid, n_written))
+
+    return n_written
+
+
 def convert_timetag_channels(h5, cfg):
     m = cfg["timetag_channels"]
     col_channel = int(m.get("col_channel", 0))
@@ -165,7 +271,14 @@ def main():
     parser.add_argument("--config", required=True, help="JSON conversion config")
     parser.add_argument("--output", default="data/events_from_hdf5.csv", help="output CSV path")
     parser.add_argument("--inspect", action="store_true", help="print HDF5 structure and exit")
+    parser.add_argument(
+        "--out-csv",
+        default="",
+        help="alias for --output (overrides if set)",
+    )
     args = parser.parse_args()
+    if args.out_csv:
+        args.output = args.out_csv
 
     if not os.path.isfile(args.hdf5):
         print("missing hdf5:", args.hdf5)
@@ -177,7 +290,7 @@ def main():
     h5py = _require_h5py()
     cfg = json.loads(open(args.config, "r", encoding="utf-8").read())
     strategy = cfg.get("strategy", "").strip()
-    if strategy not in ("direct_fields", "timetag_channels"):
+    if strategy not in ("direct_fields", "timetag_channels", "nist_hdf5_grid"):
         print("invalid strategy:", strategy)
         return 1
 
@@ -185,6 +298,13 @@ def main():
         if args.inspect:
             inspect_hdf5(h5)
             return 0
+        if strategy == "nist_hdf5_grid":
+            nw = convert_nist_hdf5_grid(h5, cfg, args.output)
+            print("conversion complete.")
+            print("strategy:", strategy)
+            print("rows written:", nw)
+            print("saved:", args.output)
+            return 0 if nw > 0 else 2
         if strategy == "direct_fields":
             events = convert_direct_fields(h5, cfg)
         else:

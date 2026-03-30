@@ -1,30 +1,14 @@
 {
-  "strategy": "timetag_channels",
-  "notes": "Template config. You MUST inspect HDF5 and update dataset paths/channel maps.",
-  "timetag_channels": {
-    "alice_dataset": "/alice/timetags",
-    "bob_dataset": "/bob/timetags",
-    "col_channel": 0,
-    "col_time": 1,
-    "max_setting_age": 0.0,
-    "alice_mapping": {
-      "detector_plus_channels": [0],
-      "detector_minus_channels": [1],
-      "setting0_channels": [2],
-      "setting1_channels": [4]
-    },
-    "bob_mapping": {
-      "detector_plus_channels": [0],
-      "detector_minus_channels": [1],
-      "setting0_channels": [2],
-      "setting1_channels": [4]
-    }
-  },
-  "direct_fields": {
-    "side": "/events/side",
-    "time": "/events/t",
-    "setting": "/events/setting",
-    "outcome": "/events/outcome"
+  "strategy": "nist_hdf5_grid",
+  "notes": "NIST processed_compressed/hdf5: clicks are uint16 one-hot over 16 Pockels slots (bit k => value 2^k). settings uint8 use 1,2 for the two bases (mapped to 0,1 in CSV). Plus/minus split for CHSH binary is PRE_REGISTERED (not from NIST yaml); cite folder doc + adjust only via new config version.",
+  "nist_hdf5_grid": {
+    "alice_clicks": "alice/clicks",
+    "bob_clicks": "bob/clicks",
+    "alice_settings": "alice/settings",
+    "bob_settings": "bob/settings",
+    "emit_mode": "side_streams",
+    "chunk": 8000000,
+    "outcome_plus_slots": [0, 1, 2, 3, 4, 5, 6, 7],
+    "outcome_minus_slots": [8, 9, 10, 11, 12, 13, 14, 15]
   }
 }
-
