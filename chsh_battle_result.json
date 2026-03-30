@@ -1,0 +1,53 @@
+{
+  "config_version": "2.0",
+  "protocol_name": "CHSH_BATTLE_PREREGISTRATION",
+  "source": "simulated_fallback",
+  "events_csv": "",
+  "dual_protocol": true,
+  "engineering_pass": true,
+  "thesis_pass": false,
+  "engineering_reasons": [
+    "engineering gate: pair counts and S computable OK"
+  ],
+  "thesis_reasons": [
+    "standard S=2.008601 not greater than strict S=2.017316 (require_standard_S_gt_strict_S)"
+  ],
+  "strict": {
+    "tag": "strict",
+    "window": 0.05,
+    "pair_count": 33169,
+    "Eab": 0.7565860054833711,
+    "Eabp": 0.7459893048128342,
+    "Eapb": 0.7565280464216635,
+    "Eapbp": 0.24178743961352658,
+    "S": 2.0173159171043427
+  },
+  "standard": {
+    "tag": "standard",
+    "window": 0.25,
+    "pair_count": 110696,
+    "Eab": 0.751774076755974,
+    "Eabp": 0.7502725488770986,
+    "Eapb": 0.75024362074566,
+    "Eapbp": 0.24368963412444797,
+    "S": 2.0086006122542845
+  },
+  "gates": {
+    "engineering_gate": {
+      "min_pairs_each_protocol": 500,
+      "standard_vs_literature": {
+        "enabled": false,
+        "S_expected": 2.05,
+        "abs_tolerance": 0.35,
+        "comment": "启用后：标准协议 |S-S_expected|<=abs_tolerance 作为量级一致性检查；填入该数据集对应文献 S 后写死。"
+      }
+    },
+    "thesis_gate": {
+      "strict_max_S": 2.02,
+      "standard_min_S": 2.0,
+      "requires_both": true,
+      "require_standard_S_gt_strict_S": true,
+      "comment": "唯一判据已锁死：必须满足 S_standard > S_strict，且与 strict_max_S/standard_min_S 同时成立。"
+    }
+  }
+}

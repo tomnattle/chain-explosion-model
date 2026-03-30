@@ -1,0 +1,30 @@
+{
+  "strategy": "timetag_channels",
+  "notes": "Template config. You MUST inspect HDF5 and update dataset paths/channel maps.",
+  "timetag_channels": {
+    "alice_dataset": "/alice/timetags",
+    "bob_dataset": "/bob/timetags",
+    "col_channel": 0,
+    "col_time": 1,
+    "max_setting_age": 0.0,
+    "alice_mapping": {
+      "detector_plus_channels": [0],
+      "detector_minus_channels": [1],
+      "setting0_channels": [2],
+      "setting1_channels": [4]
+    },
+    "bob_mapping": {
+      "detector_plus_channels": [0],
+      "detector_minus_channels": [1],
+      "setting0_channels": [2],
+      "setting1_channels": [4]
+    }
+  },
+  "direct_fields": {
+    "side": "/events/side",
+    "time": "/events/t",
+    "setting": "/events/setting",
+    "outcome": "/events/outcome"
+  }
+}
+

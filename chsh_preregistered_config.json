@@ -1,0 +1,80 @@
+{
+  "version": "2.0",
+  "protocol_name": "CHSH_BATTLE_PREREGISTRATION",
+  "battle_criteria": {
+    "engineering": "数据链路跑通：两协议均能输出合法配对数、时间差分布、四组 E 与 S；标准协议 S 量级与目标文献一致（由 engineering_gate 量化）。",
+    "thesis": "同批真实事件：严格协议 S<=strict_max_S，标准协议 S>standard_min_S，且二者为同一 CSV、仅配对窗口（及预注册的筛选开关）不同，则论点通过。",
+    "non_toy_label": "工程通过且论点通过时，本仓库对齐管线视为可审计物理协议框架（非单一 toy 脚本定义）。"
+  },
+  "notes": "开盲前写死：strict/standard 的 window 与筛选开关禁止在看到 S 后调整。strict 取实验时间分辨可支撑的最小窗（非扫窗最大化）；standard 取论文/实验报告声明的 coincidence 窗。",
+  "event_fields": {
+    "side": "side",
+    "time": "t",
+    "setting": "setting",
+    "outcome": "outcome"
+  },
+  "accepted_values": {
+    "side_A": "A",
+    "side_B": "B",
+    "setting": [
+      0,
+      1
+    ],
+    "outcome": [
+      -1,
+      1
+    ]
+  },
+  "protocols": {
+    "strict": {
+      "id": "strict_minimal_coincidence",
+      "description": "最小筛选：仅 nearest-unused 合法配对；不对 outcome 做阈值裁剪；coincidence 取预注册最小窗，禁止事后优化窗口。",
+      "pairing": {
+        "window": 0.05,
+        "strategy": "nearest_unused_b"
+      }
+    },
+    "standard": {
+      "id": "experiment_paper_coincidence",
+      "description": "标准实验协议：与目标贝尔实验论文/数据说明一致的 coincidence 窗口（预注册）。",
+      "pairing": {
+        "window": 0.25,
+        "strategy": "nearest_unused_b"
+      }
+    }
+  },
+  "legacy_pairing": {
+    "window": 0.25,
+    "strategy": "nearest_unused_b",
+    "comment": "若缺 protocols 块，脚本回退为单协议并使用此窗口（兼容旧配置）。"
+  },
+  "engineering_gate": {
+    "min_pairs_each_protocol": 500,
+    "standard_vs_literature": {
+      "enabled": false,
+      "S_expected": 2.05,
+      "abs_tolerance": 0.35,
+      "comment": "启用后：标准协议 |S-S_expected|<=abs_tolerance 作为量级一致性检查；填入该数据集对应文献 S 后写死。"
+    }
+  },
+  "thesis_gate": {
+    "strict_max_S": 2.02,
+    "standard_min_S": 2.0,
+    "requires_both": true,
+    "require_standard_S_gt_strict_S": true,
+    "comment": "唯一判据已锁死：必须满足 S_standard > S_strict，且与 strict_max_S/standard_min_S 同时成立。"
+  },
+  "metrics": {
+    "primary": "S",
+    "secondary": [
+      "Eab",
+      "Eabp",
+      "Eapb",
+      "Eapbp",
+      "pair_count"
+    ]
+  },
+  "blinding": {
+    "allow_parameter_change_after_first_run": false
+  }
+}
