@@ -45,6 +45,7 @@ SCREEN_X   = WIDTH - 15
 STEPS_CONT = 500        # 连续场传播步数
 N_PHOTONS  = 50000      # 蒙特卡洛光子数
 MAX_STEPS  = WIDTH * 4  # 单光子最大步数
+SEED = 42
 
 print("=" * 65)
 print("验证B：单光子蒙特卡洛 vs 波恩规则")
@@ -80,7 +81,7 @@ print(f"\n[2/2] 运行蒙特卡洛 ({N_PHOTONS:,} 光子)...")
 np.random.seed(42)
 mc_screen, hits = run_monte_carlo(
     N_PHOTONS, HEIGHT, WIDTH, SOURCE_X, SOURCE_Y,
-    barrier, A, S, B, MAX_STEPS
+    barrier, A, S, B, MAX_STEPS, SEED
 )
 hit_rate = hits / N_PHOTONS
 vis_mc = compute_visibility(mc_screen)
@@ -94,11 +95,11 @@ corr = np.corrcoef(continuous_screen, mc_screen)[0, 1]
 print(f"\n连续场 vs 蒙特卡洛 皮尔逊相关系数: r = {corr:.4f}")
 
 if corr > 0.85:
-    verdict = "✅ 高度吻合——CE模型天然实现了波恩规则"
+    verdict = "VERDICT: 高度吻合 - CE 模型天然实现了波恩规则"
 elif corr > 0.60:
-    verdict = "⚠️ 中度吻合——主要干涉特征相符"
+    verdict = "VERDICT: 中度吻合 - 主要干涉特征相符"
 else:
-    verdict = "❌ 吻合度不足——蒙特卡洛路径需要调整"
+    verdict = "VERDICT: 吻合度不足 - 蒙特卡洛路径需要调整"
 print(verdict)
 
 # ============================================================
@@ -111,7 +112,7 @@ print("\n生成积累过程快照（Numba milestone）...")
 np.random.seed(42)
 snapshots = monte_carlo_milestone_screens(
     N_PHOTONS, milestone_arr, HEIGHT, WIDTH, SOURCE_X, SOURCE_Y,
-    barrier, A, S, B, MAX_STEPS,
+    barrier, A, S, B, MAX_STEPS, SEED,
 )
 mc_accumulations = [
     (int(milestone_arr[k]), np.copy(snapshots[k])) for k in range(len(milestones))
@@ -183,7 +184,7 @@ print(f"  两者相关系数:       r = {corr:.4f}")
 print(f"  结论: {verdict}")
 print()
 print("物理意义：")
-print("  波恩规则是量子力学最神秘的假设之一——为什么概率 = |ψ|²？")
+print("  Born 规则是量子力学最神秘的假设之一：为什么概率 = |psi|^2 ?")
 print("  没有人能推导它，只能假设它。")
 print("  如果CE模型的蒙特卡洛分布与连续场吻合，")
 print("  说明你的模型给出了一个机制上的解释：")

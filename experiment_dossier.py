@@ -532,10 +532,10 @@ def emit_case_dossier(
     if observed:
         print(
             "[观测摘要] %s"
-            % (json.dumps(observed, ensure_ascii=False, default=str)[:800],)
+            % (json.dumps(observed, ensure_ascii=True, default=str)[:800],)
         )
     print("%s\n" % MARK_HDR.replace("=", "-"))
 
     print(MARK_JSON_BEGIN)
-    print(json.dumps(payload, ensure_ascii=False, indent=2, default=str))
+    print(json.dumps(payload, ensure_ascii=True, indent=2, default=str))
     print(MARK_JSON_END)

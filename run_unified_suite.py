@@ -124,6 +124,36 @@ def parse_pearson_r_verify_b(text: str) -> Optional[float]:
     return _f(m.group(1)) if m else None
 
 
+def parse_hit_rate_verify_b(text: str) -> Optional[float]:
+    """
+    解析 stdout 里的命中率：
+      击中屏幕: {hits:,} / {N_PHOTONS:,} ({hit_rate*100:.1f}%)
+    返回命中率 hit_rate（0~1）。
+    """
+    m = re.search(
+        r"击中屏幕:\s*([0-9,]+)\s*/\s*([0-9,]+)\s*\(([0-9.+-eE]+)%\)",
+        text,
+    )
+    if not m:
+        return None
+    hits_s, total_s, pct_s = m.group(1), m.group(2), m.group(3)
+    try:
+        hits = int(hits_s.replace(",", ""))
+        total = int(total_s.replace(",", ""))
+    except Exception:
+        return None
+    if total <= 0:
+        return None
+    hit_rate = hits / total
+    # 允许百分比解析偏差，但用 hits/total 作为主要来源
+    return hit_rate
+
+
+def parse_visibility_mc_verify_b(text: str) -> Optional[float]:
+    m = re.search(r"蒙特卡洛对比度 V\s*=\s*([0-9.eE+-]+)", text)
+    return _f(m.group(1)) if m else None
+
+
 def parse_alpha_verify_c(text: str) -> Optional[float]:
     m = re.search(r"幂律指数\s*α\s*=\s*([0-9.eE+-]+)", text)
     return _f(m.group(1)) if m else None
@@ -332,6 +362,61 @@ def validate_pearson(script_hint: str, parser: Callable[[str], Optional[float]],
                 f"相关系数不足，优先怀疑参数/网格/解析失败",
             )
         return True, f"{msg_s}；r={r:.4f} >= {lo:.3f}"
+
+    return _v
+
+
+def validate_verify_born_rule(png: str) -> Validator:
+    """
+    堵住 born rule 的“擦线通过”口子：
+      除了皮尔逊 r，还要求 MC 命中率 hit_rate 和 MC 可见度 V 也达到阈值。
+    """
+
+    def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
+        ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
+        if not ok_png:
+            return False, msg_png
+
+        mb = CE_PNG_MIN_BYTES_RELAXED if relaxed else CE_PNG_MIN_BYTES_STRICT
+        ms = CE_PNG_MIN_STD_RELAXED if relaxed else CE_PNG_MIN_STD_STRICT
+        ok_s, msg_s = assert_png_substantive(repo, png, min_bytes=mb, min_std=ms)
+        if not ok_s:
+            return False, msg_s
+
+        r = parse_pearson_r_verify_b(text)
+        if r is None:
+            return False, "无法解析皮尔逊 r（verify_born_rule 输出改版？）"
+
+        vis_mc = parse_visibility_mc_verify_b(text)
+        if vis_mc is None:
+            return False, "无法解析蒙特卡洛对比度 V（verify_born_rule 输出改版？）"
+
+        hit_rate = parse_hit_rate_verify_b(text)
+        if hit_rate is None:
+            return False, "无法解析击中率 hit_rate（verify_born_rule 输出改版？）"
+
+        # 阈值：strict 用本仓库当前设定下的稳定量级做底线，避免未来“噪声擦线”。
+        r_lo = 0.85 if relaxed else 0.93
+        hit_lo = 0.02 if relaxed else 0.035
+        vis_lo = 0.08 if relaxed else 0.14
+
+        if r < r_lo:
+            return False, f"r={r:.4f} < 门禁 {r_lo:.3f}（strict/relaxed 不通过）"
+        if hit_rate < hit_lo:
+            return (
+                False,
+                f"hit_rate={hit_rate:.4f} < 门禁 {hit_lo:.3f}（统计量不足，易误判）",
+            )
+        if vis_mc < vis_lo:
+            return (
+                False,
+                f"V_mc={vis_mc:.4f} < 门禁 {vis_lo:.3f}（MC 条纹对比度不够）",
+            )
+
+        return (
+            True,
+            f"{msg_s}；r={r:.4f}>= {r_lo:.3f}, hit_rate={hit_rate:.4f}>= {hit_lo:.3f}, V_mc={vis_mc:.4f}>= {vis_lo:.3f}",
+        )
 
     return _v
 
@@ -918,7 +1003,7 @@ def build_jobs() -> List[Job]:
             "verify",
             "验证 波恩规则",
             "verify_born_rule.png",
-            validate_pearson("verify_born_rule", parse_pearson_r_verify_b, "verify_born_rule.png"),
+            validate_verify_born_rule("verify_born_rule.png"),
         ),
         Job(
             "verify_uncertainty.py",

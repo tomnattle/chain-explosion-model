@@ -279,8 +279,11 @@ def single_photon_random_walk(height, width, source_x, source_y,
 
 @jit(nopython=True)
 def run_monte_carlo(n_photons, height, width, source_x, source_y,
-                    barrier, A, S, B, max_steps):
+                    barrier, A, S, B, max_steps, seed):
     """运行N个单光子，返回屏幕击中分布。"""
+    # NOTE: Numba 的随机数状态不一定受 Python 层 np.random.seed 影响，
+    # 在 nopython 内显式 seed，以保证测试可复现。
+    np.random.seed(seed)
     screen = np.zeros(height, dtype=np.float64)
     hits = 0
     for _ in range(n_photons):
@@ -296,7 +299,7 @@ def run_monte_carlo(n_photons, height, width, source_x, source_y,
 @jit(nopython=True)
 def monte_carlo_milestone_screens(
     n_photons, milestones, height, width, source_x, source_y,
-    barrier, A, S, B, max_steps,
+    barrier, A, S, B, max_steps, seed,
 ):
     """
     milestones: 递增 int64，如 [100, 1000, 50000]；返回形状 (len(ms), height)。
@@ -305,6 +308,7 @@ def monte_carlo_milestone_screens(
     out = np.zeros((nm, height), dtype=np.float64)
     screen = np.zeros(height, dtype=np.float64)
     next_m = 0
+    np.random.seed(seed)
     for n in range(n_photons):
         fy, fx = single_photon_random_walk(
             height, width, source_x, source_y, barrier, A, S, B, max_steps
