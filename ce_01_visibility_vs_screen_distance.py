@@ -200,3 +200,34 @@ if len(results) >= 3:
 print("\n" + "=" * 60)
 print("实验完成。请将以上完整输出（包括数字和图表）反馈给我。")
 print("=" * 60)
+
+from experiment_dossier import emit_case_dossier
+
+_v0 = results[0]["visibility"] if results else None
+_v1 = results[-1]["visibility"] if results else None
+_ddec = (float(_v0) - float(_v1)) / float(_v0) * 100.0 if results and _v0 else None
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAMBDA": LAMBDA,
+        "SOURCE_X": SOURCE_X,
+        "STEPS": STEPS,
+        "num_screen_positions": len(results),
+    },
+    observed={
+        "visibility_first": _v0,
+        "visibility_last": _v1,
+        "decay_percent_if_defined": _ddec,
+        "distances_px": [r["distance"] for r in results] if results else [],
+        "visibilities": [r["visibility"] for r in results] if results else [],
+    },
+    artifacts=["interference_decay.png"],
+    reviewer_prompts=[
+        "total_energy 量级暴涨时，V 的定义是否仍与「物理对比度」同义？",
+        "若改用 ce_engine_v2 与 numba 核，衰减百分比是否定性一致？",
+    ],
+)

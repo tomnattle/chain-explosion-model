@@ -52,14 +52,15 @@ print("初 sum(E) = %.6g" % E0)
 print("末 sum(E) = %.6g" % E1)
 print("总能量比 R_E = E_final/E0 = %.6g" % R)
 print("步间中位比 median(E_{t+1}/E_t) = %.4f" % med_step)
-if not np.isfinite(E1) or not np.isfinite(R):
+energy_fail = not np.isfinite(E1) or not np.isfinite(R)
+if energy_fail:
     print("[FAIL] energy non-finite")
-    sys.exit(1)
-if R > 1e100:
+elif R > 1e100:
     print("[警告] R_E 天文量级: 非守恒, 非相对论守恒解释.")
 else:
     print("[信息] R_E 虽未爆炸, 仍多 >1 (与 lam*分裂增益一致).")
-print("[OK] critique_06_energy_growth")
+if not energy_fail:
+    print("[OK] critique_06_energy_growth")
 print("=" * 62)
 
 fig, ax = plt.subplots(figsize=(8, 3.5))
@@ -73,3 +74,33 @@ plt.tight_layout()
 out = os.path.join(os.path.dirname(__file__), "explore_critique_06_energy_growth.png")
 plt.savefig(out, dpi=120, bbox_inches="tight")
 print("Saved: %s" % out)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAM": LAM,
+        "STEPS": STEPS,
+        "E0": E0,
+    },
+    observed={
+        "E_final": E1,
+        "R_E": R,
+        "median_step_ratio_Etp1_over_Et": med_step,
+        "energy_nonfinite_fail": energy_fail,
+        "R_extreme_gt_1e100": bool(not energy_fail and R > 1e100),
+        "marker": "[FAIL] critique_06_energy" if energy_fail else "[OK] critique_06_energy_growth",
+    },
+    artifacts=["explore_critique_06_energy_growth.png"],
+    reviewer_prompts=[
+        "若在每步后做 sum 归一化，条纹与可见度结论是否完全改变？",
+    ],
+)
+if energy_fail:
+    sys.exit(1)

@@ -285,3 +285,24 @@ print("  退相干需要'环境'介入——是外加的假设。")
 print("  CE模型说：不需要环境，对比度天然衰减，")
 print("  衰减来自格点侧向耦合S的内在扩散机制。")
 print("  这是两个模型的核心分歧点。")
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAM": LAM,
+        "STEPS": STEPS,
+    },
+    observed={
+        "V_initial": float(visibilities[0]),
+        "V_final": float(visibilities[-1]),
+        "total_decay_percent_str": decay_str,
+        "d0_exponential_fit": float(d0_exp) if fit_exp is not None else None,
+    },
+    artifacts=["discover_visibility_decay.png"],
+)

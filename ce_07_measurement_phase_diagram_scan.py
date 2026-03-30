@@ -182,3 +182,25 @@ print("你的模型预言：干涉消失程度 = f(位置, 大小, 吸收率)")
 print("量子力学：干涉消失 = 测量（是/否）")
 print("\n图片已保存为: measurement_phase_diagram.png")
 print("=" * 60)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAMBDA": LAMBDA,
+        "STEPS": STEPS,
+    },
+    observed={
+        "position_scan_V": [float(r[2]) for r in pos_results],
+        "radius_scan_V": [float(r[1]) for r in rad_results],
+        "absorb_ratio_scan_V": [float(r[1]) for r in rat_results],
+        "absorb_ratio_values": [float(r[0]) for r in rat_results],
+    },
+    artifacts=["measurement_phase_diagram.png"],
+)

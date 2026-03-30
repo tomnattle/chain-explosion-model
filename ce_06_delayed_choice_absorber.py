@@ -171,3 +171,27 @@ print("  1. 无吸收器（注释掉插入代码）→ 应看到明显干涉")
 print("  2. 提前插入吸收器（INSERT_STEP=0）→ 干涉消失")
 print("  3. 延迟插入（当前）→ 观察是否消失")
 print("\n如果延迟插入也导致干涉消失，你的模型就挑战了量子力学的‘延迟选择’解释。")
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAMBDA": LAMBDA,
+        "STEPS": STEPS,
+        "INSERT_STEP": INSERT_STEP,
+        "ABSORB_RATIO": ABSORB_RATIO,
+    },
+    observed={
+        "visibility_final": float(visibility),
+    },
+    artifacts=["delayed_choice.png"],
+    reviewer_prompts=[
+        "INSERT_STEP 与物理“延迟”的映射是否在一行注释里写清？",
+    ],
+)

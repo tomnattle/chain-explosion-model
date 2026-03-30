@@ -82,6 +82,24 @@ def main():
     plt.savefig(_p, dpi=120, bbox_inches="tight")
     print("Saved:", _p)
 
+    from experiment_dossier import emit_case_dossier
+
+    emit_case_dossier(
+        __file__,
+        constants={"C": C, "check_a": a, "check_b": b, "vc_demo": vc},
+        observed={
+            "commute_error_abs_a_plus_b_minus_b_plus_a": d,
+            "associativity_error_abs": abs(x - y),
+            "w_from_add_vc_plus_02c": w,
+            "v_prime_from_inv_boost_c_at_V_half_c": vp,
+            "verdict_pass": ok,
+        },
+        artifacts=["explore_lorentz_selfcheck.png"],
+        reviewer_prompts=[
+            "本检验仅覆盖一维同向合成；反对称或多维合成未测，遗漏是否会掩盖 bug？",
+        ],
+    )
+
     if ok:
         print("VERDICT: PASS (lorentz_algebra)")
     else:

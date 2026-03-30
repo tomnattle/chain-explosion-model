@@ -163,3 +163,23 @@ print("\n下一步探索方向：")
 print("1. 改变两个探测器的距离，观察相关性是否衰减")
 print("2. 在一个探测器旁边插入吸收器，观察另一个探测器的能量是否变化")
 print("3. 让两个波包重新汇合，观察纠缠是否恢复")
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAMBDA": LAMBDA,
+        "STEPS": STEPS,
+    },
+    observed={
+        "final_correlation_last": float(correlations[-1]) if correlations else None,
+        "final_energy1_last": float(energies1[-1]) if energies1 else None,
+    },
+    artifacts=["entanglement_simulation.png"],
+)

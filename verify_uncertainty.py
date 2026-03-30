@@ -220,3 +220,21 @@ plt.tight_layout()
 plt.savefig("verify_uncertainty.png", dpi=150, bbox_inches="tight", facecolor="#0d1117")
 print("\n图片已保存: verify_uncertainty.png")
 print("=" * 65)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "slit_widths_px": [int(r["slit_w"]) for r in results],
+        "num_widths": len(results),
+    },
+    observed={
+        "fitted_alpha_slope_loglog": float(alpha_fit),
+        "delta_alpha_from_minus_one": float(abs(alpha_fit - (-1.0))),
+    },
+    artifacts=["verify_uncertainty.png"],
+    reviewer_prompts=[
+        "sigma_theta 的操作定义对 alpha 的敏感性？换一种定义 alpha 会变多少？",
+    ],
+)

@@ -153,6 +153,18 @@ def main():
     print(f"\nSaved: {out}")
     print(f"几何: L = screen - barrier = {L} px（用于与理论对照时请自洽 λ_eff）")
 
+    from experiment_dossier import emit_case_dossier
+
+    emit_case_dossier(
+        __file__,
+        constants={"D_LIST": list(D_LIST), "STEPS": STEPS, "L_px": int(L)},
+        observed={
+            "loglog_slope_fitted": float(power) if power == power else None,
+            "visibility_per_d": [float(v) for v in vis_list],
+        },
+        artifacts=["explore_fringe_spacing.png"],
+    )
+
 
 if __name__ == "__main__":
     main()

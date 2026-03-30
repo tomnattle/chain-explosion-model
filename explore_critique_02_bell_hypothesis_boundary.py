@@ -30,3 +30,12 @@ ax.set_title("Critique 02: Bell experiments vs narrative", fontsize=12)
 out = os.path.join(os.path.dirname(__file__), "explore_critique_02_bell_hypothesis.png")
 plt.savefig(out, dpi=120, bbox_inches="tight", facecolor="#f6f8fa")
 print("Saved: %s" % out)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={"text_box_chars": len(BOX)},
+    observed={"marker": "[OK] critique_02_bell_boundary"},
+    artifacts=["explore_critique_02_bell_hypothesis.png"],
+)

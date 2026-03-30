@@ -79,3 +79,31 @@ plt.tight_layout()
 out = os.path.join(os.path.dirname(__file__), "explore_critique_05_decay_nonuniqueness.png")
 plt.savefig(out, dpi=120, bbox_inches="tight")
 print("Saved: %s" % out)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAM": LAM,
+        "STEPS_PER_100PX": STEPS_PER_100PX,
+        "ETA_uniform_loss_per_step": ETA,
+        "screen_x_list": list(screen_x_list),
+    },
+    observed={
+        "r_V_pearson_ce_vs_uniform_loss": r_v,
+        "rmse_V": rmse,
+        "V_ce_only": v0.tolist(),
+        "V_ce_plus_uniform_loss": v1.tolist(),
+        "marker": "[OK] critique_05_decay_nonuniqueness",
+    },
+    artifacts=["explore_critique_05_decay_nonuniqueness.png"],
+    reviewer_prompts=[
+        "若提高 ETA 或换损耗模型，r_V 仍可很高吗？结论是否对 eta 仅局部成立？",
+    ],
+)

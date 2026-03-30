@@ -112,5 +112,37 @@ for i in range(1, len(screen)-1):
 
 if peak_count >= 3:
     print("\n✅ 检测到明显的干涉条纹！你的链式爆炸模型成功产生了波动现象。")
+    _fringe = "obvious"
 else:
     print("\n⚠️ 条纹不明显。建议调整参数：增加 S（侧向强度）或降低 LAMBDA（衰减）")
+    _fringe = "weak"
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAMBDA": LAMBDA,
+        "WIDTH": WIDTH,
+        "HEIGHT": HEIGHT,
+        "SOURCE_X": SOURCE_X,
+        "SOURCE_Y": SOURCE_Y,
+        "STEPS": STEPS,
+        "SLIT_WIDTH": SLIT_WIDTH,
+        "slit_gap_px": abs(SLIT2_Y - SLIT1_Y),
+    },
+    observed={
+        "screen_column_x": BARRIER_X + 10,
+        "local_max_count_on_screen": peak_count,
+        "fringe_verdict": _fringe,
+        "screen_max": float(screen.max()) if len(screen) else None,
+    },
+    artifacts=["ce_00_double_slit_demo.png"],
+    reviewer_prompts=[
+        "若将 WIDTH/HEIGHT 加倍，peak_count 与 fringe_verdict 是否稳定？",
+        "screen 取 BARRIER_X+10 是否代表「远场」？若改取近场列，叙事是否仍成立？",
+    ],
+)

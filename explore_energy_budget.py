@@ -75,3 +75,25 @@ plt.tight_layout()
 out = os.path.join(os.path.dirname(__file__), "explore_energy_budget.png")
 plt.savefig(out, dpi=140)
 print(f"Saved: {out}")
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAM": LAM,
+        "MAX_STEPS": MAX_STEPS,
+        "initial_total_E": float(sums[0]),
+    },
+    observed={
+        "final_total_E": float(sums[-1]),
+        "ratio_final_over_initial": float(sums[-1] / sums[0]) if sums[0] else None,
+        "median_stepwise_factor": float(np.median(rat)),
+    },
+    artifacts=["explore_energy_budget.png"],
+)

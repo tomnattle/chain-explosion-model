@@ -102,6 +102,17 @@ sp = np.array(spacings)
 valid = np.isfinite(sp) & (sp > 0) & (ds > 0)
 if valid.sum() < 3:
     print("拟合点不足")
+    from experiment_dossier import emit_case_dossier
+
+    emit_case_dossier(
+        __file__,
+        constants={"D_LIST": D_LIST, "REFERENCE_LOG_SLOPE": REFERENCE_LOG_SLOPE},
+        observed={
+            "valid_fit_points": int(valid.sum()),
+            "verdict": "insufficient_data_exit_2",
+        },
+        artifacts=[],
+    )
     sys.exit(2)
 
 logd = np.log(ds[valid])
@@ -139,3 +150,34 @@ plt.tight_layout()
 out = os.path.join(os.path.dirname(__file__), "explore_critique_07_fringe_theory_gap.png")
 plt.savefig(out, dpi=120, bbox_inches="tight")
 print("Saved: %s" % out)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAM": LAM,
+        "STEPS": STEPS,
+        "SCREEN_X": SCREEN_X,
+        "BAR_X": BAR_X,
+        "D_LIST": D_LIST,
+        "REFERENCE_LOG_SLOPE": REFERENCE_LOG_SLOPE,
+    },
+    observed={
+        "fitted_log_slope": fitted,
+        "deviation_from_reference": dev,
+        "spacings": sp.tolist(),
+        "d_values": ds.tolist(),
+        "valid_points_used": int(valid.sum()),
+        "marker": "[OK] critique_07_fringe_theory_gap",
+    },
+    artifacts=["explore_critique_07_fringe_theory_gap.png"],
+    reviewer_prompts=[
+        "dominant_peak_spacing 与 FFT 回退两种算法是否系统性偏斜 log-log 斜率？",
+    ],
+)

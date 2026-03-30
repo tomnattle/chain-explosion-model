@@ -82,5 +82,18 @@ out = os.path.join(
 plt.savefig(out, dpi=140)
 print("Saved: %s" % out)
 
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={"SIZE": SIZE, "STEPS": STEPS, "roll_c_per_step": c, "v_frame_c": v_frame},
+    observed={
+        "v_track_COM": float(v_track),
+        "v_transformed_printed": float(v_transformed),
+        "formula_layer_ok": bool(ok),
+    },
+    artifacts=["explore_relativity_light_speed_invariant.png"],
+)
+
 if not ok:
     sys.exit(1)

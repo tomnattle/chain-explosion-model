@@ -89,3 +89,16 @@ plt.tight_layout()
 out = os.path.join(os.path.dirname(__file__), "explore_causal_cone_anisotropy.png")
 plt.savefig(out, dpi=140)
 print("Saved: %s" % out)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={"HEIGHT": HEIGHT, "WIDTH": WIDTH, "A": A, "S": S, "B": B, "LAM": LAM, "STEPS": STEPS},
+    observed={
+        "median_anisotropy_ratio_R_L1_over_Rplus": float(np.median(rat_hist[10:])),
+        "median_dRplus_dt": float(np.median(vr[5:])),
+        "median_dR_L1_dt": float(np.median(vd[5:])),
+    },
+    artifacts=["explore_causal_cone_anisotropy.png"],
+)

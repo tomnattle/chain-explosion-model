@@ -70,11 +70,11 @@ print(f"测量路径   | 干涉对比度 V = {vis_which_way:.4f}")
 print("-" * 65)
 
 if vis_interference > 0.3 and vis_which_way < 0.15:
-    print("✅ 完美符合量子力学：观测破坏干涉！——堵嘴层B 通过")
+    print("[OK] 完美符合量子力学：观测破坏干涉！——堵嘴层B 通过")
 elif vis_interference > vis_which_way:
-    print("✅ 趋势符合：路径测量降低干涉")
+    print("[OK] 趋势符合：路径测量降低干涉")
 else:
-    print("❌ 不符合量子行为")
+    print("[FAIL] 不符合量子行为")
 
 # ============================================================
 # 绘图【简单版，一定能找到】
@@ -89,3 +89,33 @@ plt.tight_layout()
 # 直接保存到当前目录，名字简单好找
 plt.savefig("verify_which_way.png")
 print("\n图片已保存: verify_which_way.png")
+
+from experiment_dossier import emit_case_dossier
+
+pass_strict = vis_interference > 0.3 and vis_which_way < 0.15
+pass_trend = vis_interference > vis_which_way
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAM": LAM,
+        "SOURCE_X": SOURCE_X,
+        "BAR_X": BAR_X,
+        "SCREEN_X": SCREEN_X,
+        "STEPS": STEPS,
+    },
+    observed={
+        "vis_double_slit": float(vis_interference),
+        "vis_single_slit_only": float(vis_which_way),
+        "verdict_strict": pass_strict,
+        "verdict_trend_only": pass_trend and not pass_strict,
+    },
+    artifacts=["verify_which_way.png"],
+    reviewer_prompts=[
+        "单缝 run 是否仅缺相干路径而非「测量」？与真正的 which-way 探测器对比缺什么？",
+    ],
+)

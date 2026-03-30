@@ -101,6 +101,29 @@ def main():
     plt.savefig(out, dpi=140)
     print(f"Saved: {out}")
 
+    from experiment_dossier import emit_case_dossier
+
+    _mr = float(np.median(i1 / (i0 + 1e-30)))
+    emit_case_dossier(
+        __file__,
+        constants={
+            "HEIGHT": HEIGHT,
+            "WIDTH": WIDTH,
+            "A": A,
+            "S": S,
+            "B": B,
+            "LAM": LAM,
+            "ETA_uniform_loss": ETA,
+            "screen_x_list": screen_x_list,
+        },
+        observed={
+            "V_baseline_last": float(v0[-1]),
+            "V_with_loss_last": float(v1[-1]),
+            "median_intensity_ratio_loss_over_base": _mr,
+        },
+        artifacts=["explore_visibility_loss_compare.png"],
+    )
+
 
 if __name__ == "__main__":
     main()

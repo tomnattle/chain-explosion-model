@@ -78,3 +78,32 @@ print("-" * 70)
 print("实验可检验性：可通过双缝干涉实验，测量不同距离屏幕的干涉对比度")
 print("若实验观测到衰减，则CE模型被验证，量子力学基础理论需修正")
 print("=" * 70)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAM": LAM,
+        "SOURCE_X": SOURCE_X,
+        "BAR_X": BAR_X,
+        "STEPS_PER_100PX": STEPS_PER_100PX,
+        "screen_x_list": screen_x_list,
+    },
+    observed={
+        "visibility_per_screen": dict(zip(screen_x_list, [float(v) for v in vis_list])),
+        "distance_from_slit_px": distance_list,
+        "V_monotonic_decreasing": all(
+            vis_list[i] >= vis_list[i + 1] - 1e-6 for i in range(len(vis_list) - 1)
+        ),
+    },
+    artifacts=["verify_interference_decay.png"],
+    reviewer_prompts=[
+        "STEPS 与像素的线性换算是否等价于物理距离？边界吸收是否主导衰减？",
+    ],
+)

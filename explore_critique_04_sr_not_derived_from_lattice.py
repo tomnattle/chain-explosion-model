@@ -58,3 +58,29 @@ plt.tight_layout()
 out = os.path.join(os.path.dirname(__file__), "explore_critique_04_sr_not_derived.png")
 plt.savefig(out, dpi=120, bbox_inches="tight")
 print("Saved: %s" % out)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAM": LAM,
+        "STEPS": STEPS,
+        "THRESH": THRESH,
+        "v_frame_over_c": v_frame,
+    },
+    observed={
+        "v_grid_median_dx_per_step": v_grid,
+        "v_prime_Lorentz_formula": v_prime,
+        "marker": "[OK] critique_04_sr_not_derived",
+    },
+    artifacts=["explore_critique_04_sr_not_derived.png"],
+    reviewer_prompts=[
+        "v_grid 与「因果光锥」定义是否一致？前 5 步丢弃是否掩盖瞬态？",
+    ],
+)

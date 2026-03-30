@@ -189,3 +189,35 @@ print("  如果CE模型的蒙特卡洛分布与连续场吻合，")
 print("  说明你的模型给出了一个机制上的解释：")
 print("  随机性来自格点激发的随机性，概率分布由场强度决定。")
 print("  这是量子力学回避的问题——你的模型正面回答了它。")
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAM": LAM,
+        "STEPS_CONT": STEPS_CONT,
+        "N_PHOTONS": N_PHOTONS,
+        "MAX_STEPS": MAX_STEPS,
+        "SCREEN_X": SCREEN_X,
+        "BAR_X": BAR_X,
+        "random_seed": 42,
+    },
+    observed={
+        "pearson_r_continuous_vs_mc": float(corr),
+        "visibility_continuous": float(vis_cont),
+        "visibility_mc": float(vis_mc),
+        "hit_rate": float(hit_rate),
+        "verdict_line": verdict,
+    },
+    artifacts=["verify_born_rule.png"],
+    reviewer_prompts=[
+        "N_PHOTONS、MAX_STEPS 同时缩小一个数量级，r 是否仍过门禁？涨落如何定量？",
+        "连续场与 MC 使用同一套 A,S,B,λ 映射吗？有无隐式归一或不同初值？",
+    ],
+)

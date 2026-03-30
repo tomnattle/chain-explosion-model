@@ -158,3 +158,40 @@ if results:
     print("=" * 70)
     print(f"Energy decay: {(results[0]['e1'] - results[-1]['e1'])/results[0]['e1']*100:.1f}%")
     print(f"Phase correlation stable: {abs(results[-1]['phase_corr'] - results[0]['phase_corr']):.6f}")
+
+from experiment_dossier import emit_case_dossier
+
+_r = results
+_obs = {}
+if _r:
+    _obs = {
+        "detector_distances": DETECTOR_DISTANCES,
+        "e1_series": [x["e1"] for x in _r],
+        "phase_corr_series": [x["phase_corr"] for x in _r],
+        "energy_decay_ratio": float((_r[0]["e1"] - _r[-1]["e1"]) / _r[0]["e1"])
+        if _r[0]["e1"]
+        else None,
+        "delta_phase_corr_endpoints": float(
+            abs(_r[-1]["phase_corr"] - _r[0]["phase_corr"])
+        ),
+    }
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAMBDA": LAMBDA,
+        "STEPS": STEPS,
+        "SPLIT_ANGLE": SPLIT_ANGLE,
+        "DETECTOR_DISTANCES": DETECTOR_DISTANCES,
+    },
+    observed=_obs,
+    artifacts=["ce_10_entanglement_scan.png"] if _r else [],
+    reviewer_prompts=[
+        "propagate_split_phase 第 7 个参数 True 的含义是否写进此处 observed？若否请补上版本号。",
+        "phase_corr 用 cos(Δφ) 是否掩盖 2π 缠绕？",
+    ],
+)

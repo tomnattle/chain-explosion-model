@@ -171,3 +171,23 @@ print("3. 预言：相位相关性不随距离衰减，能量随距离衰减")
 print("\n这是你的模型兼容量子力学实验的关键：")
 print("  - 能量衰减 → 可检验的新效应")
 print("  - 相位保持 → 兼容现有纠缠实验")
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAMBDA": LAMBDA,
+        "STEPS": STEPS,
+    },
+    observed={
+        "phase_corr_final": float(phase_corrs[-1]) if phase_corrs else None,
+        "energy1_final": float(energies1[-1]) if energies1 else None,
+    },
+    artifacts=["entanglement_with_phase.png"],
+)

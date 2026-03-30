@@ -172,3 +172,26 @@ print("\n" + "=" * 60)
 print("实验完成！图片已保存为 measurement_effect.png")
 print("请将以上输出（包括对比度数值）反馈给我。")
 print("=" * 60)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAMBDA": LAMBDA,
+        "STEPS": STEPS,
+        "SCREEN_X": SCREEN_X,
+        "ABSORB_RATIO": ABSORB_RATIO,
+    },
+    observed={
+        "visibility_none_absorb": float(vis0),
+        "visibility_partial_absorb": float(vis1),
+        "visibility_one_slit_gone": float(vis2),
+    },
+    artifacts=["measurement_effect.png"],
+)

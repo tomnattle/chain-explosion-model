@@ -148,3 +148,32 @@ _p = os.path.join(os.path.dirname(__file__), "ce_02_double_slit_screen_statistic
 plt.tight_layout()
 plt.savefig(_p, dpi=120, bbox_inches="tight")
 print("Saved:", _p)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAMBDA": LAMBDA,
+        "STEPS": STEPS,
+        "SCREEN_X": SCREEN_X,
+        "BARRIER_X": BARRIER_X,
+        "SLIT_WIDTH": SLIT_WIDTH,
+    },
+    observed={
+        "num_peaks_heuristic": len(peaks),
+        "visibility_heuristic": float(visibility),
+        "symmetry_ratio_LR": float(symmetry_ratio),
+        "total_energy_on_screen_column": float(total_energy),
+    },
+    artifacts=["ce_02_double_slit_screen_statistics.png"],
+    reviewer_prompts=[
+        "峰检测阈值 mean*0.5 是否导致峰值数对噪声过敏？",
+        "左右半屏能量比能否在严格镜像几何下仍偏离 1？原因是否为离散奇偶网格？",
+    ],
+)

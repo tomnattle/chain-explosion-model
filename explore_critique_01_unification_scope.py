@@ -36,3 +36,12 @@ ax.set_title("Critique 01: scope for claiming unification", fontsize=12)
 out = os.path.join(os.path.dirname(__file__), "explore_critique_01_unification_scope.png")
 plt.savefig(out, dpi=120, bbox_inches="tight", facecolor="white")
 print("Saved: %s" % out)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={"lines_in_figure": len(LINES)},
+    observed={"checklist_items_printed": len(LINES)},
+    artifacts=["explore_critique_01_unification_scope.png"],
+)

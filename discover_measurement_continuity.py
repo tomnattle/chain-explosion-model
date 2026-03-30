@@ -289,3 +289,18 @@ plt.savefig(
 print("\n图片已保存: discover_measurement_continuity.png")
 print("=" * 65)
 print("发现E 总结: %s" % threshold_verdict)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "max_drop_threshold_script": 0.15,
+    },
+    observed={
+        "threshold_verdict_line": threshold_verdict,
+        "max_abs_smoothed_dV": float(max_step),
+        "relative_gradient_ratio": float(rel),
+    },
+    artifacts=["discover_measurement_continuity.png"],
+)

@@ -64,3 +64,26 @@ plt.tight_layout()
 out = os.path.join(os.path.dirname(__file__), "explore_causal_front.png")
 plt.savefig(out, dpi=140)
 print(f"Saved: {out}")
+
+from experiment_dossier import emit_case_dossier
+
+_v = np.diff(front)
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAM": LAM,
+        "STEPS": STEPS,
+        "THRESH": THRESH,
+    },
+    observed={
+        "median_dx_dt_cells_per_step": float(np.median(_v)),
+        "x_right_first": float(front[0]),
+        "x_right_last": float(front[-1]),
+    },
+    artifacts=["explore_causal_front.png"],
+)

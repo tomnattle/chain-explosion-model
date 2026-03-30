@@ -133,3 +133,26 @@ print("实验完成！")
 print("图片已保存为: V_vs_S.png")
 print("请将以上输出（包括表格和图片）反馈给我。")
 print("=" * 60)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "B": B,
+        "LAMBDA": LAMBDA,
+        "STEPS": STEPS,
+        "SCREEN_X": SCREEN_X,
+        "S_values": list(S_values),
+    },
+    observed={
+        "S_list": [r["S"] for r in results],
+        "V_list": [r["visibility"] for r in results],
+        "V_min": min((r["visibility"] for r in results), default=None),
+        "V_max": max((r["visibility"] for r in results), default=None),
+    },
+    artifacts=["V_vs_S.png"],
+)

@@ -183,3 +183,27 @@ print("  ABSORBER_RADIUS: 吸收器大小（影响覆盖范围）")
 print("  ABSORB_RATIO: 吸收比例（0-1）")
 print("  ABSORBER_CENTER_X/Y: 吸收器位置（放在缝后面或别处）")
 print("\n也可以禁用吸收器（ENABLE_ABSORBER=False）与有吸收的情况对比。")
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAMBDA": LAMBDA,
+        "ENABLE_ABSORBER": ENABLE_ABSORBER,
+        "ABSORBER_RADIUS": ABSORBER_RADIUS,
+        "ABSORB_RATIO": ABSORB_RATIO,
+        "ABSORBER_CENTER_X": ABSORBER_CENTER_X,
+        "ABSORBER_CENTER_Y": ABSORBER_CENTER_Y,
+    },
+    observed={
+        "visibility_final": float(visibility),
+        "grid_sum_final": float(np.sum(grid)),
+    },
+    artifacts=["finite_absorber.png"],
+)

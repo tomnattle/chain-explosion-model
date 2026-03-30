@@ -268,3 +268,17 @@ plt.savefig('discover_coupling_constant.png', dpi=150, bbox_inches='tight',
 print("\n图片已保存: discover_coupling_constant.png")
 print(f"\n最终结论：最优S/A = {fine_best:.6f}")
 print("这个数有没有物理意义，值得进一步研究。")
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "A": A,
+    },
+    observed={
+        "fine_best_S": float(fine_best),
+        "S_over_A_ratio": float(fine_best / A) if A else None,
+    },
+    artifacts=["discover_coupling_constant.png"],
+)

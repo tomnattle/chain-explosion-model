@@ -87,3 +87,21 @@ plt.tight_layout()
 out = os.path.join(os.path.dirname(__file__), "explore_double_slit_mirror_parity.png")
 plt.savefig(out, dpi=140)
 print("Saved: %s" % out)
+
+from experiment_dossier import emit_case_dossier
+
+emit_case_dossier(
+    __file__,
+    constants={
+        "HEIGHT": HEIGHT,
+        "WIDTH": WIDTH,
+        "A": A,
+        "S": S,
+        "B": B,
+        "LAM": LAM,
+        "STEPS": STEPS,
+        "SCREEN_X": SCREEN_X,
+    },
+    observed={"asym_L1": asym, "pearson_I_vs_mirror_I": r_m},
+    artifacts=["explore_double_slit_mirror_parity.png"],
+)
