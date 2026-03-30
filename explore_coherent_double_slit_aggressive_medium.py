@@ -114,10 +114,12 @@ def main():
 
     # ---------------- 介质“泡泡/挤兑”参数（激进） ----------------
     mode = "bubbles"
-    bubble_p = 0.01  # 每格每步大约 1% 的泡泡区域
-    mu = 0.45  # 泡泡区域局部强抽走（很激进）
+    # 更激进：更密的泡泡区域 + 更强的局部强衰减
+    bubble_p = 0.05  # 每格每步约 5% 的泡泡区域（更挤兑）
+    mu = 0.70  # 泡泡区域局部强抽走（更激进）
 
-    sigma_list = [0.0, 0.15, 0.35, 0.6, 1.0, 1.5]
+    # 更激进的 sigma 扫描：从“几乎无噪声”到“极端去相干”
+    sigma_list = [0.0, 0.08, 0.15, 0.25, 0.4, 0.7, 1.1, 1.6, 2.2]
     seed = 12345
 
     barrier = make_barrier(HEIGHT, WIDTH, BAR_X, SLIT1_Y0, SLIT2_Y0, SLIT_W)
@@ -172,10 +174,20 @@ def main():
     axes[0].grid(True, alpha=0.25, color="#30363d")
 
     # 右：挑几个 sigma 的屏曲线（归一化）
-    for sigma in [sigma_list[0], sigma_list[len(sigma_list) // 2], sigma_list[-1]]:
+    Vs_arr = np.asarray(Vs, dtype=np.float64)
+    idx_max = int(np.argmax(Vs_arr))
+    idx_min = int(np.argmin(Vs_arr))
+    idx_mid = len(sigma_list) // 2
+    chosen = sorted({idx_max, idx_min, idx_mid})
+    for idx in chosen:
+        sigma = sigma_list[idx]
         screen = screens[sigma]
         smax = float(screen.max()) if float(screen.max()) > 0 else 1.0
-        axes[1].plot(screen / smax, label=f"sigma={sigma} (V={Vs[sigma_list.index(sigma)]:.2f})", linewidth=2)
+        axes[1].plot(
+            screen / smax,
+            label=f"sigma={sigma} (V={Vs_arr[idx]:.2f})",
+            linewidth=2,
+        )
     axes[1].set_title(f"Screen intensity at x={SCREEN_X}", color="white", fontsize=11)
     axes[1].set_xlabel("y index", color="#8b949e")
     axes[1].set_ylabel("I(y)/max", color="#8b949e")
@@ -185,6 +197,171 @@ def main():
     plt.tight_layout()
     plt.savefig(out_png, dpi=150, bbox_inches="tight", facecolor="#0d1117")
     print(f"saved: {out_png}")
+
+    # ============================================================
+    # 第二轮：mu=0 纯相位去相干（更接近“挤兑洗掉条纹”的直觉）
+    # ============================================================
+    sigma_list_dephase_only = [0.0, 0.15, 0.4, 0.7, 1.1, 1.6, 2.2]
+    mu_dephase_only = 0.0
+
+    Vs2 = []
+    screens2 = {}
+    print("\n=== dephase only (mu=0) ===")
+    print(f"bubble_p={bubble_p}, mu={mu_dephase_only}, k={k}, LAM={LAM}")
+    print(f"sigma_list_dephase_only={sigma_list_dephase_only}")
+
+    for sigma in sigma_list_dephase_only:
+        V, screen, I = run_case(
+            mode=mode,
+            sigma=sigma,
+            seed=seed,
+            bubble_p=bubble_p,
+            mu=mu_dephase_only,
+            height=HEIGHT,
+            width=WIDTH,
+            A=A,
+            S=S,
+            LAM=LAM,
+            k=k,
+            SOURCE_X=SOURCE_X,
+            SOURCE_Y=SOURCE_Y,
+            barrier=barrier,
+            SLIT_W=SLIT_W,
+            SCREEN_X=SCREEN_X,
+            STEPS=STEPS,
+        )
+        Vs2.append(V)
+        screens2[sigma] = screen
+        print(f"(dephase only) sigma={sigma:>4} => V={V:.4f}")
+
+    out_png2 = "coherent_double_slit_dephase_only.png"
+    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+    fig.patch.set_facecolor("#0d1117")
+    for ax in axes.flat:
+        ax.set_facecolor("#0d1117")
+        ax.tick_params(colors="#8b949e")
+        for spine in ax.spines.values():
+            spine.set_color("#30363d")
+
+    # 左：V vs sigma
+    axes[0].plot(sigma_list_dephase_only, Vs2, "o-", color="#58a6ff", linewidth=2)
+    axes[0].set_title("Visibility V vs phase dephasing (mu=0)", color="white", fontsize=11)
+    axes[0].set_xlabel("phase kick sigma (rad)", color="#8b949e")
+    axes[0].set_ylabel("V", color="#8b949e")
+    axes[0].grid(True, alpha=0.25, color="#30363d")
+
+    # 右：挑几个 sigma 的屏曲线（归一化）
+    Vs2_arr = np.asarray(Vs2, dtype=np.float64)
+    idx_max2 = int(np.argmax(Vs2_arr))
+    idx_min2 = int(np.argmin(Vs2_arr))
+    idx_mid2 = len(sigma_list_dephase_only) // 2
+    chosen2 = sorted({idx_max2, idx_min2, idx_mid2})
+    for idx in chosen2:
+        sigma = sigma_list_dephase_only[idx]
+        screen = screens2[sigma]
+        smax = float(screen.max()) if float(screen.max()) > 0 else 1.0
+        axes[1].plot(
+            screen / smax,
+            label=f"sigma={sigma} (V={Vs2_arr[idx]:.2f})",
+            linewidth=2,
+        )
+
+    axes[1].set_title(f"Screen intensity at x={SCREEN_X}", color="white", fontsize=11)
+    axes[1].set_xlabel("y index", color="#8b949e")
+    axes[1].set_ylabel("I(y)/max", color="#8b949e")
+    axes[1].grid(True, alpha=0.25, color="#30363d")
+    axes[1].legend(
+        loc="upper right",
+        facecolor="#161b22",
+        edgecolor="#30363d",
+        framealpha=0.9,
+        fontsize=9,
+    )
+
+    plt.tight_layout()
+    plt.savefig(out_png2, dpi=150, bbox_inches="tight", facecolor="#0d1117")
+    print(f"saved: {out_png2}")
+
+    # ============================================================
+    # 第三轮：global 全局去相干（更激进，通常更容易把条纹洗掉）
+    # ============================================================
+    sigma_list_global = [0.0, 0.2, 0.5, 1.0, 1.5]
+    mu_global = 0.0
+
+    Vs3 = []
+    screens3 = {}
+    print("\n=== global dephase only (mode=global, mu=0) ===")
+    print(f"k={k}, LAM={LAM}, sigma_list_global={sigma_list_global}")
+
+    for sigma in sigma_list_global:
+        V, screen, I = run_case(
+            mode="global",
+            sigma=sigma,
+            seed=seed,
+            bubble_p=bubble_p,  # unused for global
+            mu=mu_global,
+            height=HEIGHT,
+            width=WIDTH,
+            A=A,
+            S=S,
+            LAM=LAM,
+            k=k,
+            SOURCE_X=SOURCE_X,
+            SOURCE_Y=SOURCE_Y,
+            barrier=barrier,
+            SLIT_W=SLIT_W,
+            SCREEN_X=SCREEN_X,
+            STEPS=STEPS,
+        )
+        Vs3.append(V)
+        screens3[sigma] = screen
+        print(f"(global) sigma={sigma:>4} => V={V:.4f}")
+
+    out_png3 = "coherent_double_slit_global_dephase_only.png"
+    fig, axes = plt.subplots(1, 2, figsize=(14, 6))
+    fig.patch.set_facecolor("#0d1117")
+    for ax in axes.flat:
+        ax.set_facecolor("#0d1117")
+        ax.tick_params(colors="#8b949e")
+        for spine in ax.spines.values():
+            spine.set_color("#30363d")
+
+    axes[0].plot(sigma_list_global, Vs3, "o-", color="#58a6ff", linewidth=2)
+    axes[0].set_title("Visibility V vs global phase dephasing (mu=0)", color="white", fontsize=11)
+    axes[0].set_xlabel("phase kick sigma (rad)", color="#8b949e")
+    axes[0].set_ylabel("V", color="#8b949e")
+    axes[0].grid(True, alpha=0.25, color="#30363d")
+
+    Vs3_arr = np.asarray(Vs3, dtype=np.float64)
+    idx_max3 = int(np.argmax(Vs3_arr))
+    idx_min3 = int(np.argmin(Vs3_arr))
+    idx_mid3 = len(sigma_list_global) // 2
+    chosen3 = sorted({idx_max3, idx_min3, idx_mid3})
+    for idx in chosen3:
+        sigma = sigma_list_global[idx]
+        screen = screens3[sigma]
+        smax = float(screen.max()) if float(screen.max()) > 0 else 1.0
+        axes[1].plot(
+            screen / smax,
+            label=f"sigma={sigma} (V={Vs3_arr[idx]:.2f})",
+            linewidth=2,
+        )
+
+    axes[1].set_title(f"Screen intensity at x={SCREEN_X}", color="white", fontsize=11)
+    axes[1].set_xlabel("y index", color="#8b949e")
+    axes[1].set_ylabel("I(y)/max", color="#8b949e")
+    axes[1].grid(True, alpha=0.25, color="#30363d")
+    axes[1].legend(
+        loc="upper right",
+        facecolor="#161b22",
+        edgecolor="#30363d",
+        framealpha=0.9,
+        fontsize=9,
+    )
+
+    plt.tight_layout()
+    plt.savefig(out_png3, dpi=150, bbox_inches="tight", facecolor="#0d1117")
+    print(f"saved: {out_png3}")
 
 
 if __name__ == "__main__":

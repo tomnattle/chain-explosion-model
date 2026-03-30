@@ -201,6 +201,48 @@ This repository implements a **2D discrete lattice propagation model** (“chain
 
 ---
 
+## Battle Plan / 可证伪路线（当前阶段）
+
+这部分聚焦“从直觉走向可反驳实验”。不争论本体，先比较**可观测后果**。
+
+### P1. 方向性扩散是否能统一“直行 + 衍射余波”
+
+- **命题：** 传播权重若满足“前向强、侧向弱、后向近零”，可同时出现主方向高能与侧向微弱扩散。
+- **脚本：** `explore_directional_emission.py`
+- **产物：** `directional_emission_comparison.png`
+- **判读：** 比较前/侧/后能量占比；方向性组应明显“前方占优”。
+
+### P2. 双缝图样是否受方向权重系统性影响
+
+- **命题：** 在同几何下，方向性权重改变会系统改变屏幕分布与可见度 `V`。
+- **脚本：** `explore_directional_double_slit_compare.py`
+- **产物：** `directional_double_slit_compare.png`
+- **判读：** 比较 `V` 与屏幕曲线形状，不只看单次“是否有条纹”。
+
+### P3. “哪路信息/擦除”是否可在统计层复现
+
+- **命题：** 条纹可在条件分布中恢复，在边缘分布中消失（量子擦除风格）。
+- **脚本：** `explore_quantum_eraser_delayed_choice.py`
+- **产物：** `quantum_eraser_delayed_choice.png`
+- **判读：** 对比 `which-way marginal`、`eraser +/-` 与 `eraser marginal`。
+
+---
+
+## New exploration gallery / 新增探索图
+
+建议先看：`battle_plan_dashboard.png`（战斗路线总览拼图 + 关键指标）。
+
+| File | 中文说明 | English |
+|------|----------|---------|
+| `battle_plan_dashboard.png` | 战斗路线总览：汇总关键探索图与核心指标（V、S）。 | Battle plan dashboard: key figures and core metrics (V, S). |
+| `directional_emission_comparison.png` | 方向性扩散对比：近各向同性 vs 强前向传播；含前/侧/后能量占比。 | Directional spread comparison with forward/side/back partition. |
+| `directional_double_slit_compare.png` | 双缝方向权重开关对比：场分布 + 屏幕曲线 + 可见度 `V`。 | Double-slit comparison under isotropic-like vs directional weights. |
+| `quantum_eraser_delayed_choice.png` | 量子擦除风格统计对照：边缘与条件分布差异。 | Quantum-eraser-style marginal vs conditional patterns. |
+| `bell_chsh_two_tracks.png` | CHSH 双轨：严格二值本地统计 vs 连续波相关统计。 | Two-track Bell/CHSH comparison. |
+| `red_green_interference_analogy.png` | 红/绿两路类比：交叉项如何产生/抹掉细条纹。 | Red/green two-path analogy for cross-term interference. |
+
+---
+
 ## Latest unified suite report / 统一套件报告（动态）
 
 运行：

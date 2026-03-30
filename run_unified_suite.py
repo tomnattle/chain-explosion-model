@@ -22,6 +22,8 @@
     python run_unified_suite.py -g critique # 仅 7 条质疑脚本
     python run_unified_suite.py -g ce
     python run_unified_suite.py -g extended  # 额外 verify_*（若存在）
+    python run_unified_suite.py -g research  # 仅 run_battle_plan.py 聚合门禁
+    python run_unified_suite.py --with-battle-plan  # 在当前组之外追加 research 门禁
     python run_unified_suite.py --dry-run
     python run_unified_suite.py --relaxed    # 放宽 Born r、discover_E([警告]可过)、PNG 尺寸/对比度下限及若干 critique/explore 数值带
 
@@ -32,6 +34,7 @@
 兼容: 避免 from __future__ import annotations，以支持 Python 3.6。
 """
 import argparse
+import json
 import math
 import os
 import platform
@@ -905,6 +908,34 @@ def validate_fringe_spacing(png: str) -> Validator:
     return _v
 
 
+def validate_battle_plan_summary(json_relpath: str) -> Validator:
+    """
+    research 门禁：运行 run_battle_plan.py 后，要求 summary JSON 存在且 all_ok=true。
+    """
+
+    def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
+        p = repo / json_relpath
+        if not p.is_file():
+            return False, f"缺失 battle plan 汇总: {json_relpath}"
+        try:
+            payload = json.loads(p.read_text(encoding="utf-8"))
+        except Exception as exc:
+            return False, f"无法解析 battle plan 汇总 JSON: {exc}"
+        all_ok = bool(payload.get("all_ok", False))
+        rows = payload.get("results", [])
+        n = len(rows) if isinstance(rows, list) else 0
+        if not all_ok:
+            return False, f"battle plan all_ok=false（results={n}）"
+        ok_png, msg_png = assert_png_substantive(
+            repo, "battle_plan_dashboard.png", min_bytes=8000, min_std=0.01
+        )
+        if not ok_png:
+            return False, f"battle plan summary OK but dashboard invalid: {msg_png}"
+        return True, f"battle plan PASS（results={n}；{msg_png}）"
+
+    return _v
+
+
 # ---------------------------------------------------------------------------
 # 任务表
 # ---------------------------------------------------------------------------
@@ -1184,9 +1215,9 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument(
         "-g",
         "--group",
-        choices=("all", "ce", "verify", "explore", "critique", "extended"),
+        choices=("all", "ce", "verify", "explore", "critique", "extended", "research"),
         default="all",
-        help="all=ce+verify+explore+critique；extended=额外 verify_*",
+        help="all=ce+verify+explore+critique；extended=额外 verify_*；research=战斗路线聚合",
     )
     parser.add_argument(
         "--relaxed",
@@ -1208,6 +1239,11 @@ def main(argv: Optional[List[str]] = None) -> int:
         action="store_true",
         help="仍写 JSON/figures，但不改 README.md（可配合 --no-artifacts 无效）",
     )
+    parser.add_argument(
+        "--with-battle-plan",
+        action="store_true",
+        help="在当前组之外追加 run_battle_plan.py 研究门禁（读取 battle_plan_summary.json）",
+    )
     args = parser.parse_args(argv)
 
     all_jobs = build_jobs()
@@ -1218,6 +1254,16 @@ def main(argv: Optional[List[str]] = None) -> int:
         groups = [args.group]
 
     jobs = [j for j in all_jobs if j.group in groups]
+    if args.group == "research" or args.with_battle_plan:
+        jobs.append(
+            Job(
+                "run_battle_plan.py",
+                "research",
+                "战斗路线聚合回归",
+                "battle_plan_dashboard.png",
+                validate_battle_plan_summary("test_artifacts/battle_plan_summary.json"),
+            )
+        )
     env = _child_env()
 
     print("仓库:", REPO_ROOT)

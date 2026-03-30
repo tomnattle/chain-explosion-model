@@ -1,0 +1,45 @@
+{
+  "started_at": "2026-03-30 22:41:07",
+  "python": "3.6.5",
+  "all_ok": true,
+  "results": [
+    {
+      "script": "explore_directional_emission.py",
+      "ok": true,
+      "return_code": 0,
+      "elapsed_sec": 2.572,
+      "extracted": {},
+      "stdout_tail": "Directional emission comparison complete.\nnear-isotropic weights: A=0.42, S=0.3, B=0.28\ndirectional   weights: A=1.0, S=0.16, B=0.01\nenergy partitions [forward, side, backward]:\n  near-isotropic = [0.5406, 0.3736, 0.0858]\n  directional    = [1.0, 0.0, 0.0]\nsaved: directional_emission_comparison.png"
+    },
+    {
+      "script": "explore_directional_double_slit_compare.py",
+      "ok": true,
+      "return_code": 0,
+      "elapsed_sec": 3.33,
+      "extracted": {
+        "V_near_isotropic": 0.4421,
+        "V_directional": 0.7788
+      },
+      "stdout_tail": "Directional double-slit comparison complete.\nnear-isotropic weights: A=0.42, S=0.3, B=0.28, V=0.4421\ndirectional   weights: A=1.0, S=0.16, B=0.01, V=0.7788\nsaved: directional_double_slit_compare.png"
+    },
+    {
+      "script": "explore_quantum_eraser_delayed_choice.py",
+      "ok": true,
+      "return_code": 0,
+      "elapsed_sec": 2.993,
+      "extracted": {},
+      "stdout_tail": "=== quantum eraser / delayed-choice toy (hard metric) ===\ninterference cross-term ratio = RMS(interf)/RMS(I_both) = 0.000004\n(I_plus - I_minus) RMS normalized = 0.000008\neraser marginal RMSE vs which-way marginal = 4.345e-17\nV(which-way marginal) = 0.0000\nV(coherent both)      = 1.0000\nV(eraser plus)       = 1.0000\nV(eraser minus)      = 1.0000\nV(eraser marginal)   = 0.0000\nInterpretation: look at interference cross-term metric, not just V.\nsaved: quantum_eraser_delayed_choice.png"
+    },
+    {
+      "script": "explore_bell_chsh_two_tracks.py",
+      "ok": true,
+      "return_code": 0,
+      "elapsed_sec": 1.591,
+      "extracted": {
+        "S_strict": 0.4968,
+        "S_wave_like": 2.8284
+      },
+      "stdout_tail": "  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 32454 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 26465 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 32441 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 20132 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 21449 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 39033 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 34987 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 25273 missing from current font.\n  font.set_text(s, 0, flags=flags)\nC:\\Users\\xxx\\.pyenv\\pyenv-win\\versions\\3.6.5\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py:180: RuntimeWarning: Glyph 25481 missing from current font.\n  font.set_text(s, 0, flags=flags)\n已保存图像: red_green_interference_analogy.png"
+    }
+  ]
+}
