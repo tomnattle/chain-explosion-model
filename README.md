@@ -57,7 +57,7 @@ This repository implements a **2D discrete lattice propagation model** (“chain
 | `ce_07_measurement_phase_diagram_scan.py` | 位置/尺度/吸收率扫描 → **`measurement_phase_diagram.png`** | Position / size / absorption scan → **`measurement_phase_diagram.png`** |
 | `ce_08_entanglement_split_wavepackets.py` | 分裂波包与探测器 → **`entanglement_simulation.png`** | Split packets & detectors → **`entanglement_simulation.png`** |
 | `ce_09_entanglement_with_phase_field.py` | 能量 + 相位 → **`entanglement_with_phase.png`** | Energy + phase field → **`entanglement_with_phase.png`** |
-| `ce_10_entanglement_distance_scan_numba.py` | 距离扫描（步内能量归一化）→ **`entanglement_scan_numba.png`** | Distance scan (per-step energy renormalization) → **`entanglement_scan_numba.png`** |
+| `ce_10_entanglement_distance_scan.py` | 距离扫描（步内能量归一化）→ **`ce_10_entanglement_scan.png`** | Distance scan (per-step energy renormalization) → **`ce_10_entanglement_scan.png`** |
 | `chain_explosion_numba.py` | **共享模块**：双缝 / 缝后吸收 / 吸收掩模 / 分裂与相位传播的 `@jit(nopython=True)` 内核。 | **Shared** `@jit(nopython=True)` kernels for all propagation variants. |
 
 > **Note / 说明：** 旧目录中 `s5.py` 与 `s4.py` 内容相同，已删去冗余；功能由 `ce_04_...` 保留。原 `main.py`、`s1.py`–`s4.py`、`s4.1.py`、`s6.py`–`s10.py` 已统一重命名为上表 `ce_*` 系列。  
@@ -77,7 +77,7 @@ This repository implements a **2D discrete lattice propagation model** (“chain
 | `measurement_phase_diagram.png` | `ce_07`：测量参数多维扫描拼图。 | `ce_07`: multi-panel parameter scan. |
 | `entanglement_simulation.png` | `ce_08`：分裂波包能量场。 | `ce_08`: split-packet energy field. |
 | `entanglement_with_phase.png` | `ce_09`：相位与相关性。 | `ce_09`: phase & correlation. |
-| `entanglement_scan_numba.png` | `ce_10`：距离扫描曲线。 | `ce_10`: distance-scan curves. |
+| `ce_10_entanglement_scan.png` | `ce_10`：距离扫描曲线。 | `ce_10`: distance-scan curves. |
 | `behind_interference.png` | 当前脚本中**无**对应 `savefig`；或为旧版/手动导出，仅供展示。 | **Not** produced by current `savefig` paths; legacy or manual export for illustration. |
 
 ---

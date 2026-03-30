@@ -3,6 +3,7 @@
 
 供 run_unified_suite / 本地需减少 Glyph missing 时使用：
   python run_with_mpl_compat.py ce_00_double_slit_demo.py
+  # 任意 *.py，例如 verify_uncertainty.py
 """
 import runpy
 import sys

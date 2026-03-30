@@ -32,7 +32,7 @@ SCRIPTS = [
     "ce_07_measurement_phase_diagram_scan.py",
     "ce_08_entanglement_split_wavepackets.py",
     "ce_09_entanglement_with_phase_field.py",
-    "ce_10_entanglement_distance_scan_numba.py",
+    "ce_10_entanglement_distance_scan.py",
 ]
 
 EXPECTED_PNG = [
@@ -44,7 +44,7 @@ EXPECTED_PNG = [
     "measurement_phase_diagram.png",
     "entanglement_simulation.png",
     "entanglement_with_phase.png",
-    "entanglement_scan_numba.png",
+    "ce_10_entanglement_scan.png",
 ]
 
 

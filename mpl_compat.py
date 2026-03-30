@@ -54,6 +54,11 @@ def configure_matplotlib_cjk():
         "ignore",
         message=r"Glyph \d+ missing from current font\.",
     )
+    # 子进程常用 MPLBACKEND=Agg：plt.show() 会报「非 GUI 无法弹窗」，非错误。
+    warnings.filterwarnings(
+        "ignore",
+        message=r".*[Nn]on-?GUI backend.*show the figure.*",
+    )
 
 
 def legend_kw(ax, labelcolor="white", **kwargs):

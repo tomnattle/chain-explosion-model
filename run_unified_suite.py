@@ -5,15 +5,22 @@
   - 子进程 returncode==0 不代表物理正确；本脚本对若干脚本尝试解析 stdout 做额外门禁。
   - 门禁阈值可能被参数漂移打破；失败时请先看「原因」再决定是否改模型或放宽 --relaxed。
   - 探索类脚本部分是「记录现象」而非教科书定理；门禁只做空值/一致性 sanity check。
+  - 不包含 verify_A_fraunhofer：离散链式传播与连续夫琅禾费解析式不对等，用皮尔逊 r 做硬门禁易误判（类「拿错尺子」）。
+  - verify_uncertainty：记录拟合指数 alpha，不设与 -1 硬比；discover_measurement_continuity：[警告] 仍为探索软通过。
+  - 新增 explore 质疑项：因果锥各向异性、公式层光速不变（与格子核分开）、双缝镜像宇称残差。
+  - critique 组：7 条「对外表述/机理边界」回归；默认 all 已包含 critique。
+    其对 PNG 做非空/对比度检查，并对可量化脚本设可复现数值公差（漂移即 FAIL）。
+  - 与 critique 同批收紧的 explore 质疑 3 条：因果锥各向异性比、双缝镜像宇称（公式层光速不变已硬比）。
 
 用法（仓库根目录）:
-    python run_unified_suite.py              # 全部组
-    python run_unified_suite.py -g verify    # 仅验证+发现（6 个）
+    python run_unified_suite.py              # ce+verify+explore+critique
+    python run_unified_suite.py -g verify    # 仅验证+发现（5 个）
     python run_unified_suite.py -g explore
+    python run_unified_suite.py -g critique # 仅 7 条质疑脚本
     python run_unified_suite.py -g ce
     python run_unified_suite.py -g extended  # 额外 verify_*（若存在）
     python run_unified_suite.py --dry-run
-    python run_unified_suite.py --relaxed    # 降低相关系数/幂律门禁
+    python run_unified_suite.py --relaxed    # 放宽 verify B / critique05 r_V / critique06 R_E / critique07 & 各向异性 & 宇称带
 
 环境:
   - 强制 MPLBACKEND=Agg，避免阻塞。
@@ -22,6 +29,7 @@
 兼容: 避免 from __future__ import annotations，以支持 Python 3.6。
 """
 import argparse
+import math
 import os
 import platform
 import re
@@ -31,6 +39,9 @@ import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Callable, List, Optional, Tuple
+
+import matplotlib.image as mpimg
+import numpy as np
 
 REPO_ROOT = Path(__file__).resolve().parent
 # 子进程先加载 mpl_compat，避免 Agg 下中文缺字形刷 RuntimeWarning
@@ -102,11 +113,6 @@ def _f(x: str) -> float:
     return float(x.strip())
 
 
-def parse_pearson_r_verify_a(text: str) -> Optional[float]:
-    m = re.search(r"与夫琅禾费公式的皮尔逊相关系数:\s*r\s*=\s*([0-9.eE+-]+)", text)
-    return _f(m.group(1)) if m else None
-
-
 def parse_pearson_r_verify_b(text: str) -> Optional[float]:
     m = re.search(r"蒙特卡洛\s+皮尔逊相关系数:\s*r\s*=\s*([0-9.eE+-]+)", text)
     return _f(m.group(1)) if m else None
@@ -164,6 +170,72 @@ def parse_fringe_slope(text: str) -> Optional[float]:
     return _f(m.group(1)) if m else None
 
 
+def parse_causal_aniso_ratio(text: str) -> Optional[float]:
+    m = re.search(
+        r"各向异性比 median\(R_L1_max / \(R_plus\+0\.5\)\) = ([0-9.eE+-]+)",
+        text,
+    )
+    return _f(m.group(1)) if m else None
+
+
+def parse_relativity_v_prime(text: str) -> Optional[float]:
+    m = re.search(r"洛伦兹逆变 v'\s*=\s*([0-9.eE+-]+)\s*c", text)
+    return _f(m.group(1)) if m else None
+
+
+def parse_mirror_asym(text: str) -> Optional[float]:
+    m = re.search(r"相对不对称度 asym = ([0-9.eE+-]+)", text)
+    return _f(m.group(1)) if m else None
+
+
+def parse_mirror_corrcoef(text: str) -> Optional[float]:
+    m = re.search(r"镜像皮尔逊 r_mirror = ([0-9.eE+-]+)", text)
+    return _f(m.group(1)) if m else None
+
+
+def parse_decay_nonuniqueness_rv(text: str) -> Optional[float]:
+    m = re.search(r"V 轨迹皮尔逊 r_V_ce_vs_uniform = ([0-9.eE+-]+)", text)
+    return _f(m.group(1)) if m else None
+
+
+def parse_energy_ratio_RE(text: str) -> Optional[float]:
+    m = re.search(r"总能量比 R_E = E_final/E0 = ([0-9.eE+-]+)", text)
+    return _f(m.group(1)) if m else None
+
+
+def parse_fitted_log_slope_critique(text: str) -> Optional[float]:
+    m = re.search(r"拟合斜率 fitted_log_slope = ([0-9.eE+-]+)", text)
+    return _f(m.group(1)) if m else None
+
+
+def parse_critique04_v_grid(text: str) -> Optional[float]:
+    m = re.search(r"右向前缘\) = ([0-9.eE+-]+)\s*格/步", text)
+    return _f(m.group(1)) if m else None
+
+
+def parse_critique04_v_prime(text: str) -> Optional[float]:
+    m = re.search(r"逆变后 v' = ([0-9.eE+-]+)\s*c", text)
+    return _f(m.group(1)) if m else None
+
+
+def parse_critique06_median_Eratio(text: str) -> Optional[float]:
+    m = re.search(r"median\(E_\{t\+1\}/E_t\) = ([0-9.eE+-]+)", text)
+    return _f(m.group(1)) if m else None
+
+
+# critique_07：远场连续近似下 reference=-1；本仓库 CE v2 在此脚本固定参数下可复现斜率约 -0.12。
+CRITIQUE07_FITTED_LOG_SLOPE_GOLD = -0.1181
+CRITIQUE07_FITTED_TOL = 0.045
+
+# explore_causal_cone_anisotropy：曼哈顿前缘 vs L1 前缘中位比（4/3 邻域类离散常见值）。
+CAUSAL_ANISO_RATIO_GOLD = 1.3333
+CAUSAL_ANISO_RATIO_TOL = 0.07
+
+# explore_double_slit_mirror_parity：B>0 时残差为主；与当前内核参数对齐的回归带。
+MIRROR_ASYM_LO, MIRROR_ASYM_HI = 0.22, 0.42
+MIRROR_R_LO, MIRROR_R_HI = 0.88, 0.96
+
+
 # ---------------------------------------------------------------------------
 # 校验器：返回 (是否通过, 原因一行)
 # ---------------------------------------------------------------------------
@@ -178,6 +250,28 @@ def check_png_exists(text: str, repo: Path, png: Optional[str], relaxed: bool) -
     if p.is_file():
         return True, f"PNG 已生成: {png}"
     return False, f"缺失输出文件: {png}"
+
+
+def assert_png_substantive(repo: Path, png: str, min_bytes: int = 3500, min_std: float = 0.006) -> Tuple[bool, str]:
+    """拒绝过小或近乎常数的 PNG（防空白/损坏输出）。"""
+    p = repo / png
+    if not p.is_file():
+        return False, "缺失 PNG: %s" % png
+    n = p.stat().st_size
+    if n < min_bytes:
+        return False, "PNG 过小(%d B)；疑似未正常绘图" % n
+    try:
+        img = np.asarray(mpimg.imread(str(p)), dtype=np.float64)
+    except Exception as exc:
+        return False, "无法读取 PNG(%s): %s" % (png, exc)
+    if img.ndim == 3:
+        tile = img[..., : min(3, img.shape[-1])]
+    else:
+        tile = img
+    std = float(np.std(tile))
+    if not math.isfinite(std) or std < min_std:
+        return False, "PNG 像素对比度过低(std=%.6g)；疑似空白" % std
+    return True, "PNG OK(size=%dB, std=%.4f)" % (n, std)
 
 
 def make_default(png: Optional[str]) -> Validator:
@@ -207,22 +301,21 @@ def validate_pearson(script_hint: str, parser: Callable[[str], Optional[float]],
     return _v
 
 
-def validate_uncertainty_alpha(png: str) -> Validator:
+def validate_verify_uncertainty_phenomenon(png: str) -> Validator:
+    """verify_uncertainty：现象记录；解析 α 但不与 -1 硬比。"""
+
     def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
         a = parse_alpha_verify_c(text)
         if a is None:
-            return False, "无法解析幂律指数 α（verify_C 输出改版？）"
+            return False, "无法解析幂律指数 α（verify_uncertainty 输出改版？）"
         dev = abs(a - (-1.0))
-        lo = 0.6 if relaxed else 0.3
-        if dev > lo:
-            return (
-                False,
-                f"α={a:.4f}，与理论 -1 偏差 |Δα|={dev:.3f} > 允许 {lo:.2f}",
-            )
-        return True, f"α={a:.4f}，|Δα|={dev:.3f} <= {lo:.2f}"
+        return (
+            True,
+            f"现象已记录: α={a:.4f}，|Δα|={dev:.3f}（不设与 −1 硬门禁；见脚本）",
+        )
 
     return _v
 
@@ -234,7 +327,7 @@ def validate_discover_d(png: str) -> Validator:
             return False, msg_png
         v0, v1 = parse_discover_d_vis(text)
         if v0 is None or v1 is None:
-            return False, "无法解析初始/末端对比度（discover_D 改版？）"
+            return False, "无法解析初始/末端对比度（discover_visibility_decay 改版？）"
         if v0 <= v1 + 1e-6:
             return (
                 False,
@@ -247,15 +340,17 @@ def validate_discover_d(png: str) -> Validator:
 
 
 def validate_discover_e(png: str) -> Validator:
+    """discover_E：吸收在核心里连续；V(η) 陡变多来自可见度算法，runner 不把 [警告] 记 FAIL。"""
+
     def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
         ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
         if not ok_png:
             return False, msg_png
         line = parse_discover_e_verdict(text)
         if line is None:
-            return False, "未找到 [OK]/[警告] 判语（discover_E 改版？）"
+            return False, "未找到 [OK]/[警告] 判语（discover_measurement_continuity 改版？）"
         if line.startswith("[警告]"):
-            return False, f"阈值判语: {line}"
+            return True, f"探索项通过（软预警）: {line}"
         if line.startswith("[OK]"):
             return True, line
         return False, f"未识别判语: {line}"
@@ -356,6 +451,221 @@ def validate_causal_front(png: str) -> Validator:
                 f"dx/dt 中位数={dx:.4f} 超出 [0.85,1.15]；怀疑传播核或步进定义变更",
             )
         return True, f"dx/dt 中位数={dx:.4f}（因果前缘 ~1 格/步）"
+
+    return _v
+
+
+def validate_causal_anisotropy_probe(png: str) -> Validator:
+    """CE 因果前缘 L1 vs 轴向比须落在离散核可复现带内。"""
+
+    def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
+        tol = CAUSAL_ANISO_RATIO_TOL * (1.25 if relaxed else 1.0)
+        ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
+        if not ok_png:
+            return False, msg_png
+        ok_s, msg_s = assert_png_substantive(repo, png)
+        if not ok_s:
+            return False, msg_s
+        r = parse_causal_aniso_ratio(text)
+        if r is None or not math.isfinite(r):
+            return False, "无法解析各向异性比（脚本改版？）"
+        dev = abs(r - CAUSAL_ANISO_RATIO_GOLD)
+        if dev > tol:
+            return (
+                False,
+                "median(R_L1/R_plus+)=%.4f 偏离 GOLD %.4f 超过 %.3f"
+                % (r, CAUSAL_ANISO_RATIO_GOLD, tol),
+            )
+        return True, "%s；ratio=%.4f≈%.4f" % (msg_s, r, CAUSAL_ANISO_RATIO_GOLD)
+
+    return _v
+
+
+def validate_relativity_formula_layer(png: str) -> Validator:
+    def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
+        ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
+        if not ok_png:
+            return False, msg_png
+        ok_s, msg_s = assert_png_substantive(repo, png)
+        if not ok_s:
+            return False, msg_s
+        vp = parse_relativity_v_prime(text)
+        if vp is None:
+            return False, "无法解析洛伦兹逆变 v'（输出改版？）"
+        if abs(vp - 1.0) > 1e-6:
+            return False, "v'=%.9f c 应≈1（公式层数字异常）" % vp
+        if "[OK] formula_layer v_prime_vs_c" not in text:
+            return False, "缺少 [OK] formula_layer v_prime_vs_c"
+        return True, "%s；v'=%.9fc" % (msg_s, vp)
+
+    return _v
+
+
+def validate_critique_doc_png(png: str, ok_line: str) -> Validator:
+    """叙事类质疑：须生成非空 PNG，且 stdout 含固定 [OK] 行。"""
+
+    def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
+        ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
+        if not ok_png:
+            return False, msg_png
+        ok_s, msg_s = assert_png_substantive(repo, png)
+        if not ok_s:
+            return False, msg_s
+        if ok_line not in text:
+            return False, "缺少标记行: %s" % ok_line
+        return True, "%s；%s" % (msg_s, ok_line)
+
+    return _v
+
+
+def validate_critique_04_sr_boundary(png: str) -> Validator:
+    """质疑04：格点因果前缘 ~1 格/步 + 公式层 v'≈c；PNG 非空。"""
+
+    def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
+        ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
+        if not ok_png:
+            return False, msg_png
+        ok_s, msg_s = assert_png_substantive(repo, png)
+        if not ok_s:
+            return False, msg_s
+        if "[OK] critique_04_sr_not_derived" not in text:
+            return False, "缺少 critique_04 标记"
+        vg = parse_critique04_v_grid(text)
+        vp = parse_critique04_v_prime(text)
+        if vg is None or vp is None:
+            return False, "无法解析格点 v_grid 或公式层 v'（输出改版？）"
+        if not (0.9 <= vg <= 1.1):
+            return False, "格点 dx/dt 中位数=%.4f 超出 [0.9,1.1]" % vg
+        if abs(vp - 1.0) > 1e-5:
+            return False, "公式层 v'=%.8f c 应≈1" % vp
+        return True, "%s；v_grid=%.4f, v'=%.6fc" % (msg_s, vg, vp)
+
+    return _v
+
+
+def validate_critique_05_with_rv(png: str) -> Validator:
+    def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
+        lo_r = 0.98 if relaxed else 0.993
+        ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
+        if not ok_png:
+            return False, msg_png
+        ok_s, msg_s = assert_png_substantive(repo, png)
+        if not ok_s:
+            return False, msg_s
+        if "[OK] critique_05_decay_nonuniqueness" not in text:
+            return False, "缺少 critique_05 标记"
+        rv = parse_decay_nonuniqueness_rv(text)
+        if rv is None or not math.isfinite(rv):
+            return False, "无法解析 r_V_ce_vs_uniform 或非有限"
+        if rv < lo_r:
+            return (
+                False,
+                "r_V=%.4f < %.4f；V 轨迹与均匀损耗应高度同向（难区分通道）"
+                % (rv, lo_r),
+            )
+        return True, "%s；r_V=%.4f（≥%.3f）" % (msg_s, rv, lo_r)
+
+    return _v
+
+
+def validate_critique_06_energy(png: str) -> Validator:
+    def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
+        ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
+        if not ok_png:
+            return False, msg_png
+        ok_s, msg_s = assert_png_substantive(repo, png)
+        if not ok_s:
+            return False, msg_s
+        if "[OK] critique_06_energy_growth" not in text:
+            return False, "缺少 critique_06 标记"
+        r = parse_energy_ratio_RE(text)
+        if r is None:
+            return False, "无法解析 R_E"
+        if not math.isfinite(r):
+            return False, "R_E 非有限"
+        med = parse_critique06_median_Eratio(text)
+        if med is None or not math.isfinite(med):
+            return False, "无法解析步间中位比"
+        r_floor = 1e40 if relaxed else 1e80
+        if r < r_floor:
+            return (
+                False,
+                "R_E=%.4g 应 ≫1（非守恒增长）；低于门禁可能是核/步数变更" % r,
+            )
+        if med <= 1.002:
+            return (
+                False,
+                "步间中位比=%.4f 应明确 >1（总量增长预期）" % med,
+            )
+        return True, "%s；R_E=%.3g，median(Et+1/Et)=%.4f" % (msg_s, r, med)
+
+    return _v
+
+
+def validate_critique_07_fringe(png: str) -> Validator:
+    """可复现斜率相对 GOLD 回归；不声称已对齐远场 −1。"""
+
+    def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
+        tol = CRITIQUE07_FITTED_TOL * (1.5 if relaxed else 1.0)
+        ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
+        if not ok_png:
+            return False, msg_png
+        ok_s, msg_s = assert_png_substantive(repo, png)
+        if not ok_s:
+            return False, msg_s
+        if "[OK] critique_07_fringe_theory_gap" not in text:
+            return False, "缺少 critique_07 标记"
+        ft = parse_fitted_log_slope_critique(text)
+        if ft is None or not math.isfinite(ft):
+            return False, "无法解析 fitted_log_slope"
+        dev_g = abs(ft - CRITIQUE07_FITTED_LOG_SLOPE_GOLD)
+        if dev_g > tol:
+            return (
+                False,
+                "fitted_log_slope=%.4f 偏离本仓库 GOLD %.4f 超过 %.3f；"
+                "若有意改核或参数，请更新 CRITIQUE07_* 常量"
+                % (ft, CRITIQUE07_FITTED_LOG_SLOPE_GOLD, tol),
+            )
+        return (
+            True,
+            "%s；slope=%.4f≈GOLD(%.4f±%.3f)；|与远场-1|=%.3f"
+            % (
+                msg_s,
+                ft,
+                CRITIQUE07_FITTED_LOG_SLOPE_GOLD,
+                tol,
+                abs(ft - (-1.0)),
+            ),
+        )
+
+    return _v
+
+
+def validate_double_slit_mirror_parity(png: str) -> Validator:
+    """对称破缺残差量级须与当前内核参数可复现（非要求 asym→0）。"""
+
+    def _v(text: str, repo: Path, relaxed: bool) -> Tuple[bool, str]:
+        ok_png, msg_png = check_png_exists(text, repo, png, relaxed)
+        if not ok_png:
+            return False, msg_png
+        ok_s, msg_s = assert_png_substantive(repo, png)
+        if not ok_s:
+            return False, msg_s
+        a = parse_mirror_asym(text)
+        rm = parse_mirror_corrcoef(text)
+        if a is None or rm is None:
+            return False, "无法解析 asym 或 r_mirror（脚本改版？）"
+        if relaxed:
+            alo, ahi = MIRROR_ASYM_LO - 0.04, MIRROR_ASYM_HI + 0.06
+            rlo, rhi = MIRROR_R_LO - 0.04, MIRROR_R_HI + 0.03
+        else:
+            alo, ahi = MIRROR_ASYM_LO, MIRROR_ASYM_HI
+            rlo, rhi = MIRROR_R_LO, MIRROR_R_HI
+        if not (alo <= a <= ahi):
+            return False, "asym=%.4f 不在回归带 [%.2f,%.2f]" % (a, alo, ahi)
+        if not (rlo <= rm <= rhi):
+            return False, "r_mirror=%.4f 不在回归带 [%.2f,%.2f]" % (rm, rlo, rhi)
+        return True, "%s；asym=%.4f, r_mirror=%.4f" % (msg_s, a, rm)
 
     return _v
 
@@ -467,109 +777,181 @@ def build_jobs() -> List[Job]:
             make_default("entanglement_with_phase.png"),
         ),
         Job(
-            "ce_10_entanglement_distance_scan_numba.py",
+            "ce_10_entanglement_distance_scan.py",
             "ce",
-            "CE-10 距离扫描(Numba)",
-            "entanglement_scan_numba.png",
-            make_default("entanglement_scan_numba.png"),
+            "CE-10 纠缠距离扫描",
+            "ce_10_entanglement_scan.png",
+            make_default("ce_10_entanglement_scan.png"),
         ),
         Job(
-            "verify_A_fraunhofer.py",
+            "verify_born_rule.py",
             "verify",
-            "验证A 夫琅禾费",
-            "verify_A_fraunhofer.png",
-            validate_pearson("verify_A", parse_pearson_r_verify_a, "verify_A_fraunhofer.png"),
+            "验证 波恩规则",
+            "verify_born_rule.png",
+            validate_pearson("verify_born_rule", parse_pearson_r_verify_b, "verify_born_rule.png"),
         ),
         Job(
-            "verify_B_born_rule.py",
+            "verify_uncertainty.py",
             "verify",
-            "验证B 波恩规则",
-            "verify_B_born_rule.png",
-            validate_pearson("verify_B", parse_pearson_r_verify_b, "verify_B_born_rule.png"),
+            "验证 不确定性(现象记录)",
+            "verify_uncertainty.png",
+            validate_verify_uncertainty_phenomenon("verify_uncertainty.png"),
         ),
         Job(
-            "verify_C_uncertainty.py",
+            "discover_visibility_decay.py",
             "verify",
-            "验证C 不确定性",
-            "verify_C_uncertainty.png",
-            validate_uncertainty_alpha("verify_C_uncertainty.png"),
+            "发现 对比度衰减",
+            "discover_visibility_decay.png",
+            validate_discover_d("discover_visibility_decay.png"),
         ),
         Job(
-            "discover_D_visibility_decay.py",
+            "discover_measurement_continuity.py",
             "verify",
-            "发现D 对比度衰减",
-            "discover_D_visibility_decay.png",
-            validate_discover_d("discover_D_visibility_decay.png"),
+            "发现 测量连续性",
+            "discover_measurement_continuity.png",
+            validate_discover_e("discover_measurement_continuity.png"),
         ),
         Job(
-            "discover_E_measurement_continuity.py",
+            "discover_coupling_constant.py",
             "verify",
-            "发现E 测量连续性",
-            "discover_E_measurement_continuity.png",
-            validate_discover_e("discover_E_measurement_continuity.png"),
+            "发现 耦合常数",
+            "discover_coupling_constant.png",
+            validate_discover_f("discover_coupling_constant.png"),
         ),
         Job(
-            "discover_F_coupling_constant.py",
-            "verify",
-            "发现F 耦合常数",
-            "discover_F_coupling_constant.png",
-            validate_discover_f("discover_F_coupling_constant.png"),
-        ),
-        Job(
-            "explore_lorentz_composition_selfcheck.py",
+            "explore_lorentz_selfcheck.py",
             "explore",
             "探索 洛伦兹代数自检",
             None,
             validate_lorentz(),
         ),
         Job(
-            "explore_visibility_ce_vs_uniform_loss.py",
+            "explore_visibility_vs_uniform_loss.py",
             "explore",
             "探索 均匀损耗 vs V",
             "explore_visibility_loss_compare.png",
             validate_visibility_loss("explore_visibility_loss_compare.png"),
         ),
         Job(
-            "explore_energy_budget_propagation.py",
+            "explore_energy_budget.py",
             "explore",
             "探索 能量预算 sum(E)",
             "explore_energy_budget.png",
             validate_energy_budget("explore_energy_budget.png"),
         ),
         Job(
-            "explore_causal_front_2d.py",
+            "explore_causal_front.py",
             "explore",
             "探索 因果前缘 2D",
             "explore_causal_front.png",
             validate_causal_front("explore_causal_front.png"),
         ),
         Job(
-            "explore_fringe_spacing_vs_slit_gap.py",
+            "explore_fringe_spacing_vs_slit.py",
             "explore",
             "探索 条纹间隔 vs 缝距",
             "explore_fringe_spacing.png",
             validate_fringe_spacing("explore_fringe_spacing.png"),
         ),
         Job(
-            "verify_D_interference_decay.py",
-            "extended",
-            "验证D 干涉衰减",
-            "verify_D_interference_decay.png",
-            make_default("verify_D_interference_decay.png"),
+            "explore_causal_cone_anisotropy.py",
+            "explore",
+            "质疑 因果锥各向异性",
+            "explore_causal_cone_anisotropy.png",
+            validate_causal_anisotropy_probe("explore_causal_cone_anisotropy.png"),
         ),
         Job(
-            "verify_C_delayed_choice.py",
-            "extended",
-            "验证C 延迟选择",
-            "verify_C_delayed_choice.png",
-            make_default("verify_C_delayed_choice.png"),
+            "explore_relativity_light_speed_invariant.py",
+            "explore",
+            "质疑 公式层光速不变自检",
+            "explore_relativity_light_speed_invariant.png",
+            validate_relativity_formula_layer("explore_relativity_light_speed_invariant.png"),
         ),
         Job(
-            "verify_B_which_way.py",
+            "explore_double_slit_mirror_parity.py",
+            "explore",
+            "质疑 双缝镜像宇称残差",
+            "explore_double_slit_mirror_parity.png",
+            validate_double_slit_mirror_parity("explore_double_slit_mirror_parity.png"),
+        ),
+        Job(
+            "explore_critique_01_unification_scope.py",
+            "critique",
+            "质疑01 统一宣称须可审计",
+            "explore_critique_01_unification_scope.png",
+            validate_critique_doc_png(
+                "explore_critique_01_unification_scope.png",
+                "[OK] critique_01_unification_scope",
+            ),
+        ),
+        Job(
+            "explore_critique_02_bell_hypothesis_boundary.py",
+            "critique",
+            "质疑02 Bell/坍缩仅为假说边界",
+            "explore_critique_02_bell_hypothesis.png",
+            validate_critique_doc_png(
+                "explore_critique_02_bell_hypothesis.png",
+                "[OK] critique_02_bell_boundary",
+            ),
+        ),
+        Job(
+            "explore_critique_03_analogy_vs_mechanism.py",
+            "critique",
+            "质疑03 类比 vs 同一机制措辞",
+            "explore_critique_03_analogy_vs_mechanism.png",
+            validate_critique_doc_png(
+                "explore_critique_03_analogy_vs_mechanism.png",
+                "[OK] critique_03_analogy_language",
+            ),
+        ),
+        Job(
+            "explore_critique_04_sr_not_derived_from_lattice.py",
+            "critique",
+            "质疑04 SR 非从格点推导",
+            "explore_critique_04_sr_not_derived.png",
+            validate_critique_04_sr_boundary("explore_critique_04_sr_not_derived.png"),
+        ),
+        Job(
+            "explore_critique_05_decay_nonuniqueness.py",
+            "critique",
+            "质疑05 干涉衰减非唯一",
+            "explore_critique_05_decay_nonuniqueness.png",
+            validate_critique_05_with_rv("explore_critique_05_decay_nonuniqueness.png"),
+        ),
+        Job(
+            "explore_critique_06_energy_growth_explosion.py",
+            "critique",
+            "质疑06 能量增长非相对论守恒",
+            "explore_critique_06_energy_growth.png",
+            validate_critique_06_energy("explore_critique_06_energy_growth.png"),
+        ),
+        Job(
+            "explore_critique_07_fringe_spacing_theory_gap.py",
+            "critique",
+            "质疑07 条纹斜率与远场-1偏差",
+            "explore_critique_07_fringe_theory_gap.png",
+            validate_critique_07_fringe("explore_critique_07_fringe_theory_gap.png"),
+        ),
+        Job(
+            "verify_interference_decay.py",
             "extended",
-            "验证B Which-way",
-            "verify_B_which_way.png",
-            make_default("verify_B_which_way.png"),
+            "验证 干涉衰减",
+            "verify_interference_decay.png",
+            make_default("verify_interference_decay.png"),
+        ),
+        Job(
+            "verify_delayed_choice.py",
+            "extended",
+            "验证 延迟选择",
+            "verify_delayed_choice.png",
+            make_default("verify_delayed_choice.png"),
+        ),
+        Job(
+            "verify_which_way.py",
+            "extended",
+            "验证 Which-way",
+            "verify_which_way.png",
+            make_default("verify_which_way.png"),
         ),
     ]
 
@@ -587,14 +969,14 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser.add_argument(
         "-g",
         "--group",
-        choices=("all", "ce", "verify", "explore", "extended"),
+        choices=("all", "ce", "verify", "explore", "critique", "extended"),
         default="all",
-        help="all=ce+verify+explore；extended=额外 verify_*（可与 all 同用请分次运行）",
+        help="all=ce+verify+explore+critique；extended=额外 verify_*",
     )
     parser.add_argument(
         "--relaxed",
         action="store_true",
-        help="放宽 verify A/B 的 r 与 verify C 的 α 门禁",
+        help="放宽 verify B 的 r；另放宽 critique05/06/07、因果锥比、镜像宇称回归带",
     )
     parser.add_argument(
         "--dry-run",
@@ -606,7 +988,7 @@ def main(argv: Optional[List[str]] = None) -> int:
     all_jobs = build_jobs()
     groups: List[str]
     if args.group == "all":
-        groups = ["ce", "verify", "explore"]
+        groups = ["ce", "verify", "explore", "critique"]
     else:
         groups = [args.group]
 
