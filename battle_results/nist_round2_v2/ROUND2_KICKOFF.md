@@ -50,7 +50,7 @@ python round2_phase0_kickoff.py
 
 ## Phase 3 — 平行战线（保底筹码）
 
-**不依赖 NIST 赢面**：持续维护 `run_battle_plan.py` / closure 系列，对外表述边界见 `P4_PROTOCOL_AUDIT_SCOPE.md` 与根目录 `BELL_PROTOCOL_NOTE.md` 的 P4 节。
+**不依赖 NIST 赢面**：持续维护 `run_battle_plan.py` / closure 系列，对外表述边界见 `P4_PROTOCOL_AUDIT_SCOPE.md` 与 `docs/BELL_PROTOCOL_NOTE.md` 的 P4 节。
 
 ---
 

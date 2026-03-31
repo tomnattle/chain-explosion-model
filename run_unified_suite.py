@@ -49,6 +49,7 @@ from typing import Callable, List, Optional, Tuple
 import matplotlib.image as mpimg
 import numpy as np
 
+from repo_layout import find_generated_output, find_script
 import suite_artifacts as sa
 from experiment_dossier import dossier_fields_for_readme
 
@@ -77,7 +78,7 @@ def _decode_out(b: Optional[bytes]) -> str:
 
 
 def run_script(repo: Path, script_name: str, env: dict) -> Tuple[int, str, str]:
-    path = repo / script_name
+    path = find_script(repo, script_name)
     exe = sys.executable
     path_s = str(path)
     use_launcher = MPL_LAUNCHER.is_file()
@@ -295,7 +296,7 @@ Validator = Callable[[str, Path, bool], Tuple[bool, str]]
 def check_png_exists(text: str, repo: Path, png: Optional[str], relaxed: bool) -> Tuple[bool, str]:
     if not png:
         return True, "(无期望 PNG)"
-    p = repo / png
+    p = find_generated_output(repo, png)
     if p.is_file():
         return True, f"PNG 已生成: {png}"
     return False, f"缺失输出文件: {png}"
@@ -303,7 +304,7 @@ def check_png_exists(text: str, repo: Path, png: Optional[str], relaxed: bool) -
 
 def assert_png_substantive(repo: Path, png: str, min_bytes: int = 3500, min_std: float = 0.006) -> Tuple[bool, str]:
     """拒绝过小或近乎常数的 PNG（防空白/损坏输出）。"""
-    p = repo / png
+    p = find_generated_output(repo, png)
     if not p.is_file():
         return False, "缺失 PNG: %s" % png
     n = p.stat().st_size
@@ -1290,7 +1291,7 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     for i, job in enumerate(jobs, 1):
         _print_job_header(i, len(jobs), job)
-        path = REPO_ROOT / job.script
+        path = find_script(REPO_ROOT, job.script)
         if not path.is_file():
             print("[FAIL] 未找到脚本文件")
             print(f"  原因: 路径不存在 -> {path}")

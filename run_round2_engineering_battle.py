@@ -23,8 +23,8 @@ H5 = os.path.join(ROOT, "data", "17_04_CH_pockel_100kHz.run.completeblind.dat.co
 OUT_DIR = os.path.join(ROOT, "battle_results", "nist_round2_v2")
 CSV_LEGACY = os.path.join(ROOT, "data", "nist_round2_engineering_legacy.csv")
 CSV_PARITY = os.path.join(ROOT, "data", "nist_round2_engineering_parity.csv")
-CFG_ALIGN = os.path.join(ROOT, "chsh_preregistered_config_nist_round2_engineering.json")
-CFG_ROUND1_GATE = os.path.join(ROOT, "chsh_preregistered_config_nist_index.json")
+CFG_ALIGN = os.path.join(ROOT, "configs", "chsh_preregistered_config_nist_round2_engineering.json")
+CFG_ROUND1_GATE = os.path.join(ROOT, "configs", "chsh_preregistered_config_nist_index.json")
 
 
 def run(cmd):
@@ -52,7 +52,7 @@ def main():
             "--hdf5",
             H5,
             "--config",
-            "nist_convert_config_round2_legacy.json",
+            os.path.join("configs", "nist_convert_config_round2_legacy.json"),
             "--output",
             CSV_LEGACY,
         ]
@@ -64,7 +64,7 @@ def main():
             "--hdf5",
             H5,
             "--config",
-            "nist_convert_config_round2_parity.json",
+            os.path.join("configs", "nist_convert_config_round2_parity.json"),
             "--output",
             CSV_PARITY,
         ]

@@ -1,6 +1,20 @@
-# Model Intuition
+﻿# Model Intuition
 
 This document records the author's intuitive picture of the model. It is not a proof, not a final physical verdict, and not a replacement for the code or the archival results. Its purpose is narrower: to show what the model is trying to picture when it talks about propagation, measurement, and correlation.
+
+## Contents
+
+1. [What Is Being Imagined](#what-is-being-imagined)
+2. [Propagation as Repeated Local Re-Emission](#propagation-as-repeated-local-re-emission)
+3. [Why Measurement Matters So Much](#why-measurement-matters-so-much)
+4. [How Correlation Is Viewed](#how-correlation-is-viewed)
+5. [Boundary of This Document](#boundary-of-this-document)
+
+## How To Read This Note
+
+If you only want the shortest version, read Sections 1, 3, and 4.
+
+If you want the full project structure after this note, continue to [PROJECT_TECHNICAL_MONOGRAPH.md](D:/workspace/golang/nakama/chain-explosion-model/docs/PROJECT_TECHNICAL_MONOGRAPH.md).
 
 ## What Is Being Imagined
 
@@ -56,3 +70,4 @@ This file should be read as an intuition note, not as a result note.
 - For formal claims and limits, prefer the project README and the closure documents over this note.
 
 The role of this document is only to preserve the author's internal picture in a transparent and non-overstated way.
+

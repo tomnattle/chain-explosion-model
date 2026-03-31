@@ -14,8 +14,8 @@ Supports 3 strategies:
    Use emit_mode=side_streams so A/B times differ and coincidence window changes pairing.
 
 Usage examples:
-  python convert_nist_hdf5_to_events_csv.py --hdf5 data/run.hdf5 --config nist_convert_config.json --inspect
-  python convert_nist_hdf5_to_events_csv.py --hdf5 data/run.hdf5 --config nist_convert_config.json --output data/events.csv
+  python convert_nist_hdf5_to_events_csv.py --hdf5 data/run.hdf5 --config configs/nist_convert_config.json --inspect
+  python convert_nist_hdf5_to_events_csv.py --hdf5 data/run.hdf5 --config configs/nist_convert_config.json --output data/events.csv
 """
 
 import argparse

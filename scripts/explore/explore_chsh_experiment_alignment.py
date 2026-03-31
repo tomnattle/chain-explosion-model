@@ -252,7 +252,7 @@ def apply_style(ax):
 def main():
     parser = argparse.ArgumentParser(description="CHSH battle alignment (dual protocol, preregistered)")
     parser.add_argument("--events-csv", default="", help="真实事件 CSV（可选；缺省为内置模拟）")
-    parser.add_argument("--config", default="chsh_preregistered_config.json", help="预注册 JSON")
+    parser.add_argument("--config", default="configs/chsh_preregistered_config.json", help="预注册 JSON")
     parser.add_argument("--out-json", default="chsh_battle_result.json", help="判辞 JSON 路径")
     parser.add_argument("--out-png", default="chsh_experiment_alignment.png", help="图路径")
     parser.add_argument(

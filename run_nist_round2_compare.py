@@ -25,7 +25,7 @@ def main():
     ap.add_argument("--training-hdf5", default="")
     ap.add_argument("--completeblind-hdf5", default="")
     ap.add_argument("--completeblind-csv", default="data/nist_completeblind_side_streams.csv")
-    ap.add_argument("--alignment-config", default="chsh_preregistered_config_nist_index.json")
+    ap.add_argument("--alignment-config", default="configs/chsh_preregistered_config_nist_index.json")
     ap.add_argument("--out-dir", default="battle_results/nist_round2_v2")
     args = ap.parse_args()
 
