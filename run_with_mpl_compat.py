@@ -9,6 +9,8 @@ import runpy
 import sys
 from pathlib import Path
 
+from repo_layout import find_script
+
 
 def main():
     repo = Path(__file__).resolve().parent
@@ -18,7 +20,7 @@ def main():
     script_arg = sys.argv[1]
     target = Path(script_arg)
     if not target.is_file():
-        target = repo / script_arg
+        target = find_script(repo, script_arg)
     if not target.is_file():
         sys.stderr.write("not found: %s\n" % script_arg)
         return 2

@@ -7,6 +7,8 @@ import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional
 
+from repo_layout import find_generated_output
+
 MARKER_BEGIN = "<!-- SUITE_ARTIFACTS_BEGIN -->"
 MARKER_END = "<!-- SUITE_ARTIFACTS_END -->"
 
@@ -32,7 +34,7 @@ def archive_job_figure(
     """
     if not expect_png:
         return None
-    src = repo / expect_png
+    src = find_generated_output(repo, expect_png)
     if not src.is_file():
         return None
     stem = Path(script).stem

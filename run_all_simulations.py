@@ -16,6 +16,7 @@ import subprocess
 import sys
 import time
 from pathlib import Path
+from repo_layout import find_generated_output, find_script
 
 REPO_ROOT = Path(__file__).resolve().parent
 MPL_LAUNCHER = REPO_ROOT / "run_with_mpl_compat.py"
@@ -91,7 +92,7 @@ def main():
     print(f"共 {len(SCRIPTS)} 个脚本，顺序执行。\n")
 
     for name in SCRIPTS:
-        path = REPO_ROOT / name
+        path = find_script(REPO_ROOT, name)
         print("=" * 70)
         print(f">>> {name}")
         print("=" * 70, flush=True)
@@ -116,7 +117,7 @@ def main():
     print("=" * 70)
     print("期望由脚本写入的 PNG（ce_02 不产生图）:")
     for png in EXPECTED_PNG:
-        p = REPO_ROOT / png
+        p = find_generated_output(REPO_ROOT, png)
         ok = p.is_file()
         print(f"  {'[有]' if ok else '[无]'} {png}")
 

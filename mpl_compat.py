@@ -4,8 +4,13 @@
 import os
 import sys
 import warnings
+from pathlib import Path
 
 import matplotlib
+from matplotlib import animation as mpl_animation
+from matplotlib.figure import Figure
+
+from repo_layout import resolve_generated_output
 
 _CJK_SANS = [
     "Microsoft YaHei",
@@ -69,4 +74,31 @@ def legend_kw(ax, labelcolor="white", **kwargs):
     return leg
 
 
+def _patch_output_paths():
+    repo = Path(__file__).resolve().parent
+
+    original_figure_savefig = Figure.savefig
+
+    def patched_figure_savefig(self, fname, *args, **kwargs):
+        if isinstance(fname, (str, os.PathLike)):
+            target = resolve_generated_output(repo, os.fspath(fname))
+            target.parent.mkdir(parents=True, exist_ok=True)
+            fname = str(target)
+        return original_figure_savefig(self, fname, *args, **kwargs)
+
+    Figure.savefig = patched_figure_savefig
+
+    original_animation_save = mpl_animation.Animation.save
+
+    def patched_animation_save(self, filename, *args, **kwargs):
+        if isinstance(filename, (str, os.PathLike)):
+            target = resolve_generated_output(repo, os.fspath(filename))
+            target.parent.mkdir(parents=True, exist_ok=True)
+            filename = str(target)
+        return original_animation_save(self, filename, *args, **kwargs)
+
+    mpl_animation.Animation.save = patched_animation_save
+
+
 configure_matplotlib_cjk()
+_patch_output_paths()
