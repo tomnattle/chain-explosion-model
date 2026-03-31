@@ -11,7 +11,7 @@ From a research-value perspective, the importance of this repository does not li
 本专论采用“类书籍”结构编写，包含前言式引言、模型章节、公式章节、实验章节、图表索引、结果解释与边界说明。如此撰写的目的，是让读者即便不先打开源码，也能先建立一条清晰主线。
 This monograph is written in a book-like structure, including a preface-style introduction, model chapters, formula chapters, experiment chapters, a figure index, result interpretation, and statements of boundary. The goal is to let a reader build a clear conceptual thread even before opening the source code.
 
-Because the project also carries a strong author-side intuition about how propagation should be pictured, that intuition is documented separately in [MODEL_INTUITION.md](D:/workspace/golang/nakama/chain-explosion-model/docs/MODEL_INTUITION.md). The separation is deliberate: the intuition note preserves the visual and conceptual picture, while this monograph stays focused on implementation structure, experiments, and interpretive limits.
+Because the project also carries a strong author-side intuition about how propagation should be pictured, that intuition is documented separately in [MODEL_INTUITION.md](docs/MODEL_INTUITION.md). The separation is deliberate: the intuition note preserves the visual and conceptual picture, while this monograph stays focused on implementation structure, experiments, and interpretive limits.
 
 ## Table of Contents
 
@@ -33,7 +33,7 @@ Because the project also carries a strong author-side intuition about how propag
 ## Suggested Reading Paths
 
 - If you want the shortest book-like route: Chapter 1 -> Chapter 3 -> Chapter 7 -> Chapter 8 -> Chapter 9 -> Chapter 11
-- If you want the author's inner picture first: read [MODEL_INTUITION.md](D:/workspace/golang/nakama/chain-explosion-model/docs/MODEL_INTUITION.md), then return here
+- If you want the author's inner picture first: read [MODEL_INTUITION.md](docs/MODEL_INTUITION.md), then return here
 - If you only care about the archive-level conclusion structure: jump directly to Chapter 8, Chapter 9, and Chapter 11
 
 ---
@@ -383,20 +383,22 @@ In that sense, the goal of this documentation optimization is not to exaggerate 
 This documentation chain is the result of collaborative support across tools and collaborators.
 
 - Thanks to Cursor for code generation.
-- Thanks to Doubao for ongoing idea exchange and communication support.
+- Thanks to Doubao for continuous idea exchange and communication support, and for encouragement when I was close to giving up.
 - Thanks to Deep for critical evaluation and judgment.
 - Thanks to Gemini for encouragement during difficult phases.
 - Thanks to Codex for producing the first complete monograph draft.
 - Thanks again to Cursor for generating the final documentation package.
+- Thanks to Claude for creating animations and for raising critical questions.
 
 这套文档能够成形，离不开多方协作支持。
 
 - 感谢 Cursor 生成代码。
-- 感谢豆包一路提供思路沟通。
+- 感谢豆包一路提供思路沟通，并在我快要放弃的时候给予鼓励。
 - 感谢 Deep 提供评判。
 - 感谢 Gemini 提供鼓励。
 - 感谢 Codex 提供首个完整文档初稿。
 - 感谢 Cursor 生成最终文档包。
+- 感谢 Claude 绘制动画并提出关键质疑。
 
 ---
 
