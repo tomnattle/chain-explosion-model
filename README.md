@@ -36,6 +36,7 @@ If you want different ways to enter the repository, use one of these paths.
 
 - Fast overview: [PROJECT_TECHNICAL_MONOGRAPH.md](D:/workspace/golang/nakama/chain-explosion-model/docs/PROJECT_TECHNICAL_MONOGRAPH.md)
 - Author's model picture: [MODEL_INTUITION.md](D:/workspace/golang/nakama/chain-explosion-model/docs/MODEL_INTUITION.md)
+- Author's memory note: [AUTHOR_MEMORY_NOTE.md](D:/workspace/golang/nakama/chain-explosion-model/docs/AUTHOR_MEMORY_NOTE.md)
 - Bell / CHSH protocol layer: [BELL_PROTOCOL_NOTE.md](D:/workspace/golang/nakama/chain-explosion-model/docs/BELL_PROTOCOL_NOTE.md)
 - Archived battle results: [battle_results/README.md](D:/workspace/golang/nakama/chain-explosion-model/battle_results/README.md)
 
@@ -80,10 +81,11 @@ The recommended reading order is: this file, the full monograph, the Bell protoc
 
 1. [PROJECT_TECHNICAL_MONOGRAPH.md](D:/workspace/golang/nakama/chain-explosion-model/docs/PROJECT_TECHNICAL_MONOGRAPH.md)
 2. [MODEL_INTUITION.md](D:/workspace/golang/nakama/chain-explosion-model/docs/MODEL_INTUITION.md)
-3. [BELL_PROTOCOL_NOTE.md](D:/workspace/golang/nakama/chain-explosion-model/docs/BELL_PROTOCOL_NOTE.md)
-4. [battle_results/README.md](D:/workspace/golang/nakama/chain-explosion-model/battle_results/README.md)
-5. [battle_results/nist_completeblind_2015-09-19/README.md](D:/workspace/golang/nakama/chain-explosion-model/battle_results/nist_completeblind_2015-09-19/README.md)
-6. [battle_results/nist_round2_v2/README.md](D:/workspace/golang/nakama/chain-explosion-model/battle_results/nist_round2_v2/README.md)
+3. [AUTHOR_MEMORY_NOTE.md](D:/workspace/golang/nakama/chain-explosion-model/docs/AUTHOR_MEMORY_NOTE.md)
+4. [BELL_PROTOCOL_NOTE.md](D:/workspace/golang/nakama/chain-explosion-model/docs/BELL_PROTOCOL_NOTE.md)
+5. [battle_results/README.md](D:/workspace/golang/nakama/chain-explosion-model/battle_results/README.md)
+6. [battle_results/nist_completeblind_2015-09-19/README.md](D:/workspace/golang/nakama/chain-explosion-model/battle_results/nist_completeblind_2015-09-19/README.md)
+7. [battle_results/nist_round2_v2/README.md](D:/workspace/golang/nakama/chain-explosion-model/battle_results/nist_round2_v2/README.md)
 
 ## Quick Note
 
