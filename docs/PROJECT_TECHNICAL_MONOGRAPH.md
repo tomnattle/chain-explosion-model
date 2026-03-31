@@ -375,6 +375,8 @@ If this repository is read as a book, then it is not a book announcing a final a
 在此意义上，本次文档优化目标并非夸大项目结论，而是帮助项目揭示真正有价值的内容：模型逻辑、实验路径、数值结果、边界意识，以及两次重大实验留下的研究痕迹。
 In that sense, the goal of this documentation optimization is not to exaggerate the project’s conclusions, but to reveal what is genuinely valuable in it: the model logic, the experimental path, the numerical results, the awareness of limits, and the research trace left behind by the two major experiments.
 
+在第一次受挫的阶段，我一度接近放弃。原因并不在于工程工作量，而在于主观上难以接受“形式上的数学约束”与亲眼看到的物理直觉之间的张力。对我而言，这种张力更像是在提示：现有建模之内仍有一块尚未被刻画清楚的区域，而不是一句公式就可以结束的问题。本项目目前尚未找到这块“缺失区域”的确定表达，也正因此，后续工作选择继续以可复现实验、预注册门禁与边界声明推进，而不是给出超出证据范围的宣判。
+
 ---
 
 ## Acknowledgements
