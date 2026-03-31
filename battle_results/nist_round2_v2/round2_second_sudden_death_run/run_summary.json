@@ -1,0 +1,51 @@
+{
+  "run_name": "round2_second_sudden_death_run",
+  "preregistered_alignment_config": "chsh_preregistered_config_nist_round2_engineering.json",
+  "started_utc": "2026-03-31T04:14:48.195885Z",
+  "finished_utc": "2026-03-31T04:15:52Z",
+  "git": {
+    "commit": "42e8b6eb25f32fe2c847e8f1eaa6992b3553ddb7",
+    "dirty": true
+  },
+  "config_snapshot": "battle_results/nist_round2_v2/run_config_locked.json",
+  "execution_entrypoint": "run_round2_engineering_battle.py",
+  "status": "completed",
+  "result_class": "B",
+  "result_class_rule_ref": "run_config_locked.json result_interpretation_lock.if_S_gt_2_and_audit_pass",
+  "audit_status": "pass_with_scope_note",
+  "scope_note": "Audit pass is scoped to this deterministic offline CSV pipeline; it is not a proof of a new wavefront simulator implementation.",
+  "main_results": {
+    "legacy": {
+      "engineering_pass": true,
+      "thesis_pass_fork_only": true,
+      "S_strict_window0": 2.336275858171887,
+      "S_standard_window10": 2.8445681666863845,
+      "pair_count_strict": 136632,
+      "pair_count_standard": 144790
+    },
+    "parity": {
+      "engineering_pass": true,
+      "thesis_pass_fork_only": true,
+      "S_strict_window0": 2.3274283887643272,
+      "S_standard_window10": 2.83617087618962,
+      "pair_count_strict": 136632,
+      "pair_count_standard": 144790
+    },
+    "delta_S_strict_parity_minus_legacy": -0.00884746940755976,
+    "delta_S_standard_parity_minus_legacy": -0.008397290496764409
+  },
+  "round1_gate_replay": {
+    "config_file": "chsh_preregistered_config_nist_index.json",
+    "legacy_thesis_pass": false,
+    "parity_thesis_pass": false,
+    "reason": "strict S > strict_max_S (2.02) for both mappings under Round1 gate"
+  },
+  "artifacts": {
+    "battle_report": "battle_results/nist_round2_v2/ROUND2_ENGINEERING_BATTLE_REPORT.json",
+    "legacy_json": "battle_results/nist_round2_v2/ROUND2_chsh_result_legacy.json",
+    "parity_json": "battle_results/nist_round2_v2/ROUND2_chsh_result_parity.json",
+    "under_round1_gate": "battle_results/nist_round2_v2/ROUND2_UNDER_ROUND1_GATE.json",
+    "chsh_metrics_csv": "battle_results/nist_round2_v2/round2_second_sudden_death_run/chsh_metrics.csv",
+    "audit_file": "battle_results/nist_round2_v2/round2_second_sudden_death_run/NO_SMUGGLING_AUDIT_RESULT.md"
+  }
+}

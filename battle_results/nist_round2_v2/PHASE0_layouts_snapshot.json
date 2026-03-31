@@ -1,0 +1,32 @@
+[
+  {
+    "path": "D:\\workspace\\chain-explosion-model\\data\\03_31_CH_pockel_100kHz.run4.afterTimingfix2_training.dat.compressed.build.hdf5",
+    "exists": true,
+    "alice/clicks": 363,
+    "alice/settings": 28526907,
+    "bob/clicks": 363,
+    "bob/settings": 28526894,
+    "grid_side_streams_compatible": false,
+    "alice_radius": 4,
+    "alice_bitoffset": 28,
+    "alice_pk": 90,
+    "bob_radius": 5,
+    "bob_bitoffset": 37,
+    "bob_pk": 125
+  },
+  {
+    "path": "D:\\workspace\\chain-explosion-model\\data\\17_04_CH_pockel_100kHz.run.completeblind.dat.compressed.build.hdf5",
+    "exists": true,
+    "alice/clicks": 356464574,
+    "alice/settings": 356464574,
+    "bob/clicks": 356464574,
+    "bob/settings": 356464574,
+    "grid_side_streams_compatible": true,
+    "alice_radius": 4,
+    "alice_bitoffset": 28,
+    "alice_pk": 90,
+    "bob_radius": 5,
+    "bob_bitoffset": 37,
+    "bob_pk": 125
+  }
+]

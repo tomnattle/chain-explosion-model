@@ -1,0 +1,48 @@
+{
+  "config_version": "2.1-nist-round2-engineering",
+  "protocol_name": "CHSH_NIST_ROUND2_ENGINEERING_PREREG",
+  "source": "real_csv",
+  "events_csv": "D:\\workspace\\chain-explosion-model\\data\\nist_round2_engineering_parity.csv",
+  "dual_protocol": true,
+  "engineering_pass": true,
+  "thesis_pass": true,
+  "engineering_reasons": [
+    "engineering gate: pair counts and S computable OK"
+  ],
+  "thesis_reasons": [
+    "fork_only: S_strict=2.327428 S_standard=2.836171 (no strict_max/standard_min)"
+  ],
+  "strict": {
+    "tag": "strict",
+    "window": 0.0,
+    "pair_count": 136632,
+    "Eab": 0.9987915127007367,
+    "Eabp": 0.9972571833042093,
+    "Eapb": 0.9977913224456857,
+    "Eapbp": 0.6664116296863045,
+    "S": 2.3274283887643272
+  },
+  "standard": {
+    "tag": "standard",
+    "window": 10.0,
+    "pair_count": 144790,
+    "Eab": 0.9929909817298257,
+    "Eabp": 0.9772034808531159,
+    "Eapb": 0.9638948764715636,
+    "Eapbp": 0.09791846286488484,
+    "S": 2.83617087618962
+  },
+  "gates": {
+    "engineering_gate": {
+      "min_pairs_each_protocol": 500,
+      "standard_vs_literature": {
+        "enabled": false
+      }
+    },
+    "thesis_gate": {
+      "mode": "fork_only",
+      "require_standard_S_gt_strict_S": true,
+      "comment": "Round2: only directional fork; strict_max_S / standard_min_S ignored in fork_only mode."
+    }
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "config_name": "round2_second_sudden_death_locked",
+    "version": "1.0.0",
+    "created_utc": "2026-03-31T02:45:51Z",
+    "owner": "cursor-auto-lock",
+    "notes": "Locked before first official run. Any change requires new versioned config file."
+  },
+  "hypothesis_lock": {
+    "strict_locality": true,
+    "classical_wave_only": true,
+    "no_entanglement": true,
+    "no_superposition_state_model": true,
+    "measurement_dependence_enabled": true,
+    "measurement_dependence_statement": "rho(lambda|a,b) != rho(lambda)",
+    "target_statement": "Test whether stable S > 2 can emerge under explicit measurement dependence and full no-smuggling audit."
+  },
+  "no_smuggling_lock": {
+    "no_shared_runtime_state_across_wings": true,
+    "no_global_post_selection": true,
+    "no_hidden_synchronous_oracle": true,
+    "local_timeline_only": true,
+    "deterministic_reproducibility_required": true,
+    "chsh_metric_immutable_after_start": true
+  },
+  "model": {
+    "model_version": "round2-nist-engineering-baseline",
+    "code_commit_or_tag": "42e8b6e",
+    "source_wavefront_mode": "same_origin_trigger",
+    "measurement_rule": "angle_projection_probability_with_wavefront_disturbance",
+    "settings_endogeneity_mode": "source-correlated-settings-stream",
+    "lambda_definition": "per-emission hidden state carried by same-origin trigger and local side fields",
+    "local_outcome_function_ref": "explore_chsh_experiment_alignment.py::compute_chsh_from_csv (local pairing by window rule)"
+  },
+  "run_plan": {
+    "seed_list": [
+      1001,
+      1002,
+      1003
+    ],
+    "runs_per_seed": 10,
+    "trials_per_run": 100000,
+    "settings_schedule": {
+      "mode": "uniform_random_per_trial",
+      "a_values_deg": [
+        0.0,
+        45.0
+      ],
+      "b_values_deg": [
+        22.5,
+        67.5
+      ],
+      "schedule_ref": "chsh canonical angles {a,a',b,b'} = {0,45,22.5,67.5} deg"
+    },
+    "pairing_rule": {
+      "mode": "event_id_exact_match",
+      "window": 0,
+      "drop_unpaired": true
+    },
+    "drop_rules": {
+      "allow_no_detection_outcome_zero": true,
+      "include_only_double_detections_for_E": true,
+      "additional_filters": []
+    }
+  },
+  "metrics_lock": {
+    "E_formula": "(N_pp + N_mm - N_pm - N_mp) / N_total",
+    "S_formula": "E_ab + E_abp + E_apb - E_apbp",
+    "report_fields_required": [
+      "E_ab",
+      "E_abp",
+      "E_apb",
+      "E_apbp",
+      "S",
+      "pair_count_ab",
+      "pair_count_abp",
+      "pair_count_apb",
+      "pair_count_apbp"
+    ]
+  },
+  "audit_plan": {
+    "checklist_file": "ROUND2_NO_SMUGGLING_CHECKLIST.md",
+    "require_all_checks_pass": true,
+    "save_replay_manifest": true,
+    "save_raw_trial_or_replay_artifacts": true
+  },
+  "result_interpretation_lock": {
+    "if_S_le_2": "Class A: mechanism under current lock does not support Bell-bound breach.",
+    "if_S_gt_2_and_audit_pass": "Class B: falsifies the combination local realism + full setting independence in this modeling frame; does not by itself prove nonlocal ontology.",
+    "if_S_gt_2_and_audit_fail": "invalid-B: implementation leakage/smuggling; physics claim invalid.",
+    "no_post_hoc_reframing": true
+  },
+  "outputs": {
+    "output_dir": "battle_results/nist_round2_v2/round2_second_sudden_death_run",
+    "required_files": [
+      "run_config_locked.json",
+      "run_summary.json",
+      "chsh_metrics.csv",
+      "seed_replay_manifest.json",
+      "NO_SMUGGLING_AUDIT_RESULT.md"
+    ]
+  }
+}

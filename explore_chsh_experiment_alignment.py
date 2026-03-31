@@ -184,6 +184,7 @@ def evaluate_gates(
                 % (Ss, exp, abs(Ss - exp), tol)
             )
 
+    thesis_mode = str(thesis.get("mode", "full")).strip()
     smax = float(thesis.get("strict_max_S", 2.02))
     smin = float(thesis.get("standard_min_S", 2.0))
     req_fork = bool(thesis.get("require_standard_S_gt_strict_S", False))
@@ -196,23 +197,36 @@ def evaluate_gates(
     else:
         S_st = float(S_st)
         S_sd = float(S_sd)
-        if S_st > smax + 1e-12:
-            thesis_ok = False
-            thesis_reasons.append("strict S=%.6f > strict_max_S=%.6f" % (S_st, smax))
-        if S_sd <= smin + 1e-12:
-            thesis_ok = False
-            thesis_reasons.append("standard S=%.6f <= standard_min_S=%.6f" % (S_sd, smin))
-        if thesis_ok and req_fork and not (S_sd > S_st + 1e-12):
-            thesis_ok = False
-            thesis_reasons.append(
-                "standard S=%.6f not greater than strict S=%.6f (require_standard_S_gt_strict_S)"
-                % (S_sd, S_st)
-            )
-        if thesis_ok:
-            thesis_reasons.append(
-                "thesis: same events, strict S=%.6f <= %.6f and standard S=%.6f > %.6f"
-                % (S_st, smax, S_sd, smin)
-            )
+        if thesis_mode == "fork_only":
+            if req_fork and not (S_sd > S_st + 1e-12):
+                thesis_ok = False
+                thesis_reasons.append(
+                    "fork_only: standard S=%.6f not greater than strict S=%.6f"
+                    % (S_sd, S_st)
+                )
+            elif thesis_ok:
+                thesis_reasons.append(
+                    "fork_only: S_strict=%.6f S_standard=%.6f (no strict_max/standard_min)"
+                    % (S_st, S_sd)
+                )
+        else:
+            if S_st > smax + 1e-12:
+                thesis_ok = False
+                thesis_reasons.append("strict S=%.6f > strict_max_S=%.6f" % (S_st, smax))
+            if S_sd <= smin + 1e-12:
+                thesis_ok = False
+                thesis_reasons.append("standard S=%.6f <= standard_min_S=%.6f" % (S_sd, smin))
+            if thesis_ok and req_fork and not (S_sd > S_st + 1e-12):
+                thesis_ok = False
+                thesis_reasons.append(
+                    "standard S=%.6f not greater than strict S=%.6f (require_standard_S_gt_strict_S)"
+                    % (S_sd, S_st)
+                )
+            if thesis_ok:
+                thesis_reasons.append(
+                    "thesis: same events, strict S=%.6f <= %.6f and standard S=%.6f > %.6f"
+                    % (S_st, smax, S_sd, smin)
+                )
 
     if eng_ok and not eng_reasons:
         eng_reasons.append("engineering gate: pair counts and S computable OK")

@@ -50,3 +50,13 @@ Reference scripts:
   - `chsh_strict_S <= 2.02`
 - This threshold allows finite-sample noise while preserving strict-bound intent.
 
+## Independent line (P4): protocol audit vs experimental CHSH
+
+The closure / strict-vs-postselected scripts (`explore_chsh_strict_protocol.py`, `explore_chsh_operation_audit.py`, `explore_chsh_closure_protocol.py`, `explore_chsh_local_wave_closure_full.py`, etc.) constitute a **separate** track from reproducing NIST CHSH numbers on public HDF5.
+
+- **Purpose:** reproducibly show how **measurement pipelines** (thresholds, coincidence gating, pairing) move `S` under an explicitly coded local model.
+- **Conclusion scope:** clarifies the **link between protocol choice and reported `S`**, not the ontology of a specific lab dataset.
+- **Do not merge claims** between this track and the NIST blind-test archive without a new preregistration that states both assumptions together.
+
+See also: `battle_results/nist_round2_v2/P4_PROTOCOL_AUDIT_SCOPE.md`.
+

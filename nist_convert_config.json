@@ -1,6 +1,6 @@
 {
   "strategy": "nist_hdf5_grid",
-  "notes": "NIST processed_compressed/hdf5: clicks are uint16 one-hot over 16 Pockels slots (bit k => value 2^k). settings uint8 use 1,2 for the two bases (mapped to 0,1 in CSV). Plus/minus split for CHSH binary is PRE_REGISTERED (not from NIST yaml); cite folder doc + adjust only via new config version.",
+  "notes": "ONE-HOT SLOTS (per NIST Description of Data): uint16 click v=2^k => bit index k in 0..15; v=0 => no click. See battle_results/nist_round2_v2/NIST_OFFICIAL_MAPPING_AND_WINDOWS_REPORT.md + nist_official_compliance_report.py. LEGACY WARNING: outcome_plus_slots / outcome_minus_slots are ENGINEERING PLACEHOLDERS — NOT in the public NIST page; do not call official. Replace from yaml/SI in v2 LOCKED config.",
   "nist_hdf5_grid": {
     "alice_clicks": "alice/clicks",
     "bob_clicks": "bob/clicks",

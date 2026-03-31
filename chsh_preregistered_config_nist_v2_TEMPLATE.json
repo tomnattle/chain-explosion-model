@@ -1,0 +1,88 @@
+{
+  "version": "TEMPLATE-2.0-nist-v2",
+  "protocol_name": "CHSH_NIST_V2_PREREGISTRATION_TEMPLATE",
+  "status": "DRAFT_NOT_FOR_BLIND",
+  "notes": "开盲前须：1) 填全「official_build」引用；2) 删除 status 或改为 LOCKED；3) 与 v1 场次分目录归档。",
+
+  "delta_vs_v1": {
+    "v1_nist_index": "battle_results/nist_completeblind_2015-09-19/chsh_preregistered_config_nist_index.snapshot.json",
+    "v1_trial": "扁平网格 index 作 t；emit_mode=side_streams；槽位 0-7/+ 8-15/- 为预占位。",
+    "v2_goal": "trial 由 official_build 或 HDF5 元数据（sync/laserPulse/radius）定义；槽位→±1 与文献/yaml 一致；窗在 trial 时间与/或物理时间上有定义。"
+  },
+
+  "official_build": {
+    "contact": "belltest@nist.gov",
+    "doc_urls": [
+      "https://www.nist.gov/pml/applied-physics-division/bell-test-research-software-and-data",
+      "https://www.nist.gov/document/bell-test-data-file-folder-descriptions"
+    ],
+    "code_note": "文档提及 bell_analysis_code / build_file_txt.py 与 yaml 输入；须从 NIST 提供的软件包或作者处取得副本后，将路径或参数摘要贴入下方。",
+    "yaml_or_config_path_expected": "",
+    "parameter_freeze": {
+      "alice_bitoffset": null,
+      "bob_bitoffset": null,
+      "alice_radius": null,
+      "bob_radius": null,
+      "alice_pk": null,
+      "bob_pk": null,
+      "slot_to_outcome_rule": "TO_FILL_FROM_YAML_OR_PAPER",
+      "trial_id_rule": "TO_FILL e.g. laserPulseNumber_block|sync_index|grid_row"
+    }
+  },
+
+  "hdf5_layout_requirement": {
+    "grid_side_streams_compatible": "requires len(alice/clicks)==len(alice/settings)==len(bob/clicks)==len(bob/settings)",
+    "comment": "training 型 HDF5（clicks 极短、settings 极长）与 completeblind 型不同；须用 nist_hdf5_layout_check.py 判定是否可走 v1 风格网格管，否则须另策略。"
+  },
+
+  "trial_definition_v2": {
+    "id": "",
+    "time_coordinate": "grid_index | laser_pulse_index | reconstructed_time_ns",
+    "alice_event_rule": "",
+    "bob_event_rule": "",
+    "pairing_eligibility_rule": ""
+  },
+
+  "event_csv_schema": {
+    "comment": "与 v1 相同 header：side,t,setting,outcome",
+    "field_map": {
+      "side": "side",
+      "time": "t",
+      "setting": "setting",
+      "outcome": "outcome"
+    }
+  },
+
+  "converter_profile": {
+    "strategy": "nist_hdf5_grid | timetag_channels | TO_BE_ADDED",
+    "config_file": "nist_convert_config.json",
+    "emit_mode_if_grid": "side_streams | joint_same_t"
+  },
+
+  "protocols": {
+    "strict": {
+      "id": "",
+      "pairing": { "window": null, "strategy": "nearest_unused_b", "window_unit": "trial_time | grid_index | ns" }
+    },
+    "standard": {
+      "id": "",
+      "pairing": { "window": null, "strategy": "nearest_unused_b", "window_unit": "trial_time | grid_index | ns" }
+    }
+  },
+
+  "engineering_gate": {
+    "min_pairs_each_protocol": 500,
+    "standard_vs_literature": { "enabled": false, "S_expected": null, "abs_tolerance": null }
+  },
+
+  "thesis_gate": {
+    "comment": "v2 可重新定义论点（勿沿用 v1 句柄而不声明）。示例：仅要求复现文献 S 量级；或要求 strict/standard 分叉方向等。",
+    "strict_max_S": null,
+    "standard_min_S": null,
+    "require_standard_S_gt_strict_S": null
+  },
+
+  "blinding": {
+    "allow_parameter_change_after_first_run": false
+  }
+}

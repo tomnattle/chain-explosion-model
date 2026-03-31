@@ -1,0 +1,50 @@
+{
+  "config_version": "2.0-nist-index",
+  "protocol_name": "CHSH_BATTLE_PREREGISTRATION_NIST_GRID_INDEX",
+  "source": "real_csv",
+  "events_csv": "D:\\workspace\\chain-explosion-model\\data\\nist_round2_engineering_legacy.csv",
+  "dual_protocol": true,
+  "engineering_pass": true,
+  "thesis_pass": false,
+  "engineering_reasons": [
+    "engineering gate: pair counts and S computable OK"
+  ],
+  "thesis_reasons": [
+    "strict S=2.336276 > strict_max_S=2.020000"
+  ],
+  "strict": {
+    "tag": "strict",
+    "window": 0.0,
+    "pair_count": 136632,
+    "Eab": 0.9989774338237003,
+    "Eabp": 0.9980977239045323,
+    "Eapb": 0.9979612207190944,
+    "Eapbp": 0.65876052027544,
+    "S": 2.336275858171887
+  },
+  "standard": {
+    "tag": "standard",
+    "window": 15.0,
+    "pair_count": 148670,
+    "Eab": 0.9918413278942186,
+    "Eabp": 0.9703577587147753,
+    "Eapb": 0.9473404037508701,
+    "Eapbp": 0.07015227532787607,
+    "S": 2.8393872150319877
+  },
+  "gates": {
+    "engineering_gate": {
+      "min_pairs_each_protocol": 500,
+      "standard_vs_literature": {
+        "enabled": false
+      }
+    },
+    "thesis_gate": {
+      "strict_max_S": 2.02,
+      "standard_min_S": 2.0,
+      "requires_both": true,
+      "require_standard_S_gt_strict_S": true,
+      "comment": "锁死判据：S_standard > S_strict 且阈值同上。"
+    }
+  }
+}

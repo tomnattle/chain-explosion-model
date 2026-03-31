@@ -1,0 +1,250 @@
+{
+  "reference": {
+    "document_title": "Description of Data (Bell Test)",
+    "url": "https://www.nist.gov/document/bell-test-data-file-folder-descriptions",
+    "document_version_note": "LAST UPDATED ON December 23, 2015 (per page)"
+  },
+  "hdf5_path": "D:\\workspace\\chain-explosion-model\\data\\17_04_CH_pockel_100kHz.run.completeblind.dat.compressed.build.hdf5",
+  "official_definitions": {
+    "cw45_clicks": "Bytes 2-3 (Alice) and 4-5 (Bob): uint16 one-hot over 16 Pockels-window time bins; EXACTLY ONE bit set means one slot fired; slot 1 = bit 0 ... slot 16 = bit 15.",
+    "slot_to_bit_index": "For valid single-click word v, bit_index k = log2(v), k in 0..15; slot number = k + 1.",
+    "cw45_settings_byte1_bits": "Byte 1 (cw45 five-byte event): decode nibble b as alice0=(b>>0)&1, alice1=(b>>1)&1, bob0=(b>>2)&1, bob1=(b>>3)&1 (public page one-hot-style RNG; exactly one of each party's pair should be 1). HDF5 stores separate `alice/settings` and `bob/settings`; see settings_encoding_validation for split-column checks.",
+    "what_is_NOT_in_public_doc": [
+      "Mapping from single-slot index k to a CHSH binary outcome in {-1,+1} for one party.",
+      "Numeric conversion from config radius (alice=4 bob=5 in cw45 naming) to HDF5 row-delta coincidence window — doc states delay-from-sync comes from yaml used by build_file_txt.py / bell_analysis_code."
+    ]
+  },
+  "hdf5_inventory": {
+    "alice/badSyncInfo": {
+      "shape": [
+        4,
+        28711
+      ],
+      "dtype": "uint64"
+    },
+    "alice/clicks": {
+      "shape": [
+        356464574
+      ],
+      "dtype": "uint16"
+    },
+    "alice/laserPulseNumber": {
+      "shape": [
+        17656721
+      ],
+      "dtype": "uint16"
+    },
+    "alice/phase": {
+      "shape": [
+        17656721
+      ],
+      "dtype": "float64"
+    },
+    "alice/settings": {
+      "shape": [
+        356464574
+      ],
+      "dtype": "uint8"
+    },
+    "alice/syncNumber": {
+      "shape": [
+        17656721
+      ],
+      "dtype": "uint32"
+    },
+    "bob/badSyncInfo": {
+      "shape": [
+        4,
+        28711
+      ],
+      "dtype": "uint64"
+    },
+    "bob/clicks": {
+      "shape": [
+        356464574
+      ],
+      "dtype": "uint16"
+    },
+    "bob/laserPulseNumber": {
+      "shape": [
+        15191573
+      ],
+      "dtype": "uint16"
+    },
+    "bob/phase": {
+      "shape": [
+        15191573
+      ],
+      "dtype": "float64"
+    },
+    "bob/settings": {
+      "shape": [
+        356464574
+      ],
+      "dtype": "uint8"
+    },
+    "bob/syncNumber": {
+      "shape": [
+        15191573
+      ],
+      "dtype": "uint32"
+    },
+    "config": {
+      "alice": {
+        "radius": 4,
+        "bitoffset": 28,
+        "pk": 90
+      },
+      "bob": {
+        "radius": 5,
+        "bitoffset": 37,
+        "pk": 125
+      }
+    },
+    "offsets": {
+      "offsets/firstsync/alice": 238523,
+      "offsets/firstsync/bob": 276856,
+      "offsets/lastidx/alice": 730592851,
+      "offsets/lastidx/bob": 728127912
+    }
+  },
+  "empirical_grid": {
+    "grid_length_alice_clicks": 356464574,
+    "laserPulseNumber_length_alice": 17656721,
+    "laserPulseNumber_length_bob": 15191573,
+    "ratio_grid_over_alice_laserPulseNumber": 20.1886054607761,
+    "note": "Public doc does not state a single integer 'bins per pulse' for this HDF5 row layout; pulse-level trial ID requires yaml/analysis code or separate derivation.",
+    "settings_change_gap_histogram_top5": [
+      {
+        "gap_rows": 1,
+        "count": 1248632
+      },
+      {
+        "gap_rows": 2,
+        "count": 626094
+      },
+      {
+        "gap_rows": 3,
+        "count": 313490
+      },
+      {
+        "gap_rows": 4,
+        "count": 155896
+      },
+      {
+        "gap_rows": 5,
+        "count": 78056
+      }
+    ]
+  },
+  "click_encoding_validation": {
+    "rows_scanned": 25000000,
+    "alice_nonzero": 36115,
+    "bob_nonzero": 37192,
+    "alice_non_power_of_two_nonzero": 0,
+    "bob_non_power_of_two_nonzero": 0,
+    "conforms_to_one_hot_slot_rule": true,
+    "conforms_to_2015_slot_rule": true,
+    "rule": "v==0 no click; v==2**k valid one-hot (slot k+1); v>0 and not power of two => invalid"
+  },
+  "settings_encoding_validation": {
+    "reference_note": "cw45 packs Alice+Bob RNG bits into one byte 1; this HDF5 uses separate `alice/settings` and `bob/settings`. We therefore (i) test each column's low 2 bits as a 2-bit one-hot (values 1 or 2), (ii) reconstruct b = (alice&3) | ((bob&3)<<2) and decode as cw45 byte1 nibbles.",
+    "rows_scanned": 25000000,
+    "alice_settings_unique_top": [
+      {
+        "value": 1,
+        "count": 12503698,
+        "decode_low2_bits": {
+          "alice0": 1,
+          "alice1": 0,
+          "bob0": 0,
+          "bob1": 0,
+          "raw_byte_masked": 1
+        }
+      },
+      {
+        "value": 2,
+        "count": 12496302,
+        "decode_low2_bits": {
+          "alice0": 0,
+          "alice1": 1,
+          "bob0": 0,
+          "bob1": 0,
+          "raw_byte_masked": 2
+        }
+      }
+    ],
+    "bob_settings_unique_top": [
+      {
+        "value": 2,
+        "count": 12502063,
+        "decode_low2_bits": {
+          "alice0": 0,
+          "alice1": 1,
+          "bob0": 0,
+          "bob1": 0,
+          "raw_byte_masked": 2
+        }
+      },
+      {
+        "value": 1,
+        "count": 12497937,
+        "decode_low2_bits": {
+          "alice0": 1,
+          "alice1": 0,
+          "bob0": 0,
+          "bob1": 0,
+          "raw_byte_masked": 1
+        }
+      }
+    ],
+    "alice_low2_is_one_hot_1_or_2": {
+      "violations": 0,
+      "fraction_ok": 1.0
+    },
+    "bob_low2_is_one_hot_1_or_2": {
+      "violations": 0,
+      "fraction_ok": 1.0
+    },
+    "alice_only_low2_bits_used": {
+      "violations_upper_bits": 0,
+      "fraction_ok": 1.0
+    },
+    "bob_only_low2_bits_used": {
+      "violations_upper_bits": 0,
+      "fraction_ok": 1.0
+    },
+    "reconstructed_byte1_exclusive_nibbles_ok": true,
+    "non_official_assumptions_remain": [
+      "CHSH binary ±1 from slot index (e.g. 0-7 vs 8-15) is NOT in public Description-of-Data.",
+      "HDF5 row-delta 'standard' windows (e.g. 10, 15) are NOT radius-from-yaml coincidence unless separately derived."
+    ]
+  },
+  "window_policy_recommendation": {
+    "same_hdf5_row": {
+      "definition": "Use grid index i as the time label for both sides; coincidence with pair window 0 enforces Alice row i paired to Bob row i (same position in merged parallel arrays).",
+      "alignment_with_public_doc": "Public doc guarantees merged HDF5 has parallel alice/bob streams of equal length; same index is the only alignment rule that does not require yaml-derived pulse reconstruction.",
+      "limitation": "Does not by itself prove 'same laser pulse phase'—that is analysis-chain dependent."
+    },
+    "radius_based_window": {
+      "definition_needed": "cw45 folder name: radius 4 at Alice, 5 at Bob around sync-defined click window.",
+      "blocker": "This repository build has NO per-event delay datasets; only config radius integers and offsets. Converting radius to HDF5 row-delta coincidence width is NOT specified in the public page — requires yaml / bell_analysis_code."
+    },
+    "legacy_v1_standard_window_15": {
+      "status": "HEURISTIC_ONLY",
+      "reason": "Integer 15 was used in exploratory index-space pairing; it is NOT derived from published radius→row conversion here."
+    }
+  },
+  "compliance_checklist_2015": {
+    "slot_one_hot_valid": true,
+    "settings_structurally_consistent_with_split_cw45_nibbles": true,
+    "same_grid_row_coincidence_is_only_public_doc_safe_without_yaml": true,
+    "radius_row_window_must_not_be_called_official_without_yaml": true,
+    "slot_to_plus_minus_is_undefined_in_public_page": true,
+    "non_official_heuristics_documented": true
+  },
+  "chsh_binary_outcome_note": {
+    "nist_excel_ordering_reference": "Peter data calculations: 16 joint outcome columns ++ab, +0ab, 0+ab, 00ab, ... across four setting cells — this is a JOINT (A,B) basis including 0 (no click), not a per-party slot-half ±1 rule.",
+    "v1_placeholder_split_0_7_vs_8_15": "NOT derived from the public Description-of-Data page; do not label 'official'."
+  }
+}

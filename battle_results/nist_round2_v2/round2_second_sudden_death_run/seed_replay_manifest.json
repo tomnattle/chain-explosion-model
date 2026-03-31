@@ -1,0 +1,16 @@
+{
+  "mode": "deterministic_offline_csv_replay",
+  "notes": [
+    "Alignment stage is deterministic: same CSV + chsh_preregistered_config_nist_round2_engineering.json reproduces S (verified 2026-03-31).",
+    "Configured seed list in run_config_locked.json applies to declared simulator scope; this execution used NIST-derived event CSVs."
+  ],
+  "configured_seed_list": [1001, 1002, 1003],
+  "replay_checks": {
+    "canonical_legacy_json": "battle_results/nist_round2_v2/ROUND2_chsh_result_legacy.json",
+    "canonical_parity_json": "battle_results/nist_round2_v2/ROUND2_chsh_result_parity.json",
+    "replay_command_template": "python explore_chsh_experiment_alignment.py --events-csv data/nist_round2_engineering_<legacy|parity>.csv --config chsh_preregistered_config_nist_round2_engineering.json --out-json <out.json> --out-png <out.png>",
+    "legacy_S_match": true,
+    "parity_S_match": true,
+    "verified_utc": "2026-03-31T04:16:00Z"
+  }
+}

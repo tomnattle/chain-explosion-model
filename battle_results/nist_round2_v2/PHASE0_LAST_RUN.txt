@@ -1,0 +1,6 @@
+round2_phase0 2026-03-31T04:07:59.529928Z
+
+nist_official_compliance_report.py exit=0
+nist_hdf5_layout_check.py exit=0
+  03_31_CH_pockel_100kHz.run4.afterTimingfix2_trai grid_compatible=False
+  17_04_CH_pockel_100kHz.run.completeblind.dat.com grid_compatible=True

@@ -1,0 +1,13 @@
+{
+  "strategy": "nist_hdf5_grid",
+  "notes": "ROUND2 engineering hypothesis: k even -> +1, k odd -> -1 (NOT NIST doc; sensitivity probe).",
+  "nist_hdf5_grid": {
+    "outcome_mode": "parity",
+    "alice_clicks": "alice/clicks",
+    "bob_clicks": "bob/clicks",
+    "alice_settings": "alice/settings",
+    "bob_settings": "bob/settings",
+    "emit_mode": "side_streams",
+    "chunk": 8000000
+  }
+}

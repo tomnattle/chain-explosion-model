@@ -1,0 +1,15 @@
+{
+  "strategy": "nist_hdf5_grid",
+  "notes": "ROUND2 engineering: same as v1 half-split (NON-OFFICIAL placeholder). outcome_mode=legacy_half.",
+  "nist_hdf5_grid": {
+    "outcome_mode": "legacy_half",
+    "alice_clicks": "alice/clicks",
+    "bob_clicks": "bob/clicks",
+    "alice_settings": "alice/settings",
+    "bob_settings": "bob/settings",
+    "emit_mode": "side_streams",
+    "chunk": 8000000,
+    "outcome_plus_slots": [0, 1, 2, 3, 4, 5, 6, 7],
+    "outcome_minus_slots": [8, 9, 10, 11, 12, 13, 14, 15]
+  }
+}

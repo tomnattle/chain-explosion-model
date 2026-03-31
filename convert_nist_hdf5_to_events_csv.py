@@ -141,6 +141,49 @@ def _nist_slot_outcome(click_val, plus_slots, minus_slots):
     return None
 
 
+def _slot_index_from_click_uint16(v):
+    v = int(v)
+    if v <= 0:
+        return None
+    k = v.bit_length() - 1
+    if (1 << k) != v:
+        return None
+    return k
+
+
+def _outcome_from_click(click_val, m):
+    """outcome_mode: legacy_half (default) | parity (ROUND2 engineering hypothesis)."""
+    mode = str(m.get("outcome_mode", "legacy_half")).strip()
+    if mode == "parity":
+        k = _slot_index_from_click_uint16(click_val)
+        if k is None:
+            return None
+        return 1 if (k % 2 == 0) else -1
+    plus = set(int(x) for x in m.get("outcome_plus_slots", list(range(8))))
+    minus = set(int(x) for x in m.get("outcome_minus_slots", list(range(8, 16))))
+    return _nist_slot_outcome(click_val, plus, minus)
+
+
+def _outcome_lut_from_grid_cfg(m):
+    import numpy as np
+
+    mode = str(m.get("outcome_mode", "legacy_half")).strip()
+    lut = np.full(65536, -999, dtype=np.int16)
+    if mode == "parity":
+        for k in range(16):
+            lut[1 << k] = 1 if (k % 2 == 0) else -1
+        return lut
+    plus = set(int(x) for x in m.get("outcome_plus_slots", list(range(8))))
+    minus = set(int(x) for x in m.get("outcome_minus_slots", list(range(8, 16))))
+    for p in plus:
+        if 0 <= p < 16:
+            lut[1 << p] = 1
+    for p in minus:
+        if 0 <= p < 16:
+            lut[1 << p] = -1
+    return lut
+
+
 def convert_nist_hdf5_grid(h5, cfg, out_path, chunk=None):
     """
     Stream NIST bell-test HDF5 to CSV (low memory).
@@ -153,16 +196,6 @@ def convert_nist_hdf5_grid(h5, cfg, out_path, chunk=None):
     """
     import numpy as np
 
-    def _outcome_lut(plus_slots, minus_slots):
-        lut = np.full(65536, -999, dtype=np.int16)
-        for p in plus_slots:
-            if 0 <= p < 16:
-                lut[1 << p] = 1
-        for p in minus_slots:
-            if 0 <= p < 16:
-                lut[1 << p] = -1
-        return lut
-
     m = cfg["nist_hdf5_grid"]
     apath = m["alice_clicks"]
     bpath = m["bob_clicks"]
@@ -171,9 +204,7 @@ def convert_nist_hdf5_grid(h5, cfg, out_path, chunk=None):
     emit_mode = str(m.get("emit_mode", "side_streams")).strip()
     if chunk is None:
         chunk = int(m.get("chunk", 8000000))
-    plus = set(int(x) for x in m.get("outcome_plus_slots", list(range(8))))
-    minus = set(int(x) for x in m.get("outcome_minus_slots", list(range(8, 16))))
-    lut = _outcome_lut(plus, minus)
+    lut = _outcome_lut_from_grid_cfg(m)
 
     os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
     n_grid = int(h5[apath].shape[0])
@@ -195,8 +226,8 @@ def convert_nist_hdf5_grid(h5, cfg, out_path, chunk=None):
                 idx = np.nonzero(msk)[0]
                 for j in idx:
                     i = start + int(j)
-                    oa = _nist_slot_outcome(int(ca[j]), plus, minus)
-                    ob = _nist_slot_outcome(int(cb[j]), plus, minus)
+                    oa = _outcome_from_click(int(ca[j]), m)
+                    ob = _outcome_from_click(int(cb[j]), m)
                     if oa is None or ob is None:
                         continue
                     ssa, ssb = int(sa[j]), int(sb[j])

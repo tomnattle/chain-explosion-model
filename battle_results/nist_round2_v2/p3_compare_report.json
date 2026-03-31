@@ -1,0 +1,44 @@
+{
+  "round": "nist_v2_p3_layout_and_optional_chsh",
+  "layouts": [
+    {
+      "path": "D:\\workspace\\chain-explosion-model\\data\\03_31_CH_pockel_100kHz.run4.afterTimingfix2_training.dat.compressed.build.hdf5",
+      "exists": true,
+      "alice/clicks": 363,
+      "alice/settings": 28526907,
+      "bob/clicks": 363,
+      "bob/settings": 28526894,
+      "grid_side_streams_compatible": false,
+      "alice_radius": 4,
+      "alice_bitoffset": 28,
+      "alice_pk": 90,
+      "bob_radius": 5,
+      "bob_bitoffset": 37,
+      "bob_pk": 125,
+      "label": "training"
+    },
+    {
+      "path": "D:\\workspace\\chain-explosion-model\\data\\17_04_CH_pockel_100kHz.run.completeblind.dat.compressed.build.hdf5",
+      "exists": true,
+      "alice/clicks": 356464574,
+      "alice/settings": 356464574,
+      "bob/clicks": 356464574,
+      "bob/settings": 356464574,
+      "grid_side_streams_compatible": true,
+      "alice_radius": 4,
+      "alice_bitoffset": 28,
+      "alice_pk": 90,
+      "bob_radius": 5,
+      "bob_bitoffset": 37,
+      "bob_pk": 125,
+      "label": "completeblind"
+    }
+  ],
+  "p3_blockers": [
+    "training: not grid_side_streams_compatible; cannot use same v1 nist_hdf5_grid converter as completeblind; need v2 decoder or different HDF5 product."
+  ],
+  "actions": [
+    "wrote diagnostics: battle_results/nist_round2_v2\\diagnostics_completeblind.json",
+    "wrote alignment: battle_results/nist_round2_v2\\chsh_alignment_completeblind_rerun.json"
+  ]
+}
