@@ -20,10 +20,10 @@ This file prevents post-hoc narrative changes.
 
 ## Bell-Meaning Statement Lock
 
-If valid `S > 2` is observed here, the claim is limited to:
+If valid `S > 2` is observed here, in-protocol wording is limited to:
 
-- It falsifies the combination "local realism + full setting independence" under this modeling frame.
-- It does **not** by itself prove nonlocal ontology.
+- Under this preregistered modeling frame and a passed no-smuggling audit, the outcome is **in tension with** the narrow conjunction often discussed in Bell literature (local realism with full setting independence, **as operationalized in this codebase**).
+- It does **not** by itself prove nonlocal ontology, establish nonlocality in a general philosophical sense, or certify reproducibility of any external lab’s published procedure.
 
 ## Reporting Template (fill after run)
 

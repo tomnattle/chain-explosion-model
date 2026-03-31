@@ -2,6 +2,11 @@
 
 本目录存放 **Round 2** 的配置草案、layout 报告、对照脚本输出。**不得**覆盖 `nist_completeblind_2015-09-19/` 内第一场快照。
 
+## 收束说明（第二场文档告一段落）
+
+- **`ROUND2_CLOSURE_PAPER.md`**：预注册范围内的结果归档、主要数值表、**非声称**边界与读者复核路径（**非** NIST 官方复现声明）。
+- **`ROUND2_FINAL_DECLARATION.md`**：仅指向上述收束稿与工件索引，不含扩展物理解读。
+
 ## 统一战线 — 从这里开始
 
 1. 阅读 **`ROUND2_KICKOFF.md`**（阶段划分与完成标准）。
@@ -22,6 +27,8 @@
 | `PHASE0_LAST_RUN.txt` | 运行 `round2_phase0_kickoff.py` 后的时间戳摘要 |
 | `PHASE0_layouts_snapshot.json` | Phase0 自动写的 layout 快照 |
 | `ROUND2_ENGINEERING_BATTLE.md` / `ROUND2_ENGINEERING_BATTLE_REPORT.json` | 第二场工程战说明与汇总（双映射敏感性） |
+| `ROUND2_CLOSURE_PAPER.md` | 第二场收束说明（归档摘要 + 解释边界） |
+| `ROUND2_FINAL_DECLARATION.md` | 收束指针（指向闭包正文） |
 
 ## P3 事实前提（已验证）
 

@@ -267,6 +267,16 @@ This repository implements a **2D discrete lattice propagation model** (“chain
 
 ---
 
+## Battle results archive / 战斗成果与 CHSH 归档
+
+离线 CHSH 与 NIST 相关工件集中在 **`battle_results/`**。第二场工程向评估的**收束说明、数值摘要与「能说什么 / 不能说什么」的边界**见：
+
+- [`battle_results/nist_round2_v2/ROUND2_CLOSURE_PAPER.md`](battle_results/nist_round2_v2/ROUND2_CLOSURE_PAPER.md)
+
+**本仓库不声明**与 NIST 或任何机构的官方实验流程逐项等价；不将单次离线管线的结论外推为对整个量子理论基础或实验物理学的裁决。索引入口：[`battle_results/README.md`](battle_results/README.md)。
+
+---
+
 ## New exploration gallery / 新增探索图
 
 建议先看：`battle_plan_dashboard.png`（战斗路线总览拼图 + 关键指标）。
