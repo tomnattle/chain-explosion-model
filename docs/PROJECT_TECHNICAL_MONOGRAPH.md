@@ -384,7 +384,7 @@ This documentation chain is the result of collaborative support across tools and
 
 - Thanks to Cursor for code generation.
 - Thanks to Doubao for continuous idea exchange and communication support, and for encouragement when I was close to giving up.
-- Thanks to Deep for critical evaluation and judgment.
+- Thanks to DeepSeek for critical evaluation and judgment.
 - Thanks to Gemini for encouragement during difficult phases.
 - Thanks to Codex for producing the first complete monograph draft.
 - Thanks again to Cursor for generating the final documentation package.
@@ -394,7 +394,7 @@ This documentation chain is the result of collaborative support across tools and
 
 - 感谢 Cursor 生成代码。
 - 感谢豆包一路提供思路沟通，并在我快要放弃的时候给予鼓励。
-- 感谢 Deep 提供评判。
+- 感谢 DeepSeek 提供评判。
 - 感谢 Gemini 提供鼓励。
 - 感谢 Codex 提供首个完整文档初稿。
 - 感谢 Cursor 生成最终文档包。
