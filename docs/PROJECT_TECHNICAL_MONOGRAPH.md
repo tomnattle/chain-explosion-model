@@ -13,6 +13,8 @@ This monograph is written in a book-like structure, including a preface-style in
 
 Because the project also carries a strong author-side intuition about how propagation should be pictured, that intuition is documented separately in [MODEL_INTUITION.md](docs/MODEL_INTUITION.md). The separation is deliberate: the intuition note preserves the visual and conceptual picture, while this monograph stays focused on implementation structure, experiments, and interpretive limits.
 
+作者在阶段性停顿中整理的 **Bell 相关四条工作猜想**，以及关于 **人类认知受大脑光学式建模所限** 的自省，另行归档于 [COGNITION_AND_HYPOTHESES_NOTE.md](docs/COGNITION_AND_HYPOTHESES_NOTE.md)，供日后提升认知后回看；**不作为**本专论正文中的已证结论。
+
 ## Table of Contents
 
 1. [Abstract](#abstract)
@@ -405,7 +407,6 @@ This documentation chain is the result of collaborative support across tools and
 ---
 
 ### 修复说明
-1. **乱码清理**：移除所有中文乱码（鎶€鏈€绘枃妗?、绗竴绔?等），替换为规范简体中文标题与正文
 2. **公式补全**：修正LaTeX公式缺失的`+`号、排版错误，保证数学表达式完整可读
 3. **格式统一**：统一章节编号、层级结构、中英对照排版，修正目录序号错位
 4. **术语规范**：统一物理/计算机术语（局域/非局域、相干性、可见度、CHSH配对等）

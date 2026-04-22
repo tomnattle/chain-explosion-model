@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>光子波动传播模拟 v2（带相位）</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#0f1115;padding:16px;font-family:system-ui,sans-serif;color:#ddd}
+    canvas{display:block;width:100%;height:560px;border-radius:10px;background:#000;cursor:grab;touch-action:none}
+    canvas:active{cursor:grabbing}
+    .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px;font-size:13px;color:#aaa}
+    button{padding:6px 14px;border:1px solid #444;border-radius:8px;background:transparent;color:#ddd;cursor:pointer;font-size:13px}
+    button:hover{background:#222}
+    input[type=range]{width:150px;accent-color:#4a9eff}
+    select{padding:4px 8px;border:1px solid #444;border-radius:8px;background:#111;color:#ddd;font-size:13px}
+    label{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+    #info{font-size:12px;color:#777;margin-top:8px;min-height:18px;line-height:1.4}
+    .pill{padding:3px 8px;border:1px solid #333;border-radius:999px;background:#111;color:#9fb}
+    .right{margin-left:auto}
+  </style>
+</head>
+<body>
+  <canvas id="cv"></canvas>
+
+  <div class="row">
+    <button onclick="restart()">重新开始</button>
+    <button onclick="togglePause()" class="pill" id="pauseBtn">暂停: 否</button>
+
+    <label>源模式
+      <select id="mode" onchange="restart()">
+        <option value="pulse" selected>脉冲（一次激发）</option>
+        <option value="cw">连续波（CW）</option>
+      </select>
+    </label>
+
+    <label>方向(源)
+      <select id="dir" onchange="restart()">
+        <option value="x" selected>X 轴</option>
+        <option value="diag2">对角线(1,1,0)</option>
+        <option value="diag3">对角线(1,1,1)</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="row">
+    <label>网格 GRID
+      <input type="range" min="10" max="34" step="1" value="28" id="gs" oninput="GRID=+this.value;document.getElementById('gsv').textContent=this.value;restart()"/>
+      <span id="gsv">28</span>
+    </label>
+
+    <label>波速 c
+      <input type="range" min="0.05" max="0.55" step="0.01" value="0.33" id="cvv" oninput="C=+this.value;document.getElementById('cvvT').textContent=(+this.value).toFixed(2)"/>
+      <span id="cvvT">0.33</span>
+    </label>
+
+    <label>衰减(阻尼) DAMP
+      <input type="range" min="0" max="0.03" step="0.001" value="0.002" id="damp" oninput="DAMP=+this.value;document.getElementById('dampT').textContent=(this.value*100).toFixed(1)+'%'"/>
+      <span id="dampT">0.2%</span>
+    </label>
+  </div>
+
+  <div class="row">
+    <label>CW 频率(角频率系数) ω
+      <input type="range" min="0.2" max="6.0" step="0.1" value="2.0" id="omega" oninput="OMEGA=+this.value;document.getElementById('omegaT').textContent=(+this.value).toFixed(1)"/>
+      <span id="omegaT">2.0</span>
+    </label>
+
+    <label>波长 λ（源相位步长，单位=格子）
+      <input type="range" min="2" max="18" step="1" value="8" id="lambda" oninput="LAMBDA=+this.value;document.getElementById('lambdaT').textContent=this.value"/>
+      <span id="lambdaT">8</span>
+    </label>
+
+    <label>可视化缩放
+      <input type="range" min="0.5" max="4.0" step="0.1" value="1.6" id="vis" oninput="VIS=+this.value;document.getElementById('visT').textContent=(+this.value).toFixed(1)"/>
+      <span id="visT">1.6</span>
+    </label>
+  </div>
+
+  <div class="row">
+    <label>阈值(裁剪)
+      <input type="range" min="0.0001" max="0.2" step="0.0005" value="0.002" id="cut" oninput="CUT=+this.value;document.getElementById('cutT').textContent=(+this.value).toFixed(3)"/>
+      <span id="cutT">0.002</span>
+    </label>
+    <div class="right" id="hint">拖拽=旋转/平移；滚轮=缩放；源为“注入的相位条”，便于看到方向性。</div>
+  </div>
+
+  <div id="info">准备中…</div>
+
+  <script>
+    const cv = document.getElementById('cv');
+    const gl = cv.getContext('webgl', {antialias:true});
+    const infoEl = document.getElementById('info');
+    const pauseBtn = document.getElementById('pauseBtn');
+
+    if (!gl) {
+      infoEl.textContent = '浏览器不支持WebGL，请换Chrome/Safari/Firefox';
+      throw new Error('no webgl');
+    }
+
+    // ===== 参数 =====
+    let GRID = +document.getElementById('gs').value; // 网格边长
+    let C = +document.getElementById('cvv').value;   // 波速系数(离散波动)
+    let DAMP = +document.getElementById('damp').value; // 每步额外衰减
+
+    let MODE = document.getElementById('mode').value; // pulse / cw
+    let DIR = document.getElementById('dir').value;     // x / diag2 / diag3
+
+    let OMEGA = +document.getElementById('omega').value; // CW 角频率系数
+    let LAMBDA = +document.getElementById('lambda').value; // 源相位波长(格子)
+    let VIS = +document.getElementById('vis').value;       // 可视化放大
+    let CUT = +document.getElementById('cut').value;       // 振幅小于此值不显示
+
+    const LIT_MS = 120; // 不再使用随机延迟，保留该变量是为了和v1 UI兼容感
+
+    // ===== 相机交互 =====
+    let camRX=0.45, camRY=-0.55;
+    let zoom=1.0, panX=0, panY=0;
+    let drag=false, dragBtn=0, lx=0, ly=0;
+    let CW, CH;
+
+    // ===== WebGL Shader =====
+    // 用 vC 表示振幅（正负），通过颜色体现“相位符号”
+    const VS = `
+      attribute vec3 aPos;
+      uniform mat4 uMVP;
+      varying float vC;
+      void main(){
+        // aPos = [x,y,z,] 不，这里只给 vec3
+        vec4 p = uMVP * vec4(aPos, 1.0);
+        gl_Position = p;
+        float ps = 6.0 / (1.0 + p.z * 0.3);
+        gl_PointSize = clamp(ps, 1.5, 9.0);
+        // 顶点色不直接传，改成用 gl_FragCoord 里的 vC 不行
+        // 所以把振幅通过 aPos 的 w 不行；我们采用一个单独的缓冲区 vC 作为 aCol
+        vC = 0.0;
+      }
+    `;
+
+    // 由于 WebGL1 的简化限制：我们用 aCol 单独 buffer，并在 FS 里读取 vC
+    const VS2 = `
+      attribute vec3 aPos;
+      attribute float aAmp;
+      uniform mat4 uMVP;
+      varying float vC;
+      void main(){
+        vec4 p = uMVP * vec4(aPos, 1.0);
+        gl_Position = p;
+        float ps = 6.0 / (1.0 + p.z * 0.3);
+        gl_PointSize = clamp(ps, 1.5, 9.0);
+        vC = aAmp;
+      }
+    `;
+
+    const FS2 = `
+      precision mediump float;
+      varying float vC;
+      uniform float uVis;
+      uniform float uCut;
+      void main(){
+        float a = abs(vC);
+        // 调试优先：先不要 discard，确保能看到点
+        // 后续如果你确认振幅正常，再把 cut 逻辑加回去
+        float br = clamp(a * uVis * 3.0, 0.0, 1.0);
+        vec3 col = (vC >= 0.0)
+          ? vec3(br, 0.35*br, 0.05*br)  // 正振幅：红偏
+          : vec3(0.05*br, 0.35*br, br); // 负振幅：蓝偏
+        gl_FragColor = vec4(col, 1.0);
+      }
+    `;
+
+    function compileShader(type, src) {
+      const s = gl.createShader(type);
+      gl.shaderSource(s, src);
+      gl.compileShader(s);
+      if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+        console.error(gl.getShaderInfoLog(s));
+      }
+      return s;
+    }
+
+    let prog, uMVP, uVisLoc, uCutLoc, aPosLoc, aAmpLoc;
+    let posBuf, ampBuf, vCount;
+    let posArr, ampArr;
+    let u, uPrev, uNext;
+    let step = 0;
+    let paused = false;
+
+    function initGL() {
+      prog = gl.createProgram();
+      gl.attachShader(prog, compileShader(gl.VERTEX_SHADER, VS2));
+      gl.attachShader(prog, compileShader(gl.FRAGMENT_SHADER, FS2));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+
+      uMVP = gl.getUniformLocation(prog, 'uMVP');
+      uVisLoc = gl.getUniformLocation(prog, 'uVis');
+      uCutLoc = gl.getUniformLocation(prog, 'uCut');
+      aPosLoc = gl.getAttribLocation(prog, 'aPos');
+      aAmpLoc = gl.getAttribLocation(prog, 'aAmp');
+
+      posBuf = gl.createBuffer();
+      ampBuf = gl.createBuffer();
+      gl.enable(gl.DEPTH_TEST);
+      gl.clearColor(0.02,0.02,0.03,1);
+    }
+
+    function resize() {
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      const r = cv.getBoundingClientRect();
+      CW = r.width; CH = 560;
+      cv.width = CW * dpr;
+      cv.height = CH * dpr;
+      cv.style.height = CH + 'px';
+      gl.viewport(0, 0, cv.width, cv.height);
+    }
+
+    // 3D->1D
+    function gid(x,y,z){ return x*GRID*GRID + y*GRID + z; }
+
+    function buildGeometry() {
+      vCount = GRID*GRID*GRID;
+      const off = (GRID - 1) / 2;
+      posArr = new Float32Array(vCount * 3);
+      ampArr = new Float32Array(vCount);
+      let k = 0;
+      for (let x=0;x<GRID;x++){
+        for (let y=0;y<GRID;y++){
+          for (let z=0;z<GRID;z++){
+            posArr[k++] = x - off;
+            posArr[k++] = y - off;
+            posArr[k++] = z - off;
+          }
+        }
+      }
+      gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+      gl.bufferData(gl.ARRAY_BUFFER, posArr, gl.STATIC_DRAW);
+
+      gl.bindBuffer(gl.ARRAY_BUFFER, ampBuf);
+      gl.bufferData(gl.ARRAY_BUFFER, ampArr, gl.DYNAMIC_DRAW);
+    }
+
+    function dirStep() {
+      // 每个方向用一个整数步长：方便注入相位条
+      if (DIR === 'x') return [1,0,0];
+      if (DIR === 'diag2') return [1,1,0];
+      return [1,1,1]; // diag3
+    }
+
+    function restart() {
+      MODE = document.getElementById('mode').value;
+      DIR = document.getElementById('dir').value;
+      GRID = +document.getElementById('gs').value;
+
+      // 重新编译几何/数组
+      u = new Float32Array(GRID*GRID*GRID);
+      uPrev = new Float32Array(GRID*GRID*GRID);
+      uNext = new Float32Array(GRID*GRID*GRID);
+      step = 0;
+
+      buildGeometry();
+
+      // 初始条件：脉冲在中心点给一个位移；CW 由后续注入决定
+      const h = Math.floor(GRID/2);
+      if (MODE === 'pulse') {
+        const i = gid(h,h,h);
+        u[i] = 1.0;
+        uPrev[i] = 0.0;
+      }
+
+      paused = false;
+      pauseBtn.textContent = '暂停: 否';
+      infoEl.textContent = `准备中… GRID=${GRID}, MODE=${MODE}, DIR=${DIR}`;
+    }
+
+    // 构造 MVP（沿用v1的思路）
+    function m4mul(a,b){
+      const r = new Float32Array(16);
+      for (let i=0;i<4;i++) for (let j=0;j<4;j++){
+        let s=0;
+        for (let k=0;k<4;k++) s += a[i+k*4]*b[k+j*4];
+        r[i+j*4]=s;
+      }
+      return r;
+    }
+    function mPers(fov, asp, n, f){
+      const t = Math.tan(fov/2);
+      return new Float32Array([
+        1/(asp*t),0,0,0,
+        0,1/t,0,0,
+        0,0,(f+n)/(n-f),-1,
+        0,0,2*f*n/(n-f),0
+      ]);
+    }
+    function mTrans(tx,ty,tz){
+      return new Float32Array([1,0,0,0, 0,1,0,0, 0,0,1,0, tx,ty,tz,1]);
+    }
+    function mRotX(a){
+      const c=Math.cos(a), s=Math.sin(a);
+      return new Float32Array([1,0,0,0, 0,c,s,0, 0,-s,c,0, 0,0,0,1]);
+    }
+    function mRotY(a){
+      const c=Math.cos(a), s=Math.sin(a);
+      return new Float32Array([c,0,-s,0, 0,1,0,0, s,0,c,0, 0,0,0,1]);
+    }
+    function getMVP() {
+      const dist = (GRID * 1.7) / zoom;
+      const P = mPers(0.75, CW/CH, 0.5, dist*6);
+      const V = mTrans(panX, panY, -dist);
+      const R = m4mul(mRotX(camRX), mRotY(camRY));
+      return m4mul(m4mul(P,V),R);
+    }
+
+    // 注入源：CW时注入“相位条”，让方向性更明显
+    function injectSource(tStep) {
+      const h = Math.floor(GRID/2);
+      const [sx,sy,sz] = dirStep();
+      const dirLen = Math.max(1, Math.floor(GRID/8)); // 注入条长度（越长越像“线源”）
+      const k = (2*Math.PI) / Math.max(2, LAMBDA);   // 相位步长
+      const omega = OMEGA;
+      const A = 1.0;
+
+      // tStep 作为离散时间
+      const time = tStep;
+      for (let d=-dirLen; d<=dirLen; d++){
+        const x = h + d*sx;
+        const y = h + d*sy;
+        const z = h + d*sz;
+        if (x<0||x>=GRID||y<0||y>=GRID||z<0||z>=GRID) continue;
+        const phase = omega*time - k*d;
+        const val = A * Math.sin(phase);
+        u[gid(x,y,z)] += val * 0.55; // 注入力度
+      }
+    }
+
+    function waveStep() {
+      // 离散波动：uNext = 2u - uPrev + c^2 * lap(u)
+      // 取 6 邻域（更轻、更稳定）
+      const c2 = C*C;
+      let idx = 0;
+      for (let x=0;x<GRID;x++){
+        for (let y=0;y<GRID;y++){
+          for (let z=0;z<GRID;z++){
+            idx = gid(x,y,z);
+            const u0 = u[idx];
+            // 边界：越界当 0
+            const ux1 = (x+1<GRID) ? u[gid(x+1,y,z)] : 0;
+            const ux0 = (x-1>=0)  ? u[gid(x-1,y,z)] : 0;
+            const uy1 = (y+1<GRID) ? u[gid(x,y+1,z)] : 0;
+            const uy0 = (y-1>=0)  ? u[gid(x,y-1,z)] : 0;
+            const uz1 = (z+1<GRID) ? u[gid(x,y,z+1)] : 0;
+            const uz0 = (z-1>=0)  ? u[gid(x,y,z-1)] : 0;
+
+            const lap = (ux1 + ux0 + uy1 + uy0 + uz1 + uz0) - 6.0*u0;
+            let un = 2.0*u0 - uPrev[idx] + c2 * lap;
+
+            // 统一衰减（模拟介质损耗）
+            un *= (1.0 - DAMP);
+            // 防止数值发散/NaN 导致画面全黑
+            if (!Number.isFinite(un)) un = 0.0;
+            un = Math.max(-2.0, Math.min(2.0, un));
+            uNext[idx] = un;
+          }
+        }
+      }
+
+      // 为避免注入被抵消：注入发生在计算之后，或者你也可以在计算前加。这里我们计算前加。
+      // 我们选择：CW 情况下把 u 作为“驱动输入”，注入到当前 u，然后下一步再滚。
+      // 所以这里：在波动推进之前注入；我们在 frame 里调用顺序控制。
+      // 先推进再交换。
+      const tmp = uPrev;
+      uPrev = u;
+      u = uNext;
+      uNext = tmp;
+    }
+
+    function draw(ts){
+      requestAnimationFrame(draw);
+      if (!gl || !posArr) return;
+      if (paused) return;
+
+      // 每隔一段时间更新调试信息：u 的最大绝对值
+      if (step % 40 === 0) {
+        let maxAbs = 0.0;
+        for (let i=0;i<u.length;i++){
+          const a = Math.abs(u[i]);
+          if (a > maxAbs) maxAbs = a;
+        }
+        infoEl.textContent = `运行中 | step=${step} | uMax=${maxAbs.toExponential(3)} | GRID=${GRID} | MODE=${MODE}`;
+      }
+
+      if (MODE === 'cw') {
+        // 在 CW：每步先注入
+        injectSource(step);
+      }
+      waveStep();
+
+      // 把振幅映射到顶点颜色
+      // 直接用 u 值作为 vC；shader 内会用 abs & sign 映射
+      for (let i=0;i<ampArr.length;i++){
+        ampArr[i] = u[i];
+      }
+
+      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+      gl.useProgram(prog);
+      gl.uniformMatrix4fv(uMVP, false, getMVP());
+      gl.uniform1f(uVisLoc, VIS);
+      gl.uniform1f(uCutLoc, CUT);
+
+      gl.bindBuffer(gl.ARRAY_BUFFER, posBuf);
+      gl.enableVertexAttribArray(aPosLoc);
+      gl.vertexAttribPointer(aPosLoc, 3, gl.FLOAT, false, 0, 0);
+
+      gl.bindBuffer(gl.ARRAY_BUFFER, ampBuf);
+      gl.bufferData(gl.ARRAY_BUFFER, ampArr, gl.DYNAMIC_DRAW);
+      gl.enableVertexAttribArray(aAmpLoc);
+      gl.vertexAttribPointer(aAmpLoc, 1, gl.FLOAT, false, 0, 0);
+
+      gl.drawArrays(gl.POINTS, 0, vCount);
+
+      step++;
+      if (step % 30 === 0) {
+        infoEl.textContent =
+          `运行中 | step=${step} | GRID=${GRID} | MODE=${MODE} | DAMP=${DAMP.toFixed(3)} | c=${C.toFixed(2)} | λ=${LAMBDA}`;
+      }
+    }
+
+    function togglePause(){
+      paused = !paused;
+      pauseBtn.textContent = paused ? '暂停: 是' : '暂停: 否';
+      infoEl.textContent = paused ? '已暂停（可拖拽查看角度）' : '继续运行…';
+    }
+
+    // ===== 鼠标/触控 =====
+    cv.addEventListener('mousedown', e => {
+      e.preventDefault();
+      drag=true; dragBtn=e.button; lx=e.clientX; ly=e.clientY;
+    });
+
+    cv.addEventListener('mousemove', e => {
+      if (!drag) return;
+      const dx=e.clientX-lx, dy=e.clientY-ly;
+      if (dragBtn===0) { camRY+=dx*0.013; camRX+=dy*0.013; }
+      else { panX+=dx*0.03/zoom; panY-=dy*0.03/zoom; }
+      lx=e.clientX; ly=e.clientY;
+    });
+    cv.addEventListener('mouseup', ()=>drag=false);
+    cv.addEventListener('mouseleave', ()=>drag=false);
+    cv.addEventListener('contextmenu', e=>e.preventDefault());
+    cv.addEventListener('wheel', e => {
+      e.preventDefault();
+      zoom *= e.deltaY < 0 ? 1.12 : 0.89;
+      zoom = Math.max(0.2, Math.min(14, zoom));
+    }, {passive:false});
+
+    cv.addEventListener('touchstart', e => {
+      e.preventDefault();
+      if (e.touches.length===1) {
+        drag=true; dragBtn=0;
+        lx=e.touches[0].clientX; ly=e.touches[0].clientY;
+      }
+    }, {passive:false});
+
+    cv.addEventListener('touchmove', e => {
+      e.preventDefault();
+      if (e.touches.length===1 && drag) {
+        const dx=e.touches[0].clientX-lx, dy=e.touches[0].clientY-ly;
+        camRY+=dx*0.013; camRX+=dy*0.013;
+        lx=e.touches[0].clientX; ly=e.touches[0].clientY;
+      }
+    }, {passive:false});
+
+    cv.addEventListener('touchend', ()=>drag=false, {passive:false});
+
+    window.addEventListener('resize', ()=>{ resize(); });
+
+    // ===== 初始化 =====
+    initGL();
+    resize();
+    restart();
+    requestAnimationFrame(draw);
+  </script>
+</body>
+</html>
+
