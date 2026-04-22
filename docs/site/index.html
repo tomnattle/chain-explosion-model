@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chain Explosion 实验动画中心</title>
+  <link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Chain Explosion</h1>
+        <p>Experiment Animation Hub</p>
+      </div>
+      <input id="search-input" class="search-input" placeholder="搜索实验名/参数/路径..." />
+      <nav id="tree-nav" aria-label="文档目录树"></nav>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <h2 id="page-title">请选择左侧实验</h2>
+          <p id="page-subtitle">右侧优先展示动画；如果有现成 HTML，会直接播放。</p>
+        </div>
+      </header>
+
+      <section class="panel">
+        <div class="tabs">
+          <button class="tab active" data-tab="animation">动画播放</button>
+          <button class="tab" data-tab="overview">实验说明</button>
+          <button class="tab" data-tab="code">代码地址</button>
+        </div>
+
+        <div id="tab-animation" class="tab-content active">
+          <div id="anim-host" class="anim-host">
+            <iframe id="anim-frame" title="动画播放区"></iframe>
+            <canvas id="tree-canvas"></canvas>
+          </div>
+          <p class="hint" id="anim-hint">请选择实验后播放。</p>
+        </div>
+
+        <div id="tab-overview" class="tab-content">
+          <div id="overview-meta"></div>
+          <article id="overview-content" class="content-box">请选择左侧目录节点。</article>
+        </div>
+
+        <div id="tab-code" class="tab-content">
+          <div class="code-card">
+            <h3>页面来源</h3>
+            <pre id="code-path"></pre>
+          </div>
+          <div class="code-card">
+            <h3>相关脚本</h3>
+            <pre id="script-path"></pre>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/three@0.161.0/build/three.min.js"></script>
+  <script src="./experiments/index.js"></script>
+  <script src="./assets/app.js"></script>
+</body>
+</html>
+

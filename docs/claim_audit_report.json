@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "tool": "claim_audit",
+    "generated_at": "2026-04-22T13:12:53.037269+00:00",
+    "trials": 300000,
+    "seed": 20260422,
+    "policy": {
+      "spread_high_threshold": 0.5,
+      "binary_upper_guard": 2.001,
+      "risk_penalty": {
+        "high": 40,
+        "medium": 20,
+        "low": 10
+      },
+      "summary_cutoffs": {
+        "high": 50,
+        "medium": 80
+      }
+    },
+    "mode": "simulation"
+  },
+  "input": {
+    "angles_deg": {
+      "a": 0.0,
+      "a_prime": 45.0,
+      "b": 22.5,
+      "b_prime": 67.5
+    },
+    "claim": "S>2 implies nonlocality",
+    "threshold": 2.0
+  },
+  "results": {
+    "s_values": {
+      "binary": -2.0,
+      "raw": -1.1942162103075016,
+      "ncc": -2.3891386635897245
+    },
+    "abs_s_values": {
+      "binary": 2.0,
+      "raw": 1.1942162103075016,
+      "ncc": 2.3891386635897245
+    },
+    "coarse_global_max_abs_s": {
+      "binary": {
+        "value": 2.0000000000000004,
+        "angles_deg": [
+          0.0,
+          42.0,
+          2.0,
+          162.0
+        ]
+      },
+      "raw": {
+        "value": 1.4140693573518228,
+        "angles_deg": [
+          38.0,
+          126.0,
+          82.0,
+          172.0
+        ]
+      },
+      "ncc": {
+        "value": 2.8280645503951374,
+        "angles_deg": [
+          36.0,
+          128.0,
+          82.0,
+          172.0
+        ]
+      }
+    }
+  },
+  "risk": {
+    "score_0_to_100": 0,
+    "summary": "高风险：指标定义差异足以改变结论，发布前需强制标注统计对象。",
+    "items": [
+      {
+        "id": "RISK_METRIC_DIVERGENCE",
+        "severity": "high",
+        "title": "跨统计口径结果分歧显著",
+        "detail": "同一数据下不同指标得到明显不同的 |S|，结论高度依赖指标定义。",
+        "evidence": {
+          "abs_s_spread": 1.194922453282223,
+          "s_values": {
+            "binary": -2.0,
+            "raw": -1.1942162103075016,
+            "ncc": -2.3891386635897245
+          }
+        }
+      },
+      {
+        "id": "RISK_OBJECT_MISMATCH",
+        "severity": "high",
+        "title": "标准 CHSH 与 NCC 指标对象不一致",
+        "detail": "二值 CHSH 未超界，但 NCC 超过阈值。若将 NCC 直接解释为 Bell 违反，存在对象错配风险。",
+        "evidence": {
+          "binary_abs_s": 2.0,
+          "ncc_abs_s": 2.3891386635897245,
+          "threshold": 2.0
+        }
+      },
+      {
+        "id": "RISK_CLAIM_OVERREACH",
+        "severity": "medium",
+        "title": "结论外推风险",
+        "detail": "当前标准二值 CHSH 不支持直接得出非局域结论，需要额外实验映射与前提说明。",
+        "evidence": {
+          "claim": "S>2 implies nonlocality",
+          "binary_abs_s": 2.0
+        }
+      }
+    ]
+  },
+  "recommendations": [
+    "在报告中明确区分 E_binary / E_raw / E_ncc，不混用符号 E。",
+    "若使用 NCC 指标，需单列其物理测量映射与适用边界。",
+    "结论声明前附上同一样本的多指标对照表。"
+  ]
+}

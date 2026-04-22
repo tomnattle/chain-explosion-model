@@ -1,0 +1,2 @@
+mode,risk_score,risk_items,binary_abs_s,raw_abs_s,ncc_abs_s,summary
+simulation,0,3,2.0,1.1942162103075016,2.3891386635897245,高风险：指标定义差异足以改变结论，发布前需强制标注统计对象。

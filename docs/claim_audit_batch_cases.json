@@ -1,0 +1,14 @@
+﻿{
+  "cases": [
+    {
+      "claim": "S>2 implies nonlocality",
+      "angles": "0,45,22.5,67.5",
+      "trials": 120000,
+      "seed": 20260422
+    },
+    {
+      "claim": "NCC>2 means Bell violation",
+      "input_csv": "docs/claim_audit_input_sample.csv"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Claim Audit Report</title>
+<style>body{font-family:Segoe UI,Arial,sans-serif;max-width:980px;margin:24px auto;line-height:1.5;padding:0 16px}
+.card{border:1px solid #ddd;border-radius:10px;padding:14px 16px;margin-bottom:14px}
+code{background:#f5f5f5;padding:2px 4px;border-radius:4px} .k{color:#666}</style></head><body>
+<h1>Claim Audit Report</h1>
+<div class="card"><div class="k">Risk Score</div><h2>0</h2><div>高风险：指标定义差异足以改变结论，发布前需强制标注统计对象。</div></div>
+<div class="card"><div class="k">abs(S)</div>
+<ul><li>binary: <b>2.000000</b></li><li>raw: <b>1.194216</b></li><li>ncc: <b>2.389139</b></li></ul></div>
+<div class="card"><div class="k">Risk Items</div><ul><li><code>RISK_METRIC_DIVERGENCE</code> [high] 跨统计口径结果分歧显著</li><li><code>RISK_OBJECT_MISMATCH</code> [high] 标准 CHSH 与 NCC 指标对象不一致</li><li><code>RISK_CLAIM_OVERREACH</code> [medium] 结论外推风险</li></ul></div>
+<div class="card"><div class="k">Recommendations</div><ul><li>在报告中明确区分 E_binary / E_raw / E_ncc，不混用符号 E。</li><li>若使用 NCC 指标，需单列其物理测量映射与适用边界。</li><li>结论声明前附上同一样本的多指标对照表。</li></ul></div>
+</body></html>

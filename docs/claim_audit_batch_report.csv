@@ -1,0 +1,3 @@
+case_index,mode,risk_score,risk_items,binary_abs_s,raw_abs_s,ncc_abs_s,summary
+0,simulation,0,3,1.9999999999999998,1.19334428706686,2.389755500417834,高风险：指标定义差异足以改变结论，发布前需强制标注统计对象。
+1,external_csv,20,2,2.0,1.2,2.39,高风险：指标定义差异足以改变结论，发布前需强制标注统计对象。

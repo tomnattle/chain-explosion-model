@@ -1,0 +1,6 @@
+﻿{
+  "spread_high_threshold": 0.5,
+  "binary_upper_guard": 2.001,
+  "risk_penalty": {"high": 40, "medium": 20, "low": 10},
+  "summary_cutoffs": {"high": 50, "medium": 80}
+}

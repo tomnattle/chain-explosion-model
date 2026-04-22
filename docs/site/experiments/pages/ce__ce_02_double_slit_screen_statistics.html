@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ce 02 double slit screen statistics</title>
+  <style>
+    body { margin:0; font-family:Segoe UI,Arial,sans-serif; background:#0d1117; color:#e6edf3; }
+    .wrap { max-width:1100px; margin:0 auto; padding:16px; }
+    .card { border:1px solid #30363d; border-radius:10px; padding:12px; background:#111827; margin-bottom:12px; }
+    .meta { color:#8b949e; font-size:13px; }
+    #c { width:100%; height:calc(100vh - 260px); min-height:420px; border:1px solid #30363d; border-radius:8px; display:block; }
+    table { width:100%; border-collapse:collapse; }
+    th,td { border:1px solid #30363d; padding:6px 8px; text-align:left; font-size:13px; }
+    th { background:#0f1f35; }
+    code { color:#58a6ff; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h2 style="margin:0 0 8px">ce 02 double slit screen statistics</h2>
+      <div class="meta">Group: ce | Source: <code>scripts/ce/ce_02_double_slit_screen_statistics.py</code></div>
+    </div>
+    <div class="card">
+      <h3 style="margin:0 0 8px">动画</h3>
+      <canvas id="c"></canvas>
+    </div>
+    <div class="card">
+      <h3 style="margin:0 0 8px">运行命令</h3>
+      <div class="meta">在仓库根目录执行</div>
+      <pre style="white-space:pre-wrap;color:#58a6ff">./activate_conda.ps1; python "scripts/ce/ce_02_double_slit_screen_statistics.py"</pre>
+    </div>
+    <div class="card">
+      <h3 style="margin:0 0 8px">原理说明</h3>
+      <div>No module docstring. See source for details.</div>
+    </div>
+    <div class="card">
+      <h3 style="margin:0 0 8px">参数（自动提取）</h3>
+      <table>
+        <thead><tr><th>参数名</th><th>值/表达式</th></tr></thead>
+        <tbody><tr><td>HEIGHT</td><td>201</td></tr>
+<tr><td>WIDTH</td><td>400</td></tr>
+<tr><td>A</td><td>1.0</td></tr>
+<tr><td>S</td><td>0.4</td></tr>
+<tr><td>B</td><td>0.05</td></tr>
+<tr><td>LAMBDA</td><td>0.9</td></tr>
+<tr><td>SOURCE_X</td><td>10</td></tr>
+<tr><td>SOURCE_Y</td><td><expr></td></tr>
+<tr><td>BARRIER_X</td><td><expr></td></tr>
+<tr><td>SLIT1_Y</td><td><expr></td></tr>
+<tr><td>SLIT2_Y</td><td><expr></td></tr>
+<tr><td>SLIT_WIDTH</td><td>6</td></tr>
+<tr><td>STEPS</td><td>500</td></tr>
+<tr><td>SCREEN_X</td><td><expr></td></tr></tbody>
+      </table>
+    </div>
+  </div>
+  <script src="https://unpkg.com/three@0.161.0/build/three.min.js"></script>
+  <script>
+    const mode = "wave";
+    const canvas = document.getElementById('c');
+    const renderer = new THREE.WebGLRenderer({canvas, antialias:true, alpha:true});
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(50, 2, 0.1, 100);
+    camera.position.set(0,0.2,6);
+    const g = new THREE.Group(); scene.add(g);
+    const nodes = [];
+    const nodeGeo = new THREE.SphereGeometry(0.045, 10, 10);
+    const nodeMat = new THREE.MeshBasicMaterial({color:0x58a6ff});
+    for(let i=0;i<180;i++) {
+      const m = new THREE.Mesh(nodeGeo, nodeMat);
+      m.position.set((Math.random()-0.5)*4, (Math.random()-0.5)*2.6, (Math.random()-0.5)*2.4);
+      g.add(m); nodes.push(m);
+    }
+    const lineMat = new THREE.LineBasicMaterial({color:0x8b949e});
+    for(let i=1;i<nodes.length;i++) {
+      const a = nodes[(i*7)%nodes.length].position;
+      const b = nodes[i].position;
+      const geo = new THREE.BufferGeometry().setFromPoints([a,b]);
+      g.add(new THREE.Line(geo, lineMat));
+    }
+    function resize() {
+      const w = canvas.clientWidth, h = canvas.clientHeight;
+      renderer.setSize(w,h,false); camera.aspect = w/h; camera.updateProjectionMatrix();
+    }
+    window.addEventListener('resize', resize); resize();
+    function tick(t) {
+      const x = t*0.001;
+      g.rotation.y = x*0.15;
+      if(mode==='wave') g.rotation.x = Math.sin(x*1.2)*0.15;
+      if(mode==='network') g.rotation.z = Math.cos(x*0.7)*0.1;
+      if(mode==='pulse') nodes.forEach((n,i)=> n.scale.setScalar(0.8+0.4*Math.abs(Math.sin(x*2+i*0.09))));
+      if(mode==='spiral') nodes.forEach((n,i)=>{ const a=x*0.2+i*0.1; n.position.x=Math.cos(a)*(1.2+i*0.004); n.position.z=Math.sin(a)*(1.2+i*0.004); });
+      if(mode==='tree') nodes.forEach((n,i)=>{ n.position.y += Math.sin(x+i*0.1)*0.0008; });
+      renderer.render(scene,camera); requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  </script>
+</body>
+</html>
