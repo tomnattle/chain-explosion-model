@@ -39,6 +39,7 @@ If you want different ways to enter the repository, use one of these paths.
 - Author's memory note: [AUTHOR_MEMORY_NOTE.md](D:/workspace/golang/nakama/chain-explosion-model/docs/AUTHOR_MEMORY_NOTE.md)
 - Bell / CHSH protocol layer: [BELL_PROTOCOL_NOTE.md](D:/workspace/golang/nakama/chain-explosion-model/docs/BELL_PROTOCOL_NOTE.md)
 - Paper strategy package: [PAPER_STRATEGY_PACKAGE.md](D:/workspace/golang/nakama/chain-explosion-model/docs/PAPER_STRATEGY_PACKAGE.md)
+- Research map: [RESEARCH_MAP.md](D:/workspace/golang/nakama/chain-explosion-model/docs/RESEARCH_MAP.md)
 - Static site (navigator + treejs): [docs/site/index.html](D:/workspace/golang/nakama/chain-explosion-model/docs/site/index.html)
   - Regenerate experiment pages: `python scripts/explore/generate_experiment_animation_pages.py`
 - Archived battle results: [battle_results/README.md](D:/workspace/golang/nakama/chain-explosion-model/battle_results/README.md)

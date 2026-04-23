@@ -1,0 +1,26 @@
+{
+  "raw_event": {
+    "dataset": "battle_results/nist_completeblind_2015-09-19/...",
+    "pairing_rule": "time-window nearest-neighbor pairing",
+    "time_window": "4 ns",
+    "notes": "Describe raw event source and pairing assumptions."
+  },
+  "binarization": {
+    "outcome_space": "binary (+1/-1) or continuous",
+    "threshold_rule": "sign(cos(...))",
+    "postselection": "none",
+    "notes": "State if any postselection/filtering is applied."
+  },
+  "correlation": {
+    "e_definition": "E_binary | E_raw | E_ncc",
+    "normalization": "none | ncc",
+    "aggregation": "mean over paired events",
+    "notes": "Must specify exact formula."
+  },
+  "claim": {
+    "statement": "Example: S>2 implies ...",
+    "scope": "chsh_binary | continuous_metric | audit_only",
+    "non_claims": "Do not claim theorem falsification unless object mapping is proven."
+  }
+}
+

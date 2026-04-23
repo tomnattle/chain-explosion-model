@@ -24,3 +24,9 @@ python "scripts/explore/claim_audit.py" `
   --policy-json $PolicyPath `
   --fail-on-risk-threshold $FailThreshold
 
+python "scripts/explore/audit_suite.py" `
+  --protocol-json "docs/protocol_template.json" `
+  --policy-json $PolicyPath `
+  --out-json "docs/audit_suite_report.json" `
+  --fail-on-suite-threshold $FailThreshold
+

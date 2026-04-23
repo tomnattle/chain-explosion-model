@@ -1,0 +1,11 @@
+{
+  "meta": {
+    "tool": "protocol_audit",
+    "generated_at": "2026-04-22T14:00:49.722709+00:00"
+  },
+  "risk": {
+    "score_0_to_100": 100,
+    "summary": "low risk: protocol fields and mapping are explicit.",
+    "findings": []
+  }
+}
