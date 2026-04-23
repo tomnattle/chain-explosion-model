@@ -24,9 +24,92 @@ import math
 from dataclasses import dataclass
 from pathlib import Path
 
+import numpy as np
+
+try:
+    import numba
+except Exception:
+    numba = None
+
 
 PI = math.pi
 TWO_PI = 2.0 * PI
+
+_SOFT_DETECTOR_IMPL = None
+_COMPUTE_BACKEND_ACTIVE = "numpy"
+
+
+def _soft_detector_numpy(x, threshold: float):
+    y = np.zeros_like(x)
+    y[x > threshold] = 1.0
+    y[x < -threshold] = -1.0
+    return y
+
+
+def _init_compute_backend(mode: str) -> str:
+    global _SOFT_DETECTOR_IMPL
+    global _COMPUTE_BACKEND_ACTIVE
+
+    requested = str(mode).lower()
+    if requested not in {"numba_gpu", "numba_cpu", "numpy"}:
+        requested = "numba_gpu"
+
+    if requested == "numpy":
+        _SOFT_DETECTOR_IMPL = _soft_detector_numpy
+        _COMPUTE_BACKEND_ACTIVE = "numpy"
+        return _COMPUTE_BACKEND_ACTIVE
+
+    if numba is None:
+        _SOFT_DETECTOR_IMPL = _soft_detector_numpy
+        _COMPUTE_BACKEND_ACTIVE = "numpy_fallback(no_numba)"
+        return _COMPUTE_BACKEND_ACTIVE
+
+    if requested == "numba_gpu":
+        try:
+            from numba import vectorize
+            from numba import cuda
+
+            if cuda.is_available():
+                @vectorize(["float64(float64,float64)"], target="cuda")
+                def soft_det_elem(v, thr):
+                    if v > thr:
+                        return 1.0
+                    if v < -thr:
+                        return -1.0
+                    return 0.0
+
+                _SOFT_DETECTOR_IMPL = lambda x, threshold: soft_det_elem(
+                    x.astype(np.float64), float(threshold)
+                ).astype(x.dtype, copy=False)
+                _COMPUTE_BACKEND_ACTIVE = "numba_gpu"
+                return _COMPUTE_BACKEND_ACTIVE
+        except Exception:
+            pass
+
+    try:
+        from numba import njit
+
+        @njit(cache=True)
+        def soft_detector_numba_cpu(x, threshold):
+            y = np.zeros_like(x)
+            for i in range(x.shape[0]):
+                if x[i] > threshold:
+                    y[i] = 1.0
+                elif x[i] < -threshold:
+                    y[i] = -1.0
+                else:
+                    y[i] = 0.0
+            return y
+
+        _SOFT_DETECTOR_IMPL = lambda x, threshold: soft_detector_numba_cpu(
+            x.astype(np.float64), float(threshold)
+        ).astype(x.dtype, copy=False)
+        _COMPUTE_BACKEND_ACTIVE = "numba_cpu" if requested != "numpy" else "numpy"
+        return _COMPUTE_BACKEND_ACTIVE
+    except Exception:
+        _SOFT_DETECTOR_IMPL = _soft_detector_numpy
+        _COMPUTE_BACKEND_ACTIVE = "numpy_fallback(numba_init_failed)"
+        return _COMPUTE_BACKEND_ACTIVE
 
 
 @dataclass
@@ -41,8 +124,6 @@ class Row:
 
 
 def ncc_triple(a, b, c, eps: float = 1e-15) -> float:
-    import numpy as np
-
     num = float(np.mean(a * b * c))
     den = math.sqrt(float(np.mean(a * a)) * float(np.mean(b * b)) * float(np.mean(c * c))) + eps
     return num / den
@@ -51,8 +132,6 @@ def ncc_triple(a, b, c, eps: float = 1e-15) -> float:
 def ghz_from_fields(a, b, c, mode: str = "ncc") -> tuple[float, float, float, float, float]:
     def e(ax, bx, cx):
         if mode == "mean_product":
-            import numpy as np
-
             return float(np.mean(ax * bx * cx))
         return ncc_triple(ax, bx, cx)
 
@@ -65,40 +144,55 @@ def ghz_from_fields(a, b, c, mode: str = "ncc") -> tuple[float, float, float, fl
 
 
 def soft_detector(x, threshold: float):
-    import numpy as np
-
-    y = np.zeros_like(x)
-    y[x > threshold] = 1.0
-    y[x < -threshold] = -1.0
-    return y
+    if _SOFT_DETECTOR_IMPL is None:
+        _init_compute_backend("numba_gpu")
+    return _SOFT_DETECTOR_IMPL(x, threshold)
 
 
 def coincidence_gate(a, b, c):
-    import numpy as np
-
     # Event survives only when all three sides clicked (non-zero ternary output).
     return (np.abs(a) > 0.0) & (np.abs(b) > 0.0) & (np.abs(c) > 0.0)
 
 
 def conditional_triplet_mean(a, b, c) -> float:
-    import numpy as np
-
     m = coincidence_gate(a, b, c)
     if not np.any(m):
         return 0.0
     return float(np.mean(a[m] * b[m] * c[m]))
 
 
-def ghz_from_fields_gated(a, b, c) -> tuple[float, float, float, float, float, float]:
-    e_xxx = conditional_triplet_mean(a["X"], b["X"], c["X"])
-    e_xyy = conditional_triplet_mean(a["X"], b["Y"], c["Y"])
-    e_yxy = conditional_triplet_mean(a["Y"], b["X"], c["Y"])
-    e_yyx = conditional_triplet_mean(a["Y"], b["Y"], c["X"])
+def conditional_triplet_weighted_mean(a, b, c, wa, wb, wc, eps: float = 1e-15) -> float:
+    m = coincidence_gate(a, b, c)
+    if not np.any(m):
+        return 0.0
+    w = np.abs(wa[m]) * np.abs(wb[m]) * np.abs(wc[m])
+    num = float(np.mean(w * a[m] * b[m] * c[m]))
+    den = float(np.mean(w)) + eps
+    return num / den
+
+
+def ghz_from_fields_gated(a, b, c, weights=None) -> tuple[float, float, float, float, float, float]:
+    if weights is None:
+        e_xxx = conditional_triplet_mean(a["X"], b["X"], c["X"])
+        e_xyy = conditional_triplet_mean(a["X"], b["Y"], c["Y"])
+        e_yxy = conditional_triplet_mean(a["Y"], b["X"], c["Y"])
+        e_yyx = conditional_triplet_mean(a["Y"], b["Y"], c["X"])
+    else:
+        e_xxx = conditional_triplet_weighted_mean(
+            a["X"], b["X"], c["X"], weights["A"]["X"], weights["B"]["X"], weights["C"]["X"]
+        )
+        e_xyy = conditional_triplet_weighted_mean(
+            a["X"], b["Y"], c["Y"], weights["A"]["X"], weights["B"]["Y"], weights["C"]["Y"]
+        )
+        e_yxy = conditional_triplet_weighted_mean(
+            a["Y"], b["X"], c["Y"], weights["A"]["Y"], weights["B"]["X"], weights["C"]["Y"]
+        )
+        e_yyx = conditional_triplet_weighted_mean(
+            a["Y"], b["Y"], c["X"], weights["A"]["Y"], weights["B"]["Y"], weights["C"]["X"]
+        )
     f_val = e_xxx - e_xyy - e_yxy - e_yyx
 
     # Coincidence rate is averaged over the four GHZ term settings.
-    import numpy as np
-
     r_xxx = float(np.mean(coincidence_gate(a["X"], b["X"], c["X"])))
     r_xyy = float(np.mean(coincidence_gate(a["X"], b["Y"], c["Y"])))
     r_yxy = float(np.mean(coincidence_gate(a["Y"], b["X"], c["Y"])))
@@ -108,8 +202,6 @@ def ghz_from_fields_gated(a, b, c) -> tuple[float, float, float, float, float, f
 
 
 def build_continuous_fields(lam):
-    import numpy as np
-
     return {
         "A": {"X": np.cos(lam - 0.0), "Y": np.cos(lam - PI / 2)},
         "B": {"X": np.cos(lam - 0.0), "Y": np.cos(lam - PI / 2)},
@@ -118,8 +210,6 @@ def build_continuous_fields(lam):
 
 
 def build_shared_pump_fields(lam, pump_phase, pump_gain: float):
-    import numpy as np
-
     # Shared pump perturbation: same source event adds common nonlinear bias.
     pump = np.cos(pump_phase)
     return {
@@ -140,18 +230,26 @@ def fields_to_threshold(fields, threshold: float):
 
 
 def context_term_response(lam, pump_phase, pump_gain: float, phase_offset: float, bases: tuple[str, str, str], threshold: float):
-    import numpy as np
-
     angle = {"X": 0.0, "Y": PI / 2}
     a0, b0, c0 = angle[bases[0]], angle[bases[1]], angle[bases[2]]
     pump = np.cos(pump_phase + phase_offset)
-    a = soft_detector(np.cos(lam - a0) + pump_gain * pump, threshold)
-    b = soft_detector(np.cos(lam - b0) + pump_gain * pump, threshold)
-    c = soft_detector(np.cos(lam - c0) + pump_gain * pump, threshold)
-    return a, b, c
+    ra = np.cos(lam - a0) + pump_gain * pump
+    rb = np.cos(lam - b0) + pump_gain * pump
+    rc = np.cos(lam - c0) + pump_gain * pump
+    a = soft_detector(ra, threshold)
+    b = soft_detector(rb, threshold)
+    c = soft_detector(rc, threshold)
+    return a, b, c, ra, rb, rc
 
 
-def ghz_contextual_pump(lam, pump_phase, threshold: float, pump_gain: float, phase_offsets: dict[str, float]):
+def ghz_contextual_pump(
+    lam,
+    pump_phase,
+    threshold: float,
+    pump_gain: float,
+    phase_offsets: dict[str, float],
+    denominator_mode: str = "none",
+):
     terms = {
         "XXX": ("X", "X", "X"),
         "XYY": ("X", "Y", "Y"),
@@ -161,7 +259,7 @@ def ghz_contextual_pump(lam, pump_phase, threshold: float, pump_gain: float, pha
     vals = {}
     rates = {}
     for k, bases in terms.items():
-        a, b, c = context_term_response(
+        a, b, c, ra, rb, rc = context_term_response(
             lam,
             pump_phase,
             pump_gain=pump_gain,
@@ -169,9 +267,10 @@ def ghz_contextual_pump(lam, pump_phase, threshold: float, pump_gain: float, pha
             bases=bases,
             threshold=threshold,
         )
-        vals[k] = conditional_triplet_mean(a, b, c)
-        import numpy as np
-
+        if denominator_mode == "energy_weighted":
+            vals[k] = conditional_triplet_weighted_mean(a, b, c, ra, rb, rc)
+        else:
+            vals[k] = conditional_triplet_mean(a, b, c)
         rates[k] = float(np.mean(coincidence_gate(a, b, c)))
     f_val = vals["XXX"] - vals["XYY"] - vals["YXY"] - vals["YYX"]
     r_avg = sum(rates.values()) / 4.0
@@ -185,6 +284,7 @@ def search_context_parameters(
     coincidence_rate_min: float,
     phase_grid: list[float],
     pump_gain_grid: list[float],
+    denominator_mode: str,
     target_f: float | None = None,
     top_k: int = 20,
 ):
@@ -205,6 +305,7 @@ def search_context_parameters(
                             threshold=threshold,
                             pump_gain=float(pg),
                             phase_offsets=phase_offsets,
+                            denominator_mode=denominator_mode,
                         )
                         checked += 1
                         if e[5] < coincidence_rate_min:
@@ -251,6 +352,7 @@ def refine_search_around_candidates(
     gain_half_span: float,
     gain_steps: int,
     top_k: int,
+    denominator_mode: str,
 ):
     import numpy as np
 
@@ -282,6 +384,7 @@ def refine_search_around_candidates(
                                 threshold=threshold,
                                 pump_gain=float(pg),
                                 phase_offsets=phase_offsets,
+                                denominator_mode=denominator_mode,
                             )
                             checked += 1
                             if e[5] < coincidence_rate_min:
@@ -311,6 +414,135 @@ def refine_search_around_candidates(
         "best_abs_f": rows_abs[0],
         "top_target": rows_target[: max(1, int(top_k))],
         "top_abs_f": rows_abs[: max(1, int(top_k))],
+    }
+
+
+def run_seed_stability_sweep(
+    seeds: list[int],
+    samples: int,
+    threshold: float,
+    pump_gain: float,
+    phase_offsets: dict[str, float],
+    denominator_mode: str,
+):
+    rows = []
+    for sv in seeds:
+        rg = np.random.default_rng(int(sv))
+        lam = rg.uniform(0.0, TWO_PI, size=int(samples))
+        pump_phase = rg.uniform(0.0, TWO_PI, size=int(samples))
+        ec = ghz_contextual_pump(
+            lam,
+            pump_phase,
+            threshold=float(threshold),
+            pump_gain=float(pump_gain),
+            phase_offsets=phase_offsets,
+            denominator_mode=denominator_mode,
+        )
+        rows.append(
+            {
+                "seed": int(sv),
+                "f_context": float(ec[4]),
+                "coincidence_rate": float(ec[5]),
+            }
+        )
+    f_arr = np.asarray([r["f_context"] for r in rows], dtype=float)
+    return {
+        "count": len(rows),
+        "rows": rows,
+        "f_mean": float(np.mean(f_arr)) if len(rows) else 0.0,
+        "f_sd": float(np.std(f_arr)) if len(rows) else 0.0,
+        "f_p05": float(np.quantile(f_arr, 0.05)) if len(rows) else 0.0,
+        "f_p95": float(np.quantile(f_arr, 0.95)) if len(rows) else 0.0,
+    }
+
+
+def run_global_perturbation_audit(
+    lam,
+    pump_phase,
+    base_threshold: float,
+    base_pump_gain: float,
+    base_phase_offsets: dict[str, float],
+    denominator_mode: str,
+    draws: int,
+    threshold_jitter: float,
+    gain_jitter: float,
+    phase_jitter: float,
+    target_abs_f: float,
+):
+    rng = np.random.default_rng(1234567)
+    rows = []
+    for _ in range(int(draws)):
+        th = float(np.clip(base_threshold + rng.uniform(-threshold_jitter, threshold_jitter), 0.0, 0.99))
+        pg = float(max(0.0, base_pump_gain + rng.uniform(-gain_jitter, gain_jitter)))
+        ph = {
+            k: float((base_phase_offsets[k] + rng.uniform(-phase_jitter, phase_jitter)) % TWO_PI)
+            for k in ("XXX", "XYY", "YXY", "YYX")
+        }
+        ec = ghz_contextual_pump(
+            lam,
+            pump_phase,
+            threshold=th,
+            pump_gain=pg,
+            phase_offsets=ph,
+            denominator_mode=denominator_mode,
+        )
+        rows.append(
+            {
+                "threshold": th,
+                "pump_gain": pg,
+                "phase_offsets": ph,
+                "f": float(ec[4]),
+                "coincidence_rate": float(ec[5]),
+            }
+        )
+    f_arr = np.asarray([r["f"] for r in rows], dtype=float)
+    feasible = int(np.sum(np.abs(f_arr) >= float(target_abs_f)))
+    return {
+        "draws": int(draws),
+        "target_abs_f": float(target_abs_f),
+        "success_count": feasible,
+        "success_ratio": float(feasible / max(1, len(rows))),
+        "f_mean": float(np.mean(f_arr)) if len(rows) else 0.0,
+        "f_sd": float(np.std(f_arr)) if len(rows) else 0.0,
+        "f_max_abs": float(np.max(np.abs(f_arr))) if len(rows) else 0.0,
+        "rows": rows[: min(100, len(rows))],
+    }
+
+
+def run_null_model_audit(
+    n: int,
+    threshold: float,
+    target_abs_f: float,
+    draws: int,
+):
+    rng = np.random.default_rng(20260423)
+    f_vals = []
+    r_vals = []
+    for _ in range(int(draws)):
+        raw = rng.uniform(-1.0, 1.0, size=(4, int(n), 3))
+        q = np.zeros_like(raw)
+        q[raw > threshold] = 1.0
+        q[raw < -threshold] = -1.0
+        # term order: XXX, XYY, YXY, YYX
+        term_f = []
+        term_r = []
+        for ti in range(4):
+            a, b, c = q[ti, :, 0], q[ti, :, 1], q[ti, :, 2]
+            m = coincidence_gate(a, b, c)
+            term_r.append(float(np.mean(m)))
+            term_f.append(float(np.mean(a[m] * b[m] * c[m])) if np.any(m) else 0.0)
+        f = term_f[0] - term_f[1] - term_f[2] - term_f[3]
+        f_vals.append(float(f))
+        r_vals.append(float(np.mean(np.asarray(term_r))))
+    fa = np.asarray(f_vals, dtype=float)
+    return {
+        "draws": int(draws),
+        "target_abs_f": float(target_abs_f),
+        "f_mean": float(np.mean(fa)),
+        "f_sd": float(np.std(fa)),
+        "f_max_abs": float(np.max(np.abs(fa))),
+        "false_positive_ratio": float(np.mean(np.abs(fa) >= float(target_abs_f))),
+        "coincidence_rate_mean": float(np.mean(np.asarray(r_vals, dtype=float))),
     }
 
 
@@ -351,6 +583,7 @@ def build_audit_report(
         f"- threshold: **{threshold:.4f}**",
         f"- pump_gain: **{pump_gain:.4f}**",
         f"- coincidence_rate_floor: **{coincidence_rate_min:.4f}**",
+        f"- denominator_mode: **{payload.get('denominator_mode','none')}**",
         "",
         "## Table 1: Metric Definition Registry",
         "",
@@ -414,6 +647,8 @@ def build_audit_report(
         lines.append(f"| F_context_mean_bootstrap_sd | {rb.get('context_f_bootstrap_sd', 0.0):.6f} |")
         lines.append(f"| seed_sweep_count | {rb.get('seed_sweep_count', 0)} |")
         lines.append(f"| seed_sweep_context_f_sd | {rb.get('seed_sweep_context_f_sd', 0.0):.6f} |")
+        lines.append(f"| seed_sweep_context_f_p05 | {rb.get('seed_sweep_context_f_p05', 0.0):.6f} |")
+        lines.append(f"| seed_sweep_context_f_p95 | {rb.get('seed_sweep_context_f_p95', 0.0):.6f} |")
     else:
         lines.append("| robustness | not enabled |")
 
@@ -449,6 +684,70 @@ def build_audit_report(
 
     lines += [
         "",
+        "## Table 6: Correlation vs Coincidence (selection trade-off)",
+        "",
+        "| bucket (R) | mean F_context_pump_gated | count |",
+        "|---|---:|---:|",
+    ]
+    if payload.get("tradeoff") is not None:
+        for b in payload["tradeoff"].get("buckets", []):
+            lines.append(f"| {b['label']} | {b['f_mean']:.6f} | {b['count']} |")
+    else:
+        lines.append("| n/a | n/a | 0 |")
+
+    lines += [
+        "",
+        "## Table 7: Global Perturbation Robustness",
+        "",
+        "| item | value |",
+        "|---|---:|",
+    ]
+    pb = payload.get("perturbation_audit") or {}
+    if pb:
+        lines.append(f"| perturb_draws | {pb.get('draws', 0)} |")
+        lines.append(f"| target_abs_f | {pb.get('target_abs_f', 0.0):.6f} |")
+        lines.append(f"| success_ratio | {pb.get('success_ratio', 0.0):.6f} |")
+        lines.append(f"| f_sd | {pb.get('f_sd', 0.0):.6f} |")
+        lines.append(f"| max_abs_f | {pb.get('f_max_abs', 0.0):.6f} |")
+    else:
+        lines.append("| perturbation | not enabled |")
+
+    lines += [
+        "",
+        "## Table 8: Null-Model Sanity Check",
+        "",
+        "| item | value |",
+        "|---|---:|",
+    ]
+    nb = payload.get("null_model_audit") or {}
+    if nb:
+        lines.append(f"| null_draws | {nb.get('draws', 0)} |")
+        lines.append(f"| null_f_sd | {nb.get('f_sd', 0.0):.6f} |")
+        lines.append(f"| null_max_abs_f | {nb.get('f_max_abs', 0.0):.6f} |")
+        lines.append(f"| null_false_positive_ratio | {nb.get('false_positive_ratio', 0.0):.6f} |")
+    else:
+        lines.append("| null_model | not enabled |")
+
+    lines += [
+        "",
+        "## Table 9: Matched-Protocol QM Comparison",
+        "",
+        "| item | value |",
+        "|---|---:|",
+    ]
+    qb = payload.get("qm_comparison") or {}
+    if qb:
+        lines.append(f"| qm_reference_f | {qb.get('qm_reference_f', 4.0):.6f} |")
+        lines.append(f"| context_operating_f | {qb.get('context_operating_f', 0.0):.6f} |")
+        lines.append(f"| context_to_qm_efficiency | {qb.get('context_to_qm_efficiency', 0.0):.6f} |")
+        if "context_best_abs_f" in qb:
+            lines.append(f"| context_best_abs_f | {qb.get('context_best_abs_f', 0.0):.6f} |")
+            lines.append(f"| context_best_to_qm_efficiency | {qb.get('context_best_to_qm_efficiency', 0.0):.6f} |")
+    else:
+        lines.append("| qm_comparison | unavailable |")
+
+    lines += [
+        "",
         "### Audit Note",
         "",
         "This report audits statistical sensitivity and bookkeeping assumptions. It does not, by itself, claim or refute ontology.",
@@ -461,7 +760,6 @@ def main() -> int:
     import os
 
     os.environ.setdefault("MPLBACKEND", "Agg")
-    import numpy as np
     import matplotlib.pyplot as plt
 
     ap = argparse.ArgumentParser(description="GHZ threshold audit experiment")
@@ -479,6 +777,7 @@ def main() -> int:
     ap.add_argument("--ctx-phase-yyx", type=float, default=3.141592653589793, help="context pump phase offset for YYX")
     ap.add_argument("--search", action="store_true", help="run coarse grid search on context phases and pump gain")
     ap.add_argument("--search-phase-steps", type=int, default=4, help="phase grid points on [0,2pi)")
+    ap.add_argument("--search-phase-step-deg", type=float, default=90.0, help="coarse phase step in degrees")
     ap.add_argument("--search-gain-min", type=float, default=0.1)
     ap.add_argument("--search-gain-max", type=float, default=1.2)
     ap.add_argument("--search-gain-steps", type=int, default=6)
@@ -487,15 +786,39 @@ def main() -> int:
     ap.add_argument("--search-top-k", type=int, default=20, help="how many candidates to keep in search report")
     ap.add_argument("--fine-search", action="store_true", help="run second-stage local refinement around coarse top candidates")
     ap.add_argument("--fine-seed-k", type=int, default=5, help="how many coarse target candidates to refine around")
-    ap.add_argument("--fine-phase-half-span", type=float, default=0.7853981633974483, help="local phase half span (rad)")
-    ap.add_argument("--fine-phase-steps", type=int, default=3, help="local phase grid size per dimension")
+    ap.add_argument("--fine-phase-half-span-deg", type=float, default=8.0, help="local phase half span in degrees")
+    ap.add_argument("--fine-phase-step-deg", type=float, default=2.0, help="fine phase step in degrees")
     ap.add_argument("--fine-gain-half-span", type=float, default=0.2, help="local gain half span")
     ap.add_argument("--fine-gain-steps", type=int, default=5, help="local gain grid size")
+    ap.add_argument(
+        "--denominator-mode",
+        type=str,
+        default="energy_weighted",
+        choices=["none", "energy_weighted"],
+        help="E(a,b,c) denominator audit mode for gated/context tracks",
+    )
     ap.add_argument("--audit-bootstrap-draws", type=int, default=120)
     ap.add_argument("--audit-bootstrap-subsample", type=int, default=60_000)
     ap.add_argument("--audit-seeds", type=str, default="0,1,2,3,4")
+    ap.add_argument("--audit-seed-samples", type=int, default=80000, help="samples per seed in stability sweep")
+    ap.add_argument("--audit-perturb-draws", type=int, default=400)
+    ap.add_argument("--audit-perturb-threshold-jitter", type=float, default=0.03)
+    ap.add_argument("--audit-perturb-gain-jitter", type=float, default=0.20)
+    ap.add_argument("--audit-perturb-phase-jitter-deg", type=float, default=15.0)
+    ap.add_argument("--audit-perturb-target-abs-f", type=float, default=0.08)
+    ap.add_argument("--audit-null-draws", type=int, default=200)
+    ap.add_argument("--audit-null-samples", type=int, default=25000)
+    ap.add_argument("--audit-null-target-abs-f", type=float, default=0.08)
+    ap.add_argument(
+        "--compute-backend",
+        type=str,
+        default="numba_gpu",
+        choices=["numba_gpu", "numba_cpu", "numpy"],
+        help="compute backend preference (GPU first when available)",
+    )
     ap.add_argument("--out-dir", type=str, default="artifacts/ghz_threshold_experiment")
     args = ap.parse_args()
+    backend_active = _init_compute_backend(args.compute_backend)
 
     rng = np.random.default_rng(args.seed)
     n = int(args.samples)
@@ -528,7 +851,7 @@ def main() -> int:
     )
 
     # Track 4: threshold + coincidence gating
-    eg = ghz_from_fields_gated(fb["A"], fb["B"], fb["C"])
+    eg = ghz_from_fields_gated(fb["A"], fb["B"], fb["C"], weights=f0 if args.denominator_mode == "energy_weighted" else None)
     rows.append(
         Row(
             "threshold_binary_gated_mean",
@@ -542,7 +865,7 @@ def main() -> int:
     )
 
     # Track 5: threshold + shared pump + coincidence gating
-    epg = ghz_from_fields_gated(ftp["A"], ftp["B"], ftp["C"])
+    epg = ghz_from_fields_gated(ftp["A"], ftp["B"], ftp["C"], weights=fp if args.denominator_mode == "energy_weighted" else None)
     rows.append(
         Row(
             "threshold_shared_pump_gated_mean",
@@ -571,6 +894,7 @@ def main() -> int:
         threshold=float(args.threshold),
         pump_gain=float(args.pump_gain),
         phase_offsets=phase_offsets,
+        denominator_mode=str(args.denominator_mode),
     )
     rows.append(
         Row(
@@ -583,22 +907,23 @@ def main() -> int:
             (
                 f"threshold={args.threshold:.3f}, pump_gain={args.pump_gain:.3f}, "
                 f"ctx_phases=[{args.ctx_phase_xxx:.2f},{args.ctx_phase_xyy:.2f},{args.ctx_phase_yxy:.2f},{args.ctx_phase_yyx:.2f}], "
-                f"coincidence_rate={ec[5]:.4f}"
+                f"coincidence_rate={ec[5]:.4f}, backend={backend_active}"
             ),
         )
     )
 
     search_block = None
     if args.search:
-        import numpy as np
-
         n_search = min(int(args.search_samples), n)
         idx = rng.integers(0, n, size=n_search)
         lam_s = lam[idx]
         pump_s = pump_phase[idx]
+        phase_step_rad = max(1e-6, math.radians(float(args.search_phase_step_deg)))
         phase_steps = max(2, int(args.search_phase_steps))
         gain_steps = max(2, int(args.search_gain_steps))
-        phase_grid = np.linspace(0.0, TWO_PI, phase_steps, endpoint=False).tolist()
+        phase_grid = np.arange(0.0, TWO_PI, phase_step_rad).tolist()
+        if len(phase_grid) < 2:
+            phase_grid = np.linspace(0.0, TWO_PI, phase_steps, endpoint=False).tolist()
         pump_gain_grid = np.linspace(float(args.search_gain_min), float(args.search_gain_max), gain_steps).tolist()
         best_f, best_abs_f, best_target, checked, top_abs, top_target = search_context_parameters(
             lam_s,
@@ -607,6 +932,7 @@ def main() -> int:
             coincidence_rate_min=float(args.coincidence_rate_min),
             phase_grid=phase_grid,
             pump_gain_grid=pump_gain_grid,
+            denominator_mode=str(args.denominator_mode),
             target_f=float(args.target_f),
             top_k=int(args.search_top_k),
         )
@@ -614,6 +940,7 @@ def main() -> int:
             "enabled": True,
             "samples": int(n_search),
             "phase_steps": phase_steps,
+            "phase_step_deg": float(args.search_phase_step_deg),
             "gain_steps": gain_steps,
             "checked": int(checked),
             "target_f": float(args.target_f),
@@ -625,6 +952,9 @@ def main() -> int:
         }
         if args.fine_search:
             seeds = top_target[: max(1, int(args.fine_seed_k))]
+            fine_phase_span = math.radians(float(args.fine_phase_half_span_deg))
+            fine_phase_step = math.radians(float(args.fine_phase_step_deg))
+            fine_phase_steps = int(round((2.0 * fine_phase_span) / max(1e-6, fine_phase_step))) + 1
             fine = refine_search_around_candidates(
                 lam_s,
                 pump_s,
@@ -632,11 +962,12 @@ def main() -> int:
                 coincidence_rate_min=float(args.coincidence_rate_min),
                 target_f=float(args.target_f),
                 seed_candidates=seeds,
-                phase_half_span=float(args.fine_phase_half_span),
-                phase_steps=int(args.fine_phase_steps),
+                phase_half_span=float(fine_phase_span),
+                phase_steps=int(fine_phase_steps),
                 gain_half_span=float(args.fine_gain_half_span),
                 gain_steps=int(args.fine_gain_steps),
                 top_k=int(args.search_top_k),
+                denominator_mode=str(args.denominator_mode),
             )
             search_block["fine"] = fine
 
@@ -644,8 +975,6 @@ def main() -> int:
     robustness = {}
     b_draws = max(0, int(args.audit_bootstrap_draws))
     if b_draws > 0:
-        import numpy as np
-
         b_sub = max(1000, min(int(args.audit_bootstrap_subsample), n))
         f_boot = []
         for _ in range(b_draws):
@@ -656,6 +985,7 @@ def main() -> int:
                 threshold=float(args.threshold),
                 pump_gain=float(args.pump_gain),
                 phase_offsets=phase_offsets,
+                denominator_mode=str(args.denominator_mode),
             )
             f_boot.append(float(eb[4]))
         robustness["bootstrap_draws"] = b_draws
@@ -664,24 +994,51 @@ def main() -> int:
 
     seed_tokens = [s.strip() for s in str(args.audit_seeds).split(",") if s.strip() != ""]
     if seed_tokens:
-        import numpy as np
+        seed_values = [int(s) for s in seed_tokens]
+        seed_block = run_seed_stability_sweep(
+            seeds=seed_values,
+            samples=int(args.audit_seed_samples),
+            threshold=float(args.threshold),
+            pump_gain=float(args.pump_gain),
+            phase_offsets=phase_offsets,
+            denominator_mode=str(args.denominator_mode),
+        )
+        robustness["seed_sweep_count"] = int(seed_block["count"])
+        robustness["seed_sweep_context_f_mean"] = float(seed_block["f_mean"])
+        robustness["seed_sweep_context_f_sd"] = float(seed_block["f_sd"])
+        robustness["seed_sweep_context_f_p05"] = float(seed_block["f_p05"])
+        robustness["seed_sweep_context_f_p95"] = float(seed_block["f_p95"])
+        robustness["seed_sweep_rows"] = seed_block["rows"]
 
-        f_seed = []
-        for st in seed_tokens:
-            sv = int(st)
-            rg = np.random.default_rng(sv)
-            idx = rg.integers(0, n, size=min(120_000, n))
-            es = ghz_contextual_pump(
-                lam[idx],
-                pump_phase[idx],
-                threshold=float(args.threshold),
-                pump_gain=float(args.pump_gain),
-                phase_offsets=phase_offsets,
-            )
-            f_seed.append(float(es[4]))
-        robustness["seed_sweep_count"] = len(f_seed)
-        robustness["seed_sweep_context_f_mean"] = float(np.mean(np.asarray(f_seed)))
-        robustness["seed_sweep_context_f_sd"] = float(np.std(np.asarray(f_seed)))
+    perturb_block = run_global_perturbation_audit(
+        lam=lam,
+        pump_phase=pump_phase,
+        base_threshold=float(args.threshold),
+        base_pump_gain=float(args.pump_gain),
+        base_phase_offsets=phase_offsets,
+        denominator_mode=str(args.denominator_mode),
+        draws=int(args.audit_perturb_draws),
+        threshold_jitter=float(args.audit_perturb_threshold_jitter),
+        gain_jitter=float(args.audit_perturb_gain_jitter),
+        phase_jitter=math.radians(float(args.audit_perturb_phase_jitter_deg)),
+        target_abs_f=float(args.audit_perturb_target_abs_f),
+    )
+
+    null_block = run_null_model_audit(
+        n=int(args.audit_null_samples),
+        threshold=float(args.threshold),
+        target_abs_f=float(args.audit_null_target_abs_f),
+        draws=int(args.audit_null_draws),
+    )
+
+    qm_comparison = {
+        "qm_reference_f": 4.0,
+        "context_operating_f": float(ec[4]),
+        "context_to_qm_efficiency": float(abs(ec[4]) / 4.0),
+    }
+    if search_block and search_block.get("best_abs_f") is not None:
+        qm_comparison["context_best_abs_f"] = float(abs(search_block["best_abs_f"]["f"]))
+        qm_comparison["context_best_to_qm_efficiency"] = float(abs(search_block["best_abs_f"]["f"]) / 4.0)
 
     # F(T) scans
     ts = np.linspace(float(args.t_min), float(args.t_max), int(args.t_steps))
@@ -707,7 +1064,7 @@ def main() -> int:
         ftpt = fields_to_threshold(fp, float(t))
         ep = ghz_from_fields(ftpt["A"], ftpt["B"], ftpt["C"], mode="mean_product")
         f_pump.append(ep[-1])
-        epg_t = ghz_from_fields_gated(ftpt["A"], ftpt["B"], ftpt["C"])
+        epg_t = ghz_from_fields_gated(ftpt["A"], ftpt["B"], ftpt["C"], weights=fp if args.denominator_mode == "energy_weighted" else None)
         if epg_t[5] >= float(args.coincidence_rate_min):
             f_pump_gated.append(epg_t[-2])
         else:
@@ -720,6 +1077,7 @@ def main() -> int:
             threshold=float(t),
             pump_gain=float(args.pump_gain),
             phase_offsets=phase_offsets,
+            denominator_mode=str(args.denominator_mode),
         )
         if ec_t[5] >= float(args.coincidence_rate_min):
             f_ctx_gated.append(ec_t[-2])
@@ -730,16 +1088,43 @@ def main() -> int:
     out_dir = Path(args.out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
 
+    # Trade-off buckets: R vs F for context scan.
+    bins = np.linspace(0.0, 1.0, 6)
+    buckets = []
+    r_arr = np.asarray(r_ctx_gated, dtype=float)
+    f_arr = np.asarray(f_ctx_gated, dtype=float)
+    for i in range(len(bins) - 1):
+        lo = bins[i]
+        hi = bins[i + 1]
+        m = (r_arr >= lo) & (r_arr < hi if i < len(bins) - 2 else r_arr <= hi)
+        if np.any(m):
+            buckets.append(
+                {
+                    "label": f"[{lo:.1f},{hi:.1f}{')' if i < len(bins)-2 else ']'}",
+                    "f_mean": float(np.mean(f_arr[m])),
+                    "count": int(np.sum(m)),
+                }
+            )
+        else:
+            buckets.append({"label": f"[{lo:.1f},{hi:.1f}{')' if i < len(bins)-2 else ']'}", "f_mean": 0.0, "count": 0})
+
     payload = {
         "seed": args.seed,
         "samples": n,
+        "compute_backend_requested": str(args.compute_backend),
+        "compute_backend_active": str(backend_active),
         "threshold": args.threshold,
         "pump_gain": args.pump_gain,
         "coincidence_rate_min": args.coincidence_rate_min,
+        "denominator_mode": str(args.denominator_mode),
         "context_phase_offsets": phase_offsets,
         "rows": [r.__dict__ for r in rows],
         "search": search_block,
         "robustness": robustness,
+        "perturbation_audit": perturb_block,
+        "null_model_audit": null_block,
+        "qm_comparison": qm_comparison,
+        "tradeoff": {"buckets": buckets},
         "scan": {
             "thresholds": ts.tolist(),
             "F_threshold_binary": f_bin,
@@ -758,6 +1143,7 @@ def main() -> int:
         "# GHZ Threshold Audit (new experiment branch)",
         "",
         f"- samples: **{n}**, seed: **{args.seed}**",
+        f"- compute backend: requested **{args.compute_backend}**, active **{backend_active}**",
         f"- threshold(default row): **{args.threshold:.3f}**",
         f"- shared pump gain(default row): **{args.pump_gain:.3f}**",
         f"- gated scan coincidence floor: **{args.coincidence_rate_min:.3f}**",
@@ -780,6 +1166,26 @@ def main() -> int:
     md.append("- Gated tracks apply coincidence post-selection (all three clicked), then conditional mean on survived events.")
     md.append("- For very high threshold, coincidence rate can collapse; scan values are clamped to 0 when rate < floor.")
     md.append("- This branch is for mechanism audit (detector nonlinearity + shared source perturbation), not claim replacement.")
+    md.append("")
+    md.append("## v11 audit blocks")
+    md.append("")
+    md.append(
+        f"- perturbation success ratio (|F|>={args.audit_perturb_target_abs_f:.3f}): "
+        f"**{perturb_block['success_ratio']:.4f}** over {perturb_block['draws']} draws"
+    )
+    md.append(
+        f"- null-model false-positive ratio (|F|>={args.audit_null_target_abs_f:.3f}): "
+        f"**{null_block['false_positive_ratio']:.4f}** over {null_block['draws']} draws"
+    )
+    md.append(
+        f"- matched-protocol efficiency vs QM: "
+        f"**{qm_comparison['context_to_qm_efficiency']:.6f}** (operating point)"
+    )
+    if "context_best_to_qm_efficiency" in qm_comparison:
+        md.append(
+            f"- best searched efficiency vs QM: "
+            f"**{qm_comparison['context_best_to_qm_efficiency']:.6f}**"
+        )
     if search_block is not None:
         md.append("")
         md.append("## Coarse search")
@@ -787,6 +1193,7 @@ def main() -> int:
         md.append(
             f"- checked: **{search_block['checked']}** combos, search_samples: **{search_block['samples']}**"
         )
+        md.append(f"- coarse phase step: **{search_block.get('phase_step_deg', 90.0):.1f} deg**")
         if search_block["best_f"] is not None:
             b = search_block["best_f"]
             md.append(
@@ -889,6 +1296,25 @@ def main() -> int:
     fig.savefig(out_dir / "ghz_threshold_F_vs_T.png", dpi=160)
     plt.close(fig)
 
+    # Mechanism heatmap: coarse candidates projected onto (pump_gain, phase_contrast).
+    if search_block is not None and search_block.get("top_abs_f"):
+        xs, ys, zs = [], [], []
+        for c in search_block["top_abs_f"]:
+            ph = c["phase_offsets"]
+            contrast = ((ph["XXX"] - (ph["XYY"] + ph["YXY"] + ph["YYX"]) / 3.0) + PI) % TWO_PI - PI
+            xs.append(float(c["pump_gain"]))
+            ys.append(float(contrast))
+            zs.append(float(c["f"]))
+        fig2, ax2 = plt.subplots(figsize=(8.5, 4.8))
+        sc = ax2.scatter(xs, ys, c=zs, cmap="coolwarm", s=60, edgecolor="k", linewidth=0.3)
+        ax2.set_xlabel("pump_gain")
+        ax2.set_ylabel("phase contrast (rad)")
+        ax2.set_title("Mechanism heatmap proxy (top coarse candidates)")
+        fig2.colorbar(sc, ax=ax2, label="F")
+        fig2.tight_layout()
+        fig2.savefig(out_dir / "ghz_threshold_mechanism_heatmap.png", dpi=160)
+        plt.close(fig2)
+
     build_audit_report(
         out_dir=out_dir,
         payload=payload,
@@ -905,6 +1331,7 @@ def main() -> int:
     print("wrote", out_dir / "AUDIT_REPORT.md")
     if search_block is not None:
         print("wrote", out_dir / "TOP20_AUDIT_CANDIDATES.md")
+        print("wrote", out_dir / "ghz_threshold_mechanism_heatmap.png")
     return 0
 
 
