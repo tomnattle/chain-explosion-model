@@ -12,15 +12,15 @@
 
 - [x] 粗搜配置固定（90 deg 步长，参数网格登记）
 - [x] 细搜配置固定（2 deg 步长，Top-k 邻域）
-- [ ] Top-k 候选重跑复核（同 seed / 异 seed）
-- [ ] 邻域扰动测试（验证是否“单点尖峰”）
+- [ ] Top-k 候选重跑复核（同 seed / 异 seed；当前仅有 Top20 候选清单，见 `artifacts/ghz_threshold_experiment/TOP20_AUDIT_CANDIDATES.md`）
+- [ ] 邻域扰动测试（验证是否“单点尖峰”；当前已有全局扰动快照，见 `artifacts/ghz_threshold_experiment/AUDIT_REPORT.md` 表7）
 
 ## C. 统计与可信度
 
-- [ ] 多 seed 稳健性（建议 >=20）
-- [x] bootstrap 置信区间
-- [x] `F` vs `coincidence_rate` trade-off 定量分析
-- [x] 失败分解（为何无法逼近 4）
+- [ ] 多 seed 稳健性（建议 >=20；当前已完成 seed_sweep_count=3，见 `artifacts/ghz_threshold_experiment/AUDIT_REPORT.md` 表4）
+- [x] bootstrap 置信区间（见 `artifacts/ghz_threshold_experiment/AUDIT_REPORT.md` 表4）
+- [x] `F` vs `coincidence_rate` trade-off 定量分析（见 `artifacts/ghz_threshold_experiment/AUDIT_REPORT.md` 表6）
+- [x] 失败分解（为何无法逼近 4，见 `artifacts/ghz_threshold_experiment/AUDIT_REPORT.md` 表5）
 
 ## D. 图表与表格
 

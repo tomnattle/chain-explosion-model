@@ -1,3 +1,8 @@
+# Core numerical + plotting stack used across simulation scripts
 numpy>=1.20
 matplotlib>=3.5
 numba>=0.56
+
+# Data IO / report asset helpers used by NIST and audit pipelines
+h5py>=3.7
+Pillow>=9.0

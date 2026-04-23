@@ -85,7 +85,7 @@
 ### 3.1 预注册 + 冻结叙事
 ### 3.1 Preregistration + Frozen Narrative
 
-- **核心做法：** 假设、指标公式、通过/不通过条件尽量先写死在 JSON / Markdown 中；事后改口需要新版本文件。
+- **核心做法：** 假设、指标公式、通过/不通过条件尽量先固定在 JSON / Markdown 中；事后改口需要新版本文件。
 - **可核对：** `chsh_preregistered_config*.json`、`INTERPRETATION_NOTE.md` 中“只补充边界、不改判决”的做法。
 
 - **Core practice:** Hypotheses, metric formulas, and pass/fail conditions are written into JSON or Markdown as early as possible; any later reinterpretation requires a new versioned file.
@@ -135,7 +135,7 @@ Each item below corresponds to observable behavior; whether it maps to a deeper 
 | 规范主义 | 预注册、清单、 Freeze Rule | 相信规则先于结论，结论争议应通过新版本规则重跑而不是事后改口。 |
 | 对抗性自我审查 | dossier 邀请质疑、`INTERPRETATION_NOTE.md` 主动限缩解释 | 在叙述中预留反对者席位，接近交叉询问结构。 |
 | 分层实在论（方法论上） | “现象层记录”“不对理论极限做硬门禁”等措辞 | 区分脚本可读层与理论主张层，避免一步跳到哲学判决。 |
-| 控制感需求 | 长 README、统一套件、战斗路线总览 | 通过给不确定性命名并分区来管理复杂度。 |
+| 控制感需求 | 长 README、统一套件、并行研究路线总览 | 通过给不确定性命名并分区来管理复杂度。 |
 | 强叙事冲动与强纠错机制并存 | 一侧是宣言与战役语言，另一侧是非声称、收束、边界 | 张力持续存在，但后期文档会主动回收冲动性措辞。 |
 
 | Tendency | Stable textual behavior | Meaning |
@@ -182,8 +182,8 @@ This timeline suggests that the project’s writing goal is shifting from “adv
 
 - **认知负荷转移给读者：** 极长文档提高了单文件可审计性，但牺牲了新读者友好度。  
   **Cognitive load shifted to the reader:** very long documents improve single-file auditability, but reduce newcomer friendliness.
-- **隐喻成本：** 战争话语对外部读者有时会像 advocacy 而不是 research。  
-  **Metaphor cost:** battle language may appear as advocacy rather than research to outside readers.
+- **隐喻成本：** 对抗性话语对外部读者有时会像 advocacy 而不是 research。
+  **Metaphor cost:** adversarial language may appear as advocacy rather than research to outside readers.
 - **情感与制度的缝隙：** 宣言式句子若不被 closure 文档回收，就会在历史记录中形成张力。  
   **Gap between emotion and institution:** manifesto-like lines, if not absorbed by closure documents, remain as tension in the historical record.
 
@@ -195,7 +195,7 @@ This timeline suggests that the project’s writing goal is shifting from “adv
 如果需要一个高度压缩的描述，这个项目可以被概括为：  
 If a highly compressed description is needed, the project may be summarized as:
 
-> **预注册的对抗性工程写作**：用版本化规则与门禁代替一次性激情判断；用双语表格与 JSON 锚定语义；用多条战线隔离不同类型结论；并在周期末用闭包文档把可说与不可说的话写死。  
+> **预注册的对抗性工程写作**：用版本化规则与门禁代替一次性激情判断；用双语表格与 JSON 锚定语义；用多条并行研究线隔离不同类型结论；并在周期末用闭包文档明确可说与不可说的话。
 > **Preregistered adversarial engineering writing**: replacing one-shot passionate judgment with versioned rules and gates; anchoring meaning with bilingual tables and JSON; isolating different conclusions behind distinct fronts; and finally using closure documents to freeze what may and may not be claimed.
 
 ---

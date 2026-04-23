@@ -14,19 +14,20 @@ The true center of this repository is not the scattered double-slit scripts, but
 2. [Quick Start Paths](#quick-start-paths)
 3. [What This Repository Contains](#what-this-repository-contains)
 4. [The Two Major Experiments](#the-two-major-experiments)
-5. [Why The Project Has Value](#why-the-project-has-value)
-6. [Recommended Reading Order](#recommended-reading-order)
-7. [Quick Note](#quick-note)
+5. [Audit Findings Summary](#audit-findings-summary)
+6. [Why The Project Has Value](#why-the-project-has-value)
+7. [Recommended Reading Order](#recommended-reading-order)
+8. [Quick Note](#quick-note)
 
 ## Reading Guide
 
-如果你只想快速理解这个项目，建议先读这份入口文档，再读总文档 [PROJECT_TECHNICAL_MONOGRAPH.md](D:/workspace/golang/nakama/chain-explosion-model/docs/PROJECT_TECHNICAL_MONOGRAPH.md)。后者按“像一本书”的方式组织内容，包含摘要、章节、原理、公式、实验、结果与解释边界。
+如果你只想快速理解这个项目，建议先读这份入口文档，再读总文档 [PROJECT_TECHNICAL_MONOGRAPH.md](docs/PROJECT_TECHNICAL_MONOGRAPH.md)。后者按“像一本书”的方式组织内容，包含摘要、章节、原理、公式、实验、结果与解释边界。
 
-If you want a fast understanding of the project, start with this entry document and then read the full monograph [PROJECT_TECHNICAL_MONOGRAPH.md](D:/workspace/golang/nakama/chain-explosion-model/docs/PROJECT_TECHNICAL_MONOGRAPH.md). The monograph is organized like a book, with an abstract, chapters, principles, formulas, experiments, results, and interpretive limits.
+If you want a fast understanding of the project, start with this entry document and then read the full monograph [PROJECT_TECHNICAL_MONOGRAPH.md](docs/PROJECT_TECHNICAL_MONOGRAPH.md). The monograph is organized like a book, with an abstract, chapters, principles, formulas, experiments, results, and interpretive limits.
 
-如果你想先看作者对传播、测量和模型直觉的自我图景，再进入技术主线，可以阅读 [MODEL_INTUITION.md](D:/workspace/golang/nakama/chain-explosion-model/docs/MODEL_INTUITION.md)。这个文件被刻意与结果文档分开，以避免把“直觉”和“结论”混写在一起。
+如果你想先看作者对传播、测量和模型直觉的自我图景，再进入技术主线，可以阅读 [MODEL_INTUITION.md](docs/MODEL_INTUITION.md)。这个文件被刻意与结果文档分开，以避免把“直觉”和“结论”混写在一起。
 
-If you want to see the author's intuitive picture of propagation and measurement before diving into the technical structure, read [MODEL_INTUITION.md](D:/workspace/golang/nakama/chain-explosion-model/docs/MODEL_INTUITION.md). That file is intentionally separated from the result documents so that intuition and conclusion are not conflated.
+If you want to see the author's intuitive picture of propagation and measurement before diving into the technical structure, read [MODEL_INTUITION.md](docs/MODEL_INTUITION.md). That file is intentionally separated from the result documents so that intuition and conclusion are not conflated.
 
 ## Quick Start Paths
 
@@ -34,15 +35,15 @@ If you want to see the author's intuitive picture of propagation and measurement
 
 If you want different ways to enter the repository, use one of these paths.
 
-- Fast overview: [PROJECT_TECHNICAL_MONOGRAPH.md](D:/workspace/golang/nakama/chain-explosion-model/docs/PROJECT_TECHNICAL_MONOGRAPH.md)
-- Author's model picture: [MODEL_INTUITION.md](D:/workspace/golang/nakama/chain-explosion-model/docs/MODEL_INTUITION.md)
-- Author's memory note: [AUTHOR_MEMORY_NOTE.md](D:/workspace/golang/nakama/chain-explosion-model/docs/AUTHOR_MEMORY_NOTE.md)
-- Bell / CHSH protocol layer: [BELL_PROTOCOL_NOTE.md](D:/workspace/golang/nakama/chain-explosion-model/docs/BELL_PROTOCOL_NOTE.md)
-- Paper strategy package: [PAPER_STRATEGY_PACKAGE.md](D:/workspace/golang/nakama/chain-explosion-model/docs/PAPER_STRATEGY_PACKAGE.md)
-- Research map: [RESEARCH_MAP.md](D:/workspace/golang/nakama/chain-explosion-model/docs/RESEARCH_MAP.md)
-- Static site (navigator + treejs): [docs/site/index.html](D:/workspace/golang/nakama/chain-explosion-model/docs/site/index.html)
+- Fast overview: [PROJECT_TECHNICAL_MONOGRAPH.md](docs/PROJECT_TECHNICAL_MONOGRAPH.md)
+- Author's model picture: [MODEL_INTUITION.md](docs/MODEL_INTUITION.md)
+- Author's memory note: [AUTHOR_MEMORY_NOTE.md](docs/AUTHOR_MEMORY_NOTE.md)
+- Bell / CHSH protocol layer: [BELL_PROTOCOL_NOTE.md](docs/BELL_PROTOCOL_NOTE.md)
+- Paper strategy package: [PAPER_STRATEGY_PACKAGE.md](docs/PAPER_STRATEGY_PACKAGE.md)
+- Research map: [RESEARCH_MAP.md](docs/RESEARCH_MAP.md)
+- Static site (navigator + treejs): [docs/site/index.html](docs/site/index.html)
   - Regenerate experiment pages: `python scripts/explore/generate_experiment_animation_pages.py`
-- Archived battle results: [battle_results/README.md](D:/workspace/golang/nakama/chain-explosion-model/battle_results/README.md)
+- Archived battle results: [battle_results/README.md](battle_results/README.md)
 
 ## What This Repository Contains
 
@@ -71,6 +72,16 @@ The first major experiment is located at `battle_results/nist_completeblind_2015
 
 The second major experiment is located at `battle_results/nist_round2_v2/`. It goes further by addressing layout compatibility, mapping sensitivity, protocol boundaries, and interpretive closure, making it closer to a formal research archive than the first round.
 
+## Audit Findings Summary
+
+在当前公开脚本与审计口径下，GHZ threshold 管线报告的 `F` 值整体处于低幅区间，未接近理想化参考值。  
+该结论对样本包含规则与统计口径敏感，因此结果解释需要与协议定义、门槛条件和负结果一起阅读。  
+仓库默认将此线定位为“可复现的方法学审计资产”，用于复核统计稳健性边界，而非单独作为本体结论。
+
+Under the current public scripts and audit protocol, the GHZ threshold pipeline reports `F` values in a low-amplitude range and does not approach the idealized reference value.  
+This conclusion is sensitive to inclusion rules and statistical bookkeeping, so interpretation should be read together with protocol definitions, gate criteria, and negative results.  
+In this repository, the GHZ line is treated as reproducible methodological audit evidence for robustness boundaries, not as a standalone ontological claim.
+
 ## Why The Project Has Value
 
 这个项目最有价值的地方，不是它简单声称解释了量子现象，而是它把一套替代性传播叙事推进到了可运行、可审计、可失败、可归档的程度。尤其重要的是，失败结果也被保留下来了，而不是被文档掩盖。
@@ -83,13 +94,13 @@ The strongest value of this project is not that it simply claims to explain quan
 
 The recommended reading order is: this file, the full monograph, the Bell protocol note, the two battle archives, and only then the foundational scripts. This keeps the main line and supporting branches from being confused.
 
-1. [PROJECT_TECHNICAL_MONOGRAPH.md](D:/workspace/golang/nakama/chain-explosion-model/docs/PROJECT_TECHNICAL_MONOGRAPH.md)
-2. [MODEL_INTUITION.md](D:/workspace/golang/nakama/chain-explosion-model/docs/MODEL_INTUITION.md)
-3. [AUTHOR_MEMORY_NOTE.md](D:/workspace/golang/nakama/chain-explosion-model/docs/AUTHOR_MEMORY_NOTE.md)
-4. [BELL_PROTOCOL_NOTE.md](D:/workspace/golang/nakama/chain-explosion-model/docs/BELL_PROTOCOL_NOTE.md)
-5. [battle_results/README.md](D:/workspace/golang/nakama/chain-explosion-model/battle_results/README.md)
-6. [battle_results/nist_completeblind_2015-09-19/README.md](D:/workspace/golang/nakama/chain-explosion-model/battle_results/nist_completeblind_2015-09-19/README.md)
-7. [battle_results/nist_round2_v2/README.md](D:/workspace/golang/nakama/chain-explosion-model/battle_results/nist_round2_v2/README.md)
+1. [PROJECT_TECHNICAL_MONOGRAPH.md](docs/PROJECT_TECHNICAL_MONOGRAPH.md)
+2. [MODEL_INTUITION.md](docs/MODEL_INTUITION.md)
+3. [AUTHOR_MEMORY_NOTE.md](docs/AUTHOR_MEMORY_NOTE.md)
+4. [BELL_PROTOCOL_NOTE.md](docs/BELL_PROTOCOL_NOTE.md)
+5. [battle_results/README.md](battle_results/README.md)
+6. [battle_results/nist_completeblind_2015-09-19/README.md](battle_results/nist_completeblind_2015-09-19/README.md)
+7. [battle_results/nist_round2_v2/README.md](battle_results/nist_round2_v2/README.md)
 
 ## Quick Note
 
