@@ -1,0 +1,33 @@
+{
+  "seed": 20260423,
+  "samples": 100000,
+  "band": {
+    "offset_min": 18.0,
+    "offset_max": 28.0,
+    "offset_steps": 11
+  },
+  "grid": {
+    "r_min": 0.45,
+    "r_max": 0.7,
+    "lambda_min": 1.2,
+    "lambda_max": 1.9,
+    "steps": 25
+  },
+  "best_by_D": {
+    "r_src": 0.7,
+    "lambda_w": 1.2,
+    "F": 3.7465791414378486,
+    "R": 0.286575,
+    "D": 1.0736759174575516,
+    "offset_deg": 18.0
+  },
+  "best_by_F": {
+    "r_src": 0.5125,
+    "lambda_w": 1.5791666666666666,
+    "F": 4.0,
+    "R": 0.24603750000000002,
+    "D": 0.9841500000000001,
+    "offset_deg": 18.0
+  },
+  "count_F_ge_3_and_R_ge_0_4": 0
+}
