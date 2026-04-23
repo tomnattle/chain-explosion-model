@@ -1,0 +1,55 @@
+{
+  "seed": 0,
+  "samples": 1000000,
+  "rows": [
+    {
+      "name": "QM_reference_GHZ",
+      "e_xxx": 1.0,
+      "e_xyy": -1.0,
+      "e_yxy": -1.0,
+      "e_yyx": -1.0,
+      "f_mermin": 4.0,
+      "note": "Ideal |GHZ> Pauli correlators (not NCC cosines)."
+    },
+    {
+      "name": "scheme1_four_lambdas",
+      "e_xxx": -0.0003789949534128805,
+      "e_xyy": -0.0010695355071990876,
+      "e_yxy": 0.0009129871205484251,
+      "e_yyx": 0.0010713292271238056,
+      "f_mermin": -0.0012937757938860236,
+      "note": ""
+    },
+    {
+      "name": "scheme2_sphere_user_xy_xz",
+      "e_xxx": -0.0007353155582865463,
+      "e_xyy": -0.0007353155582865463,
+      "e_yxy": -0.0007353155582865463,
+      "e_yyx": -0.0007353155582865463,
+      "f_mermin": 0.0014706311165730926,
+      "note": "At angle=0, measure_X and measure_Y both return n_x; four triples degenerate."
+    },
+    {
+      "name": "scheme2b_sphere_bloch_nx_ny",
+      "e_xxx": -0.0007353155582865463,
+      "e_xyy": -0.0018405971912690876,
+      "e_yxy": -0.0018405971912690876,
+      "e_yyx": -0.0018405971912690885,
+      "f_mermin": 0.004786476015520718,
+      "note": ""
+    },
+    {
+      "name": "scheme3_best_phi",
+      "e_xxx": 0.0011780575237511038,
+      "e_xyy": -0.00036324622959660725,
+      "e_yxy": -0.00036324622959660725,
+      "e_yyx": 0.0006237151967097218,
+      "f_mermin": 0.0012808347862345963,
+      "note": "phi=3.796091 rad, min|E(XXX)-1|=0.998822"
+    }
+  ],
+  "scheme3_best_phi_rad": 3.796091123087667,
+  "scheme3_min_abs_exxx_minus_1": 0.9988219424762489,
+  "mermin_lhv_bound_binary": 2.0,
+  "qm_ideal_F": 4.0
+}

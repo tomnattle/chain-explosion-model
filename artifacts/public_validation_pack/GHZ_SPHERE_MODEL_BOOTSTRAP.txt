@@ -1,0 +1,1 @@
+scheme1 F bootstrap sd (n=150): 0.002148
