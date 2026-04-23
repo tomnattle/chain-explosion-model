@@ -1,0 +1,21 @@
+{
+  "selected_on_train": null,
+  "holdout_validation": null,
+  "audit_formula": "score = F - alpha*(1-R) - beta*seed_sd - gamma*CI_width",
+  "status": "FAIL_NO_CANDIDATE_PASSED_R_MIN",
+  "diagnostic": {
+    "R_min": 0.4,
+    "search_grid": {
+      "r_src": [
+        0.05,
+        0.8,
+        16
+      ],
+      "lambda_w": [
+        0.1,
+        2.0,
+        16
+      ]
+    }
+  }
+}

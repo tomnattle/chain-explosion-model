@@ -1,0 +1,26 @@
+{
+  "seed": 20260423,
+  "n_samples": 500000,
+  "train_ratio": 0.7,
+  "gate_k": 0.65,
+  "r_min": 0.4,
+  "r_obs": 1.0,
+  "r_src_min": 0.05,
+  "r_src_max": 0.8,
+  "r_src_steps": 16,
+  "lambda_w_min": 0.1,
+  "lambda_w_max": 2.0,
+  "lambda_w_steps": 16,
+  "alpha": 0.6,
+  "beta": 8.0,
+  "gamma": 2.5,
+  "bootstrap_draws": 80,
+  "bootstrap_subsample": 80000,
+  "seed_sweep": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ]
+}
