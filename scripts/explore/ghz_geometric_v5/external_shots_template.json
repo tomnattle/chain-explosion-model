@@ -1,9 +1,9 @@
 {
   "shots": [
     { "measurement_basis": "XXX", "outcome": "000" },
-    { "measurement_basis": "XYY", "outcome": "011" },
-    { "measurement_basis": "YXY", "outcome": "101" },
-    { "measurement_basis": "YYX", "outcome": "110" },
+    { "measurement_basis": "XYY", "outcome": "001" },
+    { "measurement_basis": "YXY", "outcome": "010" },
+    { "measurement_basis": "YYX", "outcome": "100" },
     { "measurement_basis": "XXX", "outcome": "L00" }
   ]
 }
