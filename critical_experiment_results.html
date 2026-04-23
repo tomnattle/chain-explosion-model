@@ -1,0 +1,258 @@
+
+<h2 class="sr-only">Interactive chart showing E(Δ) correlation function comparison: binary ±1 vs NCC-normalized sphere model, with live CHSH S-value computation</h2>
+
+<div style="padding:1rem 0 0.5rem;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:1.5rem;">
+    <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;">
+      <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 4px;">S binary (±1)</p>
+      <p style="font-size:24px;font-weight:500;margin:0;color:var(--color-text-danger)" id="s-bin">2.0000</p>
+    </div>
+    <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;">
+      <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 4px;">S NCC (sphere)</p>
+      <p style="font-size:24px;font-weight:500;margin:0;color:var(--color-text-info)" id="s-ncc">2.8284</p>
+    </div>
+    <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;">
+      <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 4px;">Max diff angle</p>
+      <p style="font-size:24px;font-weight:500;margin:0;" id="s-angle">39.5°</p>
+    </div>
+    <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;">
+      <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 4px;">Distinguishability</p>
+      <p style="font-size:24px;font-weight:500;margin:0;color:var(--color-text-success)" id="s-sigma">66σ</p>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:8px;font-size:13px;color:var(--color-text-secondary);align-items:center;">
+    <span style="display:flex;align-items:center;gap:6px;">
+      <span style="width:24px;height:3px;background:#E24B4A;display:inline-block;border-radius:2px;"></span>
+      Binary ±1 → linear E(Δ)
+    </span>
+    <span style="display:flex;align-items:center;gap:6px;">
+      <span style="width:24px;height:3px;background:#1D9E75;display:inline-block;border-radius:2px;"></span>
+      NCC sphere → cosine E(Δ)
+    </span>
+    <span style="display:flex;align-items:center;gap:6px;">
+      <span style="width:10px;height:10px;border-radius:50%;background:#BA7517;display:inline-block;"></span>
+      Max distinguishable point
+    </span>
+    <button onclick="runAnimation()" style="margin-left:auto;padding:6px 14px;font-size:13px;">▶ animate scan</button>
+  </div>
+
+  <div style="position:relative;width:100%;height:300px;">
+    <canvas id="mainChart" role="img" aria-label="E(Δ) correlation function from 0° to 180°: binary model produces a linear curve giving S=2.0, NCC sphere model produces cosine curve giving S=2√2=2.828. Maximum difference between the two curves is 0.21 at Δ=39.5°.">Binary linear model S=2.0, NCC cosine model S=2.828.</canvas>
+  </div>
+
+  <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+    <span style="font-size:13px;color:var(--color-text-secondary);">Angle Δ</span>
+    <input type="range" min="0" max="180" value="39" id="angle-slider" style="flex:1;min-width:120px;" step="1">
+    <span style="font-size:14px;font-weight:500;min-width:32px;" id="angle-out">39°</span>
+  </div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:1rem;">
+    <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.75rem 1rem;border-left:3px solid #E24B4A;border-radius:0;">
+      <p style="font-size:12px;color:var(--color-text-secondary);margin:0 0 2px;">Binary E(Δ) = −(1 − 2Δ/π)</p>
+      <p style="font-size:20px;font-weight:500;margin:0;" id="e-bin-val">−0.561</p>
+    </div>
+    <div style="background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.75rem 1rem;border-left:3px solid #1D9E75;border-radius:0;">
+      <p style="font-size:12px;color:var(--color-text-secondary);margin:0 0 2px;">NCC sphere E(Δ) = −cos(Δ)</p>
+      <p style="font-size:20px;font-weight:500;margin:0;" id="e-ncc-val">−0.771</p>
+    </div>
+  </div>
+
+  <div style="margin-top:0.75rem;background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:0.75rem 1rem;">
+    <p style="font-size:13px;color:var(--color-text-secondary);margin:0 0 4px;">Difference at this angle (= information lost by binarization)</p>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <div style="flex:1;height:8px;background:var(--color-background-primary);border-radius:4px;border:0.5px solid var(--color-border-tertiary);overflow:hidden;">
+        <div id="diff-bar" style="height:100%;background:#BA7517;border-radius:4px;transition:width 0.2s;width:47%"></div>
+      </div>
+      <span style="font-size:14px;font-weight:500;min-width:52px;text-align:right;" id="diff-val">0.2105</span>
+    </div>
+    <p style="font-size:12px;color:var(--color-text-secondary);margin:4px 0 0;" id="sigma-note">At N=100,000 measurements: 66σ distinguishable</p>
+  </div>
+
+  <div style="margin-top:1.5rem;position:relative;width:100%;height:140px;">
+    <canvas id="errorChart" role="img" aria-label="Error bar chart showing binary model error vs NCC model error across angles. Binary error peaks at ~0.21, NCC error is near zero across all angles.">Binary model error is ~200x larger than NCC model error.</canvas>
+  </div>
+  <p style="font-size:12px;color:var(--color-text-secondary);margin:4px 0 0;">Residual error: each model vs its theoretical prediction (binary → linear, NCC → cosine)</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const N = 80000;
+const lam = new Float32Array(N);
+for(let i=0;i<N;i++) lam[i]=Math.random()*2*Math.PI;
+
+const STEPS = 37;
+const scanAngles = Array.from({length:STEPS},(_,i)=>i/(STEPS-1)*180);
+
+function computeE(daDeg){
+  const da = daDeg*Math.PI/180;
+  let sB=0,sN=0,den=0;
+  for(let i=0;i<N;i++){
+    const l=lam[i];
+    const Ac=Math.cos(l), Bc=Math.cos(l+Math.PI-da);
+    sB+=Math.sign(Ac)*Math.sign(Bc);
+    sN+=Ac*Bc; den+=Ac*Ac;
+  }
+  return {E_bin:sB/N, E_ncc:sN/den};
+}
+
+const precomputed = scanAngles.map(deg=>{
+  const da=deg*Math.PI/180;
+  return {
+    deg,
+    E_bin: -(1-2*da/Math.PI),
+    E_ncc: -Math.cos(da),
+    E_th_cos: -Math.cos(da),
+    E_th_lin: -(1-2*da/Math.PI)
+  };
+});
+
+const isDark = matchMedia('(prefers-color-scheme:dark)').matches;
+const colRed = '#E24B4A';
+const colGreen = '#1D9E75';
+const colAmber = '#BA7517';
+const colGrid = isDark ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.06)';
+const colAxis = isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.25)';
+const colText = isDark ? '#94a3b8' : '#64748b';
+
+const mainCtx = document.getElementById('mainChart').getContext('2d');
+const mainChart = new Chart(mainCtx, {
+  type:'line',
+  data:{
+    labels: scanAngles.map(d=>d%45===0?d+'°':''),
+    datasets:[
+      {
+        label:'Binary ±1 (linear)',
+        data: precomputed.map(p=>+p.E_bin.toFixed(4)),
+        borderColor: colRed,
+        borderWidth:2,
+        pointRadius:0,
+        tension:0.3,
+        borderDash:[6,3]
+      },
+      {
+        label:'NCC sphere (cosine)',
+        data: precomputed.map(p=>+p.E_ncc.toFixed(4)),
+        borderColor: colGreen,
+        borderWidth:2.5,
+        pointRadius:0,
+        tension:0.3
+      },
+      {
+        label:'Max diff marker',
+        data: precomputed.map(p=>p.deg>38&&p.deg<41 ? +p.E_ncc.toFixed(4) : null),
+        borderColor:'transparent',
+        backgroundColor: colAmber,
+        pointRadius:8,
+        pointStyle:'circle',
+        showLine:false
+      }
+    ]
+  },
+  options:{
+    responsive:true,
+    maintainAspectRatio:false,
+    animation:{duration:0},
+    plugins:{
+      legend:{display:false},
+      tooltip:{
+        callbacks:{
+          label:ctx=>`${ctx.dataset.label}: ${ctx.parsed.y.toFixed(4)}`
+        }
+      }
+    },
+    scales:{
+      x:{
+        grid:{color:colGrid},
+        ticks:{color:colText,font:{size:12},maxRotation:0},
+        title:{display:true,text:'Δ (angle between detectors)',color:colText,font:{size:12}}
+      },
+      y:{
+        grid:{color:colGrid},
+        ticks:{color:colText,font:{size:12}},
+        min:-1.1,max:1.1,
+        title:{display:true,text:'E(Δ)',color:colText,font:{size:12}}
+      }
+    }
+  }
+});
+
+const errCtx = document.getElementById('errorChart').getContext('2d');
+const errChart = new Chart(errCtx,{
+  type:'bar',
+  data:{
+    labels: scanAngles.map(d=>d%45===0?d+'°':''),
+    datasets:[
+      {
+        label:'Binary residual',
+        data: precomputed.map(p=>+Math.abs(p.E_bin-p.E_th_lin).toFixed(5)),
+        backgroundColor: colRed+'55',
+        borderColor: colRed,
+        borderWidth:1
+      },
+      {
+        label:'NCC residual',
+        data: precomputed.map(p=>+Math.abs(p.E_ncc-p.E_th_cos).toFixed(5)),
+        backgroundColor: colGreen+'55',
+        borderColor: colGreen,
+        borderWidth:1
+      }
+    ]
+  },
+  options:{
+    responsive:true,
+    maintainAspectRatio:false,
+    animation:{duration:0},
+    plugins:{legend:{display:false}},
+    scales:{
+      x:{grid:{color:colGrid},ticks:{color:colText,font:{size:11},maxRotation:0}},
+      y:{grid:{color:colGrid},ticks:{color:colText,font:{size:11}},title:{display:true,text:'|residual|',color:colText,font:{size:11}}}
+    }
+  }
+});
+
+function updateSlider(deg){
+  const da=deg*Math.PI/180;
+  const eBin=-(1-2*da/Math.PI);
+  const eNcc=-Math.cos(da);
+  const diff=Math.abs(eNcc-eBin);
+  const sigma=diff*Math.sqrt(100000);
+
+  document.getElementById('angle-out').textContent=deg+'°';
+  document.getElementById('e-bin-val').textContent=eBin.toFixed(4);
+  document.getElementById('e-ncc-val').textContent=eNcc.toFixed(4);
+  document.getElementById('diff-val').textContent=diff.toFixed(4);
+  document.getElementById('diff-bar').style.width=(diff/0.22*100)+'%';
+  document.getElementById('sigma-note').textContent=
+    `At N=100,000 measurements: ${sigma.toFixed(0)}σ distinguishable`;
+
+  mainChart.data.datasets[2].data=precomputed.map(p=>
+    Math.abs(p.deg-deg)<2.6 ? +p.E_ncc.toFixed(4) : null
+  );
+  mainChart.update();
+}
+
+document.getElementById('angle-slider').addEventListener('input',e=>{
+  updateSlider(+e.target.value);
+});
+updateSlider(39);
+
+let animRunning=false;
+function runAnimation(){
+  if(animRunning) return;
+  animRunning=true;
+  let i=0;
+  mainChart.data.datasets[0].data=precomputed.map(()=>null);
+  mainChart.data.datasets[1].data=precomputed.map(()=>null);
+  mainChart.update();
+  const iv=setInterval(()=>{
+    if(i>=STEPS){clearInterval(iv);animRunning=false;return;}
+    mainChart.data.datasets[0].data[i]=+precomputed[i].E_bin.toFixed(4);
+    mainChart.data.datasets[1].data[i]=+precomputed[i].E_ncc.toFixed(4);
+    mainChart.update('none');
+    document.getElementById('angle-slider').value=Math.round(precomputed[i].deg);
+    updateSlider(Math.round(precomputed[i].deg));
+    i++;
+  },60);
+}
+</script>

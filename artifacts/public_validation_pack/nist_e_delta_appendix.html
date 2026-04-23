@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>NIST E(Delta) 附录</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 0; background:#0b1020; color:#e5e7eb; }
+    .wrap { max-width: 1040px; margin: 0 auto; padding: 24px; }
+    .card { background:#111827; border:1px solid #1f2937; border-radius:10px; padding:14px; margin: 12px 0; }
+    .fig img { width:100%; height:auto; border-radius:6px; display:block; }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    h2 { margin: 16px 0 8px; font-size: 20px; }
+    .muted { color:#9ca3af; }
+    code { background:#1f2937; padding:2px 6px; border-radius:4px; }
+    a { color:#93c5fd; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>NIST E(Delta) 三线附录页</h1>
+    <div class="muted">独立附录，不修改原看板；用于展示“实测点 vs 三条参考曲线”的核心图证。</div>
+
+    <div class="card fig">
+      <h2>图5：NIST E(Delta) 三线对照</h2>
+      <img src="fig5_nist_e_delta_three_tracks.png" alt="NIST E Delta three tracks"/>
+    </div>
+
+    <div class="card">
+      <h2>关键结论</h2>
+      <ul>
+        <li>在当前映射定义（slot 0..7 为 +1，8..15 为 -1）下，实测点对连续原始矮余弦拟合最好。</li>
+        <li>RMSE：Bell 折线 0.929737；原始矮余弦 0.200994；归一化高余弦 0.213850。</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>方法文件</h2>
+      <ul>
+        <li>主结果摘要：<code>NIST_E_DELTA_THREE_TRACKS_SUMMARY.md</code></li>
+        <li>映射敏感性：<code>NIST_E_DELTA_MAPPING_SENSITIVITY.md</code></li>
+        <li>生成脚本：<code>scripts/explore/explore_nist_e_delta_three_tracks.py</code></li>
+        <li>敏感性脚本：<code>scripts/explore/explore_nist_e_delta_mapping_sensitivity.py</code></li>
+      </ul>
+      <p><a href="index.html">返回 Public Validation Pack 首页</a></p>
+    </div>
+  </div>
+</body>
+</html>
