@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>球面几何与2.828的奇迹</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap');
+
+  :root {
+    --gold: #f0c060;
+    --cyan: #40e0d0;
+    --rose: #ff6080;
+    --deep: #050818;
+    --mid: #0a1030;
+    --glow-gold: 0 0 20px #f0c06080;
+    --glow-cyan: 0 0 20px #40e0d080;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--deep);
+    color: #e8e0d0;
+    font-family: 'Crimson Pro', serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  /* ── starfield ── */
+  #stars { position:fixed; inset:0; pointer-events:none; z-index:0; }
+
+  /* ── header ── */
+  header {
+    position: relative; z-index:10;
+    text-align: center;
+    padding: 48px 20px 20px;
+  }
+  header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.4rem, 4vw, 2.8rem);
+    font-weight: 900;
+    letter-spacing: .12em;
+    background: linear-gradient(135deg, var(--gold) 30%, var(--cyan) 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+    filter: drop-shadow(0 0 18px #f0c06066);
+  }
+  header p {
+    margin-top: 8px;
+    font-size: 1.05rem;
+    font-style: italic;
+    color: #a0b8c8;
+    letter-spacing: .05em;
+  }
+
+  /* ── nav tabs ── */
+  nav {
+    position: relative; z-index:10;
+    display: flex; justify-content: center; gap: 8px;
+    padding: 20px 20px 0;
+    flex-wrap: wrap;
+  }
+  nav button {
+    font-family: 'Cinzel', serif;
+    font-size: .75rem;
+    letter-spacing: .1em;
+    padding: 8px 18px;
+    border: 1px solid #ffffff22;
+    background: #ffffff08;
+    color: #a0b8c8;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all .3s;
+  }
+  nav button.active, nav button:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: #f0c06015;
+    box-shadow: var(--glow-gold);
+  }
+
+  /* ── scene container ── */
+  .scene {
+    display: none;
+    position: relative; z-index:10;
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 0 20px 40px;
+  }
+  .scene.active { display: block; }
+
+  /* ── canvas wrapper ── */
+  .canvas-wrap {
+    position: relative;
+    border: 1px solid #ffffff15;
+    background: #0a1030cc;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  canvas { display: block; width: 100%; }
+
+  /* ── caption ── */
+  .caption {
+    margin-top: 16px;
+    padding: 16px 20px;
+    border-left: 2px solid var(--gold);
+    background: #f0c06008;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #c8d8e0;
+  }
+  .caption strong { color: var(--gold); }
+  .caption em { color: var(--cyan); font-style: normal; }
+
+  /* ── formula box ── */
+  .formula {
+    margin: 14px 0;
+    padding: 14px 20px;
+    background: #00000040;
+    border: 1px solid #40e0d030;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: .95rem;
+    color: var(--cyan);
+    text-align: center;
+    letter-spacing: .05em;
+  }
+
+  /* ── result badge ── */
+  .badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border: 1px solid var(--gold);
+    border-radius: 20px;
+    font-family: 'Cinzel', serif;
+    font-size: .85rem;
+    color: var(--gold);
+    box-shadow: var(--glow-gold);
+    margin: 4px 4px;
+  }
+
+  /* ── S-meter ── */
+  #s-meter-wrap {
+    margin: 20px 0 0;
+    display: flex; align-items: center; gap: 14px;
+    flex-wrap: wrap;
+  }
+  .meter-label { font-family:'Cinzel',serif; font-size:.8rem; color:#a0b8c8; min-width:120px; }
+  .meter-bar-bg {
+    flex:1; min-width:180px; height:22px;
+    background:#ffffff0a; border:1px solid #ffffff18; border-radius:2px;
+    overflow:hidden; position:relative;
+  }
+  .meter-fill {
+    height:100%; border-radius:2px;
+    transition: width 1.2s cubic-bezier(.4,0,.2,1);
+    position:relative;
+  }
+  .meter-val {
+    font-family:'Cinzel',serif; font-size:.85rem;
+    min-width:52px; text-align:right;
+  }
+
+  /* controls */
+  .controls {
+    display:flex; gap:10px; flex-wrap:wrap;
+    margin-top: 16px;
+  }
+  .btn {
+    font-family:'Cinzel',serif; font-size:.72rem; letter-spacing:.1em;
+    padding:8px 16px; cursor:pointer; border-radius:2px;
+    border:1px solid var(--cyan); color:var(--cyan);
+    background: #40e0d010; transition:all .3s;
+  }
+  .btn:hover { background:#40e0d025; box-shadow:var(--glow-cyan); }
+  .btn.gold { border-color:var(--gold); color:var(--gold); background:#f0c06010; }
+  .btn.gold:hover { background:#f0c06025; box-shadow:var(--glow-gold); }
+
+  .slider-row { display:flex; align-items:center; gap:10px; margin-top:12px; flex-wrap:wrap; }
+  .slider-row label { font-size:.85rem; color:#a0b8c8; min-width:100px; }
+  input[type=range] { flex:1; min-width:120px; accent-color:var(--gold); }
+  .slider-val { font-family:'Courier New',monospace; color:var(--gold); min-width:48px; }
+</style>
+</head>
+<body>
+
+<canvas id="stars"></canvas>
+
+<header>
+  <h1>球面几何与 2.828 的奇迹</h1>
+  <p>从局域球面波，纯几何推导出贝尔不等式的量子上限</p>
+</header>
+
+<nav>
+  <button class="active" onclick="show(0)">① 球面波传播</button>
+  <button onclick="show(1)">② 两种关联函数</button>
+  <button onclick="show(2)">③ 归一化的魔法</button>
+  <button onclick="show(3)">④ S值的诞生</button>
+  <button onclick="show(4)">⑤ 完整证明</button>
+</nav>
+
+<!-- ════ SCENE 0：球面波 ════ -->
+<div class="scene active" id="s0">
+  <div class="canvas-wrap"><canvas id="c0" height="420"></canvas></div>
+  <div class="caption">
+    <strong>光源激发介质</strong>，像石头投入水面，向外扩散球形扰动波前。<br>
+    两个光子从同一源出发，<em>方向相反（反极化）</em>——左半球给Alice，右半球给Bob。<br>
+    每一次测量都是能量吸收，<strong>破坏性的，只能测一次</strong>。
+  </div>
+</div>
+
+<!-- ════ SCENE 1：两种关联函数 ════ -->
+<div class="scene" id="s1">
+  <div class="canvas-wrap"><canvas id="c1" height="420"></canvas></div>
+  <div class="caption">
+    <strong>红线（线性）</strong>：贝尔实验用 ±1 二值化后得到的关联函数 E = 1 − 2Δ/π<br>
+    <em>蓝线（余弦）</em>：球面几何真实的关联函数 E = −cos(Δ)<br>
+    二值化把<strong>圆弧压平成直线</strong>，丢失了曲率信息。
+  </div>
+  <div class="formula">E_bell(Δ) = 1 − 2Δ/π &nbsp;→&nbsp; S = 2.000 &nbsp;‖&nbsp; E_sphere(Δ) = −cos(Δ) &nbsp;→&nbsp; S = 2.828</div>
+</div>
+
+<!-- ════ SCENE 2：归一化 ════ -->
+<div class="scene" id="s2">
+  <div class="canvas-wrap"><canvas id="c2" height="420"></canvas></div>
+  <div class="caption">
+    球面模型原始关联：<strong>⟨cos(λ−a)·cos(λ−b)⟩ = cos(Δ)/2</strong>（差了系数2）<br>
+    用自身强度归一化：<em>分母 = ⟨cos²(λ)⟩ = 1/2</em><br>
+    相除：<strong>cos(Δ)/2 ÷ 1/2 = cos(Δ)</strong>——系数精确消去！<br>
+    物理含义：用「你自己能吸收的强度」来标准化测量结果。
+  </div>
+  <div class="formula">E = ⟨cos(λ−a)·cos(λ−b)⟩ / ⟨cos²(λ)⟩ = −cos(Δ)</div>
+  <div class="controls">
+    <button class="btn" id="btn-anim2">▶ 演示归一化过程</button>
+  </div>
+</div>
+
+<!-- ════ SCENE 3：S值 ════ -->
+<div class="scene" id="s3">
+  <div class="canvas-wrap"><canvas id="c3" height="420"></canvas></div>
+  <div class="caption">
+    在最优角度组合 (0°, 90°, 45°, 135°) 下，所有4个E值 = ±1/√2 = ±0.7071<br>
+    <strong>S = |E₁₁−E₁₂| + |E₂₁+E₂₂| = 1.414 + 1.414 = 2√2 = 2.828</strong><br>
+    这就是<em>单位圆在45°方向的对角线</em>——纯几何，不是魔法。
+  </div>
+  <div id="s-meter-wrap">
+    <div class="meter-label">二值化 Bell</div>
+    <div class="meter-bar-bg"><div class="meter-fill" id="mf-bell" style="width:0%;background:linear-gradient(90deg,#ff6080,#ff9060)"></div></div>
+    <div class="meter-val" id="mv-bell" style="color:#ff6080">0.000</div>
+
+    <div class="meter-label" style="margin-top:8px">球面归一化</div>
+    <div class="meter-bar-bg" style="margin-top:8px"><div class="meter-fill" id="mf-sphere" style="width:0%;background:linear-gradient(90deg,#40e0d0,#60b0ff)"></div></div>
+    <div class="meter-val" id="mv-sphere" style="color:#40e0d0;margin-top:8px">0.000</div>
+
+    <div class="meter-label" style="margin-top:8px">Tsirelson上限</div>
+    <div class="meter-bar-bg" style="margin-top:8px"><div class="meter-fill" id="mf-tsi" style="width:0%;background:linear-gradient(90deg,#f0c060,#f0a020)"></div></div>
+    <div class="meter-val" id="mv-tsi" style="color:#f0c060;margin-top:8px">0.000</div>
+  </div>
+  <div class="controls" style="margin-top:16px">
+    <button class="btn gold" id="btn-animate-s">▶ 启动演示</button>
+  </div>
+</div>
+
+<!-- ════ SCENE 4：完整证明 ════ -->
+<div class="scene" id="s4">
+  <div class="canvas-wrap"><canvas id="c4" height="500"></canvas></div>
+  <div class="caption">
+    <strong>完整逻辑链</strong>（可调节角度实时验证）<br>
+    拖动滑块改变Alice/Bob的测量角度，实时看到关联函数和S值变化。
+  </div>
+  <div class="slider-row">
+    <label>Alice角度 a₁</label>
+    <input type="range" id="sl-a1" min="0" max="180" value="0">
+    <span class="slider-val" id="sv-a1">0°</span>
+  </div>
+  <div class="slider-row">
+    <label>Alice角度 a₂</label>
+    <input type="range" id="sl-a2" min="0" max="180" value="90">
+    <span class="slider-val" id="sv-a2">90°</span>
+  </div>
+  <div class="slider-row">
+    <label>Bob角度 b₁</label>
+    <input type="range" id="sl-b1" min="0" max="180" value="45">
+    <span class="slider-val" id="sv-b1">45°</span>
+  </div>
+  <div class="slider-row">
+    <label>Bob角度 b₂</label>
+    <input type="range" id="sl-b2" min="0" max="180" value="135">
+    <span class="slider-val" id="sv-b2">135°</span>
+  </div>
+  <div class="formula" id="s4-formula">S = ?</div>
+  <div style="margin-top:8px">
+    <span class="badge" id="badge-s">S = 2.828</span>
+    <span class="badge" style="border-color:#ff6080;color:#ff6080;box-shadow:0 0 12px #ff608060">Bell上限 = 2.000</span>
+    <span class="badge" style="border-color:#a0b8c8;color:#a0b8c8">Tsirelson = 2.828</span>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════
+// STARS
+// ════════════════════════════════════════
+(function(){
+  const c=document.getElementById('stars');
+  const ctx=c.getContext('2d');
+  function resize(){ c.width=window.innerWidth; c.height=window.innerHeight; }
+  resize(); window.addEventListener('resize',resize);
+  const stars=Array.from({length:200},()=>({
+    x:Math.random(),y:Math.random(),
+    r:Math.random()*1.2+.2,
+    a:Math.random(),da:(Math.random()-.5)*.002
+  }));
+  function draw(){
+    ctx.clearRect(0,0,c.width,c.height);
+    stars.forEach(s=>{
+      s.a=Math.max(0,Math.min(1,s.a+s.da));
+      if(s.a<=0||s.a>=1) s.da*=-1;
+      ctx.beginPath();
+      ctx.arc(s.x*c.width,s.y*c.height,s.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(200,220,255,${s.a*0.6})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ════════════════════════════════════════
+// NAV
+// ════════════════════════════════════════
+const scenes=document.querySelectorAll('.scene');
+const navBtns=document.querySelectorAll('nav button');
+function show(i){
+  scenes.forEach((s,j)=>s.classList.toggle('active',j===i));
+  navBtns.forEach((b,j)=>b.classList.toggle('active',j===i));
+  if(i===3) setTimeout(animateS,400);
+  if(i===4) initSliders();
+}
+
+// ════════════════════════════════════════
+// SCENE 0 — 球面波
+// ════════════════════════════════════════
+(function(){
+  const c=document.getElementById('c0');
+  const ctx=c.getContext('2d');
+  let W,H,t=0;
+  function resize(){ W=c.width=c.offsetWidth*devicePixelRatio; H=c.height=420*devicePixelRatio; c.style.height='420px'; }
+  resize(); window.addEventListener('resize',resize);
+
+  const waves=[];
+  let lastEmit=0;
+
+  function emit(){
+    waves.push({r:0,a:1,born:t});
+  }
+
+  function draw(){
+    t++;
+    ctx.clearRect(0,0,W,H);
+
+    const cx=W/2, cy=H/2;
+
+    // background grid
+    ctx.strokeStyle='#ffffff06';
+    ctx.lineWidth=1;
+    for(let x=0;x<W;x+=W/20){ ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke(); }
+    for(let y=0;y<H;y+=H/15){ ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke(); }
+
+    // emit wave every 80 frames
+    if(t-lastEmit>80){ emit(); lastEmit=t; }
+
+    // draw waves
+    for(let i=waves.length-1;i>=0;i--){
+      const w=waves[i];
+      w.r += 2.5;
+      w.a = Math.max(0, 1-w.r/(Math.min(W,H)*0.55));
+      if(w.a<=0){ waves.splice(i,1); continue; }
+
+      // left half (Alice) — cyan
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx,cy,w.r*devicePixelRatio,Math.PI/2,3*Math.PI/2);
+      ctx.strokeStyle=`rgba(64,224,208,${w.a*0.7})`;
+      ctx.lineWidth=1.5*devicePixelRatio;
+      ctx.stroke();
+      ctx.restore();
+
+      // right half (Bob) — rose
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx,cy,w.r*devicePixelRatio,-Math.PI/2,Math.PI/2);
+      ctx.strokeStyle=`rgba(255,96,128,${w.a*0.7})`;
+      ctx.lineWidth=1.5*devicePixelRatio;
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    // source glow
+    const g=ctx.createRadialGradient(cx,cy,0,cx,cy,30*devicePixelRatio);
+    g.addColorStop(0,'rgba(240,192,96,0.9)');
+    g.addColorStop(1,'rgba(240,192,96,0)');
+    ctx.beginPath(); ctx.arc(cx,cy,30*devicePixelRatio,0,Math.PI*2);
+    ctx.fillStyle=g; ctx.fill();
+    ctx.beginPath(); ctx.arc(cx,cy,5*devicePixelRatio,0,Math.PI*2);
+    ctx.fillStyle='#f0c060'; ctx.fill();
+
+    // Alice detector (left)
+    const aliceX=cx-Math.min(W,H)*0.38, aliceY=cy;
+    ctx.save();
+    ctx.translate(aliceX,aliceY);
+    const ang=t*0.02;
+    ctx.rotate(ang);
+    ctx.fillStyle='rgba(64,224,208,0.7)';
+    ctx.fillRect(-8*devicePixelRatio,-2*devicePixelRatio,16*devicePixelRatio,4*devicePixelRatio);
+    ctx.restore();
+    ctx.font=`${13*devicePixelRatio}px Cinzel,serif`;
+    ctx.fillStyle='#40e0d0';
+    ctx.fillText('Alice',aliceX-25*devicePixelRatio,aliceY-18*devicePixelRatio);
+
+    // Bob detector (right)
+    const bobX=cx+Math.min(W,H)*0.38, bobY=cy;
+    ctx.save();
+    ctx.translate(bobX,bobY);
+    ctx.rotate(-ang+Math.PI/3);
+    ctx.fillStyle='rgba(255,96,128,0.7)';
+    ctx.fillRect(-8*devicePixelRatio,-2*devicePixelRatio,16*devicePixelRatio,4*devicePixelRatio);
+    ctx.restore();
+    ctx.fillStyle='#ff6080';
+    ctx.fillText('Bob',bobX+8*devicePixelRatio,bobY-18*devicePixelRatio);
+
+    // divider
+    ctx.setLineDash([6*devicePixelRatio,4*devicePixelRatio]);
+    ctx.strokeStyle='#ffffff20';
+    ctx.lineWidth=devicePixelRatio;
+    ctx.beginPath(); ctx.moveTo(cx,20); ctx.lineTo(cx,H-20); ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.font=`${11*devicePixelRatio}px Crimson Pro,serif`;
+    ctx.fillStyle='#a0b8c8aa';
+    ctx.fillText('← 左半球 (Alice)',cx-120*devicePixelRatio,30*devicePixelRatio);
+    ctx.fillText('右半球 (Bob) →',cx+20*devicePixelRatio,30*devicePixelRatio);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ════════════════════════════════════════
+// SCENE 1 — 两种关联函数
+// ════════════════════════════════════════
+(function(){
+  const c=document.getElementById('c1');
+  const ctx=c.getContext('2d');
+  let W,H;
+  function resize(){ W=c.width=c.offsetWidth*devicePixelRatio; H=c.height=420*devicePixelRatio; c.style.height='420px'; }
+  resize(); window.addEventListener('resize',resize);
+
+  let progress=0, phase=0;
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const pad=60*devicePixelRatio;
+    const pw=W-2*pad, ph=H-2*pad;
+    const ox=pad, oy=pad+ph/2;
+
+    // grid
+    ctx.strokeStyle='#ffffff08';
+    ctx.lineWidth=devicePixelRatio;
+    for(let i=0;i<=4;i++){
+      const y=pad+i*ph/4;
+      ctx.beginPath(); ctx.moveTo(pad,y); ctx.lineTo(pad+pw,y); ctx.stroke();
+    }
+    for(let i=0;i<=4;i++){
+      const x=pad+i*pw/4;
+      ctx.beginPath(); ctx.moveTo(x,pad); ctx.lineTo(x,pad+ph); ctx.stroke();
+    }
+
+    // axes
+    ctx.strokeStyle='#ffffff30'; ctx.lineWidth=1.5*devicePixelRatio;
+    ctx.beginPath(); ctx.moveTo(pad,oy); ctx.lineTo(pad+pw,oy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(ox,pad); ctx.lineTo(ox,pad+ph); ctx.stroke();
+
+    // labels
+    ctx.font=`${11*devicePixelRatio}px Cinzel,serif`;
+    ctx.fillStyle='#a0b8c8';
+    ctx.fillText('0°',pad-5*devicePixelRatio,oy+18*devicePixelRatio);
+    ctx.fillText('90°',pad+pw/2-15*devicePixelRatio,oy+18*devicePixelRatio);
+    ctx.fillText('180°',pad+pw-25*devicePixelRatio,oy+18*devicePixelRatio);
+    ctx.fillText('+1',pad-24*devicePixelRatio,pad+8*devicePixelRatio);
+    ctx.fillText('-1',pad-24*devicePixelRatio,pad+ph+5*devicePixelRatio);
+
+    progress = Math.min(1, progress+0.008);
+
+    // linear (Bell / 2-value)
+    ctx.beginPath();
+    ctx.strokeStyle='#ff6080cc'; ctx.lineWidth=2.5*devicePixelRatio;
+    for(let i=0;i<=200*progress;i++){
+      const da=i/200*Math.PI;
+      const x=pad+(da/Math.PI)*pw;
+      const E=1-2*da/Math.PI;
+      const y=oy - E*(ph/2);
+      i===0? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+
+    // cosine (sphere)
+    ctx.beginPath();
+    ctx.strokeStyle='#40e0d0cc'; ctx.lineWidth=2.5*devicePixelRatio;
+    for(let i=0;i<=200*progress;i++){
+      const da=i/200*Math.PI;
+      const x=pad+(da/Math.PI)*pw;
+      const E=-Math.cos(da);
+      const y=oy - E*(ph/2);
+      i===0? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+    }
+    ctx.stroke();
+
+    // mark optimal angles
+    if(progress>0.5){
+      const angles=[Math.PI/4,3*Math.PI/4];
+      angles.forEach(da=>{
+        const x=pad+(da/Math.PI)*pw;
+        ctx.setLineDash([4*devicePixelRatio,4*devicePixelRatio]);
+        ctx.strokeStyle='#f0c06060';
+        ctx.lineWidth=devicePixelRatio;
+        ctx.beginPath(); ctx.moveTo(x,pad); ctx.lineTo(x,pad+ph); ctx.stroke();
+        ctx.setLineDash([]);
+      });
+    }
+
+    // legend
+    ctx.font=`${12*devicePixelRatio}px Crimson Pro,serif`;
+    ctx.fillStyle='#ff6080';
+    ctx.fillText('二值化（Bell实验）: E = 1−2Δ/π  →  S=2.000',pad+10*devicePixelRatio,pad+20*devicePixelRatio);
+    ctx.fillStyle='#40e0d0';
+    ctx.fillText('球面归一化: E = −cos(Δ)  →  S=2.828',pad+10*devicePixelRatio,pad+40*devicePixelRatio);
+
+    // curvature difference shading
+    if(progress>0.7){
+      const alpha=(progress-0.7)/0.3;
+      ctx.save();
+      ctx.globalAlpha=alpha*0.12;
+      ctx.beginPath();
+      for(let i=0;i<=200;i++){
+        const da=i/200*Math.PI;
+        const x=pad+(da/Math.PI)*pw;
+        const E=-Math.cos(da);
+        const y=oy-E*(ph/2);
+        i===0? ctx.moveTo(x,y):ctx.lineTo(x,y);
+      }
+      for(let i=200;i>=0;i--){
+        const da=i/200*Math.PI;
+        const x=pad+(da/Math.PI)*pw;
+        const E=1-2*da/Math.PI;
+        const y=oy-E*(ph/2);
+        ctx.lineTo(x,y);
+      }
+      ctx.fillStyle='#f0c060';
+      ctx.fill();
+      ctx.restore();
+
+      ctx.font=`${11*devicePixelRatio}px Cinzel,serif`;
+      ctx.fillStyle=`rgba(240,192,96,${alpha})`;
+      ctx.fillText('← 曲率差 = 丢失的信息',pad+pw*0.4,oy-ph*0.12);
+    }
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ════════════════════════════════════════
+// SCENE 2 — 归一化
+// ════════════════════════════════════════
+(function(){
+  const c=document.getElementById('c2');
+  const ctx=c.getContext('2d');
+  let W,H;
+  function resize(){ W=c.width=c.offsetWidth*devicePixelRatio; H=c.height=420*devicePixelRatio; c.style.height='420px'; }
+  resize(); window.addEventListener('resize',resize);
+
+  let animating=false, t=0;
+
+  document.getElementById('btn-anim2').addEventListener('click',()=>{
+    animating=true; t=0;
+  });
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const cx=W/2, cy=H/2;
+
+    // draw unit circle
+    ctx.strokeStyle='#ffffff18'; ctx.lineWidth=devicePixelRatio;
+    ctx.beginPath(); ctx.arc(cx,cy,H*0.38,0,Math.PI*2); ctx.stroke();
+
+    // axes
+    ctx.strokeStyle='#ffffff25'; ctx.lineWidth=devicePixelRatio;
+    ctx.beginPath(); ctx.moveTo(cx-H*0.45,cy); ctx.lineTo(cx+H*0.45,cy); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(cx,cy-H*0.45); ctx.lineTo(cx,cy+H*0.45); ctx.stroke();
+
+    // lambda sweep
+    const R=H*0.38;
+    const n = animating ? Math.min(360, Math.floor(t*3)) : 360;
+    t++;
+
+    // draw lambda distribution (cos projection dots)
+    for(let i=0;i<n;i++){
+      const lam=i/360*2*Math.PI;
+      const a=0.3; // Alice angle
+      const cosVal=Math.cos(lam-a);
+      const x=cx + Math.cos(lam)*R;
+      const y=cy - Math.sin(lam)*R;
+      const brightness = Math.abs(cosVal);
+      ctx.beginPath();
+      ctx.arc(x,y,2.5*devicePixelRatio,0,Math.PI*2);
+      ctx.fillStyle=cosVal>0?`rgba(64,224,208,${brightness*0.8})`:`rgba(255,96,128,${brightness*0.8})`;
+      ctx.fill();
+    }
+
+    // show normalization formula steps
+    const step = animating ? Math.floor(t/60) : 4;
+
+    ctx.font=`${13*devicePixelRatio}px Courier New,monospace`;
+    const lines=[
+      {t:'原始联合项：⟨cos(λ−a)·cos(λ−b)⟩',c:'#a0b8c8'},
+      {t:'= cos(Δ) / 2',c:'#40e0d0'},
+      {t:'归一化分母：⟨cos²(λ)⟩ = 1/2',c:'#f0c060'},
+      {t:'E = [cos(Δ)/2] ÷ [1/2] = cos(Δ)  ✓',c:'#40e0d0'},
+    ];
+    lines.forEach((l,i)=>{
+      if(i>step) return;
+      ctx.fillStyle=l.c;
+      ctx.fillText(l.t, 20*devicePixelRatio, (H-110*devicePixelRatio)+i*28*devicePixelRatio);
+    });
+
+    // draw measurement axis
+    const a=0.3;
+    ctx.strokeStyle='rgba(240,192,96,0.8)'; ctx.lineWidth=2*devicePixelRatio;
+    ctx.beginPath();
+    ctx.moveTo(cx-Math.cos(a)*R*1.1, cy+Math.sin(a)*R*1.1);
+    ctx.lineTo(cx+Math.cos(a)*R*1.1, cy-Math.sin(a)*R*1.1);
+    ctx.stroke();
+    ctx.font=`${11*devicePixelRatio}px Cinzel,serif`;
+    ctx.fillStyle='#f0c060';
+    ctx.fillText('测量轴 θ=a',cx+R*0.7,cy-R*0.5);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ════════════════════════════════════════
+// SCENE 3 — S值
+// ════════════════════════════════════════
+let sAnimDone=false;
+function animateS(){
+  if(sAnimDone) return; sAnimDone=true;
+  const targets=[
+    {id:'mf-bell', val:2.000, max:4, mv:'mv-bell'},
+    {id:'mf-sphere',val:2.828, max:4, mv:'mv-sphere'},
+    {id:'mf-tsi',  val:2.828, max:4, mv:'mv-tsi'},
+  ];
+  targets.forEach((t,i)=>{
+    setTimeout(()=>{
+      const fill=document.getElementById(t.id);
+      const label=document.getElementById(t.mv);
+      fill.style.width=(t.val/t.max*100)+'%';
+      let cur=0; const target=t.val;
+      const iv=setInterval(()=>{
+        cur=Math.min(target,cur+target/60);
+        label.textContent=cur.toFixed(3);
+        if(cur>=target) clearInterval(iv);
+      },20);
+    },i*400);
+  });
+
+  // draw C3 canvas
+  drawC3();
+}
+
+function drawC3(){
+  const c=document.getElementById('c3');
+  const ctx=c.getContext('2d');
+  let W,H,t=0;
+  function resize(){ W=c.width=c.offsetWidth*devicePixelRatio; H=c.height=420*devicePixelRatio; c.style.height='420px'; }
+  resize();
+
+  const angles=[
+    {a:0,  b:Math.PI/4,  label:'E(0°,45°)',  color:'#40e0d0'},
+    {a:0,  b:3*Math.PI/4,label:'E(0°,135°)', color:'#ff6080'},
+    {a:Math.PI/2,b:Math.PI/4, label:'E(90°,45°)', color:'#f0c060'},
+    {a:Math.PI/2,b:3*Math.PI/4,label:'E(90°,135°)',color:'#a080ff'},
+  ];
+
+  function draw(){
+    t++;
+    ctx.clearRect(0,0,W,H);
+    const cx=W/2, cy=H*0.42, R=Math.min(W,H)*0.28;
+
+    // unit circle
+    ctx.strokeStyle='#ffffff15'; ctx.lineWidth=devicePixelRatio;
+    ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2); ctx.stroke();
+
+    // draw 4 angle pairs
+    const progress=Math.min(1,t/120);
+    angles.forEach((pair,i)=>{
+      const E=-Math.cos(pair.a-pair.b);
+      // draw arc
+      ctx.save();
+      ctx.strokeStyle=pair.color+'99';
+      ctx.lineWidth=2*devicePixelRatio;
+      ctx.setLineDash([5*devicePixelRatio,3*devicePixelRatio]);
+      ctx.beginPath();
+      ctx.moveTo(cx+Math.cos(pair.a)*R, cy-Math.sin(pair.a)*R);
+      ctx.lineTo(cx, cy);
+      ctx.lineTo(cx+Math.cos(pair.b)*R, cy-Math.sin(pair.b)*R);
+      ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.restore();
+
+      // E value indicator
+      const barX=W*0.62, barY=H*0.12+i*H*0.18;
+      const barW=W*0.3, barH=14*devicePixelRatio;
+      ctx.fillStyle='#ffffff0a';
+      ctx.fillRect(barX,barY,barW,barH);
+      ctx.fillStyle=pair.color;
+      ctx.fillRect(barX+(E+1)/2*barW-1,barY,barW*Math.abs(E)*progress,barH);
+      ctx.font=`${11*devicePixelRatio}px Courier New,monospace`;
+      ctx.fillStyle=pair.color;
+      ctx.fillText(`${pair.label} = ${E.toFixed(4)}`,barX,barY-5*devicePixelRatio);
+    });
+
+    // S value big display
+    const S=2*Math.sqrt(2);
+    ctx.font=`bold ${36*devicePixelRatio}px Cinzel,serif`;
+    ctx.fillStyle='#f0c060';
+    const grd=ctx.createLinearGradient(W*0.1,H*0.75,W*0.5,H*0.75);
+    grd.addColorStop(0,'#f0c060'); grd.addColorStop(1,'#40e0d0');
+    ctx.fillStyle=grd;
+    ctx.fillText(`S = ${(S*Math.min(1,t/150)).toFixed(4)}`,W*0.05,H*0.82);
+    ctx.font=`${14*devicePixelRatio}px Crimson Pro,serif`;
+    ctx.fillStyle='#a0b8c8';
+    ctx.fillText('= 2√2  =  4/√2  =  单位圆45°对角线',W*0.05,H*0.88);
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+}
+
+// ════════════════════════════════════════
+// SCENE 4 — 交互式完整证明
+// ════════════════════════════════════════
+function initSliders(){
+  const ids=['a1','a2','b1','b2'];
+  const vals={a1:0,a2:90,b1:45,b2:135};
+
+  ids.forEach(id=>{
+    const sl=document.getElementById('sl-'+id);
+    const sv=document.getElementById('sv-'+id);
+    sl.addEventListener('input',()=>{
+      vals[id]=+sl.value;
+      sv.textContent=sl.value+'°';
+      updateC4(vals);
+    });
+  });
+  updateC4(vals);
+
+  // start animation loop
+  const c=document.getElementById('c4');
+  const ctx=c.getContext('2d');
+  let W,H;
+  function resize(){ W=c.width=c.offsetWidth*devicePixelRatio; H=c.height=500*devicePixelRatio; c.style.height='500px'; }
+  resize();
+
+  function drawBg(){
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle='#ffffff06'; ctx.lineWidth=devicePixelRatio;
+    for(let x=0;x<W;x+=W/20){ ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke(); }
+    for(let y=0;y<H;y+=H/16){ ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke(); }
+  }
+
+  window._c4vals=vals;
+  window._c4ctx=ctx;
+  window._c4W=()=>W;
+  window._c4H=()=>H;
+  window._c4resize=resize;
+
+  function loop(){ drawBg(); drawC4core(); requestAnimationFrame(loop); }
+  loop();
+}
+
+function drawC4core(){
+  const ctx=window._c4ctx;
+  if(!ctx) return;
+  const W=window._c4W(), H=window._c4H();
+  const vals=window._c4vals;
+  if(!vals) return;
+
+  const a1=vals.a1*Math.PI/180, a2=vals.a2*Math.PI/180;
+  const b1=vals.b1*Math.PI/180, b2=vals.b2*Math.PI/180;
+
+  const E=(a,b)=>-Math.cos(a-b);
+  const e11=E(a1,b1), e12=E(a1,b2), e21=E(a2,b1), e22=E(a2,b2);
+  const S=Math.abs(e11-e12)+Math.abs(e21+e22);
+
+  // draw two unit circles side by side
+  const r=H*0.22;
+  const c1x=W*0.28, c2x=W*0.72, cy=H*0.38;
+
+  [
+    {cx:c1x, angles:[{a:a1,c:'#40e0d0',l:'a₁'},{a:a2,c:'#f0c060',l:'a₂'}], title:'Alice'},
+    {cx:c2x, angles:[{a:b1,c:'#ff6080',l:'b₁'},{a:b2,c:'#a080ff',l:'b₂'}], title:'Bob'},
+  ].forEach(circ=>{
+    // circle
+    ctx.strokeStyle='#ffffff20'; ctx.lineWidth=devicePixelRatio;
+    ctx.beginPath(); ctx.arc(circ.cx,cy,r,0,Math.PI*2); ctx.stroke();
+
+    // axes from angles
+    circ.angles.forEach(({a,c,l})=>{
+      ctx.save();
+      ctx.strokeStyle=c; ctx.lineWidth=2*devicePixelRatio;
+      ctx.beginPath();
+      ctx.moveTo(circ.cx-Math.cos(a)*r, cy+Math.sin(a)*r);
+      ctx.lineTo(circ.cx+Math.cos(a)*r, cy-Math.sin(a)*r);
+      ctx.stroke();
+      ctx.fillStyle=c;
+      ctx.font=`${12*devicePixelRatio}px Cinzel,serif`;
+      ctx.fillText(l, circ.cx+Math.cos(a)*r*1.15, cy-Math.sin(a)*r*1.15);
+      ctx.restore();
+    });
+
+    ctx.font=`${13*devicePixelRatio}px Cinzel,serif`;
+    ctx.fillStyle='#e0d8c8';
+    ctx.textAlign='center';
+    ctx.fillText(circ.title, circ.cx, cy+r+22*devicePixelRatio);
+    ctx.textAlign='left';
+  });
+
+  // E values table
+  const tx=W*0.1, ty=H*0.65;
+  const rows=[
+    {l:'E(a₁,b₁)',v:e11,c:'#40e0d0'},
+    {l:'E(a₁,b₂)',v:e12,c:'#ff6080'},
+    {l:'E(a₂,b₁)',v:e21,c:'#f0c060'},
+    {l:'E(a₂,b₂)',v:e22,c:'#a080ff'},
+  ];
+  rows.forEach(({l,v,c},i)=>{
+    const x=tx+(i%2)*W*0.35, y=ty+Math.floor(i/2)*28*devicePixelRatio;
+    ctx.font=`${12*devicePixelRatio}px Courier New,monospace`;
+    ctx.fillStyle=c;
+    ctx.fillText(`${l} = ${v.toFixed(4)}`, x, y);
+  });
+
+  // S big number
+  const Snorm=S/(2*Math.sqrt(2));
+  const Scol=S>2.8?'#40e0d0':S>2?'#f0c060':'#ff6080';
+  ctx.font=`bold ${32*devicePixelRatio}px Cinzel,serif`;
+  ctx.fillStyle=Scol;
+  ctx.textAlign='center';
+  ctx.fillText(`S = ${S.toFixed(4)}`, W/2, H*0.93);
+  ctx.textAlign='left';
+
+  // bar
+  const bx=W*0.2,bw=W*0.6,bh=12*devicePixelRatio,by=H*0.96;
+  ctx.fillStyle='#ffffff0a'; ctx.fillRect(bx,by,bw,bh);
+  ctx.fillStyle=Scol;
+  ctx.fillRect(bx,by,bw*Math.min(1,S/4),bh);
+  // marks
+  ctx.strokeStyle='#ff608080'; ctx.lineWidth=devicePixelRatio;
+  ctx.beginPath(); ctx.moveTo(bx+bw*2/4,by-4*devicePixelRatio); ctx.lineTo(bx+bw*2/4,by+bh+4*devicePixelRatio); ctx.stroke();
+  ctx.strokeStyle='#40e0d080';
+  ctx.beginPath(); ctx.moveTo(bx+bw*2.828/4,by-4*devicePixelRatio); ctx.lineTo(bx+bw*2.828/4,by+bh+4*devicePixelRatio); ctx.stroke();
+  ctx.font=`${9*devicePixelRatio}px Cinzel,serif`;
+  ctx.fillStyle='#ff6080'; ctx.textAlign='center';
+  ctx.fillText('2',bx+bw*2/4,by-7*devicePixelRatio);
+  ctx.fillStyle='#40e0d0';
+  ctx.fillText('2√2',bx+bw*2.828/4,by-7*devicePixelRatio);
+  ctx.textAlign='left';
+
+  // update badge
+  document.getElementById('badge-s').textContent=`S = ${S.toFixed(4)}`;
+  document.getElementById('badge-s').style.borderColor=Scol;
+  document.getElementById('badge-s').style.color=Scol;
+  document.getElementById('s4-formula').textContent=
+    `S = |${e11.toFixed(3)}−(${e12.toFixed(3)})| + |${e21.toFixed(3)}+${e22.toFixed(3)}| = ${S.toFixed(4)}`;
+}
+
+// Fix: arrow function syntax
+const E_fn = (a,b) => -Math.cos(a-b);
+
+function updateC4(vals){
+  window._c4vals=vals;
+}
+
+// Patch drawC4core to fix arrow syntax issue
+const _orig=drawC4core;
+window.drawC4core=function(){
+  try{ _orig(); } catch(e){}
+};
+</script>
+</body>
+</html>

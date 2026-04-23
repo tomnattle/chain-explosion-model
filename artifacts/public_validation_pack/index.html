@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Public Data Validation Pack</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; margin: 0; background:#0b1020; color:#e5e7eb; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    .muted { color:#9ca3af; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin:16px 0 20px; }
+    .card { background:#111827; border:1px solid #1f2937; border-radius:10px; padding:14px; }
+    .v { font-size:26px; font-weight:700; margin-top:6px; }
+    .fig { background:#111827; border:1px solid #1f2937; border-radius:10px; padding:10px; margin:12px 0; }
+    .fig img { width:100%; height:auto; border-radius:6px; display:block; }
+    table { width:100%; border-collapse: collapse; background:#111827; border:1px solid #1f2937; }
+    th,td { border-bottom:1px solid #1f2937; padding:8px 10px; text-align:left; }
+    th { color:#93c5fd; font-weight:600; }
+    code { background:#1f2937; padding:2px 6px; border-radius:4px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>公开数据验证看板</h1>
+    <div class="muted">数据源：Delft 2015 + Delft 2016 + NIST completeblind</div>
+
+    <div class="grid">
+      <div class="card"><div>Delft 2015 S_std</div><div class="v">2.422500</div></div>
+      <div class="card"><div>Delft 2015 S_alt</div><div class="v">2.439807</div></div>
+      <div class="card"><div>Delft 2016 S_combined</div><div class="v">2.346431</div></div>
+      <div class="card"><div>NIST S(w=0 / w=15)</div><div class="v">2.336276 / 2.812912</div></div>
+    </div>
+
+    <div class="fig">
+      <h3>图1：S值对比</h3>
+      <img src="fig1_s_comparison.png" alt="S comparison"/>
+    </div>
+    <div class="fig">
+      <h3>图2：Delft角点E值对比</h3>
+      <img src="fig2_delft_e_points.png" alt="Delft E points"/>
+    </div>
+    <div class="fig">
+      <h3>图3：NIST配对窗口稳健性</h3>
+      <img src="fig3_nist_window_robustness.png" alt="NIST robustness"/>
+    </div>
+    <div class="fig">
+      <h3>图4：样本量对比</h3>
+      <img src="fig4_sample_volume.png" alt="sample volume"/>
+    </div>
+
+    <h3>NIST窗口扫描明细</h3>
+    <table>
+      <thead><tr><th>window</th><th>paired events</th><th>S</th></tr></thead>
+      <tbody>
+        <tr><td>0.0</td><td>136632</td><td>2.336276</td></tr><tr><td>1.0</td><td>137498</td><td>2.578770</td></tr><tr><td>2.0</td><td>138353</td><td>2.680187</td></tr><tr><td>5.0</td><td>140822</td><td>2.800230</td></tr><tr><td>10.0</td><td>144800</td><td>2.829113</td></tr><tr><td>15.0</td><td>148696</td><td>2.812912</td></tr>
+      </tbody>
+    </table>
+
+    <h3>复现命令</h3>
+    <p><code>python data/build_public_validation_pack.py</code></p>
+
+    <h3>解释边界</h3>
+    <ul>
+      <li>Delft公开数据是4个固定CHSH设置，不是0°-180°连续扫角。</li>
+      <li>NIST侧流分析对配对窗口敏感，说明必须提前固定管线定义。</li>
+      <li>本看板强调“公开数据可复现图证”，不是单一叙事论证。</li>
+    </ul>
+  </div>
+</body>
+</html>
