@@ -15,5 +15,3 @@
 ## External Audit
 - status: OK
 - use `--external-shots <path>` with CSV/JSON shot file.
-- current input is a local connector template, not public laboratory raw data.
-- therefore Q4 is technically "pipeline-closed", but not yet "experiment-closed".

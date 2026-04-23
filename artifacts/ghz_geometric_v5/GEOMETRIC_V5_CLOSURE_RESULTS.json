@@ -41,30 +41,30 @@
   "n_high_F_gt_3_5_and_R_gt_0_5": 0,
   "external_audit": {
     "status": "OK",
-    "path": "scripts/explore/ghz_geometric_v5/external_shots_template.json",
+    "path": "D:\\workspace\\golang\\nakama\\chain-explosion-model\\artifacts\\ghz_geometric_v6\\IBM_GHZ_REAL_DATA_PROXY_XXX.json",
     "contexts": {
       "XXX": {
-        "n_valid": 1,
-        "E": 1.0
+        "n_valid": 2000,
+        "E": -0.049
       },
       "XYY": {
-        "n_valid": 1,
-        "E": -1.0
+        "n_valid": 0,
+        "E": 0.0
       },
       "YXY": {
-        "n_valid": 1,
-        "E": -1.0
+        "n_valid": 0,
+        "E": 0.0
       },
       "YYX": {
-        "n_valid": 1,
-        "E": -1.0
+        "n_valid": 0,
+        "E": 0.0
       }
     },
-    "F": 4.0,
-    "R": 0.8,
-    "D": 3.2,
-    "n_total_audit_contexts": 5,
-    "n_valid_triplets": 4,
+    "F": -0.049,
+    "R": 1.0,
+    "D": -0.049,
+    "n_total_audit_contexts": 2000,
+    "n_valid_triplets": 2000,
     "n_ignored_non_audit_contexts": 0
   }
 }

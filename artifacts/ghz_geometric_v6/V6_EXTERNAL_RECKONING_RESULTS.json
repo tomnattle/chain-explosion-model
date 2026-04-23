@@ -1,0 +1,86 @@
+{
+  "extracted_metrics": {
+    "strict": {
+      "status": "OK",
+      "contexts": {
+        "XXX": {
+          "n_valid": 0,
+          "E": 0.0
+        },
+        "XYY": {
+          "n_valid": 0,
+          "E": 0.0
+        },
+        "YXY": {
+          "n_valid": 0,
+          "E": 0.0
+        },
+        "YYX": {
+          "n_valid": 0,
+          "E": 0.0
+        }
+      },
+      "F": 0.0,
+      "R": 0.0,
+      "D": 0.0,
+      "n_total_audit_contexts": 0,
+      "n_valid_triplets": 0,
+      "n_ignored_non_audit_contexts": 2000
+    },
+    "proxy_xxx": {
+      "status": "OK",
+      "contexts": {
+        "XXX": {
+          "n_valid": 2000,
+          "E": -0.049
+        },
+        "XYY": {
+          "n_valid": 0,
+          "E": 0.0
+        },
+        "YXY": {
+          "n_valid": 0,
+          "E": 0.0
+        },
+        "YYX": {
+          "n_valid": 0,
+          "E": 0.0
+        }
+      },
+      "F": -0.049,
+      "R": 1.0,
+      "D": -0.049,
+      "n_total_audit_contexts": 2000,
+      "n_valid_triplets": 2000,
+      "n_ignored_non_audit_contexts": 0
+    }
+  },
+  "v5_with_proxy_external": {
+    "status": "OK",
+    "path": "D:\\workspace\\golang\\nakama\\chain-explosion-model\\artifacts\\ghz_geometric_v6\\IBM_GHZ_REAL_DATA_PROXY_XXX.json",
+    "contexts": {
+      "XXX": {
+        "n_valid": 2000,
+        "E": -0.049
+      },
+      "XYY": {
+        "n_valid": 0,
+        "E": 0.0
+      },
+      "YXY": {
+        "n_valid": 0,
+        "E": 0.0
+      },
+      "YYX": {
+        "n_valid": 0,
+        "E": 0.0
+      }
+    },
+    "F": -0.049,
+    "R": 1.0,
+    "D": -0.049,
+    "n_total_audit_contexts": 2000,
+    "n_valid_triplets": 2000,
+    "n_ignored_non_audit_contexts": 0
+  }
+}
