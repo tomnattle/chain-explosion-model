@@ -7,7 +7,7 @@
 - 最后更新时间：2026-04-23
 - 当前阶段：文稿迭代中（未冻结）
 - 冻结口径：以 `bell-audit-paper/SUBMISSION_CHECKLIST.md` 与 `ghz-threebody-paper/SUBMISSION_CHECKLIST.md` 完成为准
-- Bell TODO 进度：11/18 完成（统计与稳健性项仍在进行）
+- Bell TODO 进度：12/18 完成（统计与稳健性项仍在进行）
 - GHZ TODO 进度：15/19 完成（复核与扩展稳健性项仍在进行）
 
 ## 论文入口
@@ -56,6 +56,6 @@
 
 - Bell：补齐基线复现实验（锁 seed/样本量/参数网格）并写入可复现命令。
 - Bell：完成 `denominator_mode=none` vs `energy_weighted` 的 A/B 对照与统计汇总。
-- Bell：补齐多 seed（建议 >=20）、邻域扰动、CI/效应量与失败案例清单。
+- Bell：补齐多 seed（建议 >=20）、邻域扰动、CI/效应量分析。
 - GHZ：完成 Top-k 候选同 seed/异 seed 重跑复核，确认非偶然峰值。
 - GHZ：完成邻域扰动测试与多 seed 扩展稳健性（建议 >=20）并回填总表。
