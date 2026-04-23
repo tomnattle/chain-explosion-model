@@ -5,5 +5,5 @@
 - `V7_1_MAGIC_ANGLE_ISLANDS.png`
 - `V7_1_MAGIC_ANGLE_RESULTS.json`
 
-- near 22.5 deg islands: 1
-- near 23.3 deg islands: 2
+- near 22.5 deg islands: 7
+- near 23.3 deg islands: 6
