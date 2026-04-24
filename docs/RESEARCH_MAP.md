@@ -92,6 +92,14 @@
 
 ---
 
+## 价值观与读者担忧（成文）
+
+审计立场、与“相信定理”的关系、直觉与数学路径、对 AI 辅助代码的担忧与反作弊流程、对外沟通边界等，见：
+
+- `docs/AUDIT_VALUES_AND_RISKS.md`
+
+---
+
 ## 当前可复现输出（状态）
 
 - 指标比较脚本：`scripts/explore/explore_bell_metric_comparison.py`
