@@ -97,6 +97,7 @@
 认识论宗旨（盲人摸象）、审计立场、与“相信定理”的关系、直觉与数学路径、对 AI 辅助代码的担忧与反作弊流程、对外沟通边界等，见：
 
 - `docs/AUDIT_VALUES_AND_RISKS.md`
+- 匿名读者质疑 Q&A（不含私聊）：`docs/READER_OBJECTIONS_QA.md`
 
 ---
 
