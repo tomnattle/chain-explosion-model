@@ -1,0 +1,100 @@
+{
+  "generated_at": "2026-04-24T08:17:29.002854+00:00",
+  "inputs": {
+    "artifacts_dir": "artifacts/public_validation_pack",
+    "rigor_files": [
+      "artifacts/public_validation_pack/NIST_E_DELTA_RIGOR_REPORT.md"
+    ],
+    "policy_json": "configs/delta_closure_policy.json"
+  },
+  "policy": {
+    "perm_alpha": 0.05,
+    "rmse_margin": 1e-09,
+    "float_tolerance": 1e-12,
+    "require_sanity_report": true,
+    "require_all_rigor_mappings_parse_ok": true,
+    "require_low_beats_bell_all_mappings": true,
+    "require_perm_significant_all_mappings": true,
+    "require_lobo_l2o_consistent_winner": true,
+    "fail_if_any_closure_fail": true,
+    "provisional_on_fail": true,
+    "schema_version": 1
+  },
+  "rigor_reports": [
+    {
+      "path": "artifacts/public_validation_pack/NIST_E_DELTA_RIGOR_REPORT.md",
+      "mapping": "half_split",
+      "rmse_bell": 0.058318,
+      "rmse_low": 0.014459,
+      "rmse_high": 0.016552,
+      "p_low_lt_bell": 1.0,
+      "perm_p_one": 0.0117188,
+      "perm_p_two": 0.0234375,
+      "parse_ok": true
+    }
+  ],
+  "sanity_report": {
+    "path": "artifacts/public_validation_pack/NIST_E_DELTA_VALIDATION_SANITY.md",
+    "mapping": "half_split",
+    "lobo_raw": {
+      "nll_bell": 288.117454,
+      "nll_low": 2333.777377,
+      "nll_high": 41.052154,
+      "brier_bell": 0.216103,
+      "brier_low": 0.013777,
+      "brier_high": 0.011433
+    },
+    "lobo_clip": {
+      "nll_bell": 288.117454,
+      "nll_low": 2333.777377,
+      "nll_high": 41.052154,
+      "brier_bell": 0.216103,
+      "brier_low": 0.013777,
+      "brier_high": 0.011433
+    },
+    "l2o_raw": {
+      "nll_bell": 576.234908,
+      "nll_low": 4700.810346,
+      "nll_high": 82.104307,
+      "brier_bell": 0.159245,
+      "brier_low": 0.015113,
+      "brier_high": 0.010911
+    },
+    "l2o_clip": {
+      "nll_bell": 576.234908,
+      "nll_low": 4700.810346,
+      "nll_high": 82.104307,
+      "brier_bell": 0.159245,
+      "brier_low": 0.015113,
+      "brier_high": 0.010911
+    },
+    "parse_ok": true
+  },
+  "closure_flags_draft": {
+    "definition_closure": "PASS",
+    "dimensional_closure": "PASS",
+    "process_closure": "PASS",
+    "statistical_closure": "PASS"
+  },
+  "diagnostics": {
+    "low_beats_bell_by_mapping": {
+      "half_split": true
+    },
+    "perm_significant_by_mapping": {
+      "half_split": true
+    },
+    "lobo_winner": "high",
+    "l2o_winner": "high",
+    "per_mapping_closure": {
+      "half_split": {
+        "definition_closure": "PASS",
+        "dimensional_closure": "PASS",
+        "process_closure": "PASS",
+        "statistical_closure": "PASS"
+      }
+    },
+    "failed_items": [],
+    "has_fail": false,
+    "provisional_evidence": false
+  }
+}
