@@ -1,6 +1,6 @@
 # DELTA Closure Comparison
 
-- Generated at (UTC): `2026-04-24T07:30:19.899432+00:00`
+- Generated at (UTC): `2026-04-24T08:31:59.134066+00:00`
 - Current: `artifacts/public_validation_pack/DELTA_CLOSURE_SUMMARY.json`
 - Previous: `artifacts/public_validation_pack/DELTA_CLOSURE_SUMMARY.previous.json`
 
@@ -18,6 +18,15 @@
 | Mapping | ΔRMSE Bell | ΔRMSE LowCos | ΔRMSE HighCos | Δp(one) |
 |---|---:|---:|---:|---:|
 | half_split | +0.000000 | +0.000000 | +0.000000 | +0.000000 |
+
+## Per-Mapping Closure Changes
+
+| Mapping | Item | Previous | Current | Changed |
+|---|---|---|---|---|
+| half_split | definition_closure | N/A | PASS | True |
+| half_split | dimensional_closure | N/A | PASS | True |
+| half_split | process_closure | N/A | PASS | True |
+| half_split | statistical_closure | N/A | PASS | True |
 
 ## Verdict
 

@@ -53,6 +53,15 @@ def render_md(out_md: Path, current: dict[str, Any], previous: dict[str, Any], c
             f"{row['delta_rmse_high']} | {row['delta_perm_p_one']} |"
         )
     lines.append("")
+    lines.append("## Per-Mapping Closure Changes")
+    lines.append("")
+    lines.append("| Mapping | Item | Previous | Current | Changed |")
+    lines.append("|---|---|---|---|---|")
+    for row in comparison["per_mapping_closure_changes"]:
+        lines.append(
+            f"| {row['mapping']} | {row['item']} | {row['previous']} | {row['current']} | {row['changed']} |"
+        )
+    lines.append("")
     lines.append("## Verdict")
     lines.append("")
     lines.append(f"- Current provisional_evidence: `{current.get('diagnostics', {}).get('provisional_evidence')}`")
@@ -100,12 +109,29 @@ def main() -> None:
             }
         )
 
+    cur_pm = current.get("diagnostics", {}).get("per_mapping_closure", {}) or {}
+    prev_pm = previous.get("diagnostics", {}).get("per_mapping_closure", {}) or {}
+    pm_keys = sorted(set(cur_pm.keys()) | set(prev_pm.keys()))
+    closure_items = ["definition_closure", "dimensional_closure", "process_closure", "statistical_closure"]
+    per_mapping_closure_changes = []
+    for mapping in pm_keys:
+        cobj = cur_pm.get(mapping, {}) or {}
+        pobj = prev_pm.get(mapping, {}) or {}
+        for item in closure_items:
+            cval = cobj.get(item, "N/A")
+            pval = pobj.get(item, "N/A")
+            per_mapping_closure_changes.append(
+                {"mapping": mapping, "item": item, "current": cval, "previous": pval, "changed": cval != pval}
+            )
+
     comparison = {
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "current_path": cur_path.as_posix(),
         "previous_path": prev_path.as_posix(),
         "closure_changes": closure_changes,
         "mapping_deltas": mapping_deltas,
+        "per_mapping_closure_changes": per_mapping_closure_changes,
+        "any_per_mapping_closure_changed": any(x["changed"] for x in per_mapping_closure_changes),
         "any_closure_changed": any(v["changed"] for v in closure_changes.values()),
     }
 
