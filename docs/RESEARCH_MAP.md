@@ -99,6 +99,14 @@
 - `docs/AUDIT_VALUES_AND_RISKS.md`
 - 匿名读者质疑 Q&A（不含私聊）：`docs/READER_OBJECTIONS_QA.md`
 - 哲学与工作汇总（去修辞、可引用入口）：`docs/PHILOSOPHY_AND_WORK_SUMMARY.md`（内含多助手协作出处说明）
+- `Δ` 映射物理闭合协议：`docs/DELTA_MAPPING_VALIDATION_PROTOCOL.md`
+- `Δ` 映射执行手册（命令级）：`docs/DELTA_MAPPING_RUNBOOK.md`
+- 论文A方法节模板（中英双语）：`docs/PAPER_A_METHODS_SNIPPET.md`
+- 论文A结果节模板（中英双语）：`docs/PAPER_A_DELTA_RESULTS_SNIPPET.md`
+- 论文A引言与讨论模板（中英双语）：`docs/PAPER_A_INTRO_DISCUSSION_SNIPPET.md`
+- 论文A摘要与外联邮件模板（中英双语）：`docs/PAPER_A_ABSTRACT_COVERLETTER_SNIPPET.md`
+- 论文A整稿打包（v1，中文主稿+英文镜像）：`docs/PAPER_A_DRAFT_V1.md`
+- 论文A整稿打包（v2，期刊友好结构）：`docs/PAPER_A_DRAFT_V2_JOURNAL.md`
 
 ---
 
