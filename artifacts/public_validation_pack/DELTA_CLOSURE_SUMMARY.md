@@ -1,6 +1,6 @@
 # DELTA Closure Summary
 
-- Generated at (UTC): `2026-04-24T05:53:12.335401+00:00`
+- Generated at (UTC): `2026-04-24T08:17:29.002854+00:00`
 
 ## Rigor Reports
 
@@ -14,6 +14,19 @@
 - Dimensional closure: `PASS`
 - Process closure: `PASS`
 - Statistical closure: `PASS`
+
+## Policy Verdict
+
+- Failed closure items: `none`
+- Provisional evidence: `False`
+- perm_alpha: `0.05`
+- rmse_margin: `1e-09`
+
+## Per-Mapping Closure
+
+| Mapping | Definition | Dimensional | Process | Statistical |
+|---|---|---|---|---|
+| half_split | PASS | PASS | PASS | PASS |
 
 ## Sanity Snapshot
 

@@ -1,0 +1,37 @@
+{
+  "generated_at": "2026-04-24T07:30:19.899432+00:00",
+  "current_path": "artifacts/public_validation_pack/DELTA_CLOSURE_SUMMARY.json",
+  "previous_path": "artifacts/public_validation_pack/DELTA_CLOSURE_SUMMARY.previous.json",
+  "closure_changes": {
+    "definition_closure": {
+      "current": "PASS",
+      "previous": "PASS",
+      "changed": false
+    },
+    "dimensional_closure": {
+      "current": "PASS",
+      "previous": "PASS",
+      "changed": false
+    },
+    "process_closure": {
+      "current": "PASS",
+      "previous": "PASS",
+      "changed": false
+    },
+    "statistical_closure": {
+      "current": "PASS",
+      "previous": "PASS",
+      "changed": false
+    }
+  },
+  "mapping_deltas": [
+    {
+      "mapping": "half_split",
+      "delta_rmse_bell": "+0.000000",
+      "delta_rmse_low": "+0.000000",
+      "delta_rmse_high": "+0.000000",
+      "delta_perm_p_one": "+0.000000"
+    }
+  ],
+  "any_closure_changed": false
+}

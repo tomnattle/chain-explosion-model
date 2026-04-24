@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-24T08:17:29.002854+00:00",
+  "generated_at": "2026-04-24T07:29:52.713154+00:00",
   "inputs": {
     "artifacts_dir": "artifacts/public_validation_pack",
     "rigor_files": [
@@ -85,14 +85,6 @@
     },
     "lobo_winner": "high",
     "l2o_winner": "high",
-    "per_mapping_closure": {
-      "half_split": {
-        "definition_closure": "PASS",
-        "dimensional_closure": "PASS",
-        "process_closure": "PASS",
-        "statistical_closure": "PASS"
-      }
-    },
     "failed_items": [],
     "has_fail": false,
     "provisional_evidence": false

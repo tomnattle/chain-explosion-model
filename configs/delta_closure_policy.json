@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "perm_alpha": 0.05,
+  "rmse_margin": 1e-09,
+  "float_tolerance": 1e-12,
+  "require_sanity_report": true,
+  "require_all_rigor_mappings_parse_ok": true,
+  "require_low_beats_bell_all_mappings": true,
+  "require_perm_significant_all_mappings": true,
+  "require_lobo_l2o_consistent_winner": true,
+  "fail_if_any_closure_fail": true,
+  "provisional_on_fail": true
+}

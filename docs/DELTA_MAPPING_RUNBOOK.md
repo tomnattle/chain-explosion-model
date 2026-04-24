@@ -102,6 +102,8 @@ python "scripts/explore/explore_nist_e_delta_rigor_pack.py" `
 
 - `DELTA_CLOSURE_CHECKLIST.md`
 
+说明：一键脚本会在生成 summary 后自动回填 checklist，不再默认保留 `TBD`。
+
 最小表格字段：
 
 - 运行 ID
@@ -184,17 +186,21 @@ powershell -ExecutionPolicy Bypass -File "scripts/explore/run_delta_validation_p
 一键脚本会自动调用：
 
 - `scripts/explore/summarize_delta_closure.py`
+- `scripts/explore/compare_delta_summaries.py`（存在上一次 summary 时）
 
 并生成：
 
 - `artifacts/public_validation_pack/DELTA_CLOSURE_SUMMARY.md`
 - `artifacts/public_validation_pack/DELTA_CLOSURE_SUMMARY.json`
+- `artifacts/public_validation_pack/DELTA_CLOSURE_COMPARISON.md`（可用时）
+- `artifacts/public_validation_pack/DELTA_CLOSURE_COMPARISON.json`（可用时）
 
 也可单独执行：
 
 ```powershell
 python "scripts/explore/summarize_delta_closure.py" `
   --artifacts-dir "artifacts/public_validation_pack" `
+  --policy-json "configs/delta_closure_policy.json" `
   --out-md "artifacts/public_validation_pack/DELTA_CLOSURE_SUMMARY.md" `
   --out-json "artifacts/public_validation_pack/DELTA_CLOSURE_SUMMARY.json"
 ```
@@ -202,4 +208,6 @@ python "scripts/explore/summarize_delta_closure.py" `
 说明：
 
 - 该汇总会给出四闭合 `PASS/WARN/FAIL` 的自动草判；
+- 判据策略由 `configs/delta_closure_policy.json` 统一管理；
+- `DELTA_CLOSURE_CHECKLIST.md` 会由 summary 自动回填，并按 mapping 写入独立 closure 状态；
 - 最终投稿前仍需人工确认并在 checklist 上定稿。
