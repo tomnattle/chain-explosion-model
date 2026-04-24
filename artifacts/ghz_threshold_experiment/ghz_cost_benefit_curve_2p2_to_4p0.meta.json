@@ -1,0 +1,15 @@
+{
+  "type": "illustrative_curve",
+  "f_range": [
+    2.2,
+    4.0
+  ],
+  "retention_anchor_at_f_max": 0.25,
+  "discard_anchor_at_f_max": 0.75,
+  "shape_alpha": 1.5,
+  "outputs": {
+    "png": "artifacts/ghz_threshold_experiment/ghz_cost_benefit_curve_2p2_to_4p0.png",
+    "csv": "artifacts/ghz_threshold_experiment/ghz_cost_benefit_curve_2p2_to_4p0.csv"
+  },
+  "note": "Illustrative curve anchored by user-specified trade-off, not direct experimental fit."
+}

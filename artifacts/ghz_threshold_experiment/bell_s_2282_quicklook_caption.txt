@@ -1,0 +1,1 @@
+Observed S=2.282 is above the classical LHV bound (2.0), within the quantum-allowed interval (2.0, 2.828], and clearly below the Tsirelson limit.
