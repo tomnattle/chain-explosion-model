@@ -98,7 +98,7 @@
 
 - `docs/AUDIT_VALUES_AND_RISKS.md`
 - 匿名读者质疑 Q&A（不含私聊）：`docs/READER_OBJECTIONS_QA.md`
-- 哲学与工作汇总（去修辞、可引用入口）：`docs/PHILOSOPHY_AND_WORK_SUMMARY.md`
+- 哲学与工作汇总（去修辞、可引用入口）：`docs/PHILOSOPHY_AND_WORK_SUMMARY.md`（内含多助手协作出处说明）
 
 ---
 
