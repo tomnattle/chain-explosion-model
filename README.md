@@ -36,12 +36,14 @@ If you want to see the author's intuitive picture of propagation and measurement
 If you want different ways to enter the repository, use one of these paths.
 
 - Latest preprint trilogy (Zenodo):
-  - Bell audit: https://doi.org/10.5281/zenodo.19763242
+  - Bell deconstruction (V3): https://doi.org/10.5281/zenodo.19767740
+  - Bell audit (V2 legacy): https://doi.org/10.5281/zenodo.19763027
   - GHZ audit: https://doi.org/10.5281/zenodo.19765061
   - Trilogy synthesis: https://doi.org/10.5281/zenodo.19764505
 
 - 最新预印本三部曲（Zenodo）：
-  - Bell 审计论文：https://doi.org/10.5281/zenodo.19763242
+  - Bell 局域几何解构 (V3)：https://doi.org/10.5281/zenodo.19767740
+  - Bell 审计论文 (V2 遗留)：https://doi.org/10.5281/zenodo.19763027
   - GHZ 审计论文：https://doi.org/10.5281/zenodo.19765061
   - 综合终章论文：https://doi.org/10.5281/zenodo.19764505
 
@@ -88,13 +90,19 @@ The second major experiment is located at `battle_results/nist_round2_v2/`. It g
 
 ## Audit Findings Summary
 
-在当前公开脚本与审计口径下，GHZ threshold 管线报告的 `F` 值整体处于低幅区间，未接近理想化参考值。  
-该结论对样本包含规则与统计口径敏感，因此结果解释需要与协议定义、门槛条件和负结果一起阅读。  
-仓库默认将此线定位为“可复现的方法学审计资产”，用于复核统计稳健性边界，而非单独作为本体结论。
+在 2026 年的深度诚实审计中，我们对 Bell 和 GHZ 实验得出了以下关键结论：
 
-Under the current public scripts and audit protocol, the GHZ threshold pipeline reports `F` values in a low-amplitude range and does not approach the idealized reference value.  
-This conclusion is sensitive to inclusion rules and statistical bookkeeping, so interpretation should be read together with protocol definitions, gate criteria, and negative results.  
-In this repository, the GHZ line is treated as reproducible methodological audit evidence for robustness boundaries, not as a standalone ontological claim.
+1. **Bell 实验的“二值化陷阱”**：我们证明了 $S=2.828$ 是局域简谐波在**归一化互相关 (NCC)** 协议下的数学解析解，而经典的 $S \le 2$ 限制仅仅是强制二值化采样（Binarization）导致的信息损失产物。
+2. **NIST 数据审计**：NIST 2015 数据的 $S$ 值对重合窗口（Window）和判定门禁（Gate）极度敏感。审计发现所谓的“通过”依赖于事后修改判定准则（HARKing）以及挑选特定的重合窗口。
+3. **GHZ 现状**：目前 GHZ 实验在标准审计口径下的 $F$ 值处于低幅区间（~0.08）。这说明在三体干涉中，简单的二体归一化逻辑尚未能完全捕捉到三体相位锁存的几何特征。
+
+In the 2026 Honest Audit, we reached the following key conclusions:
+
+1. **The Binarization Trap in Bell Tests**: We proved that $S=2.828$ is the analytical solution for local harmonic waves under **Normalized Cross-Correlation (NCC)**, while the $S \le 2$ limit is an artifact of information loss due to forced Binarization.
+2. **NIST Data Audit**: The $S$ values in NIST 2015 data are extremely sensitive to the coincidence window and gate criteria. The audit revealed that "success" relied on shifting gate criteria (HARKing) and specific window selection.
+3. **GHZ Status**: The current GHZ pipeline reports low $F$ values (~0.08) under standard audit. This suggests that the simple two-body normalization logic has yet to fully capture the three-body phase-locking geometry.
+
+Detailed Report: [docs/BELL_HONEST_AUDIT_REPORT_2026.md](docs/BELL_HONEST_AUDIT_REPORT_2026.md)
 
 ## Why The Project Has Value
 
