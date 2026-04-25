@@ -44,6 +44,24 @@ Reference scripts:
 - A reported `S > 2` must be interpreted together with protocol details.
 - Ontology claims (nonlocality vs local mechanism) are stronger than what a non-strict pipeline alone can justify.
 
+## NCC denominator observability bridge
+
+One common objection is: if a normalized continuous metric is used, where does its denominator come from in detector data?
+
+Repository bridge script:
+
+- `scripts/explore/explore_ncc_singles_coincidence_bridge.py`
+
+It computes, from the same event stream:
+
+- `singles_A(a)`, `singles_B(b)`
+- `coincidences(a,b)` under a declared coincidence window
+- `C_norm(a,b) = coincidences(a,b) / sqrt(singles_A(a) * singles_B(b))`
+- optional signed variant `C_signed_norm(a,b) = sum(oA*oB) / sqrt(singles_A(a) * singles_B(b))`
+
+This makes the denominator mapping explicit and reproducible as an engineering observable.
+It does **not** by itself prove equivalence to standard CHSH `E(a,b)`.
+
 ## Repository Integration
 
 - `run_battle_plan.py` includes strict protocol gate:

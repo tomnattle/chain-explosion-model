@@ -30,7 +30,7 @@
 | B01 | B | Adrian Kent | University of Cambridge | 量子基础/现实论与测试 | a.p.a.kent@damtp.cam.ac.uk | 已发送待回复 | 2026-04-24 |  |  | 结论边界是否写得过满，哪些表述应降级为待验证命题？ |
 | B02 | B | Caslav Brukner | University of Vienna / IQOQI | 量子基础与信息论 | caslav.brukner@univie.ac.at | 已发送待回复 | 2026-04-24 |  |  | 从信息论视角看，我们的推断链条在哪一步最脆弱？ |
 | B03 | B | Jens Eisert | FU Berlin | 量子信息理论/纠缠理论 | 组秘书联系入口 | 待发送 |  |  |  | 当前理论叙述是否混用了模型层与现象层结论？ |
-| B04 | B |  |  | 量子基础（中立） |  | 待发送 |  |  |  |  |
+| B04 | B | Scott Aaronson | University of Texas at Austin | 量子计算复杂性/理论边界 | aaronson@cs.utexas.edu | 已回复-采纳建议 | 2026-04-25 |  | 建议转向 Bell 数据分析专家；认为“超 Tsirelson 更可能是统计伪影” | Tsirelson 界解释是否隐含固定配对规则假设？ |
 | B05 | B |  |  | 量子基础（中立） |  | 待发送 |  |  |  |  |
 | B06 | B |  |  | 量子基础（中立） |  | 待发送 |  |  |  |  |
 | C01 | C | Anton Zeilinger | IQOQI Vienna | Bell/GHZ 实验基础 | Anton.Zeilinger@oeaw.ac.at | 待发送 |  |  |  | 如果结论不成立，最可能先坏在哪个实验假设或校准环节？ |
@@ -77,11 +77,11 @@
 ### 2026-04-24 | Nicolas Gisin（已发送）
 
 - 收件人：`nicolas.gisin@unige.ch`
-- 主题：`Request for a methodological check: Bell 2.282 and GHZ threshold trade-off`
+- 主题：`Request for a methodological check: Bell 2.828 and GHZ threshold trade-off`
 - 状态：`已发送待回复`
 - 关联仓库：<https://github.com/tomnattle/chain-explosion-model>
 - 关联图示：
-  - `artifacts/ghz_threshold_experiment/bell_s_2282_quicklook.png`
+  - `artifacts/ghz_threshold_experiment/bell_s_2828_quicklook.png`
   - `artifacts/ghz_threshold_experiment/ghz_cost_benefit_curve_2p2_to_4p0.png`
 
 邮件正文（存档）：
@@ -90,7 +90,7 @@
 >
 > I am conducting an open-review analysis on Bell/GHZ results and would greatly value one methodological check from you.
 >
-> In our Bell section, we report a value of 2.282 (derivation documented in the repository).
+> In our Bell section, we report a value of 2.828 (derivation documented in the repository).
 > In our GHZ threshold analysis, reaching threshold 4 requires post-selection that discards about 75% of samples.
 > We have not finalized the 2.2-4.0 cost-benefit curve yet; the current key point is this trade-off itself.
 >
@@ -200,7 +200,7 @@
 - 状态：`已发送待回复`
 - 关联仓库：<https://github.com/tomnattle/chain-explosion-model>
 - 关联图示：
-  - `artifacts/ghz_threshold_experiment/bell_s_2282_quicklook.png`
+  - `artifacts/ghz_threshold_experiment/bell_s_2828_quicklook.png`
   - `artifacts/ghz_threshold_experiment/ghz_cost_benefit_curve_2p2_to_4p0.png`
 
 ### 2026-04-24 | Joachim von Zanthier（已发送）
@@ -210,7 +210,7 @@
 - 状态：`已发送待回复`
 - 关联仓库：<https://github.com/tomnattle/chain-explosion-model>
 - 关联图示：
-  - `artifacts/ghz_threshold_experiment/bell_s_2282_quicklook.png`
+  - `artifacts/ghz_threshold_experiment/bell_s_2828_quicklook.png`
   - `artifacts/ghz_threshold_experiment/ghz_cost_benefit_curve_2p2_to_4p0.png`
 
 ### 2026-04-24 | Adrian Kent（已发送）
@@ -220,7 +220,7 @@
 - 状态：`已发送待回复`
 - 关联仓库：<https://github.com/tomnattle/chain-explosion-model>
 - 关联图示：
-  - `artifacts/ghz_threshold_experiment/bell_s_2282_quicklook.png`
+  - `artifacts/ghz_threshold_experiment/bell_s_2828_quicklook.png`
   - `artifacts/ghz_threshold_experiment/ghz_cost_benefit_curve_2p2_to_4p0.png`
 
 ### 2026-04-24 | Caslav Brukner（已发送）
@@ -230,6 +230,21 @@
 - 状态：`已发送待回复`
 - 关联仓库：<https://github.com/tomnattle/chain-explosion-model>
 - 关联图示：
-  - `artifacts/ghz_threshold_experiment/bell_s_2282_quicklook.png`
+  - `artifacts/ghz_threshold_experiment/bell_s_2828_quicklook.png`
   - `artifacts/ghz_threshold_experiment/ghz_cost_benefit_curve_2p2_to_4p0.png`
+
+### 2026-04-25 | Scott Aaronson（已回复）
+
+- 收件人：`aaronson@cs.utexas.edu`
+- 状态：`已回复-采纳建议`
+- 回信原文（关键句）：
+
+> Sorry, I’m not the right person to ask this. Find someone with experience analyzing Bell data?
+>
+> A violation of Tsirelson would be a violation of quantum mechanics, so it does indeed seem overwhelmingly likelier that this is some sort of statistical artifact.
+
+- 我方处理（已采纳）：
+  - 口径继续保持“方法学敏感性审计”，不做 Tsirelson 违背主张；
+  - 下一步优先联系 Bell 数据分析专家与实验数据处理团队；
+  - 后续邮件继续保留边界声明：`We do not claim a Tsirelson violation.`
 

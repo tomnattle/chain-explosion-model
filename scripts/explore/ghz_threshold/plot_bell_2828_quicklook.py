@@ -9,9 +9,9 @@ import matplotlib.pyplot as plt
 
 def main() -> int:
     ap = argparse.ArgumentParser(
-        description="Generate a quick-look Bell threshold figure for S=2.282"
+        description="Generate a quick-look Bell threshold figure for S=2.828"
     )
-    ap.add_argument("--s-value", type=float, default=2.282)
+    ap.add_argument("--s-value", type=float, default=2.828)
     ap.add_argument("--lhv-bound", type=float, default=2.0)
     ap.add_argument("--tsirelson-bound", type=float, default=2.8284271247461903)
     ap.add_argument("--x-min", type=float, default=1.6)
@@ -62,19 +62,19 @@ def main() -> int:
     ax.set_ylim(0.0, 1.0)
     ax.set_yticks([])
     ax.set_xlabel("Bell/CHSH value S")
-    ax.set_title("Quick-look interpretation of S = 2.282")
+    ax.set_title("Quick-look interpretation of S = 2.828")
     ax.grid(axis="x", alpha=0.25, linestyle="--")
     ax.legend(loc="upper left", fontsize=8, frameon=True)
     fig.tight_layout()
 
-    out_png = out_dir / "bell_s_2282_quicklook.png"
+    out_png = out_dir / "bell_s_2828_quicklook.png"
     fig.savefig(out_png, dpi=180)
     plt.close(fig)
 
-    out_txt = out_dir / "bell_s_2282_quicklook_caption.txt"
+    out_txt = out_dir / "bell_s_2828_quicklook_caption.txt"
     out_txt.write_text(
         (
-            "Observed S=2.282 is above the classical LHV bound (2.0), "
+            "Observed S=2.828 is above the classical LHV bound (2.0), "
             "within the quantum-allowed interval (2.0, 2.828], "
             "and clearly below the Tsirelson limit."
         ),

@@ -1,0 +1,15 @@
+{
+  "events_csv": "D:\\workspace\\chain-explosion-model\\data\\nist_completeblind_side_streams.csv",
+  "window": 0.0,
+  "pair_count": 136632,
+  "n_boot": 2000,
+  "seed": 42,
+  "S_hat": 2.336275858171887,
+  "CI_95": [
+    2.29515117583522,
+    2.378669129275914
+  ],
+  "tsirelson": 2.8284271247461903,
+  "ci_contains_tsirelson": false,
+  "p_bootstrap_S_gt_tsirelson": 0.0
+}

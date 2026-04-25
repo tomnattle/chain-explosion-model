@@ -4,7 +4,7 @@ Denominator-Audit Robustness Analysis for Bell/CHSH Statistics: A Reconciliation
 
 ## Abstract
 
-We present a denominator-audit framework for Bell/CHSH statistics to disentangle mechanism effects from protocol-bookkeeping effects under a shared data context. The protocol compares strict and standard definitions in parallel and separates evaluation into an engineering gate (computability and basic data sufficiency) and a thesis gate (claim-level preregistered criteria). In the NIST-index configuration, we obtain `S_strict=2.336276` and `S_standard=2.839387`: the engineering gate passes, but the thesis gate fails because the strict bound is violated. A simulated fallback run also shows that `S_standard` does not necessarily exceed `S_strict`, reinforcing protocol sensitivity. These outcomes indicate that high `S` values alone are not claim-complete evidence. We therefore report a method-level, boundary-aware conclusion: Bell/CHSH claims should be interpreted through protocol definitions, gate criteria, and retained negative results, rather than through peak statistics alone.
+We present a denominator-audit framework for Bell/CHSH statistics to disentangle mechanism effects from protocol-bookkeeping effects under a shared data context. The protocol compares strict and standard definitions in parallel and separates evaluation into an engineering gate (computability and basic data sufficiency) and a thesis gate (claim-level preregistered criteria). On the same NIST completeblind event stream, binary CHSH yields `S_strict=2.336276` (window `0.0`) and `S_standard=2.839387` (window `15.0`), i.e., `Delta=+0.503111` from pairing-rule change alone. Bootstrap (`n=2000`) gives `CI95_strict=[2.295151, 2.378669]` and `CI95_standard=[2.820420, 2.857413]`; because `2sqrt(2)=2.828427` lies inside the standard CI, we do not claim Tsirelson violation. A simulated fallback run also shows that `S_standard` does not necessarily exceed `S_strict`, reinforcing protocol sensitivity. These outcomes indicate that high `S` values alone are not claim-complete evidence. We therefore report a method-level, boundary-aware conclusion: Bell/CHSH claims should be interpreted through protocol definitions, uncertainty intervals, and retained negative results, rather than through peak statistics alone.
 
 ## 1. Introduction
 
@@ -39,6 +39,9 @@ Two representative result bundles are currently included:
 - NIST-index (real CSV source):
   - strict: `pair_count=136632`, `S=2.336276`
   - standard: `pair_count=148670`, `S=2.839387`
+  - strict bootstrap CI95 (`n=2000`): `[2.295151, 2.378669]`
+  - standard bootstrap CI95 (`n=2000`): `[2.820420, 2.857413]`
+  - rule-driven delta: `S_standard - S_strict = +0.503111`
 - simulated fallback:
   - strict: `S=2.017316`
   - standard: `S=2.008601`
@@ -54,7 +57,7 @@ This separation prevents direct promotion of “computable outputs” into “th
 
 ### 3.1 Main Results
 
-In the NIST-index run, engineering gates pass but thesis gates fail, primarily because `S_strict=2.336276` violates the preregistered strict upper bound (`strict_max_S=2.02`). Therefore:
+In the NIST-index run, engineering gates pass but thesis gates fail, primarily because `S_strict=2.336276` violates the preregistered strict upper bound (`strict_max_S=2.02`). At the same time, the strict-standard gap (`+0.503111`) is much larger than finite-sample noise in either branch, indicating a systematic analysis-rule sensitivity. Therefore:
 
 1. current evidence supports protocol-level computability with high `S`;
 2. current evidence does not satisfy preregistered thesis closure criteria.
@@ -66,7 +69,7 @@ Suggested assets:
 
 ### 3.2 Robustness
 
-The simulated fallback run shows `S_standard` not exceeding `S_strict`, highlighting sensitivity to protocol definitions. This reinforces a core audit principle: retain negative outcomes and avoid cherry-picking only high-`S` views.
+The simulated fallback run shows `S_standard` not exceeding `S_strict`, highlighting sensitivity to protocol definitions. Bootstrap CIs on real data further constrain interpretation: standard-window `S` is high but its CI still includes `2sqrt(2)`, so this result should not be presented as Tsirelson violation. This reinforces a core audit principle: retain negative outcomes and avoid cherry-picking only high-`S` views.
 
 Suggested assets:
 
@@ -97,10 +100,15 @@ Non-supported extrapolations:
 - a single high `S` is insufficient for mechanism-level proof;
 - engineering pass should not be interpreted as thesis pass.
 
+Boundary statement (explicit):
+
+- This work demonstrates analysis-rule sensitivity (especially pairing-window and metric-definition sensitivity) in Bell/CHSH readouts.
+- This work does not, by itself, establish any replacement ontology for quantum theory.
+
 Future work:
 
 - complete full A/B denominator audits (`none` vs `energy_weighted`);
-- expand multi-seed and bootstrap confidence analyses;
+- expand multi-seed analyses (bootstrap CI has been added in this version);
 - finalize figure/table package and related-work integration.
 
 ## Appendix
@@ -109,6 +117,8 @@ Currently cited result files:
 
 - `artifacts/reports/chsh_battle_result_nist.json`
 - `artifacts/reports/chsh_battle_result.json`
+- `artifacts/reports/chsh_bootstrap_ci_standard15.json`
+- `artifacts/reports/chsh_bootstrap_ci_strict0.json`
 
 To be added:
 

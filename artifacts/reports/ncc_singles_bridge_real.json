@@ -1,0 +1,117 @@
+{
+  "source": "events_csv",
+  "events_csv": "D:\\workspace\\chain-explosion-model\\data\\nist_completeblind_side_streams.csv",
+  "note": "C_norm = coincidences / sqrt(singles_A * singles_B). This is an observability bridge for NCC denominator, not a CHSH identity.",
+  "strict": {
+    "window": 0.25,
+    "pair_count": 136632,
+    "dt_mean": 0.0,
+    "dt_median": 0.0,
+    "singles_A": {
+      "0": 130107,
+      "1": 383595
+    },
+    "singles_B": {
+      "0": 134632,
+      "1": 397311
+    },
+    "cells": [
+      {
+        "setting_A": 0,
+        "setting_B": 0,
+        "singles_A": 130107,
+        "singles_B": 134632,
+        "coincidences": 43029,
+        "signed_sum_oa_ob": 42985,
+        "C_norm": 0.32511482458224605,
+        "C_signed_norm": 0.32478237315921465
+      },
+      {
+        "setting_A": 0,
+        "setting_B": 1,
+        "singles_A": 130107,
+        "singles_B": 397311,
+        "coincidences": 45209,
+        "signed_sum_oa_ob": 45123,
+        "C_norm": 0.19884252741903713,
+        "C_signed_norm": 0.19846427403236552
+      },
+      {
+        "setting_A": 1,
+        "setting_B": 0,
+        "singles_A": 383595,
+        "singles_B": 134632,
+        "coincidences": 47087,
+        "signed_sum_oa_ob": 46991,
+        "C_norm": 0.2072003115393429,
+        "C_signed_norm": 0.2067778758371793
+      },
+      {
+        "setting_A": 1,
+        "setting_B": 1,
+        "singles_A": 383595,
+        "singles_B": 397311,
+        "coincidences": 1307,
+        "signed_sum_oa_ob": 861,
+        "C_norm": 0.0033479103821978193,
+        "C_signed_norm": 0.0022054711852121825
+      }
+    ]
+  },
+  "standard": {
+    "window": 15.0,
+    "pair_count": 148670,
+    "dt_mean": 0.12929979148449586,
+    "dt_median": 0.0,
+    "singles_A": {
+      "0": 130107,
+      "1": 383595
+    },
+    "singles_B": {
+      "0": 134632,
+      "1": 397311
+    },
+    "cells": [
+      {
+        "setting_A": 0,
+        "setting_B": 0,
+        "singles_A": 130107,
+        "singles_B": 134632,
+        "coincidences": 42654,
+        "signed_sum_oa_ob": 42306,
+        "C_norm": 0.3222814317723192,
+        "C_signed_norm": 0.3196520432447071
+      },
+      {
+        "setting_A": 0,
+        "setting_B": 1,
+        "singles_A": 130107,
+        "singles_B": 397311,
+        "coincidences": 45813,
+        "signed_sum_oa_ob": 44455,
+        "C_norm": 0.20149909771612617,
+        "C_signed_norm": 0.1955262128428697
+      },
+      {
+        "setting_A": 1,
+        "setting_B": 0,
+        "singles_A": 383595,
+        "singles_B": 134632,
+        "coincidences": 48842,
+        "signed_sum_oa_ob": 46270,
+        "C_norm": 0.214922964219521,
+        "C_signed_norm": 0.20360520769905485
+      },
+      {
+        "setting_A": 1,
+        "setting_B": 1,
+        "singles_A": 383595,
+        "singles_B": 397311,
+        "coincidences": 11361,
+        "signed_sum_oa_ob": 797,
+        "C_norm": 0.02910146124877538,
+        "C_signed_norm": 0.0020415337219676067
+      }
+    ]
+  }
+}
