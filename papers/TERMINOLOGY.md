@@ -10,6 +10,7 @@
 | 一致性门槛 | gate criteria | 工程门槛与论文门槛的统一称呼 |
 | 工程门槛 | engineering gate | 可计算性/样本量等执行门槛 |
 | 论文门槛 | thesis gate | 论文主张所需的判据门槛 |
+| 审计员效应 | auditor effect | 规则选择在解释前已显著塑造统计结果的现象 |
 | 严格协议 | strict protocol | 更严格配对窗口或更严格规则 |
 | 标准协议 | standard protocol | 标准或较宽窗口协议 |
 | 两阶段搜索 | two-stage search | 粗搜 + 细搜 |

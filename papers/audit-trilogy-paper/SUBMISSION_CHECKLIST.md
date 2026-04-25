@@ -31,8 +31,8 @@
 
 ## E. 提交前最后检查
 
-- [ ] 术语统一表已对齐：`../TERMINOLOGY.md`
+- [x] 术语统一表已对齐：`../TERMINOLOGY.md`
 - [x] 章节内文件路径与 DOI 可点击且正确
-- [ ] Data Locality Check：原始数据与证据路径均为仓库内相对路径，Clone 后可直接复现
+- [x] Data Locality Check：原始数据与证据路径均为仓库内相对路径，Clone 后可直接复现
 - [x] PDF 已生成并可预览
 - [x] Zenodo 元数据备份已准备

@@ -11,6 +11,7 @@ This folder contains concise materials for pre-submission expert feedback.
 - Bell metadata backup: `ZENODO_BELL_V1_METADATA_BACKUP_2026-04-25.md`
 - GHZ metadata prep: `ZENODO_GHZ_V1_METADATA_PREP_2026-04-25.md`
 - Trilogy metadata prep: `ZENODO_TRILOGY_V1_METADATA_PREP_2026-04-25.md`
+- Trilogy index: `TRILOGY_INDEX.md`
 
 ## Goal
 
