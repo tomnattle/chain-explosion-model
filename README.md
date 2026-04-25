@@ -35,6 +35,9 @@ If you want to see the author's intuitive picture of propagation and measurement
 
 If you want different ways to enter the repository, use one of these paths.
 
+- Latest Bell preprint (Zenodo): https://zenodo.org/records/19763028
+- DOI: https://doi.org/10.5281/zenodo.19763028
+
 - Fast overview: [PROJECT_TECHNICAL_MONOGRAPH.md](docs/PROJECT_TECHNICAL_MONOGRAPH.md)
 - Author's model picture: [MODEL_INTUITION.md](docs/MODEL_INTUITION.md)
 - Author's memory note: [AUTHOR_MEMORY_NOTE.md](docs/AUTHOR_MEMORY_NOTE.md)

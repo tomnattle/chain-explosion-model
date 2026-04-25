@@ -101,6 +101,10 @@ Next steps:
 
 ## Appendix
 
+Code repository (public):
+
+- https://github.com/tomnattle/chain-explosion-model
+
 Data outputs:
 
 - `artifacts/ghz_threshold_experiment/GHZ_THRESHOLD_SUMMARY.md`

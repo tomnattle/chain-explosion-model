@@ -113,6 +113,10 @@ Future work:
 
 ## Appendix
 
+Code repository (public):
+
+- https://github.com/tomnattle/chain-explosion-model
+
 Currently cited result files:
 
 - `artifacts/reports/chsh_battle_result_nist.json`
