@@ -3,7 +3,7 @@
 这个目录用于并行准备两篇论文：
 
 - `bell-audit-paper`: Bell/CHSH 审计与指标对账
-- `ghz-threebody-paper`: GHZ 三体审计与分母机制分析
+- `ghz-deconstruction-final-pack`: GHZ 终极解构 - 相位环路与连锁爆炸 (Final Edition)
 
 ## 共同最小标准（投稿前）
 

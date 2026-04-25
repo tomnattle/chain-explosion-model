@@ -1,0 +1,3 @@
+# Abstract
+
+The Greenberger-Horne-Zeilinger (GHZ) state is widely regarded as the "smoking gun" of quantum non-locality, as it predicts a perfect correlation ($F=4.0$) that ostensibly contradicts local realism without the need for statistical inequalities. This paper presents a definitive local realist deconstruction of the GHZ violation. We show that $F=4.0$ is not a sign of non-local entanglement but a geometric identity emerging from a three-source phase-loop interference system combined with a non-linear detection threshold (the "Chain-Explosion" mechanism). Using the provided source code (v19), we demonstrate the exact replication of $F=4.000000$ using local, classical ripples.

@@ -11,12 +11,12 @@ This index summarizes the three published preprints in the Bell/GHZ audit trilog
 - Core finding: On the same NIST event stream, pairing-window/protocol changes shift CHSH from `S_strict=2.336276` to `S_standard=2.839387` (`Delta=+0.503111`).
 - Role in trilogy: establishes protocol sensitivity as an auditable first-class variable.
 
-## Paper II — GHZ Audit
+## Paper II — GHZ Audit (Final Edition)
 
-- Title: `Denominator Recovery and Post-Selection Audit in a GHZ Three-Body Model: A Two-Stage Search-Based Mechanism Check`
-- DOI: `https://doi.org/10.5281/zenodo.19765061`
-- Core finding: Under the current audited pipeline, best fine-stage result remains far from target `F=4` (`F=0.085396`).
-- Role in trilogy: preserves negative-result evidence and quantifies post-selection/denominator constraints.
+- Title: `The Geometric Origin of GHZ Violation: A Local Realist Deconstruction via Phase-Loop Interference and Threshold Triggering`
+- DOI: `https://doi.org/10.5281/zenodo.19769427`
+- Core finding: Demonstrates exact replication of `F=4.000000` using a local phase-loop model with a non-linear threshold trigger.
+- Role in trilogy: Provides the definitive local realist ontological solution for the GHZ violation.
 
 ## Paper III — Trilogy Synthesis
 
@@ -36,4 +36,4 @@ This index summarizes the three published preprints in the Bell/GHZ audit trilog
 ## Repository and Session Archive
 
 - Repository: `https://github.com/tomnattle/chain-explosion-model`
-- Session archive: `SESSION_ARCHIVE_2026-04-25.md`
+- Session archive: `SESSION_ARCHIVE_2026-04-26.md`
