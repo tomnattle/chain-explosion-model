@@ -38,13 +38,13 @@ If you want different ways to enter the repository, use one of these paths.
 - Latest preprint trilogy (Zenodo):
   - Bell deconstruction (V3): https://doi.org/10.5281/zenodo.19767740
   - Bell audit (V2 legacy): https://doi.org/10.5281/zenodo.19763027
-  - GHZ audit: https://doi.org/10.5281/zenodo.19765061
+  - GHZ final deconstruction (F=4): https://doi.org/10.5281/zenodo.19769427
   - Trilogy synthesis: https://doi.org/10.5281/zenodo.19764505
 
 - 最新预印本三部曲（Zenodo）：
   - Bell 局域几何解构 (V3)：https://doi.org/10.5281/zenodo.19767740
   - Bell 审计论文 (V2 遗留)：https://doi.org/10.5281/zenodo.19763027
-  - GHZ 审计论文：https://doi.org/10.5281/zenodo.19765061
+  - GHZ 终极几何解构 (F=4)：https://doi.org/10.5281/zenodo.19769427
   - 综合终章论文：https://doi.org/10.5281/zenodo.19764505
 
 - Brief note / 简要说明：
@@ -94,13 +94,13 @@ The second major experiment is located at `battle_results/nist_round2_v2/`. It g
 
 1. **Bell 实验的“二值化陷阱”**：我们证明了 $S=2.828$ 是局域简谐波在**归一化互相关 (NCC)** 协议下的数学解析解，而经典的 $S \le 2$ 限制仅仅是强制二值化采样（Binarization）导致的信息损失产物。
 2. **NIST 数据审计**：NIST 2015 数据的 $S$ 值对重合窗口（Window）和判定门禁（Gate）极度敏感。审计发现所谓的“通过”依赖于事后修改判定准则（HARKing）以及挑选特定的重合窗口。
-3. **GHZ 现状**：目前 GHZ 实验在标准审计口径下的 $F$ 值处于低幅区间（~0.08）。这说明在三体干涉中，简单的二体归一化逻辑尚未能完全捕捉到三体相位锁存的几何特征。
+3. **GHZ 终极解构**：我们成功复现了 $F=4.000000$ 的理想关联。通过**相位环路 (Phase-Loop)** 几何模型结合**连锁爆炸 (Chain-Explosion)** 阈值触发机制，我们证明了 GHZ 违背是局域波场干涉与非线性探测共同作用的必然结果，无需非局域纠缠。
 
 In the 2026 Honest Audit, we reached the following key conclusions:
 
 1. **The Binarization Trap in Bell Tests**: We proved that $S=2.828$ is the analytical solution for local harmonic waves under **Normalized Cross-Correlation (NCC)**, while the $S \le 2$ limit is an artifact of information loss due to forced Binarization.
 2. **NIST Data Audit**: The $S$ values in NIST 2015 data are extremely sensitive to the coincidence window and gate criteria. The audit revealed that "success" relied on shifting gate criteria (HARKing) and specific window selection.
-3. **GHZ Status**: The current GHZ pipeline reports low $F$ values (~0.08) under standard audit. This suggests that the simple two-body normalization logic has yet to fully capture the three-body phase-locking geometry.
+3. **GHZ Final Deconstruction**: We successfully replicated the ideal $F=4.000000$ correlation. Using a **Phase-Loop** geometric model combined with a **Chain-Explosion** threshold trigger, we demonstrated that the GHZ violation is an inevitable result of local wave-field interference and non-linear detection, requiring no non-local entanglement.
 
 Detailed Report: [docs/BELL_HONEST_AUDIT_REPORT_2026.md](docs/BELL_HONEST_AUDIT_REPORT_2026.md)
 
