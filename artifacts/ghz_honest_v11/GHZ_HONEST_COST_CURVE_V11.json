@@ -1,0 +1,639 @@
+{
+  "meta": {
+    "experiment": "ghz_honest_cost_curve_v11",
+    "seed": 0,
+    "samples": 200000,
+    "retention_grid": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.55,
+      0.6,
+      0.65,
+      0.7,
+      0.75,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      1.0
+    ],
+    "score_function": "abs(A_XXX) * abs(B_XXX) * abs(C_XXX)",
+    "anchors": "NONE \u2014 no pre-set F target or retention endpoint",
+    "phi_grid_points": 360,
+    "anti_cheat_note": "All parameters above were logged before rng was seeded. Curve shape is determined entirely by simulation output."
+  },
+  "scheme3_best_phi_rad": 5.759586531581287,
+  "scheme3_best_absF_at_full_retention": 0.00580560409213489,
+  "qm_reference_F": 4.0,
+  "lhv_binary_bound_F": 2.0,
+  "records": [
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.05,
+      "kept": 10000,
+      "F": 0.01798664,
+      "E_XXX": 0.00242048,
+      "E_XYY": -0.01217566,
+      "E_YXY": 0.00246386,
+      "E_YYX": -0.00585437
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.1,
+      "kept": 20000,
+      "F": 0.00611827,
+      "E_XXX": -0.00769776,
+      "E_XYY": -0.01010367,
+      "E_YXY": -0.00097629,
+      "E_YYX": -0.00273607
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.15,
+      "kept": 30000,
+      "F": 0.00273464,
+      "E_XXX": -0.00468599,
+      "E_XYY": -0.00338323,
+      "E_YXY": -0.00037419,
+      "E_YYX": -0.0036632
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.2,
+      "kept": 40000,
+      "F": 0.00192526,
+      "E_XXX": -0.00021015,
+      "E_XYY": -0.00037126,
+      "E_YXY": -0.0011419,
+      "E_YYX": -0.00062226
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.25,
+      "kept": 50000,
+      "F": 0.00139243,
+      "E_XXX": -0.00060296,
+      "E_XYY": -0.00170522,
+      "E_YXY": -0.00165618,
+      "E_YYX": 0.00136602
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.3,
+      "kept": 60000,
+      "F": -0.00188179,
+      "E_XXX": 0.00058668,
+      "E_XYY": 0.00077027,
+      "E_YXY": 0.00134036,
+      "E_YYX": 0.00035784
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.35,
+      "kept": 70000,
+      "F": -0.00379886,
+      "E_XXX": 0.000975,
+      "E_XYY": -0.00026043,
+      "E_YXY": 0.00410993,
+      "E_YYX": 0.00092436
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.4,
+      "kept": 80000,
+      "F": -0.0094857,
+      "E_XXX": 0.00050047,
+      "E_XYY": -0.00013829,
+      "E_YXY": 0.00474604,
+      "E_YYX": 0.00537842
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.45,
+      "kept": 90000,
+      "F": -0.00866323,
+      "E_XXX": 0.0006351,
+      "E_XYY": 0.00049787,
+      "E_YXY": 0.00489346,
+      "E_YYX": 0.003907
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.5,
+      "kept": 100000,
+      "F": -0.0121879,
+      "E_XXX": 0.00063666,
+      "E_XYY": 0.00296022,
+      "E_YXY": 0.00540859,
+      "E_YYX": 0.00445574
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.55,
+      "kept": 110001,
+      "F": -0.01623521,
+      "E_XXX": -1.99e-05,
+      "E_XYY": 0.00589699,
+      "E_YXY": 0.00566965,
+      "E_YYX": 0.00464866
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.6,
+      "kept": 120000,
+      "F": -0.01168352,
+      "E_XXX": 0.00038349,
+      "E_XYY": 0.00365675,
+      "E_YXY": 0.00462797,
+      "E_YYX": 0.0037823
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.65,
+      "kept": 130000,
+      "F": -0.01030434,
+      "E_XXX": 0.00037738,
+      "E_XYY": 0.00321784,
+      "E_YXY": 0.00436133,
+      "E_YYX": 0.00310255
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.7,
+      "kept": 140000,
+      "F": -0.00739366,
+      "E_XXX": 0.0003942,
+      "E_XYY": 0.00235559,
+      "E_YXY": 0.00314793,
+      "E_YYX": 0.00228435
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.75,
+      "kept": 150000,
+      "F": -0.00658522,
+      "E_XXX": 0.00022788,
+      "E_XYY": 0.00155746,
+      "E_YXY": 0.00243413,
+      "E_YYX": 0.00282151
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.8,
+      "kept": 160000,
+      "F": -0.00598789,
+      "E_XXX": 0.00026853,
+      "E_XYY": 0.00180235,
+      "E_YXY": 0.00241456,
+      "E_YYX": 0.00203951
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.85,
+      "kept": 170000,
+      "F": -0.00566792,
+      "E_XXX": 0.00026122,
+      "E_XYY": 0.0018437,
+      "E_YXY": 0.00250505,
+      "E_YYX": 0.00158039
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.9,
+      "kept": 180000,
+      "F": -0.00331859,
+      "E_XXX": 0.00027109,
+      "E_XYY": -4.584e-05,
+      "E_YXY": 0.00242427,
+      "E_YYX": 0.00121125
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 0.95,
+      "kept": 190000,
+      "F": -0.00141216,
+      "E_XXX": 0.00027569,
+      "E_XYY": 8.534e-05,
+      "E_YXY": 0.00152697,
+      "E_YYX": 7.553e-05
+    },
+    {
+      "scheme": "scheme1_four_lambdas",
+      "retention": 1.0,
+      "kept": 200000,
+      "F": -0.00118673,
+      "E_XXX": 0.00027772,
+      "E_XYY": -0.00011029,
+      "E_YXY": 0.00092642,
+      "E_YYX": 0.00064832
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.05,
+      "kept": 10000,
+      "F": -0.00966653,
+      "E_XXX": 0.00673457,
+      "E_XYY": 0.00546703,
+      "E_YXY": 0.00546703,
+      "E_YYX": 0.00546703
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.1,
+      "kept": 20000,
+      "F": 0.00058182,
+      "E_XXX": -0.00035547,
+      "E_XYY": -0.00031243,
+      "E_YXY": -0.00031243,
+      "E_YYX": -0.00031243
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.15,
+      "kept": 30000,
+      "F": 0.00173947,
+      "E_XXX": -0.00147797,
+      "E_XYY": -0.00107248,
+      "E_YXY": -0.00107248,
+      "E_YYX": -0.00107248
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.2,
+      "kept": 40000,
+      "F": 0.01114021,
+      "E_XXX": -0.00117588,
+      "E_XYY": -0.00410537,
+      "E_YXY": -0.00410537,
+      "E_YYX": -0.00410537
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.25,
+      "kept": 50000,
+      "F": -0.00129569,
+      "E_XXX": 0.00228813,
+      "E_XYY": 0.00119461,
+      "E_YXY": 0.00119461,
+      "E_YYX": 0.00119461
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.3,
+      "kept": 60000,
+      "F": -0.00867875,
+      "E_XXX": 0.00259722,
+      "E_XYY": 0.00375866,
+      "E_YXY": 0.00375866,
+      "E_YYX": 0.00375866
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.35,
+      "kept": 70000,
+      "F": -0.00085442,
+      "E_XXX": 0.00097112,
+      "E_XYY": 0.00060851,
+      "E_YXY": 0.00060851,
+      "E_YYX": 0.00060851
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.4,
+      "kept": 80000,
+      "F": 0.00349019,
+      "E_XXX": 0.00025101,
+      "E_XYY": -0.00107973,
+      "E_YXY": -0.00107973,
+      "E_YYX": -0.00107973
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.45,
+      "kept": 90000,
+      "F": -0.00132146,
+      "E_XXX": 0.00093501,
+      "E_XYY": 0.00075216,
+      "E_YXY": 0.00075216,
+      "E_YYX": 0.00075216
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.5,
+      "kept": 100000,
+      "F": -0.00129,
+      "E_XXX": 0.00068973,
+      "E_XYY": 0.00065991,
+      "E_YXY": 0.00065991,
+      "E_YYX": 0.00065991
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.55,
+      "kept": 110001,
+      "F": -0.0006561,
+      "E_XXX": 0.00065654,
+      "E_XYY": 0.00043755,
+      "E_YXY": 0.00043755,
+      "E_YYX": 0.00043755
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.6,
+      "kept": 120000,
+      "F": -0.00023094,
+      "E_XXX": 0.00059131,
+      "E_XYY": 0.00027408,
+      "E_YXY": 0.00027408,
+      "E_YYX": 0.00027408
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.65,
+      "kept": 130000,
+      "F": -0.00318322,
+      "E_XXX": 0.00068802,
+      "E_XYY": 0.00129041,
+      "E_YXY": 0.00129041,
+      "E_YYX": 0.00129041
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.7,
+      "kept": 140000,
+      "F": -0.00123894,
+      "E_XXX": 0.00064479,
+      "E_XYY": 0.00062791,
+      "E_YXY": 0.00062791,
+      "E_YYX": 0.00062791
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.75,
+      "kept": 150000,
+      "F": -0.00139701,
+      "E_XXX": 0.00061692,
+      "E_XYY": 0.00067131,
+      "E_YXY": 0.00067131,
+      "E_YYX": 0.00067131
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.8,
+      "kept": 160000,
+      "F": -0.00263077,
+      "E_XXX": 0.00068453,
+      "E_XYY": 0.0011051,
+      "E_YXY": 0.0011051,
+      "E_YYX": 0.0011051
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.85,
+      "kept": 170000,
+      "F": -0.00211681,
+      "E_XXX": 0.00068894,
+      "E_XYY": 0.00093525,
+      "E_YXY": 0.00093525,
+      "E_YYX": 0.00093525
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.9,
+      "kept": 180000,
+      "F": -0.00207519,
+      "E_XXX": 0.00070946,
+      "E_XYY": 0.00092822,
+      "E_YXY": 0.00092822,
+      "E_YYX": 0.00092822
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 0.95,
+      "kept": 190000,
+      "F": -0.00217027,
+      "E_XXX": 0.00072936,
+      "E_XYY": 0.00096654,
+      "E_YXY": 0.00096654,
+      "E_YYX": 0.00096654
+    },
+    {
+      "scheme": "scheme2b_sphere_bloch",
+      "retention": 1.0,
+      "kept": 200000,
+      "F": -0.00208148,
+      "E_XXX": 0.00074815,
+      "E_XYY": 0.00094321,
+      "E_YXY": 0.00094321,
+      "E_YYX": 0.00094321
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.05,
+      "kept": 10000,
+      "F": 0.00552265,
+      "E_XXX": 0.00335869,
+      "E_XYY": -0.00236485,
+      "E_YXY": -0.00236485,
+      "E_YYX": 0.00256573
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.1,
+      "kept": 20000,
+      "F": 0.00256887,
+      "E_XXX": 0.00378405,
+      "E_XYY": -0.00405961,
+      "E_YXY": -0.00405961,
+      "E_YYX": 0.00933439
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.15,
+      "kept": 30000,
+      "F": -0.00176179,
+      "E_XXX": -0.00069203,
+      "E_XYY": -0.00120164,
+      "E_YXY": -0.00120164,
+      "E_YYX": 0.00347305
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.2,
+      "kept": 40000,
+      "F": -0.00091732,
+      "E_XXX": -0.00168056,
+      "E_XYY": -0.0008653,
+      "E_YXY": -0.0008653,
+      "E_YYX": 0.00096736
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.25,
+      "kept": 50000,
+      "F": -0.00028432,
+      "E_XXX": -0.00191563,
+      "E_XYY": -0.0004808,
+      "E_YXY": -0.0004808,
+      "E_YYX": -0.0006697
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.3,
+      "kept": 60000,
+      "F": 0.00353143,
+      "E_XXX": -0.00307923,
+      "E_XYY": -0.00253268,
+      "E_YXY": -0.00253268,
+      "E_YYX": -0.00154531
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.35,
+      "kept": 70000,
+      "F": -0.00047404,
+      "E_XXX": -0.00213077,
+      "E_XYY": 0.00021249,
+      "E_YXY": 0.00021249,
+      "E_YYX": -0.00208172
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.4,
+      "kept": 80000,
+      "F": -0.00343902,
+      "E_XXX": -0.00147897,
+      "E_XYY": 0.00081245,
+      "E_YXY": 0.00081245,
+      "E_YYX": 0.00033515
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.45,
+      "kept": 90000,
+      "F": -0.00832881,
+      "E_XXX": -0.00068768,
+      "E_XYY": 0.00202301,
+      "E_YXY": 0.00202301,
+      "E_YYX": 0.0035951
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.5,
+      "kept": 100000,
+      "F": -0.00617807,
+      "E_XXX": -0.00064933,
+      "E_XYY": 0.00106577,
+      "E_YXY": 0.00106577,
+      "E_YYX": 0.0033972
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.55,
+      "kept": 110001,
+      "F": -0.01304093,
+      "E_XXX": 9.352e-05,
+      "E_XYY": 0.00327519,
+      "E_YXY": 0.00327519,
+      "E_YYX": 0.00658407
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.6,
+      "kept": 120000,
+      "F": -0.01817695,
+      "E_XXX": 0.00062272,
+      "E_XYY": 0.00559406,
+      "E_YXY": 0.00559406,
+      "E_YYX": 0.00761156
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.65,
+      "kept": 130000,
+      "F": -0.01145292,
+      "E_XXX": 0.00035777,
+      "E_XYY": 0.00314022,
+      "E_YXY": 0.00314022,
+      "E_YYX": 0.00553025
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.7,
+      "kept": 140000,
+      "F": -0.00735343,
+      "E_XXX": 0.00028499,
+      "E_XYY": 0.0020657,
+      "E_YXY": 0.0020657,
+      "E_YYX": 0.00350702
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.75,
+      "kept": 150000,
+      "F": -0.00969895,
+      "E_XXX": 0.00033678,
+      "E_XYY": 0.00285337,
+      "E_YXY": 0.00285337,
+      "E_YYX": 0.00432899
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.8,
+      "kept": 160000,
+      "F": -0.00854974,
+      "E_XXX": 0.00035021,
+      "E_XYY": 0.0025312,
+      "E_YXY": 0.0025312,
+      "E_YYX": 0.00383755
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.85,
+      "kept": 170000,
+      "F": -0.00544599,
+      "E_XXX": 0.00037858,
+      "E_XYY": 0.00113601,
+      "E_YXY": 0.00113601,
+      "E_YYX": 0.00355256
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.9,
+      "kept": 180000,
+      "F": -0.00489461,
+      "E_XXX": 0.00038356,
+      "E_XYY": 0.00110377,
+      "E_YXY": 0.00110377,
+      "E_YYX": 0.00307063
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 0.95,
+      "kept": 190000,
+      "F": -0.00462878,
+      "E_XXX": 0.00037876,
+      "E_XYY": 0.00144382,
+      "E_YXY": 0.00144382,
+      "E_YYX": 0.00211991
+    },
+    {
+      "scheme": "scheme3_best_phi=5.7596",
+      "retention": 1.0,
+      "kept": 200000,
+      "F": -0.0058056,
+      "E_XXX": 0.00038392,
+      "E_XYY": 0.00157983,
+      "E_YXY": 0.00157983,
+      "E_YYX": 0.00302987
+    }
+  ]
+}

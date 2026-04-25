@@ -1,0 +1,59 @@
+{
+  "audit": "bell_honest_smuggling_audit_v1",
+  "source_audited": "D:\\workspace\\chain-explosion-model\\scripts\\explore\\explore_chsh_experiment_alignment.py",
+  "summary": {
+    "PASS": 7,
+    "FAIL": 0,
+    "WARN": 1,
+    "MANUAL-REQUIRED": 1
+  },
+  "overall": "INCOMPLETE",
+  "note": "INCOMPLETE means some items need manual review before Bell-interpretation claims can be made.",
+  "checks": [
+    {
+      "item": "C1",
+      "status": "PASS",
+      "evidence": "No global/nonlocal keywords found in pairing/scoring functions. pair_events() and compute_E_S() take only local arguments."
+    },
+    {
+      "item": "C2",
+      "status": "PASS",
+      "evidence": "Event pairing (pair_events) uses only time-window criterion. Outcome multiplication oa*ob in compute_E_S is post-pairing correlation computation, not inclusion filter. No joint-outcome-based exclusion found. Outcome ops at lines: [117]"
+    },
+    {
+      "item": "C3",
+      "status": "PASS",
+      "evidence": "No threading, IPC, or synchronization primitives found. Alice and Bob events are processed sequentially in a single process."
+    },
+    {
+      "item": "C4",
+      "status": "MANUAL-REQUIRED",
+      "evidence": "The pairing algorithm reads B-side events to find time-matches, which is causally allowed (Alice knows when B fired, not what B measured). However, manual verification needed to confirm: (1) Alice outcome is determined before pairing, (2) B's setting is never used to determine A's outcome. Cross-side references in source: ['B[j]', 'setB', 'outB', 'sb']"
+    },
+    {
+      "item": "C5",
+      "status": "PASS",
+      "evidence": "Two independent runs with window=0 produced identical results: S=2.3362758582, pairs=136632. Deterministic confirmed."
+    },
+    {
+      "item": "C6",
+      "status": "PASS",
+      "evidence": "chsh() function defined at lines [26] matches preregistered formula 'S = Eab + Eabp + Eapb - Eapbp'. No alternative formula found."
+    },
+    {
+      "item": "M1",
+      "status": "WARN",
+      "evidence": "simulate_events() uses lam independent of settings (rho(lambda) = uniform, NOT rho(lambda|a,b)). For the real NIST CSV path, no explicit lambda model exists — outcomes are empirical. Measurement dependence claim cannot be evaluated on real data path. MANUAL-REQUIRED: Document which path is used for the Bell claim."
+    },
+    {
+      "item": "M2",
+      "status": "PASS",
+      "evidence": "B-side settings (setB, sb) only appear in compute_E_S for post-pairing statistics. Not found in outcome generation. Setting references at lines: [64, 66, 75, 102, 103, 114, 124, 125, 126, 127]. Outcome generation at lines: {'outA =': [69], 'outB =': [70], 'oa =': [115], 'ob =': [102, 116]}"
+    },
+    {
+      "item": "M3",
+      "status": "PASS",
+      "evidence": "Real NIST data path: outcomes are pre-recorded events, trivially local (no computation needed). Simulation fallback: outA = f(lam, setA), outB = f(lam, setB) — each side's outcome depends only on its own setting."
+    }
+  ]
+}

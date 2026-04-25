@@ -1,0 +1,12 @@
+{
+  "scan": "bell_honest_window_scan_v1",
+  "window_min": 0.0,
+  "window_max": 20.0,
+  "window_step": 0.5,
+  "windows_under_audit": {
+    "round1_standard": 15.0,
+    "round2_standard": 10.0,
+    "strict_both_rounds": 0.0
+  },
+  "anti_cheat": "All parameters above are logged before data is read. No window can be added or removed after seeing results."
+}

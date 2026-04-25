@@ -1,0 +1,86 @@
+{
+  "audit": "bell_honest_gate_audit_v1",
+  "source_data": {
+    "round1": "D:\\workspace\\chain-explosion-model\\battle_results\\nist_completeblind_2015-09-19\\battle_result.json",
+    "round2": "D:\\workspace\\chain-explosion-model\\battle_results\\nist_round2_v2\\ROUND2_ENGINEERING_BATTLE_REPORT.json"
+  },
+  "gate_definitions": {
+    "round1_gate": {
+      "type": "full",
+      "strict_max_S": 2.02,
+      "standard_min_S": 2.0,
+      "require_fork": true
+    },
+    "round2_gate": {
+      "type": "fork_only",
+      "require_standard_gt_strict": true
+    }
+  },
+  "all_combinations": [
+    {
+      "label": "Round1_data × Round1_gate (original verdict)",
+      "data_round": 1,
+      "gate_type": "full (strict_max_S=2.02)",
+      "s_strict": 2.336275858171887,
+      "s_standard": 2.8393872150319877,
+      "w_strict": 0.0,
+      "w_standard": 15.0,
+      "thesis_pass": false,
+      "reason": "FAIL: S_strict=2.336276 > strict_max_S=2.02",
+      "is_original_verdict": true
+    },
+    {
+      "label": "Round1_data × Round2_gate (counterfactual)",
+      "data_round": 1,
+      "gate_type": "fork_only",
+      "s_strict": 2.336275858171887,
+      "s_standard": 2.8393872150319877,
+      "w_strict": 0.0,
+      "w_standard": 15.0,
+      "thesis_pass": true,
+      "reason": "PASS: S_standard=2.839387 > S_strict=2.336276",
+      "is_original_verdict": false
+    },
+    {
+      "label": "Round2_data × Round1_gate (counterfactual)",
+      "data_round": 2,
+      "gate_type": "full (strict_max_S=2.02)",
+      "s_strict": 2.336275858171887,
+      "s_standard": 2.8445681666863845,
+      "w_strict": 0.0,
+      "w_standard": 10.0,
+      "thesis_pass": false,
+      "reason": "FAIL: S_strict=2.336276 > strict_max_S=2.02",
+      "is_original_verdict": false
+    },
+    {
+      "label": "Round2_data × Round2_gate (original verdict)",
+      "data_round": 2,
+      "gate_type": "fork_only",
+      "s_strict": 2.336275858171887,
+      "s_standard": 2.8445681666863845,
+      "w_strict": 0.0,
+      "w_standard": 10.0,
+      "thesis_pass": true,
+      "reason": "PASS: S_standard=2.844568 > S_strict=2.336276",
+      "is_original_verdict": true
+    }
+  ],
+  "gate_sensitivity": {
+    "gate_change_causes_verdict_flip_on": 2,
+    "out_of_total_data_rounds": 2,
+    "interpretation": "The gate change flips the verdict on ALL data rounds"
+  },
+  "gate_change_analysis": {
+    "observation": "Round 1 thesis gate (strict_max_S=2.02) was set BEFORE running Round 1. Round 1 FAILED because S_strict=2.336 > 2.02. Round 2 changed the gate to fork_only BEFORE running Round 2 (documented in run_config_locked.json created_utc: 2026-03-31T02:45:51Z). Round 2 PASSED under fork_only.",
+    "what_we_can_verify": [
+      "The new gate was written into a new config file (run_config_locked.json) before the first official Round 2 run — this is consistent with preregistration.",
+      "The change was NOT made to the original Round 1 config file."
+    ],
+    "what_we_cannot_verify_automatically": [
+      "Whether the decision to use fork_only was made BEFORE seeing Round 1 S values or AFTER. The config file timestamp (2026-03-31) comes after Round 1 (battle_result.json has no timestamp). Cannot determine causal order.",
+      "Whether fork_only was planned as the Round 2 hypothesis from the start or was chosen to accommodate the Round 1 failure."
+    ],
+    "recommendation": "Author should document in a new GATE_CHANGE_RATIONALE.md: (1) When was fork_only decided? (2) Was S_strict=2.336 from Round 1 known before Round 2 gate was written? This is the critical missing record."
+  }
+}

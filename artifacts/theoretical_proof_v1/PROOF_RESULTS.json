@@ -1,0 +1,29 @@
+{
+  "description": "Comparison of Binarization vs NCC on Local Wave Model",
+  "n_samples": 1000000,
+  "theoretical_target": 2.8284271247461903,
+  "results": {
+    "binarized": {
+      "correlations": [
+        -0.500616,
+        0.500132,
+        -0.4988,
+        -0.500452
+      ],
+      "S": 2.0,
+      "limit": 2.0,
+      "verdict": "Obeys Bell Inequality"
+    },
+    "ncc": {
+      "correlations": [
+        -0.7070871608576426,
+        0.7073771866870847,
+        -0.7068361692632462,
+        -0.7071265039059454
+      ],
+      "S": 2.828427020713919,
+      "limit": 2.828427,
+      "verdict": "Violates Bell Inequality (Tsirelson Bound reached)"
+    }
+  }
+}
