@@ -1,0 +1,18 @@
+{
+  "model": "GHZ Wave Sum Interference v12",
+  "description": "3 sources (AB, BC, CA) contributing 2 waves each to 3 detectors.",
+  "results": {
+    "NCC_Continuous": {
+      "E_XXX": -0.0009973607032026227,
+      "E_XYY": -0.0016472696387099738,
+      "E_YXY": 0.0018158810377289557,
+      "E_YYX": -0.0002892794419890347,
+      "Mermin_F": -0.0008766926602325699
+    },
+    "Binarized": {
+      "Mermin_F": -0.00454
+    }
+  },
+  "target_F": 4.0,
+  "lhv_limit": 2.0
+}

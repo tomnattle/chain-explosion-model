@@ -1,0 +1,20 @@
+{
+  "model": "GHZ Chain Explosion v16",
+  "parameters": {
+    "F1": 1.5,
+    "F2": 0.8,
+    "F3": 1.2
+  },
+  "results": {
+    "Spherical_NCC": {
+      "E_XXX": 0.6627920238267219,
+      "E_XYY": -0.6628102450171731,
+      "Mermin_F": 2.652070167361269
+    },
+    "Binarized": {
+      "E_XXX": 0.499694,
+      "E_XYY": -0.499928,
+      "Mermin_F": 2.0
+    }
+  }
+}

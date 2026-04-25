@@ -1,0 +1,24 @@
+{
+  "model": "GHZ Phase-Loop (Three Stones) v13",
+  "logic": "Interference phase difference between 3 closed-loop emitters.",
+  "results": {
+    "Spherical_NCC": {
+      "E_XXX": 0.706267589629745,
+      "E_XYY": -0.7069269022490501,
+      "E_YXY": -0.7080895205176739,
+      "E_YYX": -0.7071419072421807,
+      "Mermin_F": 2.82842591963865
+    },
+    "Binarized_Logic": {
+      "E_XXX": 0.497236,
+      "E_XYY": -0.49961,
+      "E_YXY": -0.502732,
+      "E_YYX": -0.500422,
+      "Mermin_F": 2.0
+    }
+  },
+  "interpretation": {
+    "Spherical_F_Goal": "Reveals cosine curvature through NCC",
+    "Binarized_F_Limit": 2.0
+  }
+}
