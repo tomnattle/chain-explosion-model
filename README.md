@@ -35,8 +35,19 @@ If you want to see the author's intuitive picture of propagation and measurement
 
 If you want different ways to enter the repository, use one of these paths.
 
-- Latest Bell preprint (Zenodo): https://zenodo.org/records/19763028
-- DOI: https://doi.org/10.5281/zenodo.19763028
+- Latest preprint trilogy (Zenodo):
+  - Bell audit: https://doi.org/10.5281/zenodo.19763028
+  - GHZ audit: https://doi.org/10.5281/zenodo.19763473
+  - Trilogy synthesis: https://doi.org/10.5281/zenodo.19764505
+
+- 最新预印本三部曲（Zenodo）：
+  - Bell 审计论文：https://doi.org/10.5281/zenodo.19763028
+  - GHZ 审计论文：https://doi.org/10.5281/zenodo.19763473
+  - 综合终章论文：https://doi.org/10.5281/zenodo.19764505
+
+- Brief note / 简要说明：
+  - EN: These three papers form a reproducible audit trilogy focused on analysis-rule sensitivity, protocol transparency, and claim-boundary reporting for Bell/GHZ statistics.
+  - 中文：这三篇论文构成一个可复现的审计三部曲，核心关注 Bell/GHZ 统计中的分析规则敏感性、协议透明度与结论边界报告。
 
 - Fast overview: [PROJECT_TECHNICAL_MONOGRAPH.md](docs/PROJECT_TECHNICAL_MONOGRAPH.md)
 - Author's model picture: [MODEL_INTUITION.md](docs/MODEL_INTUITION.md)

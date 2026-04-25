@@ -1,151 +1,162 @@
-# Title (Working)
+# Title (English)
 
-From Protocol-Sensitive Statistics to Boundary-Aware Interpretation:  
-A Unified Audit Framework for Bell and GHZ Analyses
+Analysis Rule Sensitivity in Bell and GHZ Experiments:  
+A Reproducible Audit Framework
 
 ## Abstract
 
-This paper synthesizes two published audit studies into a single reproducible framework for evaluating high-correlation claims under protocol sensitivity. Building on Bell/CHSH and GHZ three-body audits, we formalize a ledger-style method that separates mechanism evidence from bookkeeping artifacts through explicit metric registration, denominator-policy tracking, gate-separated evaluation, and negative-result retention. Across both lines, we identify a shared risk: strong headline statistics can be materially affected by inclusion rules, post-selection settings, and denominator handling if uncertainty and protocol definitions are not jointly reported. We therefore provide a cross-study audit protocol with evidence traceability to public artifacts and DOI-linked records, and we state claim boundaries explicitly at the method level. Under the current evidence base, our contribution is a reproducible interpretation framework, not an ontology replacement claim.
+Bell `S` and GHZ-style `F` readouts can be highly sensitive to analysis rules such as pairing windows, denominator policy, and post-selection constraints, even under a shared data context. Using two published audits over public artifacts, we show that Bell/CHSH on the same NIST event stream shifts from `S_strict=2.336276` to `S_standard=2.839387` (`Delta=+0.503111`) under protocol change, while GHZ three-body search under the current audited pipeline remains far from `F=4` (best fine-stage `F=0.085396`). We therefore provide a reproducible, ledger-style audit framework that treats analysis rules as first-class reported variables and keeps claim boundaries explicitly at the method level.
 
 ## 1. Introduction
 
-High-correlation results are often discussed at claim level before auditing how protocol choices shape the reported statistics. In practice, windowing, denominator definitions, sample inclusion, and gating choices can alter metric values substantially, even when source data context is shared.
+High-correlation statistics are often discussed at claim level before analysis rules are fully audited. In practical Bell/GHZ pipelines, pairing windows, denominator definitions, sample inclusion, and gating can materially affect headline metrics. If such rules are not reported as explicit variables, bookkeeping effects can be mistaken for mechanism effects.
 
-This paper serves as the synthesis layer of an audit trilogy. Instead of introducing a new standalone metric, we integrate existing Bell and GHZ audit outcomes into a unified reporting and evaluation framework that is reproducible, boundary-aware, and resistant to cherry-picking.
+This paper is the synthesis layer of an audit trilogy. Rather than introducing a new ontology claim, we unify two published audit lines into a single reporting and interpretation framework designed for reproducibility, boundary awareness, and resistance to cherry-picking.
 
-### 1.1 Prior Published Audits
+We call this the auditor effect: selecting pairing windows and denominator rules can effectively pre-condition the reported `S` value before any physical interpretation is made. Treating this effect as an explicit reporting target is one of the core contributions of the present framework.
 
-- Bell audit preprint DOI: `10.5281/zenodo.19763028`
-- GHZ audit preprint DOI: `10.5281/zenodo.19763473`
+### 1.1 Published Audit Records
+
+- Bell audit DOI: `https://doi.org/10.5281/zenodo.19763028`
+- GHZ audit DOI: `https://doi.org/10.5281/zenodo.19763473`
 
 ### 1.2 Scope and Boundary
 
-- In scope: methodological synthesis, protocol-risk mapping, evidence traceability, and reporting standards.
-- Out of scope: declaring ontology-level replacement of standard quantum theory from current audit evidence alone.
+- In scope: method-level synthesis, rule-sensitivity mapping, and claim-to-artifact traceability.
+- Out of scope: declaring ontology-level replacement of standard quantum theory from current evidence.
 
 ## 2. Unified Audit Framework
 
-### 2.1 Ledger-Style Core Principles
+### 2.1 Five Core Principles
 
 1. **Metric registry first**: define statistic forms, denominators, and inclusion rules before interpretation.
-2. **Protocol parallelism**: compute strict/standard or A/B denominator variants under shared data context.
+2. **Protocol parallelism**: compute strict/standard and denominator A/B variants under shared context.
 3. **Gate separation**: separate engineering computability from thesis-level claim criteria.
-4. **Uncertainty binding**: require CI/robustness context for all headline metrics.
-5. **Negative-result retention**: keep failed or non-supporting branches visible in the evidence chain.
+4. **Uncertainty binding**: attach CI/robustness context to every headline metric.
+5. **Negative-result retention**: preserve failed branches as evidence, not noise.
 
-### 2.2 Minimal Required Audit Record
+### 2.2 Minimum Audit Record
 
-- Data source and preprocessing trace
-- Metric definition table
-- Protocol parameter table
+- data source and preprocessing trace
+- metric definition table
+- protocol parameter table
 - A/B comparison outputs
-- Robustness outputs (bootstrap/seed sweep)
-- Claim-boundary statement
+- robustness outputs (bootstrap/seed sweep)
+- explicit boundary statement
 
-## 3. Cross-Study Synthesis (Bell vs GHZ)
+## 3. Cross-Study Evidence Synthesis
 
-### 3.1 Bell Line: Protocol-Window Sensitivity
+### 3.1 Bell Line: Window and Protocol Sensitivity
 
-Use published Bell evidence to summarize:
+On the same NIST completeblind stream, binary CHSH changes from:
 
-- strict vs standard `S` divergence under shared event stream
-- CI interpretation boundary (including Tsirelson-related non-claim boundary)
-- gate pass/fail split between engineering and thesis criteria
+- `S_strict=2.336276` (window `0.0`)
+- `S_standard=2.839387` (window `15.0`)
+- `Delta=+0.503111` from analysis-rule change
 
-Evidence pointers:
+Bootstrap (`n=2000`) reports:
 
-- `artifacts/reports/chsh_bootstrap_ci_standard15.json`
-- `artifacts/reports/chsh_bootstrap_ci_strict0.json`
-- Zenodo Bell record: `https://zenodo.org/records/19763028`
+- `CI95_strict=[2.295151, 2.378669]`
+- `CI95_standard=[2.820420, 2.857413]`
+
+Because `2sqrt(2)=2.828427` lies inside the standard CI, this line does not support a Tsirelson-violation claim.
 
 ### 3.2 GHZ Line: Post-Selection and Denominator Sensitivity
 
-Use published GHZ evidence to summarize:
+Under the published audited configuration (`samples=80000`, `numba_cpu`, gated protocol), GHZ search reports:
 
-- denominator mode and gating effects under fixed pipeline
-- two-stage search outcomes versus target gap
-- robustness and failure-decomposition outcomes
+- coarse best: `F=0.074761`
+- fine best: `F=0.085396`
+- target gap from `F=4`: `|err|=3.914604`
 
-Evidence pointers:
+Current evidence does not show near-`4` behavior under this audited pipeline. Failure decomposition points to correlation-shape mismatch rather than coincidence sparsity as the dominant bottleneck.
 
-- `papers/ghz-threebody-paper/tables/table1_search_registry.md`
-- `papers/ghz-threebody-paper/tables/table2_coarse_fine_topk.md`
-- `papers/ghz-threebody-paper/tables/table3_robustness.md`
-- Zenodo GHZ record: `https://zenodo.org/records/19763473`
+### 3.3 Shared Risk Pattern
 
-### 3.3 Shared Failure Modes
+Both lines reveal the same structural risk: strong headline statistics can be produced or suppressed by analysis rules unless denominator policy, post-selection logic, and uncertainty are jointly reported.
 
-Draft synthesis checklist (to be completed with final values):
+## 4. Singles-Aware Diagnostics and the 2.828 Pathway
 
-1. bookkeeping-sensitive inflation risk
-2. denominator-policy ambiguity risk
-3. post-selection sensitivity risk
-4. headline-statistic over-interpretation risk
-5. missing-negative-results risk
+We define a singles-aware diagnostics layer to track denominator-side observability and interpretation confidence:
 
-## 4. Singles-Aware Normalization Diagnostics
+- `C_norm = coincidences / sqrt(singles_A * singles_B)`
 
-This section defines a diagnostics layer for singles/correlation bookkeeping consistency checks.  
-Use this section to connect existing bridge artifacts and explain how denominator-side fluctuations can affect interpretation confidence.
+The NCC normalization pathway can be written as:
 
-Primary artifact candidate:
+`<cos(lambda-a) * cos(lambda-b)> / <cos^2(lambda)>`
+`= [cos(Delta)/2] / [1/2]`
+`= cos(Delta)`
+
+This provides a deterministic geometric pathway to `S=2\sqrt{2}` without invoking non-locality at the level of the normalization identity itself.
+
+This work treats the pathway to `2\sqrt{2}` in continuous, non-binarized normalization as a **testable normalization hypothesis** rather than a completed ontology proof. This pathway provides a mathematically deterministic bridge candidate between classical wave-style interference and quantum-like correlations, and may be partly explained by under-reported degrees of freedom in singles-aware normalization logic. The audit requirement is therefore strict: any such pathway must be reported with matched protocol definitions, data context, and uncertainty controls before interpretation-level promotion.
+
+Primary evidence assets:
 
 - `artifacts/reports/ncc_singles_bridge_real.png`
-
-Companion files (as applicable):
-
 - `artifacts/reports/ncc_singles_bridge_real.json`
 - `artifacts/reports/cnorm_e_delta_bridge_real.md`
 
-## 5. Reproducibility and Evidence Traceability
+## 5. Claim-to-Artifact Mapping
 
-### 5.1 Public Records
+| Claim | Evidence | Confidence | Artifact / DOI |
+|---|---|---|---|
+| Pairing-window policy changes Bell `S` on the same event stream | `S_strict=2.336276`, `S_standard=2.839387`, `Delta=+0.503111` | High | `https://doi.org/10.5281/zenodo.19763028` |
+| Bell interpretation must be CI-bound, not peak-only | `CI95_standard=[2.820420, 2.857413]` includes `2sqrt(2)` | High | `artifacts/reports/chsh_bootstrap_ci_standard15.json` |
+| GHZ audited search does not approach `F=4` in current pipeline | best fine-stage `F=0.085396`, large target gap | High | `https://doi.org/10.5281/zenodo.19763473` |
+| Singles-aware `C_norm` is a useful diagnostics bridge | real-data bridge assets available and reproducible | Medium | `artifacts/reports/ncc_singles_bridge_real.png` |
+| Current evidence establishes ontology replacement | no direct evidence chain | Not supported | N/A |
+
+## 6. Discussion
+
+### 6.1 Numerical Layer
+
+The observed statistic range is broad under rule changes (`S` shift in Bell; low `F` ceiling in current GHZ pipeline). Numerical values alone are therefore insufficient as claim-complete evidence.
+
+### 6.2 Protocol Layer
+
+Pairing windows, denominator definitions, and post-selection constraints are high-impact parameters. They should be logged and versioned as first-class experimental variables. While quantum mechanics emphasizes the observer effect on the state, our results suggest an equally critical auditor effect: selecting pairing windows and denominator rules can effectively pre-condition the reported `S` value before any physical interpretation is made.
+
+### 6.3 Claim Layer
+
+Current evidence supports method-level conclusions about analysis-rule sensitivity and audit necessity. It does not support direct ontology-level replacement claims.
+
+## 7. Conclusion
+
+### 7.1 Supported Conclusions
+
+- Analysis rules are high-impact variables in Bell/GHZ reporting and must be explicit.
+- Protocol-aware A/B reporting and CI binding are necessary for strong claims.
+- A ledger-style audit workflow is reproducible and publication-ready with current artifacts.
+
+### 7.2 Non-Supported Extrapolations
+
+- This paper does not establish a complete ontology replacement for standard quantum theory.
+- This paper does not claim that any single statistic (high `S` or low/high `F`) is interpretation-complete by itself.
+- Our findings do not claim that entanglement is impossible; they indicate that current reporting standards for high-correlation events do not yet provide a noise-floor audit robust enough to exclude classical bookkeeping artifacts in all cases.
+
+### 7.3 Next Work Package
+
+- matched-seed full A/B summary (`none` vs `energy_weighted`) across Bell and GHZ lines
+- expanded robustness (`>=20` seeds where applicable)
+- unified command-level reproducibility appendix with environment hash lock
+
+## Appendix A: Evidence and Reproducibility Pointers
+
+### A.1 Public Records
 
 - Bell DOI: `https://doi.org/10.5281/zenodo.19763028`
 - GHZ DOI: `https://doi.org/10.5281/zenodo.19763473`
 
-### 5.2 Code Repository
+### A.2 Repository
 
 - `https://github.com/tomnattle/chain-explosion-model`
 
-### 5.3 Traceability Table (Template)
+### A.3 Key Local Artifacts
 
-| Claim ID | Claim summary | Artifact path/DOI | Status |
-|---|---|---|---|
-| C1 | [fill] | [fill] | supported / not supported |
-| C2 | [fill] | [fill] | supported / not supported |
-| C3 | [fill] | [fill] | supported / not supported |
-
-## 6. Discussion
-
-Discuss what the synthesized audits support, what they do not support, and why boundary-aware interpretation is necessary for high-claim domains.  
-Explicitly separate:
-
-- numerical behavior
-- protocol dependence
-- claim-level interpretation
-
-## 7. Conclusion
-
-### 7.1 Supported Conclusions (method-level)
-
-- [fill with evidence-linked method conclusions]
-
-### 7.2 Non-Supported Extrapolations
-
-- [fill with explicit non-claims]
-
-### 7.3 Next Work Package
-
-- matched-seed full A/B summary across Bell and GHZ lines
-- expanded robustness (`>=20` seeds where applicable)
-- unified appendix for command-level reproducibility
-
-## Appendix A: Submission-Ready Checklist
-
-- [ ] All strong claims mapped to artifacts/DOIs
-- [ ] CI/robustness attached to headline statistics
-- [ ] Negative-result branches preserved
-- [ ] Boundary statement included
-- [ ] Terminology consistent with `papers/TERMINOLOGY.md`
-- [ ] Repository URL and record DOIs included
+- `artifacts/reports/chsh_bootstrap_ci_standard15.json`
+- `artifacts/reports/chsh_bootstrap_ci_strict0.json`
+- `papers/ghz-threebody-paper/tables/table1_search_registry.md`
+- `papers/ghz-threebody-paper/tables/table2_coarse_fine_topk.md`
+- `papers/ghz-threebody-paper/tables/table3_robustness.md`
+- `artifacts/reports/ncc_singles_bridge_real.png`
