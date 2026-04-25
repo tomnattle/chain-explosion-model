@@ -36,13 +36,13 @@ If you want to see the author's intuitive picture of propagation and measurement
 If you want different ways to enter the repository, use one of these paths.
 
 - Latest preprint trilogy (Zenodo):
-  - Bell audit: https://doi.org/10.5281/zenodo.19763028
-  - GHZ audit: https://doi.org/10.5281/zenodo.19763473
+  - Bell audit: https://doi.org/10.5281/zenodo.19763242
+  - GHZ audit: https://doi.org/10.5281/zenodo.19765061
   - Trilogy synthesis: https://doi.org/10.5281/zenodo.19764505
 
 - 最新预印本三部曲（Zenodo）：
-  - Bell 审计论文：https://doi.org/10.5281/zenodo.19763028
-  - GHZ 审计论文：https://doi.org/10.5281/zenodo.19763473
+  - Bell 审计论文：https://doi.org/10.5281/zenodo.19763242
+  - GHZ 审计论文：https://doi.org/10.5281/zenodo.19765061
   - 综合终章论文：https://doi.org/10.5281/zenodo.19764505
 
 - Brief note / 简要说明：

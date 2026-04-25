@@ -10,15 +10,15 @@
 
 ### 1) Bell 论文发布完成
 
-- 记录页：`https://zenodo.org/records/19763028`
-- DOI：`https://doi.org/10.5281/zenodo.19763028`
-- 状态：Published / Open / v1.0
+- 记录页：`https://zenodo.org/records/19763242`
+- DOI：`https://doi.org/10.5281/zenodo.19763242`
+- 状态：Published / Open / v2
 
 ### 2) GHZ 论文发布完成
 
-- 记录页：`https://zenodo.org/records/19763473`
-- DOI：`https://doi.org/10.5281/zenodo.19763473`
-- 状态：Published / Open / v1.0
+- 记录页：`https://zenodo.org/records/19765061`
+- DOI：`https://doi.org/10.5281/zenodo.19765061`
+- 状态：Published / Open / v2
 
 ### 3) Trilogy（第三篇）发布完成
 

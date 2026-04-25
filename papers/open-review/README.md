@@ -4,8 +4,8 @@ This folder contains concise materials for pre-submission expert feedback.
 
 ## Session Snapshot (2026-04-25)
 
-- Bell published: https://doi.org/10.5281/zenodo.19763028
-- GHZ published: https://doi.org/10.5281/zenodo.19763473
+- Bell published: https://doi.org/10.5281/zenodo.19763242
+- GHZ published: https://doi.org/10.5281/zenodo.19765061
 - Trilogy published: https://doi.org/10.5281/zenodo.19764505
 - Session archive: `SESSION_ARCHIVE_2026-04-25.md`
 - Bell metadata backup: `ZENODO_BELL_V1_METADATA_BACKUP_2026-04-25.md`

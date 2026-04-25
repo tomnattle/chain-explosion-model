@@ -4,7 +4,7 @@ Denominator Recovery and Post-Selection Audit in a GHZ Three-Body Model: A Two-S
 
 ## Abstract
 
-This work audits high-correlation claims in a GHZ three-body model by explicitly separating mechanism effects from bookkeeping effects. We compare denominator settings (`none` vs `energy_weighted`) under a unified pipeline, run a two-stage search (90 deg coarse + 2 deg fine), and evaluate the `F`-`coincidence_rate` trade-off. Under the current setup (`samples=80000`, `numba_cpu`, gated protocol), the best fine-stage candidate reaches only `F=0.085396`, still far from the target `F=4` with `|err|=3.914604`. Failure decomposition consistently points to correlation-shape mismatch rather than coincidence sparsity as the dominant bottleneck. We therefore report a method-level audit conclusion and do not promote ontology-level claims.
+This work audits high-correlation claims in a GHZ three-body model by explicitly separating mechanism effects from bookkeeping effects. We compare denominator settings (`none` vs `energy_weighted`) under a unified pipeline, run a two-stage search (90 deg coarse + 2 deg fine), and evaluate the `F`-`coincidence_rate` trade-off. Under the current setup (`samples=80000`, `numba_cpu`, gated protocol), the best fine-stage candidate reaches only `F=0.085396`, still far from the target `F=4` with `|err|=3.914604`. In a separate aggressive post-selection regime, `F` can approach `4`, but only with heavy sample discard (about 75% discarded, about 25% retained), as shown by the cost-benefit curve (`artifacts/ghz_threshold_experiment/ghz_cost_benefit_curve_2p2_to_4p0.png`). Failure decomposition consistently points to correlation-shape mismatch rather than coincidence sparsity as the dominant bottleneck. We therefore report a method-level audit conclusion: high `F` under strong filtering is a costed trade-off, not a free gain, and we do not promote ontology-level claims.
 
 ## 1. Introduction
 
@@ -68,6 +68,7 @@ Robustness summary:
 For trade-off analysis, `F_context_pump_gated` does not trend toward 4 in any `R` bucket. Bin means range from `-0.019317` in `[0.0,0.2)` to `-0.001344` in `[0.8,1.0]`, staying close to zero overall. Suggested mapping:
 
 - Figure 3: `fig3_f_vs_coincidence_tradeoff.png`
+- Figure 4: `artifacts/ghz_threshold_experiment/ghz_cost_benefit_curve_2p2_to_4p0.png` (high-`F` approach under aggressive filtering, with retention-cost disclosure)
 - Table 1: search configuration registry
 - Table 2: coarse/fine Top-k summary
 - Table 3: robustness statistics
