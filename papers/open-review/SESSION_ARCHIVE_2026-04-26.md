@@ -8,9 +8,10 @@
 
 ## 完成结果（已达成）
 
-### 1) GHZ 终极版发布完成
+### 1) GHZ 终极版发布完成（会话内叙事；**仓库现行 Zenodo 引用见下**）
 - **标题**: `The Geometric Origin of GHZ Violation: A Local Realist Deconstruction via Phase-Loop Interference and Threshold Triggering`
-- **Zenodo URL**: `https://zenodo.org/records/19769427`
+- **本会话曾关联 Zenodo 记录**: `https://zenodo.org/records/19769427`（解构 / F=4 叙事稿；与 `papers_final` 双语审计版非同一 deposit）
+- **与 README / `papers_final` 对齐的现行 GHZ 审计 PDF（`medium-v10` V10.4）**: `https://zenodo.org/records/19785022` · DOI `10.5281/zenodo.19785022`
 - **核心突破**: 
   - 从“审计负结果”转向“局域实在论正向证明”。
   - 成功复现 `F=4.000000`（相位环路 + 连锁爆炸阈值触发）。

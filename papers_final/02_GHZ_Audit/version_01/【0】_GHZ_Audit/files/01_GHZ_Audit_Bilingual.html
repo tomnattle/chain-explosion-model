@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GHZ Audit Report - Bilingual / GHZ 审计报告 - 双语版</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif; line-height: 1.6; color: #2d3748; max-width: 900px; margin: 40px auto; padding: 0 20px; background-color: #f8fafc; }
+        .paper-container { background: white; padding: 60px; border-radius: 12px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        @media (max-width: 640px) {
+            body { padding: 0 12px; margin: 20px auto; }
+            .paper-container { padding: 24px 16px; }
+        }
+        .main-title-block {
+            text-align: center;
+            margin: 0 0 24px 0;
+            padding-bottom: 16px;
+            border-bottom: 3px solid #3182ce;
+        }
+        .main-title-block h1 {
+            color: #1a202c;
+            font-size: 2.05em;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 100%;
+            border: none;
+            padding: 0;
+            line-height: 1.25;
+        }
+        .main-title-block h1 + h1 { margin-top: 0.4em; font-size: 1.75em; font-weight: 600; }
+        h2 { color: #2c5282; margin-top: 40px; border-left: 5px solid #3182ce; padding-left: 15px; font-size: 1.25em; line-height: 1.35; }
+        .metadata { background: #ebf8ff; padding: 25px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #3182ce; overflow-wrap: anywhere; }
+        .section { margin-bottom: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
+        @media (max-width: 768px) { .section { grid-template-columns: 1fr; gap: 20px; } }
+        .en, .zh { min-width: 0; overflow-wrap: anywhere; }
+        .en { color: #4a5568; font-style: normal; }
+        .zh { color: #1a202c; font-weight: 500; }
+        .figure { text-align: center; margin: 40px 0; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; }
+        .figure img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .caption { font-style: italic; color: #718096; margin-top: 15px; font-size: 0.95em; }
+        blockquote { background: #fffaf0; border-left: 6px solid #ed8936; padding: 20px 24px; margin: 30px 0; font-size: 1.05em; overflow-wrap: anywhere; }
+        .footer-repro {
+            margin-top: 1.25rem;
+            padding: 1rem 0 1.25rem 0;
+            border-top: 1px solid #e2e8f0;
+            text-align: left;
+            color: #4a5568;
+            font-size: 0.92rem;
+            line-height: 1.55;
+            overflow-wrap: anywhere;
+        }
+        .footer-repro a { color: #2b6cb0; font-weight: 600; word-break: break-word; overflow-wrap: anywhere; }
+        .footer-strip {
+            margin-top: 0.5rem;
+            padding: 1rem 1.15rem;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            color: #718096;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            text-align: left;
+            overflow-wrap: anywhere;
+        }
+        .footer-strip a { color: #2b6cb0; font-weight: 600; word-break: break-word; overflow-wrap: anywhere; }
+        .lang-label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 1px; color: #cbd5e0; margin-bottom: 5px; display: block; }
+        .metadata a { color: #2b6cb0; word-break: break-word; overflow-wrap: anywhere; }
+        code { overflow-wrap: anywhere; word-break: break-word; }
+    </style>
+</head>
+<body>
+    <div class="paper-container">
+        <header class="main-title-block">
+            <h1>The Geometric Origin of GHZ Violation: A Post-Selection Audit</h1>
+            <h1>GHZ 违背的几何起源：针对“量子证据”的后选择审计</h1>
+        </header>
+
+        <div class="metadata">
+            <strong>Author / 作者:</strong> Tom Nattle (Audit Assistant: Antigravity AI)<br>
+            <strong>Date / 日期:</strong> April 2026 / 2026年4月<br>
+            <strong>Version / 版本:</strong> 1.1.0 (Audit Edition / 审计版)<br>
+            <strong>Scope / 范围:</strong> <code>medium-v10</code> in-silico GHZ-type audit / <code>medium-v10</code> 仿真 GHZ 型审计（非硬件复刻）<br>
+            <strong>Source code &amp; data / 源代码与数据：</strong> <a href="https://github.com/tomnattle/chain-explosion-model" rel="noopener noreferrer" target="_blank">https://github.com/tomnattle/chain-explosion-model</a><br>
+            <span style="font-size:0.95em;color:#718096;">Clone this repository and run §6 from the <strong>repository root</strong>. / 请克隆该仓库，在<strong>仓库根目录</strong>执行第 6 节命令。</span>
+        </div>
+
+        <div class="section">
+            <div class="en">
+                <span class="lang-label">English</span>
+                The Greenberger-Horne-Zeilinger (GHZ) state is historically regarded as the "smoking gun" of quantum non-locality. <strong>Computational scope:</strong> this HTML note summarizes a <strong><code>medium-v10</code> simulator audit</strong> of a GHZ-type Mermin statistic (local phase-locked sources), not a hardware rerun. Within that model, large $F$ tracks low retention under gating; random matched-retention controls fail to reproduce the gated lift.
+            </div>
+            <div class="zh">
+                <span class="lang-label">中文对照</span>
+                Greenberger-Horne-Zeilinger (GHZ) 态在历史上被视为量子非局域性的“冒烟枪”证据。<strong>计算范围：</strong> 本文为仓库 <strong><code>medium-v10</code> 模拟器</strong>中的 GHZ 型 Mermin 统计量审计摘要，并非某一硬件实验的逐台复刻。该模型下，高 $F$ 与门控导致的低保留率绑定；同保留率随机对照无法复现门控抬升。
+            </div>
+        </div>
+
+        <h2>1. Introduction: The Audit of the Accounting Rules / 引言：针对“会计平账规则”的审计</h2>
+        <div class="section">
+            <div class="en">
+                <strong>In-silico finding (this note):</strong> within <code>medium-v10</code>, we summarize sensitivity of a GHZ-type statistic to gating and retention (§2–§3). <strong>Interpretive hypothesis (not proved here):</strong> lab Bell/GHZ <em>narratives</em> often under-report how much correlation moves when inclusion rules change. The next blocks are <strong>research suspicion</strong>—motivated by audit culture, <strong>not</strong> established by the V10.4 curve alone.
+            </div>
+            <div class="zh">
+                <strong>仿真内结论（本文）：</strong>在 <code>medium-v10</code> 内概括 GHZ 型统计量对门控与保留的敏感性（§2–§3）。<strong>解释性假说（未证明）：</strong>实验室贝尔/GHZ <em>叙事</em>常低估纳入规则变动时关联的位移。下文为<strong>研究怀疑</strong>——由审计文化启发，<strong>非</strong>仅凭 V10.4 曲线可证。
+            </div>
+        </div>
+        <div class="section">
+            <div class="en">
+                <strong>Hypothesis:</strong> violations are often <em>read</em> as clean non-locality while discard sensitivity stays off the ledger. <strong>Hypothesis:</strong> in a continuous-field picture, “photons” may be better read as <strong>threshold-triggered readout events</strong> than as context-free particles—<strong>a modeling suspicion for debate, not a simulator output.</strong>
+            </div>
+            <div class="zh">
+                <strong>假说：</strong>违背常被<em>读作</em>非局域证书，丢弃敏感性却未入账。<strong>假说：</strong>连续场图景下，“光子”或许更接近<strong>阈值触发的读出事件</strong>——<strong>供辩论的建模怀疑，非模拟器结果。</strong>
+            </div>
+        </div>
+        <div class="section">
+            <div class="en">
+                <strong>Hypothesis:</strong> headline “success” in some experiments is <strong>compatible with</strong> heavy post-selection; <em>if</em> engineering must budget the whole stream, roadmaps that only advertise peak metrics after aggressive filtering may face a <strong>scaling–accounting tension</strong>. <strong>Conditional suspicion, not a universal lab fact.</strong>
+            </div>
+            <div class="zh">
+                <strong>假说：</strong>部分实验头条成功<strong>可与</strong>重度后选择相容；<em>若</em>工程须为全流买单，仅宣传激进过滤后峰值的路线图或面临<strong>规模化—账目</strong>张力。<strong>条件性怀疑，非普适事实。</strong>
+            </div>
+        </div>
+
+        <h2>2. Methodology: Post-Selection and Selection Tax / 方法论：后选择与选择税</h2>
+        <div class="section">
+            <div class="en">
+                We model the GHZ setup using a medium-wave propagation model (<code>medium-v10</code>) with three local phase-locked sources. Instead of forcing a "perfect success," we sweep the gate strength of a soft detector.
+                <ul style="margin-top:12px;padding-left:1.2em;">
+                    <li><strong>Selection rule:</strong> events are recorded only if the interference amplitude exceeds a threshold.</li>
+                    <li><strong>Random control:</strong> for each gated outcome, draw a random subsample with the <em>same retention ratio</em> to separate mechanism-driven lift from noise.</li>
+                </ul>
+            </div>
+            <div class="zh">
+                我们使用中等波动传播模型（<code>medium-v10</code>）对 GHZ 装置进行建模，包含三个局域相位锁定源。我们不再追求“强行成功”，而是扫描软探测器的门控强度。
+                <ul style="margin-top:12px;padding-left:1.2em;">
+                    <li><strong>筛选规则：</strong>仅当干涉振幅超过阈值时才记录事件。</li>
+                    <li><strong>随机对照：</strong>对每个门控结果，抽取<strong>同保留率</strong>的随机子样本，以区分机制抬升与噪声。</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>3. Results: The Real Cost of "Entanglement" / 结果：“纠缠”的真实代价</h2>
+        <div class="section">
+            <div class="en">
+                The <code>V10.4</code> pipeline shows a direct trade-off between Mermin-style <strong>F</strong> and <strong>data retention</strong> under amplitude gating. High <strong>F</strong> tracks discarding most draws; matched-retention random baselines do not reproduce the gated curve.
+            </div>
+            <div class="zh">
+                <code>V10.4</code> 流程显示：在振幅门控下，Mermin 型 <strong>F</strong> 与<strong>数据保留率</strong>存在直接权衡。高 <strong>F</strong> 与丢弃大多数样本相伴；同保留率的随机基线无法复现门控曲线。
+            </div>
+        </div>
+
+        <div class="figure">
+            <img src="figures/V10_4_REAL_COST_CURVE.png" alt="GHZ Real Cost Curve V10.4">
+            <div class="caption">
+                Figure 1: GHZ real cost curve (<code>V10.4</code>). Blue: gated <code>F</code>; green: matched-retention random baseline; gap encodes selection rules. / 图 1：GHZ 真实代价曲线（<code>V10.4</code>）。蓝：门控 F；绿：同保留率随机基线；间距编码筛选规则。
+            </div>
+        </div>
+
+        <h2>4. Discussion: The "30cm Truth" and the Geometric Illusion / 讨论：“30厘米的真相”与几何幻觉</h2>
+        <div class="section">
+            <div class="en">
+                Bell-style work uses the "30 cm truth" as a <strong>scale argument</strong> (~<strong>1 ns ↔ ~30 cm</strong> in vacuum) for why tiny timing rules move coincidence counts. <strong>This GHZ leg</strong> is <em>not</em> a timing-coincidence experiment: it couples correlation to <strong>amplitude gating / retention</strong> in <code>medium-v10</code>. The shared structural risk: <strong>analysis rules move mass between kept vs discarded samples</strong>, moving reported metrics.
+            </div>
+            <div class="zh">
+                贝尔侧工作把“30 厘米的真相”当作<strong>尺度论证</strong>（真空中约 <strong>1 纳秒 ↔ 约 30 厘米</strong>），说明微小时间规则如何搬动符合计数。<strong>GHZ 本条</strong><em>不是</em>时间符合实验：它在 <code>medium-v10</code> 内把关联与<strong>振幅门控/保留率</strong>耦合。共同结构风险：<strong>分析规则在保留与丢弃样本之间搬动质量</strong>，从而搬动报告指标。
+            </div>
+        </div>
+
+        <h3 style="color:#2c5282;margin-top:28px;border-left:4px solid #3182ce;padding-left:12px;">4.1 Implications for Quantum Computing (interpretive hypothesis only) / 对量子计算的影响（仅为解释性假说）</h3>
+        <div class="section">
+            <div class="en">
+                <strong>No new data.</strong> Speculative bridge from in-silico selection to scaling narratives—not a vendor prediction; <strong>not</strong> a claim that large QC has “failed” for this reason.
+            </div>
+            <div class="zh">
+                <strong>无新数据。</strong>从仿真筛选到规模化叙事的推测桥接——非厂商预言；<strong>不</strong>主张大规模量子计算已因此“失败”。
+            </div>
+        </div>
+        <div class="section">
+            <div class="en">
+                <strong>Hypothesis:</strong> <em>If</em> demos lean on metrics that spike only after aggressive filtering, a “hollow foundation” <strong>might</strong> be one <strong>among many</strong> ways to narrate scaling friction—<strong>not</strong> an explanation this note verifies. (Contrast: whole-dataset ML vs peak metrics under undisclosed discards.)
+            </div>
+            <div class="zh">
+                <strong>假说：</strong><em>若</em>演示依赖激进过滤后才冲高的指标，“虚浮地基”<strong>或许</strong>是描述规模化摩擦的<strong>多种叙事之一</strong>——<strong>非</strong>本文已验证的解释。（对照：全量 ML vs 丢弃未披露时的峰值。）
+            </div>
+        </div>
+        <div class="section">
+            <div class="en">
+                <strong>Hypothesis:</strong> <em>If</em> entanglement-as-reported is often <strong>entangled with</strong> gating geometry, processors might <strong>sometimes</strong> solve <strong>filtering/bookkeeping</strong> alongside Hamiltonian physics—<strong>suspicion about KPI design</strong>, not a denial of every QM prediction.
+            </div>
+            <div class="zh">
+                <strong>假说：</strong><em>若</em>报告中的纠缠常与门控几何<strong>纠缠</strong>，处理器<strong>有时</strong>或在哈密顿物理之外并行处理<strong>过滤/账目</strong>——<strong>对 KPI 的怀疑</strong>，<strong>非</strong>否定全部量子预测。
+            </div>
+        </div>
+
+        <blockquote>
+            <strong>Interpretive hypothesis (rhetorical).</strong> “If the foundation is hollow, the skyscraper of quantum computing is solving geometry, not entanglement.” / <strong>解释性假说（修辞）。</strong>“如果地基是虚幻的，量子计算的摩天大楼解决的是几何问题，而非纠缠问题。”
+        </blockquote>
+
+        <h2>5. Conclusion: An Anti-Counterfeiting Guide / 结论：一份防伪打假指南</h2>
+        <div class="section">
+            <div class="en">
+                We do not claim quantum mechanics is "wrong" in its formal predictions, but we treat many foundational <em>reported</em> metrics as "unbalanced accounts" unless retention, gates, and denominators are disclosed. We document pairing windows, amplitude gating, and binarization as bookkeeping levers.
+            </div>
+            <div class="zh">
+                我们并不宣称量子力学的形式预测“错误”，但若未披露保留率、门控与分母，许多<strong>报告</strong>指标应被视为“不平账目”。我们记录配对窗口、振幅门控与二值化等平账杠杆。
+            </div>
+        </div>
+        <div class="section">
+            <div class="en">
+                We invite practitioners to archive the <strong>discarded majority</strong> (or equivalent inclusion logs) for independent audit—not only headline curves.
+            </div>
+            <div class="zh">
+                我们邀请实践者归档<strong>被丢弃的大多数</strong>（或等价的纳入日志）以供独立审计——而非仅 headline 曲线。
+            </div>
+        </div>
+
+        <h2>6. Reproducibility / 最小复现</h2>
+        <div class="footer-repro">
+            <strong>Repository / 仓库：</strong> <a href="https://github.com/tomnattle/chain-explosion-model" rel="noopener noreferrer" target="_blank">https://github.com/tomnattle/chain-explosion-model</a><br><br>
+            <strong>EN</strong> Run from repo root: <code>python scripts/explore/ghz_medium_v10/v10_4_real_cost_curve.py</code> (outputs per script header). Figure in this package: <code>figures/V10_4_REAL_COST_CURVE.png</code>.<br><br>
+            <strong>中</strong> 在仓库根目录运行：<code>python scripts/explore/ghz_medium_v10/v10_4_real_cost_curve.py</code>（输出见脚本头部）。本包图：<code>figures/V10_4_REAL_COST_CURVE.png</code>。
+        </div>
+
+        <div class="footer-strip">
+            <strong>Scope / 范围:</strong> <code>medium-v10</code> <strong>in-silico</strong> audit — not a hardware GHZ rerun / <strong>仿真</strong>审计，非硬件 GHZ 复刻<br>
+            <strong>Data Availability / 数据可用性:</strong> GitHub repo above; Zenodo bundles may mirror this archive / 见上列 GitHub；Zenodo 压缩包可为本文档镜像<br>
+            <strong>Verification / 验证:</strong> <code>scripts/explore/ghz_medium_v10/v10_4_real_cost_curve.py</code><br>
+            <strong>Zenodo / DOI:</strong> <a href="https://doi.org/10.5281/zenodo.19785022" rel="noopener noreferrer" target="_blank">10.5281/zenodo.19785022</a> · <a href="https://zenodo.org/records/19785022" rel="noopener noreferrer" target="_blank">record</a><br>
+            <strong>GitHub / 仓库:</strong> <a href="https://github.com/tomnattle/chain-explosion-model" rel="noopener noreferrer" target="_blank">https://github.com/tomnattle/chain-explosion-model</a>
+        </div>
+    </div>
+</body>
+</html>

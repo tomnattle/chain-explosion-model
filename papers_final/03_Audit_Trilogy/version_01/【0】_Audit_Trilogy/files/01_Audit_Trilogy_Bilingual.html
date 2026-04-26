@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Audit Trilogy (V10.4) - Bilingual / 审计三部曲（V10.4）- 双语版</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif; line-height: 1.6; color: #2d3748; max-width: 1000px; margin: 40px auto; padding: 0 20px; background-color: #1a202c; }
+        .paper-container { background: white; padding: 56px 48px; border-radius: 12px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-top: 10px solid #4a5568; }
+        @media (max-width: 640px) {
+            body { padding: 0 12px; margin: 16px auto; }
+            .paper-container { padding: 24px 16px; border-top-width: 6px; }
+        }
+        .main-title-block {
+            text-align: center;
+            margin: 0 0 28px 0;
+            padding-bottom: 16px;
+            border-bottom: 3px solid #4a5568;
+        }
+        .main-title-block h1 {
+            color: #1a202c;
+            font-size: 2.35em;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 100%;
+            border: none;
+            padding: 0;
+            line-height: 1.25;
+        }
+        .main-title-block h1 + h1 { margin-top: 0.4em; font-size: 2.05em; font-weight: 600; }
+        h2 { color: #2d3748; margin-top: 40px; border-left: 8px solid #4a5568; padding-left: 20px; text-transform: none; letter-spacing: 0.02em; font-size: 1.2em; line-height: 1.35; }
+        h3 { color: #2d3748; margin-top: 24px; font-size: 1.05em; text-transform: none; border-left: 6px solid #4a5568; padding-left: 14px; line-height: 1.35; }
+        .metadata { background: #f7fafc; padding: 24px 20px; border-radius: 8px; margin: 32px 0; border: 1px solid #e2e8f0; text-align: center; overflow-wrap: anywhere; }
+        .section { margin-bottom: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 28px 36px; align-items: start; }
+        @media (max-width: 850px) { .section { grid-template-columns: 1fr; gap: 20px; } }
+        .en, .zh { min-width: 0; overflow-wrap: anywhere; }
+        .en { color: #4a5568; font-size: 1.02em; }
+        .zh { color: #1a202c; font-weight: 500; font-size: 1.08em; }
+        .figure { text-align: center; margin: 50px 0; padding: 30px; border: 1px solid #edf2f7; border-radius: 16px; background: #fff; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .figure img { max-width: 100%; height: auto; border-radius: 8px; }
+        .caption { font-style: italic; color: #718096; margin-top: 20px; font-size: 0.95em; }
+        blockquote { background: #2d3748; color: white; border-radius: 8px; padding: 28px 20px; margin: 32px 0; font-size: 1.08em; font-style: italic; text-align: center; line-height: 1.5; overflow-wrap: anywhere; }
+        .footer-repro {
+            margin-top: 1.25rem;
+            padding: 1rem 0 1.25rem 0;
+            border-top: 1px solid #e2e8f0;
+            text-align: left;
+            color: #4a5568;
+            font-size: 0.92rem;
+            line-height: 1.55;
+            overflow-wrap: anywhere;
+        }
+        .footer-repro a { color: #2d3748; font-weight: 600; word-break: break-word; overflow-wrap: anywhere; }
+        .footer-strip {
+            margin-top: 0.5rem;
+            padding: 1rem 1.15rem;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            color: #718096;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            text-align: left;
+            overflow-wrap: anywhere;
+        }
+        .footer-strip a { color: #2d3748; font-weight: 600; word-break: break-word; overflow-wrap: anywhere; }
+        .lang-label { font-size: 0.75em; text-transform: uppercase; letter-spacing: 1px; color: #a0aec0; margin-bottom: 10px; display: block; border-bottom: 1px solid #edf2f7; width: fit-content; max-width: 100%; }
+        code { font-size: 0.9em; background: #edf2f7; padding: 1px 5px; border-radius: 4px; overflow-wrap: anywhere; word-break: break-word; }
+        .metadata a { color: #2d3748; font-weight: 600; word-break: break-word; overflow-wrap: anywhere; }
+    </style>
+</head>
+<body>
+    <div class="paper-container">
+        <header class="main-title-block">
+            <h1>The Audit Trilogy: Bell + GHZ V10.4</h1>
+            <h1>审计三部曲：贝尔分母审计 + GHZ V10.4 计算曲线</h1>
+        </header>
+
+        <div class="metadata">
+            <strong>Author / 作者:</strong> Tom Nattle (Audit Assistant: Antigravity AI)<br>
+            <strong>Date / 日期:</strong> April 2026 / 2026年4月<br>
+            <strong>Version / 版本:</strong> 1.2.0 — GHZ leg anchored to <code>v10_4_real_cost_curve.py</code> (<strong>not</strong> <code>ghz_loop_explosion_v19.py</code>) / GHZ 侧以 V10.4 为准（<strong>不含</strong> v19 证据链）<br>
+            <strong>Source code &amp; data / 源代码与数据：</strong> <a href="https://github.com/tomnattle/chain-explosion-model" rel="noopener noreferrer" target="_blank">https://github.com/tomnattle/chain-explosion-model</a><br>
+            <span style="font-size:0.95em;color:#718096;">Run §6 commands from the <strong>repository root</strong> after cloning. / 克隆后在<strong>仓库根目录</strong>执行第 6 节命令。</span>
+        </div>
+
+        <div class="section">
+            <div class="en">
+                <span class="lang-label">English</span>
+                Two frozen workflows: <strong>(i)</strong> NIST CSV CHSH with pairing tolerances in <strong>grid-index</strong> units on <code>t</code>. <strong>(ii)</strong> <strong>V10.4</strong> — <code>scripts/explore/ghz_medium_v10/v10_4_real_cost_curve.py</code> sweeps soft-detector <code>gate_k</code> on one fixed phase sample; outputs <code>F_gated</code>, mean retention <code>R_gated</code>, and matched-retention <code>F_random_mean ± 1σ</code> under <code>artifacts/ghz_medium_v10/</code>. Legacy <code>ghz_loop_explosion_v19.py</code> is <strong>explicitly out of scope</strong> for this trilogy revision.
+            </div>
+            <div class="zh">
+                <span class="lang-label">中文对照</span>
+                两条冻结工作流：<strong>（i）</strong> NIST CSV 上 CHSH，<code>t</code> 上<strong>网格指数</strong>配对容差。<strong>（ii）</strong> <strong>V10.4</strong>——<code>scripts/explore/ghz_medium_v10/v10_4_real_cost_curve.py</code> 在固定相位样本上扫描软探测器 <code>gate_k</code>；产出 <code>F_gated</code>、平均保留 <code>R_gated</code>、同保留率 <code>F_random_mean ± 1σ</code>，目录 <code>artifacts/ghz_medium_v10/</code>。旧脚本 <code>ghz_loop_explosion_v19.py</code> 在本版三部曲中<strong>明确排除</strong>。
+            </div>
+        </div>
+
+        <h2>1. What This Package Is — and Is Not / 本包是什么、不是什么</h2>
+        <div class="section">
+            <div class="en">
+                <strong>Is:</strong> Bell audit numbers from <code>battle_results/nist_completeblind_2015-09-19/battle_result.json</code>; GHZ narrative from <strong><code>computed_curve</code></strong> artifacts (<code>V10_4_REAL_COST_CURVE.meta.json</code> states <code>type: computed_curve</code>). <strong>Is not:</strong> a bench replay of one hardware GHZ run; <strong>not</strong> a dependence on v19 “loop explosion” thresholds.
+            </div>
+            <div class="zh">
+                <strong>是：</strong> 贝尔数字来自 <code>battle_results/nist_completeblind_2015-09-19/battle_result.json</code>；GHZ 叙事来自 <strong><code>computed_curve</code></strong> 产物（<code>V10_4_REAL_COST_CURVE.meta.json</code> 中 <code>type: computed_curve</code>）。<strong>不是：</strong> 某一硬件 GHZ 实验的逐台复刻；<strong>不</strong>依赖 v19「环路爆发」阈值叙事。
+            </div>
+        </div>
+
+        <h2>2. Synthesis of Evidence / 证据综合</h2>
+
+        <h3>2.1 Bell / CHSH / 贝尔</h3>
+        <div class="section">
+            <div class="en">
+                <code>S_strict = 2.336276</code> (tolerance 0.0) vs <code>S_standard = 2.839387</code> (15.0); pairs <strong>136632</strong> vs <strong>148670</strong>. Bootstrap file <code>chsh_bootstrap_ci_standard15.json</code>: <code>ci_contains_tsirelson: true</code>.
+            </div>
+            <div class="zh">
+                <code>S_strict = 2.336276</code>（容差 0.0）对 <code>S_standard = 2.839387</code>（15.0）；配对数 <strong>136632</strong> / <strong>148670</strong>。Bootstrap：<code>chsh_bootstrap_ci_standard15.json</code> 中 <code>ci_contains_tsirelson: true</code>。
+            </div>
+        </div>
+
+        <h3>2.2 GHZ V10.4 (medium-v10) / GHZ V10.4</h3>
+        <div class="section">
+            <div class="en">
+                <strong>Script:</strong> <code>scripts/explore/ghz_medium_v10/v10_4_real_cost_curve.py</code>. <strong>Physics stub:</strong> three inner-ring sources; observers sum distance-weighted delayed cosines. <strong>Sample:</strong> default <code>states=120000</code>, <code>seed=20260423</code>. <strong>Gating:</strong> thresholds <code>gate_k × RMS</code> per channel; <code>F_gated</code> from simultaneous non-zero hits; <code>R_gated</code> = mean of four setting retentions. <strong>Sweep:</strong> <code>gate_k</code> default 0.35–0.95 (40 points). <strong>Random control:</strong> default 120 trials, seed 20260424, same per-setting counts as gated. <strong>Canonical outputs:</strong> <code>artifacts/ghz_medium_v10/V10_4_REAL_COST_CURVE.png</code>, <code>.csv</code>, <code>.meta.json</code>, <code>V10_4_REAL_COST_CURVE_REPORT.md</code>.
+            </div>
+            <div class="zh">
+                <strong>脚本：</strong> <code>scripts/explore/ghz_medium_v10/v10_4_real_cost_curve.py</code>。<strong>物理骨架：</strong> 内环三源；观测点为带延迟、距离加权的余弦叠加。<strong>样本：</strong> 默认 <code>states=120000</code>，<code>seed=20260423</code>。<strong>门控：</strong> 每通道 <code>gate_k × RMS</code>；<code>F_gated</code> 来自三通道同时非零；<code>R_gated</code> 为四设定保留率均值。<strong>扫描：</strong> <code>gate_k</code> 默认 0.35–0.95（40 点）。<strong>随机对照：</strong> 默认 120 次试验，种子 20260424，各设定计数与门控一致。<strong>规范产物：</strong> <code>artifacts/ghz_medium_v10/</code> 下 PNG、CSV、meta.json、REPORT.md。
+            </div>
+        </div>
+
+        <div class="figure">
+            <img src="figures/V10_4_REAL_COST_CURVE.png" alt="V10.4 computed real cost curve">
+            <div class="caption">
+                Figure 1: V10.4 computed cost curve — blue <code>F_gated</code>, green <code>F_random_mean</code> ±1σ vs retained % (self-contained copy; regenerate via script). / 图 1：V10.4 计算代价曲线——蓝 <code>F_gated</code>，绿 <code>F_random_mean</code> ±1σ 对保留率（本包自包含拷贝；脚本可重算）。
+            </div>
+        </div>
+
+        <h3>2.3 Optional: NCC bridge (Bell-side) / 可选：NCC 桥接（贝尔侧）</h3>
+        <div class="section">
+            <div class="en">
+                <strong>Not part of V10.4.</strong> <code>C_norm</code> diagnostic on NIST CSV — see <code>artifacts/reports/ncc_singles_bridge_real.json</code> (<strong>observability bridge, not CHSH identity</strong>).
+            </div>
+            <div class="zh">
+                <strong>不属于 V10.4。</strong> NIST CSV 上 <code>C_norm</code> 诊断——见 <code>artifacts/reports/ncc_singles_bridge_real.json</code>（<strong>可观测性桥接，非 CHSH 恒等式</strong>）。
+            </div>
+        </div>
+        <div class="figure">
+            <img src="figures/ncc_singles_bridge_real.png" alt="NCC C_norm observability bridge">
+            <div class="caption">
+                Supplemental Bell-side figure / 贝尔侧补充图
+            </div>
+        </div>
+
+        <h2>3. Interpretation Boundary / 解释边界</h2>
+        <div class="section">
+            <div class="en">
+                <strong>Bell:</strong> the <code>S</code> jump is pair-inclusion bookkeeping on fixed rows. <strong>GHZ V10.4:</strong> large <code>F_gated</code> at low <code>R_gated</code> is gating mechanics on a <strong>classical wave model</strong>; excess over <code>F_random_mean</code> at matched retention is a claim <strong>inside this script</strong>, not about a lab device.
+            </div>
+            <div class="zh">
+                <strong>贝尔：</strong> <code>S</code> 跳变是固定行表上的符合纳入账目。<strong>GHZ V10.4：</strong> 低 <code>R_gated</code> 时高 <code>F_gated</code> 是<strong>经典波模型</strong>上门控机制；同保留率下相对 <code>F_random_mean</code> 的超出是<strong>本脚本内</strong>命题，非实验装置鉴定。
+            </div>
+        </div>
+
+        <h2>4. Implications for Quantum Computing (interpretive hypothesis) / 对量子计算的含义（解释性假说）</h2>
+        <div class="section">
+            <div class="en">
+                <strong>Not established by §2.</strong> Conditional, speculative reasoning—authors’ <strong>research suspicion</strong> about engineering KPIs if headline correlation inherits the same bookkeeping sensitivities audited above. <strong>No claim</strong> about any specific program’s success or failure.
+            </div>
+            <div class="zh">
+                <strong>非§2所确立。</strong> 条件性、推测性推理——若头条关联继承上文账目敏感性，对工程 KPI 的<strong>研究怀疑</strong>。<strong>不对</strong>任一具体项目成败作断言。
+            </div>
+        </div>
+        <div class="section">
+            <div class="en">
+                <strong>Hypothesis:</strong> <em>If</em> production KPIs only peak after aggressive <strong>post-selection</strong>, roadmaps <strong>may need</strong> to budget <strong>effective sample rate</strong> and <strong>inclusion logs</strong>, not only peak <code>F</code> or <code>S</code>.
+            </div>
+            <div class="zh">
+                <strong>假说：</strong><em>若</em>工程指标仅在激进<strong>后选择</strong>后才冲高，路线图<strong>或许需要</strong>核算<strong>有效样本率</strong>与<strong>纳入日志</strong>，而非仅峰值 <code>F</code> 或 <code>S</code>。
+            </div>
+        </div>
+
+        <blockquote>
+            V10.4 documents a <strong>computed</strong> cost curve — not an illustrative sketch tied to legacy v19.<br>
+            V10.4 记录的是<strong>计算型</strong>代价曲线——与旧版 v19 示意链脱钩。
+        </blockquote>
+
+        <h2>5. Conclusion / 结论</h2>
+        <div class="section">
+            <div class="en">
+                Methodological bundle: <strong>NIST pairing audit</strong> + <strong>V10.4 <code>computed_curve</code></strong>. Publish inclusion logs and RNG seeds with every headline plot.
+            </div>
+            <div class="zh">
+                方法论捆绑：<strong>NIST 配对审计</strong> + <strong>V10.4 <code>computed_curve</code></strong>。 headline 图须配纳入日志与 RNG 种子。
+            </div>
+        </div>
+
+        <h2>6. Reproducibility / 最小复现</h2>
+        <div class="footer-repro">
+            <strong>Repository / 仓库：</strong> <a href="https://github.com/tomnattle/chain-explosion-model" rel="noopener noreferrer" target="_blank">https://github.com/tomnattle/chain-explosion-model</a><br><br>
+            <strong>Bell:</strong> <code>python scripts/explore/chsh_denominator_audit.py</code> · <code>data/nist_completeblind_side_streams.csv</code> · <code>battle_results/nist_completeblind_2015-09-19/battle_result.json</code><br>
+            <strong>GHZ V10.4:</strong> <code>python scripts/explore/ghz_medium_v10/v10_4_real_cost_curve.py</code> → <code>artifacts/ghz_medium_v10/V10_4_REAL_COST_CURVE.*</code><br>
+            <strong>Excluded from this trilogy revision / 本版排除:</strong> <code>scripts/explore/ghz_loop_explosion_v19.py</code>
+        </div>
+
+        <div class="footer-strip">
+            <strong>Papers / 论文:</strong> <code>papers_final/01_Bell_Audit</code>, <code>02_GHZ_Audit</code>, <code>03_Audit_Trilogy</code><br>
+            <strong>Zenodo / DOI:</strong> <a href="https://doi.org/10.5281/zenodo.19785083" rel="noopener noreferrer" target="_blank">10.5281/zenodo.19785083</a> · <a href="https://zenodo.org/records/19785083" rel="noopener noreferrer" target="_blank">record</a><br>
+            <strong>GitHub / 仓库:</strong> <a href="https://github.com/tomnattle/chain-explosion-model" rel="noopener noreferrer" target="_blank">https://github.com/tomnattle/chain-explosion-model</a>
+        </div>
+    </div>
+</body>
+</html>

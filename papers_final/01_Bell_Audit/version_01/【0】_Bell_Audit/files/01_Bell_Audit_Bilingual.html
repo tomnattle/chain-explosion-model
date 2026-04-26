@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bell Inequality Audit - Bilingual / 贝尔不等式审计 - 双语版</title>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; }
+        body { font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif; line-height: 1.6; color: #2d3748; max-width: 900px; margin: 40px auto; padding: 0 20px; background-color: #f7fafc; }
+        .paper-container { background: white; padding: 60px; border-radius: 12px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        @media (max-width: 640px) {
+            body { padding: 0 12px; margin: 20px auto; }
+            .paper-container { padding: 24px 16px; }
+        }
+        .main-title-block {
+            text-align: center;
+            margin: 0 0 24px 0;
+            padding-bottom: 16px;
+            border-bottom: 3px solid #e53e3e;
+        }
+        .main-title-block h1 {
+            color: #1a202c;
+            font-size: 2.05em;
+            text-align: center;
+            margin: 0 auto;
+            max-width: 100%;
+            border: none;
+            padding: 0;
+            line-height: 1.25;
+        }
+        .main-title-block h1 + h1 { margin-top: 0.4em; font-size: 1.75em; font-weight: 600; }
+        h2 { color: #9b2c2c; margin-top: 40px; border-left: 5px solid #e53e3e; padding-left: 15px; font-size: 1.25em; line-height: 1.35; }
+        .metadata { background: #fff5f5; padding: 25px; border-radius: 8px; margin: 30px 0; border-left: 5px solid #e53e3e; overflow-wrap: anywhere; }
+        .section { margin-bottom: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: start; }
+        @media (max-width: 768px) { .section { grid-template-columns: 1fr; gap: 20px; } }
+        .en, .zh { min-width: 0; overflow-wrap: anywhere; }
+        .en { color: #4a5568; }
+        .zh { color: #1a202c; font-weight: 500; }
+        .figure { text-align: center; margin: 40px 0; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px; background: #fff; }
+        .figure img { max-width: 100%; height: auto; border-radius: 8px; }
+        .caption { font-style: italic; color: #718096; margin-top: 15px; font-size: 0.95em; }
+        blockquote { background: #fff5f5; border-left: 6px solid #e53e3e; padding: 20px 24px; margin: 30px 0; font-size: 1.05em; font-style: italic; overflow-wrap: anywhere; }
+        .footer-repro {
+            margin-top: 1.25rem;
+            padding: 1rem 0 1.25rem 0;
+            border-top: 1px solid #e2e8f0;
+            text-align: left;
+            color: #4a5568;
+            font-size: 0.92rem;
+            line-height: 1.55;
+            overflow-wrap: anywhere;
+        }
+        .footer-repro a { color: #c53030; font-weight: 600; word-break: break-word; overflow-wrap: anywhere; }
+        .footer-strip {
+            margin-top: 0.5rem;
+            padding: 1rem 1.15rem;
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            color: #718096;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            text-align: left;
+            overflow-wrap: anywhere;
+        }
+        .footer-strip a { color: #c53030; font-weight: 600; word-break: break-word; overflow-wrap: anywhere; }
+        .lang-label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 1px; color: #cbd5e0; margin-bottom: 5px; display: block; }
+        .metadata a { color: #c53030; word-break: break-word; overflow-wrap: anywhere; }
+        code { overflow-wrap: anywhere; word-break: break-word; }
+    </style>
+</head>
+<body>
+    <div class="paper-container">
+        <header class="main-title-block">
+            <h1>The Bell Inequality Audit: Accounting Fraud via Pairing Windows</h1>
+            <h1>贝尔不等式审计：配对窗口中的会计造假</h1>
+        </header>
+
+        <div class="metadata">
+            <strong>Author / 作者:</strong> Tom Nattle (Audit Assistant: Antigravity AI)<br>
+            <strong>Date / 日期:</strong> April 2026 / 2026年4月<br>
+            <strong>Status / 状态:</strong> NIST Data Audit Complete / NIST 数据审计完成<br>
+            <strong>Source code &amp; data / 源代码与数据：</strong> <a href="https://github.com/tomnattle/chain-explosion-model" rel="noopener noreferrer" target="_blank">https://github.com/tomnattle/chain-explosion-model</a><br>
+            <span style="font-size:0.95em;color:#718096;">Clone this repository and run the commands in §6 from the <strong>repository root</strong>. / 请克隆该仓库，在<strong>仓库根目录</strong>执行第 6 节命令。</span>
+        </div>
+
+        <div class="section">
+            <div class="en">
+                <span class="lang-label">English</span>
+                Bell inequality violations are historically cited as proof of non-locality. This paper presents a "Denominator Audit" of Bell/CHSH statistics using NIST experimental data. We demonstrate that the reported violation (S &gt; 2.0) is not an intrinsic property of the physical system, but a consequence of "accounting fraud"—the selective manipulation of coincidence pairing rules. On the published CSV grid, changing only the pairing tolerance in <strong>NIST grid-index units</strong> (0.0 vs 15.0) shifts the binary CHSH statistic by ~+0.50 while holding the event list fixed.
+            </div>
+            <div class="zh">
+                <span class="lang-label">中文对照</span>
+                贝尔不等式的违背在历史上被视为非局域性的证据。本文利用 NIST 实验数据对 Bell/CHSH 统计进行了“分母审计”。我们证明了：报告中的违背（S &gt; 2.0）并非物理系统的内在属性，而是“会计造假”的结果——即对符合配对规则的选择性操控。在已公开的 CSV 网格上，仅改变<strong>NIST 网格指数单位</strong>下的配对容差（0.0 与 15.0），即可在事件表不变的前提下使二元 CHSH 统计量出现约 +0.50 量级的位移。
+            </div>
+        </div>
+
+        <h2>1. Introduction: The 30cm Truth / 引言：30厘米的真相</h2>
+        <div class="section">
+            <div class="en">
+                <strong>Units (critical):</strong> This deposit pairs events using a tolerance measured on the CSV <code>t</code> grid — <strong>NIST grid-index units</strong>, not calibrated nanoseconds. The laboratory heuristic "30 cm truth" (about <strong>1 ns ↔ ~30 cm</strong> in vacuum) motivates why tiny <em>physical</em> timing rules move coincidence counts; it does <strong>not</strong> identify the parameter <code>15.0</code> with "15 ns" here.
+            </div>
+            <div class="zh">
+                <strong>单位（关键）：</strong> 本归档在 CSV 的 <code>t</code> 网格上按容差配对——使用<strong>NIST 网格指数单位</strong>，而非本包内标定的“纳秒”。实验室启发中的“30 厘米真相”（真空中约 <strong>1 纳秒 ↔ 约 30 厘米</strong>）用于说明为何极小的<strong>物理</strong>时间规则会搬动符合计数；它<strong>不</strong>等于声称此处的参数 <code>15.0</code> 就是“15 纳秒”。
+            </div>
+        </div>
+
+        <h2>2. Methodology: Parallel Protocol Audit / 方法论：并行协议审计</h2>
+        <div class="section">
+            <div class="en">
+                We processed the NIST complete-blind event stream using two parallel protocols on the identical event list: Strict (pairing tolerance <strong>0.0</strong>) and Standard (<strong>15.0</strong> in the <strong>same grid-index units</strong>). This isolates bookkeeping (which pairs enter the CHSH denominator) from any change to the underlying event generator.
+            </div>
+            <div class="zh">
+                我们在完全相同的事件表上运行两个并行协议：严苛（配对容差 <strong>0.0</strong>）与标准（<strong>15.0</strong>，<strong>同一网格指数单位</strong>）。这把“会计规则”（哪些配对进入 CHSH 分母）与事件生成机制本身的变化分离开来。
+            </div>
+        </div>
+
+        <h2>3. Results: Manufacturing Violation / 结果：人造的违背</h2>
+        <div class="section">
+            <div class="en">
+                On the frozen <code>battle_result.json</code> snapshot: <strong>S_strict = 2.336276</strong> (tolerance 0.0), <strong>S_standard = 2.839387</strong> (15.0), <strong>Δ = +0.503111</strong>. Accepted pair counts: strict <strong>136632</strong> vs standard <strong>148670</strong> — the wider tolerance changes the CHSH denominator, not the raw row list.
+            </div>
+            <div class="zh">
+                冻结 <code>battle_result.json</code>：<strong>S_strict = 2.336276</strong>（容差 0.0），<strong>S_standard = 2.839387</strong>（15.0），<strong>Δ = +0.503111</strong>。接受配对数：严苛 <strong>136632</strong>、标准 <strong>148670</strong>——更宽容差改变 CHSH 分母，而非原始行表。
+            </div>
+        </div>
+
+        <div class="figure">
+            <img src="figures/fig1_strict_vs_standard_s.png" alt="Strict vs Standard S">
+            <div class="caption">
+                Figure 1: CHSH S under strict vs standard tolerances (grid-index units). / 图 1：严苛与标准容差（网格指数单位）下的 CHSH S。
+            </div>
+        </div>
+
+        <div class="figure">
+            <img src="figures/fig2_paircount_vs_s.png" alt="Pair count vs S">
+            <div class="caption">
+                Figure 2: Pair-count vs S for the two protocols (strict <strong>136632</strong>, standard <strong>148670</strong>). / 图 2：两协议配对数与 S（严苛 <strong>136632</strong>，标准 <strong>148670</strong>）。
+            </div>
+        </div>
+
+        <div class="figure">
+            <img src="figures/fig3_protocol_delta_s.png" alt="Protocol Delta S">
+            <div class="caption">
+                Figure 3: ΔS = +0.503111 (bookkeeping shift). Standard-branch bootstrap CIs include 2√2. / 图 3：ΔS = +0.503111（账目位移）。标准分支 bootstrap 区间覆盖 2√2。
+            </div>
+        </div>
+
+        <blockquote>
+            "If you can change the result by changing the ledger, you are auditing the accountant, not the atom." / “如果你能通过改账本来改变结果，你审计的是会计，而不是原子。”
+        </blockquote>
+
+        <h3 style="color:#9b2c2c;margin-top:24px;">3.1 Tsirelson / bootstrap / Tsirelson 与 bootstrap</h3>
+        <div class="section">
+            <div class="en">
+                The point estimate <code>S_standard = 2.839387</code> slightly exceeds <code>2√2</code>, but <code>chsh_bootstrap_ci_standard15.json</code> has <code>ci_contains_tsirelson: true</code>. Read as <strong>estimator + finite-sample sensitivity</strong>, not a super-quantum device claim.
+            </div>
+            <div class="zh">
+                点估计略大于 <code>2√2</code>，但 <code>chsh_bootstrap_ci_standard15.json</code> 中 <code>ci_contains_tsirelson: true</code>。应理解为<strong>估计量与有限样本敏感性</strong>，非“超量子装置”主张。
+            </div>
+        </div>
+
+        <h2>4. Discussion: The Geometric Illusion (interpretive hypothesis) / 讨论：几何幻觉（解释性假说）</h2>
+        <div class="section">
+            <div class="en">
+                <strong>Interpretive hypothesis — not a finding of §2–§3.</strong> The audit establishes <strong>protocol-dependent</strong> <em>S</em> on one NIST stream. The paragraphs below are our <strong>speculative</strong> reading—motivated by that sensitivity, not proved by it. We state them as <strong>falsifiable intuition</strong> for follow-up; <strong>we do not assert their physical truth here</strong>. <strong>Not operational conclusions</strong>—hypotheses to test.
+            </div>
+            <div class="zh">
+                <strong>解释性假说——并非第2–3节的审计结论。</strong> 上文仅在该 NIST 事件流上确立 <em>S</em> 的<strong>协议依赖性</strong>。下文是我们受该敏感性启发、但<strong>并未</strong>由此证明的<strong>推测性</strong>读法；作为<strong>可证伪的研究直觉</strong>提出，<strong>本文不对其物理真实性作定论</strong>。<strong>非可执行结论</strong>——待检验假说。
+            </div>
+        </div>
+        <div class="section">
+            <div class="en">
+                <strong>Hypothesis:</strong> Bell violation <em>as a headline metric</em> can behave like a geometric or bookkeeping illusion: binarizing continuous fields through time gates and pairing rules may sample pipeline geometry as much as—or more than—any intended non-local story. <strong>This is suspicion, not a measurement conclusion from §3.</strong>
+            </div>
+            <div class="zh">
+                <strong>假说：</strong>作为头条指标的 Bell 违背<em>可能</em>呈现几何或账目式幻觉：通过时间门与配对规则对连续场二值化，采样的或许是流程几何，未必等同于意图中的非局域叙事。<strong>这是怀疑，而非§3测量结论。</strong>
+            </div>
+        </div>
+        <div class="section">
+            <div class="en">
+                <strong>Hypothesis:</strong> <em>If</em> that reading were broadly right, programs that lean on peak <em>S</em> after aggressive inclusion rules might be harnessing <strong>bookkeeping-sensitive</strong> statistics—<em>if</em> whole-sample fairness matters at scale, contrasts can shrink when denominators and discards are fully logged. <strong>Conditional reasoning only, not an empirical prediction about any hardware line.</strong>
+            </div>
+            <div class="zh">
+                <strong>假说：</strong><em>若</em>该读法更广成立，则依赖激进纳入后峰值 <em>S</em> 的路线可能利用<strong>对账目敏感</strong>的统计量——<em>若</em>规模化需更公平计入全样本，分母与丢弃被完整记录时对比可能减弱。<strong>仅为条件推理，非对任一硬件路线的经验预言。</strong>
+            </div>
+        </div>
+
+        <h2>5. Conclusion: An Anti-Counterfeiting Guide / 结论：一份防伪打假指南</h2>
+        <div class="section">
+            <div class="en">
+                This workflow shows the reported CHSH statistic on this NIST stream is a <strong>protocol-dependent object</strong>. If entanglement narratives lean on such metrics without denominator transparency, “quantum correlation” can track bookkeeping as much as mechanism.
+            </div>
+            <div class="zh">
+                本工作流表明：该 NIST 事件流上报告的 CHSH 统计量是<strong>依赖于协议的对象</strong>。若纠缠叙事仅依赖此类指标却缺乏分母透明度，“量子关联”可能与账目规则同步波动，而不仅是机制。
+            </div>
+        </div>
+
+        <h2>6. Reproducibility / 最小复现</h2>
+        <div class="footer-repro">
+            <strong>Repository / 仓库：</strong> <a href="https://github.com/tomnattle/chain-explosion-model" rel="noopener noreferrer" target="_blank">https://github.com/tomnattle/chain-explosion-model</a><br><br>
+            <strong>EN</strong> Data: <code>data/nist_completeblind_side_streams.csv</code> · Run: <code>python scripts/explore/chsh_denominator_audit.py</code> · Out: <code>artifacts/bell_window_scan_v1/</code> · Frozen: <code>battle_results/nist_completeblind_2015-09-19/battle_result.json</code> · Bootstrap: <code>artifacts/reports/chsh_bootstrap_ci_strict0.json</code>, <code>chsh_bootstrap_ci_standard15.json</code> · Optional gate audit: <code>python scripts/explore/bell_honest_gate_audit_v1.py</code><br><br>
+            <strong>中</strong> 数据：<code>data/nist_completeblind_side_streams.csv</code> · 运行：<code>python scripts/explore/chsh_denominator_audit.py</code> · 输出：<code>artifacts/bell_window_scan_v1/</code> · 冻结：<code>battle_results/nist_completeblind_2015-09-19/battle_result.json</code> · Bootstrap：<code>artifacts/reports/chsh_bootstrap_ci_strict0.json</code>、<code>chsh_bootstrap_ci_standard15.json</code> · 可选门控审计：<code>python scripts/explore/bell_honest_gate_audit_v1.py</code>
+        </div>
+
+        <div class="footer-strip">
+            <strong>Verification script / 验证脚本:</strong> <code>scripts/explore/chsh_denominator_audit.py</code><br>
+            <strong>Zenodo / DOI:</strong> <a href="https://doi.org/10.5281/zenodo.19784937" rel="noopener noreferrer" target="_blank">10.5281/zenodo.19784937</a> · <a href="https://zenodo.org/records/19784937" rel="noopener noreferrer" target="_blank">record</a><br>
+            <strong>GitHub / 仓库:</strong> <a href="https://github.com/tomnattle/chain-explosion-model" rel="noopener noreferrer" target="_blank">https://github.com/tomnattle/chain-explosion-model</a>
+        </div>
+    </div>
+</body>
+</html>

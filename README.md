@@ -35,17 +35,15 @@ If you want to see the author's intuitive picture of propagation and measurement
 
 If you want different ways to enter the repository, use one of these paths.
 
-- Latest preprint trilogy (Zenodo):
-  - Bell deconstruction (V3): https://doi.org/10.5281/zenodo.19767740
-  - Bell audit (V2 legacy): https://doi.org/10.5281/zenodo.19763027
-  - GHZ final deconstruction (F=4): https://doi.org/10.5281/zenodo.19769427
-  - Trilogy synthesis: https://doi.org/10.5281/zenodo.19764505
+- **Published audit pack (Zenodo, bilingual PDFs / 双语 PDF，当前引用):**
+  - Bell / CHSH denominator audit: https://doi.org/10.5281/zenodo.19784937 — https://zenodo.org/records/19784937
+  - GHZ `medium-v10` in-silico audit (V10.4): https://doi.org/10.5281/zenodo.19785022 — https://zenodo.org/records/19785022
+  - Audit trilogy (Bell + GHZ V10.4): https://doi.org/10.5281/zenodo.19785083 — https://zenodo.org/records/19785083
 
-- 最新预印本三部曲（Zenodo）：
-  - Bell 局域几何解构 (V3)：https://doi.org/10.5281/zenodo.19767740
-  - Bell 审计论文 (V2 遗留)：https://doi.org/10.5281/zenodo.19763027
-  - GHZ 终极几何解构 (F=4)：https://doi.org/10.5281/zenodo.19769427
-  - 综合终章论文：https://doi.org/10.5281/zenodo.19764505
+- **已发布审计三部曲（Zenodo，当前引用）：**
+  - 贝尔 / CHSH 分母审计：https://doi.org/10.5281/zenodo.19784937 — https://zenodo.org/records/19784937
+  - GHZ `medium-v10` 仿真审计（V10.4）：https://doi.org/10.5281/zenodo.19785022 — https://zenodo.org/records/19785022
+  - 审计综合篇（贝尔 + GHZ V10.4）：https://doi.org/10.5281/zenodo.19785083 — https://zenodo.org/records/19785083
 
 - Brief note / 简要说明：
   - EN: These three papers form a reproducible audit trilogy focused on analysis-rule sensitivity, protocol transparency, and claim-boundary reporting for Bell/GHZ statistics.

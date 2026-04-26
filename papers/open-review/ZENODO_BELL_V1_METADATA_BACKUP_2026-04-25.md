@@ -1,13 +1,13 @@
 # Zenodo Metadata Backup (Bell v1)
 
-Last updated: 2026-04-25  
-Purpose: Backup of the first successful Zenodo submission metadata and file list.
+Last updated: 2026-04-26  
+Purpose: Backup of Zenodo submission metadata and file list. **Canonical citation** for the bilingual Bell audit PDF is the record below (aligned with `papers_final/01_Bell_Audit/.../zenodoMetaData.md`).
 
 ## Record
 
-- Record URL: https://zenodo.org/records/19763028
-- DOI: https://doi.org/10.5281/zenodo.19763028
-- DOI (raw): 10.5281/zenodo.19763028
+- Record URL: https://zenodo.org/records/19784937
+- DOI: https://doi.org/10.5281/zenodo.19784937
+- DOI (raw): 10.5281/zenodo.19784937
 - Version: v1.0
 - Access: Open
 - Resource type: Publication -> Preprint

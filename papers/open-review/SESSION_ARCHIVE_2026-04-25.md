@@ -1,4 +1,4 @@
-# Session Archive — 2026-04-25
+# Session Archive — 2026-04-25（Zenodo 链接已对齐至 papers_final 双语审计版，2026-04-26）
 
 ## 今日目标
 
@@ -6,25 +6,27 @@
 - 在同一天完成 2 篇论文公开发布。
 - 在前两篇基础上完成第三篇（终章）写作、打包并公开发布。
 
-## 完成结果（已达成）
+## 完成结果（当前引用 / papers_final 双语 PDF）
 
-### 1) Bell 论文发布完成
+以下三条为仓库与 `README` 的**正式引用**；此前其他 Zenodo 记录号仅作历史会话参考，勿与当前版混用。
 
-- 记录页：`https://zenodo.org/records/19763242`
-- DOI：`https://doi.org/10.5281/zenodo.19763242`
-- 状态：Published / Open / v2
+### 1) Bell / CHSH 分母审计
 
-### 2) GHZ 论文发布完成
+- 记录页：`https://zenodo.org/records/19784937`
+- DOI：`https://doi.org/10.5281/zenodo.19784937`
+- 状态：Published / Open
 
-- 记录页：`https://zenodo.org/records/19765061`
-- DOI：`https://doi.org/10.5281/zenodo.19765061`
-- 状态：Published / Open / v2
+### 2) GHZ `medium-v10` 仿真审计（V10.4）
 
-### 3) Trilogy（第三篇）发布完成
+- 记录页：`https://zenodo.org/records/19785022`
+- DOI：`https://doi.org/10.5281/zenodo.19785022`
+- 状态：Published / Open
 
-- 记录页：`https://zenodo.org/records/19764505`
-- DOI：`https://doi.org/10.5281/zenodo.19764505`
-- 状态：Published / Open / v1.0
+### 3) 审计三部曲（综合篇）
+
+- 记录页：`https://zenodo.org/records/19785083`
+- DOI：`https://doi.org/10.5281/zenodo.19785083`
+- 状态：Published / Open
 
 ## 今日关键产物文件
 

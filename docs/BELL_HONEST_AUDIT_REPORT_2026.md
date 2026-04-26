@@ -34,9 +34,9 @@ As of Version 3 of the Bell Paper, the project has shifted its stance:
 2. We **audit** quantum non-locality as a statistical misinterpretation of local wave geometry.
 3. The $S=2.828$ result is treated as a "Geometric Identity" for normalized local oscillations.
 
-## 4. Archival Links
-- **Deconstruction (V3)**: [https://doi.org/10.5281/zenodo.19767740](https://doi.org/10.5281/zenodo.19767740)
-- **Legacy Audit (V2)**: [https://doi.org/10.5281/zenodo.19763027](https://doi.org/10.5281/zenodo.19763027)
+## 4. Archival Links（当前引用）
+- **Bell / CHSH 分母审计（双语 PDF）**: [https://doi.org/10.5281/zenodo.19784937](https://doi.org/10.5281/zenodo.19784937) · [Zenodo 记录页](https://zenodo.org/records/19784937)
+- **审计三部曲（综合篇）**: [https://doi.org/10.5281/zenodo.19785083](https://doi.org/10.5281/zenodo.19785083) · [Zenodo 记录页](https://zenodo.org/records/19785083)
 
 ---
 *End of Report*

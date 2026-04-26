@@ -80,4 +80,4 @@ This paper introduces a denominator-recovery audit framework for high-correlatio
 
 - Community selection can be left empty for fastest publication.
 - For new-version drafts on Zenodo, do not fill an existing Zenodo DOI in the "already have DOI" field; keep it as "No" unless importing an external DOI.
-- Bell published reference record: https://zenodo.org/records/19763028
+- Bell published reference record: https://zenodo.org/records/19784937

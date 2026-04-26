@@ -9,7 +9,7 @@ I am writing to provide a final update on the Bell-CHSH experimental audit withi
 We have just released **Version 3: The Deconstruction Edition** of the Bell paper. This version represents a significant ontological shift in our research. Rather than attempting to "simulate" quantum entanglement, we have performed a rigorous statistical audit that deconstructs the Bell violation as a natural consequence of local wave geometry.
 
 **Key Updates:**
-1. **Zenodo DOI**: All versions can now be cited via the master DOI: [10.5281/zenodo.19763027](https://doi.org/10.5281/zenodo.19763027).
+1. **Zenodo (current published audit pack)**: Bell / CHSH denominator audit [10.5281/zenodo.19784937](https://doi.org/10.5281/zenodo.19784937); GHZ `medium-v10` in-silico audit [10.5281/zenodo.19785022](https://doi.org/10.5281/zenodo.19785022); audit trilogy synthesis [10.5281/zenodo.19785083](https://doi.org/10.5281/zenodo.19785083).
 2. **Version 3 (Latest)**: Focuses on the "Binarization Trap" vs. "Normalized Cross-Correlation" (NCC). We have sit the case that a local harmonic wave model produces $S = 2.828$ under NCC, proving that the Tsirelson bound is a geometric identity rather than a sign of non-locality.
 3. **Audit Findings**: We have formally archived the findings regarding the sensitivity of NIST (2015) data to coincidence window selection and gate criteria changes.
 

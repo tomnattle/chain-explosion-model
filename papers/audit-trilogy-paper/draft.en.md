@@ -17,8 +17,9 @@ We call this the auditor effect: selecting pairing windows and denominator rules
 
 ### 1.1 Published Audit Records
 
-- Bell audit DOI: `https://doi.org/10.5281/zenodo.19763242`
-- GHZ audit DOI: `https://doi.org/10.5281/zenodo.19765061`
+- Bell audit DOI: `https://doi.org/10.5281/zenodo.19784937`
+- GHZ audit DOI: `https://doi.org/10.5281/zenodo.19785022`
+- Trilogy synthesis DOI: `https://doi.org/10.5281/zenodo.19785083`
 
 ### 1.2 Scope and Boundary
 
@@ -101,9 +102,9 @@ Primary evidence assets:
 
 | Claim | Evidence | Confidence | Artifact / DOI |
 |---|---|---|---|
-| Pairing-window policy changes Bell `S` on the same event stream | `S_strict=2.336276`, `S_standard=2.839387`, `Delta=+0.503111` | High | `https://doi.org/10.5281/zenodo.19763242` |
+| Pairing-window policy changes Bell `S` on the same event stream | `S_strict=2.336276`, `S_standard=2.839387`, `Delta=+0.503111` | High | `https://doi.org/10.5281/zenodo.19784937` |
 | Bell interpretation must be CI-bound, not peak-only | `CI95_standard=[2.820420, 2.857413]` includes `2sqrt(2)` | High | `artifacts/reports/chsh_bootstrap_ci_standard15.json` |
-| GHZ audited search does not approach `F=4` in current pipeline | best fine-stage `F=0.085396`, large target gap | High | `https://doi.org/10.5281/zenodo.19765061` |
+| GHZ audited search does not approach `F=4` in current pipeline | best fine-stage `F=0.085396`, large target gap | High | `https://doi.org/10.5281/zenodo.19785022` |
 | Singles-aware `C_norm` is a useful diagnostics bridge | real-data bridge assets available and reproducible | Medium | `artifacts/reports/ncc_singles_bridge_real.png` |
 | Current evidence establishes ontology replacement | no direct evidence chain | Not supported | N/A |
 
@@ -146,8 +147,9 @@ Current evidence supports method-level conclusions about analysis-rule sensitivi
 
 ### A.1 Public Records
 
-- Bell DOI: `https://doi.org/10.5281/zenodo.19763242`
-- GHZ DOI: `https://doi.org/10.5281/zenodo.19765061`
+- Bell DOI: `https://doi.org/10.5281/zenodo.19784937`
+- GHZ DOI: `https://doi.org/10.5281/zenodo.19785022`
+- Trilogy DOI: `https://doi.org/10.5281/zenodo.19785083`
 
 ### A.2 Repository
 

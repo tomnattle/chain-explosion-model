@@ -2,12 +2,12 @@
 
 This folder contains concise materials for pre-submission expert feedback.
 
-## Session Snapshot (2026-04-25)
+## Session Snapshot — Zenodo (current / 当前引用, 2026-04-26)
 
-- Bell published: https://doi.org/10.5281/zenodo.19763242
-- GHZ published: https://doi.org/10.5281/zenodo.19765061
-- Trilogy published: https://doi.org/10.5281/zenodo.19764505
-- Session archive: `SESSION_ARCHIVE_2026-04-25.md`
+- Bell / CHSH audit (bilingual PDF): https://doi.org/10.5281/zenodo.19784937 — https://zenodo.org/records/19784937
+- GHZ `medium-v10` audit (bilingual PDF): https://doi.org/10.5281/zenodo.19785022 — https://zenodo.org/records/19785022
+- Audit trilogy (bilingual PDF): https://doi.org/10.5281/zenodo.19785083 — https://zenodo.org/records/19785083
+- Session archive: `SESSION_ARCHIVE_2026-04-25.md` (updated links / 链接已对齐至上述记录)
 - Bell metadata backup: `ZENODO_BELL_V1_METADATA_BACKUP_2026-04-25.md`
 - GHZ metadata prep: `ZENODO_GHZ_V1_METADATA_PREP_2026-04-25.md`
 - Trilogy metadata prep: `ZENODO_TRILOGY_V1_METADATA_PREP_2026-04-25.md`

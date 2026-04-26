@@ -11,8 +11,9 @@
 
 ## B. 证据链与可复现
 
-- [x] Bell DOI 已写入：`10.5281/zenodo.19763028`
-- [x] GHZ DOI 已写入：`10.5281/zenodo.19763473`
+- [x] Bell DOI 已写入：`10.5281/zenodo.19784937`
+- [x] GHZ DOI 已写入：`10.5281/zenodo.19785022`
+- [x] Trilogy DOI 已写入：`10.5281/zenodo.19785083`
 - [x] GitHub 仓库地址已写入正文与附录
 - [x] Claim-to-Artifact 映射表已完整填写且无占位项
 

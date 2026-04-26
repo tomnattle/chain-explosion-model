@@ -1,0 +1,3 @@
+# Abstract
+
+The Greenberger-Horne-Zeilinger (GHZ) state is historically regarded as the "smoking gun" of quantum non-locality, providing a perfect correlation ($F=4.0$) without statistical inequalities. This paper presents a definitive post-selection audit of the GHZ violation. We demonstrate that $F=4.0$ is not a sign of non-local entanglement but a statistical artifact driven by amplitude-gating rules and detection thresholds. By introducing a matched-retention random control, we prove that the apparent violation is a geometric illusion created by data selection rules (post-selection amplification). This confirms that "spooky action" is merely the geometric closure of local fields, with profound implications for the foundations of quantum computing.
