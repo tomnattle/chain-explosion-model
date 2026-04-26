@@ -1,0 +1,30 @@
+{
+  "type": "computed_curve",
+  "model": "ghz_medium_v10",
+  "script": "scripts/explore/ghz_medium_v10/v10_4_real_cost_curve.py",
+  "note": "F_gated and R_gated are evaluated on a fixed RNG phase sample; gate_k is swept on a linear grid. No F\u2013retention endpoint is prescribed.",
+  "selection_definition": "soft_detector gate_k * RMS per channel; R_gated = mean of 4 setting hit rates",
+  "random_control": {
+    "definition": "random subsampling with the same per-setting retention as amplitude-gated events",
+    "trials_per_gate": 120,
+    "seed": 20260424
+  },
+  "seed": 20260423,
+  "states": 120000,
+  "physics": {
+    "r_inner": 0.8,
+    "wavelength": 0.3,
+    "offset_deg": 0.0,
+    "attenuation_power": 1.0
+  },
+  "gate_scan": {
+    "gate_min": 0.35,
+    "gate_max": 0.95,
+    "gate_points": 40
+  },
+  "F_cont_constant_across_scan": 10.071723731985765,
+  "outputs": {
+    "png": "artifacts/ghz_medium_v10/V10_4_REAL_COST_CURVE.png",
+    "csv": "artifacts/ghz_medium_v10/V10_4_REAL_COST_CURVE.csv"
+  }
+}

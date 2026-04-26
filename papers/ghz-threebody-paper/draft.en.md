@@ -4,7 +4,7 @@ Denominator Recovery and Post-Selection Audit in a GHZ Three-Body Model: A Two-S
 
 ## Abstract
 
-This work audits high-correlation claims in a GHZ three-body model by explicitly separating mechanism effects from bookkeeping effects. We compare denominator settings (`none` vs `energy_weighted`) under a unified pipeline, run a two-stage search (90 deg coarse + 2 deg fine), and evaluate the `F`-`coincidence_rate` trade-off. Under the current setup (`samples=80000`, `numba_cpu`, gated protocol), the best fine-stage candidate reaches only `F=0.085396`, still far from the target `F=4` with `|err|=3.914604`. In a separate aggressive post-selection regime, `F` can approach `4`, but only with heavy sample discard (about 75% discarded, about 25% retained), as shown by the cost-benefit curve (`artifacts/ghz_threshold_experiment/ghz_cost_benefit_curve_2p2_to_4p0.png`). Failure decomposition consistently points to correlation-shape mismatch rather than coincidence sparsity as the dominant bottleneck. We therefore report a method-level audit conclusion: high `F` under strong filtering is a costed trade-off, not a free gain, and we do not promote ontology-level claims.
+This work audits high-correlation claims in a GHZ three-body model by explicitly separating mechanism effects from bookkeeping effects. We compare denominator settings (`none` vs `energy_weighted`) under a unified pipeline, run a two-stage search (90 deg coarse + 2 deg fine), and evaluate the `F`-`coincidence_rate` trade-off. Under the current setup (`samples=80000`, `numba_cpu`, gated protocol), the best fine-stage candidate reaches only `F=0.085396`, still far from the target `F=4` with `|err|=3.914604`. In a separate post-selection audit using the medium-wave pipeline (`artifacts/ghz_medium_v10/V10_4_REAL_COST_CURVE.*`), amplitude-threshold gating can drive `F_gated` toward 4 at low retention, while matched-retention random subsampling stays substantially lower (`F_random` does not approach 4). Failure decomposition in the search pipeline still points to correlation-shape mismatch rather than coincidence sparsity as the dominant bottleneck. We therefore report a method-level audit conclusion: high `F` under strong filtering is a selection-rule-dependent amplification, not full-sample mechanism evidence, and we do not promote ontology-level claims.
 
 ## 1. Introduction
 
@@ -65,19 +65,19 @@ Robustness summary:
 - seed sweep: `count=3`, `seed_sweep_context_f_sd=0.010787`;
 - failure decomposition: both coarse and fine stages are labeled as `correlation shape mismatch dominates`.
 
-For trade-off analysis, `F_context_pump_gated` does not trend toward 4 in any `R` bucket. Bin means range from `-0.019317` in `[0.0,0.2)` to `-0.001344` in `[0.8,1.0]`, staying close to zero overall. Suggested mapping:
+For trade-off analysis, `F_context_pump_gated` in the threshold-search pipeline does not trend toward 4 in any `R` bucket. Bin means range from `-0.019317` in `[0.0,0.2)` to `-0.001344` in `[0.8,1.0]`, staying close to zero overall. In an additional post-selection audit on the medium-wave pipeline, amplitude gating and random matched-retention controls separate clearly: high `F_gated` appears only under amplitude-based selection, whereas random controls remain much lower at the same retention levels. Suggested mapping:
 
 - Figure 3: `fig3_f_vs_coincidence_tradeoff.png`
-- Figure 4: `artifacts/ghz_threshold_experiment/ghz_cost_benefit_curve_2p2_to_4p0.png` (high-`F` approach under aggressive filtering, with retention-cost disclosure)
+- Figure 4: `artifacts/ghz_medium_v10/V10_4_REAL_COST_CURVE.png` (computed post-selection cost curve with matched-retention random baseline)
 - Table 1: search configuration registry
 - Table 2: coarse/fine Top-k summary
 - Table 3: robustness statistics
 
 ## 4. Discussion
 
-The current evidence indicates that, within the tested model family, raising `F` is mainly limited by correlation-shape structure rather than by simple sample-thinning effects. Fine-stage search improves over coarse-stage peaks, but only marginally and still far below the target level.
+The current evidence indicates two distinct regimes that should not be conflated. In the threshold-search pipeline, raising `F` is mainly limited by correlation-shape structure rather than by simple sample-thinning effects; fine-stage search improves over coarse-stage peaks only marginally and remains far below the target level. In the medium-wave post-selection audit, high `F` under amplitude gating is reproducible but is not reproduced by random subsampling at matched retention, indicating selection-rule sensitivity.
 
-From an audit perspective, denominator recovery is useful because it explicitly decouples numerator correlation from denominator/sample bookkeeping. Under this decoupling, no near-4 behavior emerges, which weakens a bookkeeping-only explanation for extreme values.
+From an audit perspective, denominator recovery is useful because it explicitly decouples numerator correlation from denominator/sample bookkeeping. The added matched-retention random-control audit further shows that near-4 values can be generated by a specific selection rule but are not generic under random retention at the same sample cost. This supports a detection-loophole-style interpretation (selection amplification) rather than a full-sample mechanism claim.
 
 Limitations remain: seed count is still small, and a full system-level A/B summary for `none` vs `energy_weighted` is still pending. Larger sample sizes and broader seed coverage are required for stronger statistical confidence.
 
@@ -85,9 +85,10 @@ Limitations remain: seed count is still small, and a full system-level A/B summa
 
 Supported claims:
 
-1. Under the current audited GHZ protocol, we do not observe evidence of `F` approaching 4;
+1. Under the threshold-search audited GHZ protocol, we do not observe evidence of `F` approaching 4 in full-sample search outputs;
 2. target-failure decomposition favors correlation-shape mismatch over coincidence sparsity;
-3. denominator recovery improves interpretability and bookkeeping transparency.
+3. in the medium-wave post-selection audit, amplitude-gated high `F` is not reproduced by matched-retention random controls, indicating selection-rule-dependent amplification;
+4. denominator recovery plus matched-retention controls improves interpretability and bookkeeping transparency.
 
 Non-supported claims:
 
