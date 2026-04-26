@@ -1,5 +1,5 @@
-# The Geometric Origin of GHZ Violation: A Post-Selection Audit
-# GHZ 违背的几何起源：针对“量子证据”的后选择审计报告
+# Post-Selection Sensitivity in a GHZ-Type Mermin Statistic: An In-Silico Audit
+# GHZ 型 Mermin 统计量的后选择敏感性：仿真审计报告
 
 **Author / 作者**: Tom Nattle (Audit Assistant: Antigravity AI)  
 **Date / 日期**: April 2026 / 2026年4月  
@@ -18,8 +18,8 @@
 
 ---
 
-## 1. Introduction: The Audit of the Accounting Rules
-## 1. 引言：针对“会计平账规则”的审计
+## 1. Introduction: Audit Scope and Motivation
+## 1. 引言：审计范围与动机
 
 [EN] **In-silico finding (this note):** within `medium-v10`, we summarize sensitivity of a GHZ-type statistic to gating and retention (§2–§3). **Interpretive hypothesis (not proved here):** lab Bell/GHZ *narratives* often under-report how much correlation moves when inclusion rules change. The next blocks are **research suspicion**—motivated by audit culture, **not** established by the V10.4 curve alone.
 
@@ -47,8 +47,8 @@
 
 ---
 
-## 3. Results: The Real Cost of "Entanglement"
-## 3. 结果：“纠缠”的真实代价
+## 3. Results: Selection-Retention Trade-off
+## 3. 结果：筛选-保留率权衡
 
 [EN] The `V10.4` pipeline shows a direct trade-off between Mermin-style **F** and **data retention** under amplitude gating. High **F** tracks discarding most draws; matched-retention random baselines do not reproduce the gated curve.
 
@@ -84,8 +84,8 @@
 
 ---
 
-## 5. Conclusion: An Anti-Counterfeiting Guide
-## 5. 结论：一份防伪打假指南
+## 5. Conclusion: A Boundary-Aware Audit Summary
+## 5. 结论：边界清晰的审计总结
 
 [EN] We do not claim quantum mechanics is "wrong" in its formal predictions, but we treat many foundational *reported* metrics as "unbalanced accounts" unless retention, gates, and denominators are disclosed. We document pairing windows, amplitude gating, and binarization as bookkeeping levers.
 

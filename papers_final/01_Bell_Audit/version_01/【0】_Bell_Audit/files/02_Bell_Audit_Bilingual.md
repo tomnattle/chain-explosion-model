@@ -1,5 +1,5 @@
-# The Bell Inequality Audit: Accounting Fraud via Pairing Windows
-# 贝尔不等式审计：配对窗口中的会计造假
+# Denominator Audit of Bell/CHSH Statistics: Protocol Sensitivity to Pairing-Rule Definitions
+# 贝尔不等式的分母审计：配对规则定义的协议敏感性分析
 
 **Author / 作者**: Tom Nattle (Audit Assistant: Antigravity AI)  
 **Date / 日期**: April 2026 / 2026年4月  
@@ -12,9 +12,9 @@
 
 ## Abstract / 摘要
 
-[EN] Bell inequality violations are historically cited as proof of non-locality. This paper presents a "Denominator Audit" of Bell/CHSH statistics using NIST experimental data. We demonstrate that the reported violation (S > 2.0) is not an intrinsic property of the physical system, but a consequence of "accounting fraud"—the selective manipulation of coincidence pairing rules. On the published CSV grid, changing only the pairing tolerance in **NIST grid-index units** (0.0 vs 15.0) shifts the binary CHSH statistic by ~+0.50 while holding the event list fixed.
+[EN] Bell inequality violations are historically cited as proof of non-locality. This paper presents a "Denominator Audit" of Bell/CHSH statistics using NIST experimental data. We show that the reported value is sensitive to coincidence-pairing protocol definitions and denominator bookkeeping choices under a shared event stream. On the published CSV grid, changing only the pairing tolerance in **NIST grid-index units** (0.0 vs 15.0) shifts the binary CHSH statistic by ~+0.50 while holding the event list fixed.
 
-[中] 贝尔不等式的违背在历史上被视为非局域性的证据。本文利用 NIST 实验数据对 Bell/CHSH 统计进行了“分母审计”。我们证明了：报告中的违背（S > 2.0）并非物理系统的内在属性，而是“会计造假”的结果——即对符合配对规则的选择性操控。在已公开的 CSV 网格上，仅改变 **NIST 网格指数单位** 下的配对容差（0.0 与 15.0），即可在事件表不变的前提下使二元 CHSH 统计量出现约 +0.50 量级的位移。
+[中] 贝尔不等式的违背在历史上被视为非局域性的证据。本文利用 NIST 实验数据对 Bell/CHSH 统计进行了“分母审计”。我们显示：在同一事件流上，报告值对符合配对协议定义与分母记账选择具有显著敏感性。在已公开的 CSV 网格上，仅改变 **NIST 网格指数单位** 下的配对容差（0.0 与 15.0），即可在事件表不变的前提下使二元 CHSH 统计量出现约 +0.50 量级的位移。
 
 ---
 
@@ -36,8 +36,8 @@
 
 ---
 
-## 3. Results: Manufacturing Violation
-## 3. 结果：人造的违背
+## 3. Results: Protocol-Induced Shift
+## 3. 结果：协议引起的统计位移
 
 [EN] On the frozen `battle_result.json` snapshot: **S_strict = 2.336276** (tolerance 0.0), **S_standard = 2.839387** (15.0), **Δ = +0.503111**. Accepted pair counts: strict **136632** vs standard **148670** — the wider tolerance changes the CHSH denominator, not the raw row list.
 
@@ -52,7 +52,7 @@
 ![Protocol delta S](figures/fig3_protocol_delta_s.png)
 *Figure 3: ΔS = +0.503111 (bookkeeping shift). Standard-branch bootstrap CIs include 2√2. / 图 3：ΔS = +0.503111（账目位移）。标准分支 bootstrap 区间覆盖 2√2。*
 
-> "If you can change the result by changing the ledger, you are auditing the accountant, not the atom." / “如果你能通过改账本来改变结果，你审计的是会计，而不是原子。”
+> "If the reported value changes when the ledger changes, protocol definitions must be audited alongside physical interpretation." / “若报告值会随记账规则变化，则在物理解释之外必须同时审计协议定义。”
 
 ### 3.1 Tsirelson / bootstrap / Tsirelson 与 bootstrap
 
@@ -79,8 +79,8 @@
 
 ---
 
-## 5. Conclusion: An Anti-Counterfeiting Guide
-## 5. 结论：一份防伪打假指南
+## 5. Conclusion: A Boundary-Aware Audit Guide
+## 5. 结论：一份边界清晰的审计指南
 
 [EN] This workflow shows the reported CHSH statistic on this NIST stream is a **protocol-dependent object**. If entanglement narratives lean on such metrics without denominator transparency, “quantum correlation” can track bookkeeping as much as mechanism.
 

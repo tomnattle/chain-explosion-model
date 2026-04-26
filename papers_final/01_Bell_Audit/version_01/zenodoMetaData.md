@@ -7,8 +7,8 @@
 - **Companion code / 配套代码:** https://github.com/tomnattle/chain-explosion-model  
 
 ## Title / 标题
-[EN] Denominator-Audit Analysis of Bell/CHSH Statistics: Identifying Accounting Fraud in Pairing Rules
-[中] 贝尔不等式的分母审计：识别配对规则中的会计造假
+[EN] Denominator Audit of Bell/CHSH Statistics: Protocol Sensitivity to Pairing-Rule Definitions
+[中] 贝尔不等式的分母审计：配对规则定义的协议敏感性分析
 
 ## Description / 描述
 [EN] 

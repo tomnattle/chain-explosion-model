@@ -107,6 +107,83 @@
 - 后续统一以 `papers/bell-audit-paper/draft.zh.md` 为准：`S_strict=2.336276`、`S_standard=2.839387`。
 - `2.828` 仅作为 `2*sqrt(2)`（Tsirelson 理论上界）参考线，不作为本项目实测主结果数值。
 
+### 2026-04-26 | Nicolas Gisin — 用户定稿（中英直述，记录）
+
+- 收件人：`nicolas.gisin@unige.ch`（与首封相同）
+- 用途：跟进/替换口径时推荐使用本稿；与 Zenodo 三篇 + 仓库一致。
+- 建议主题（中）：`贝尔/GHZ 协议审计：NIST 数据与仿真结论（三篇 Zenodo）+ 可复现代码`
+- 建议主题（英）：`Bell/GHZ protocol audit: NIST + in-silico GHZ (3 Zenodo DOIs) + reproducible repo`
+- 状态：`定稿已记录`（是否已发送请发送后自行改为 `已发送待回复` 等）
+
+**中文正文（定稿）**
+
+尊敬的 Gisin 教授：
+
+您好。我是一名独立研究者。以下是我的工作入口和三篇论文，直接说结论。
+
+代码与数据（可复现）：
+https://github.com/tomnattle/chain-explosion-model
+
+三篇论文（按顺序阅读）：
+
+第一篇：贝尔/CHSH 分母审计
+https://doi.org/10.5281/zenodo.19784937
+发现：用NIST 2015公开数据，只改变配对窗口，S值从2.34跳到2.84。这不是物理变化，是统计协议的变化。
+
+第二篇：GHZ 后选择审计
+https://doi.org/10.5281/zenodo.19785022
+发现：高F值是振幅门控后选择的产物。不筛选时，F值在0.1量级。逼近4需要丢弃大部分样本。这是几何筛选效应，不是非局域性的证明。
+
+第三篇：审计三部曲
+https://doi.org/10.5281/zenodo.19785083
+内容：把前两篇放在统一的方法论框架里，提出可复现的审计标准。
+
+我的核心观点（直说）：
+贝尔实验和GHZ实验的“非局域性”结论，依赖于从未被独立检验的统计协议。我们的审计表明，这些协议对结论有决定性影响。因此，我认为“非局域性”作为物理事实的认定是脆弱的。我们有一个局域几何模型可以自然复现这些关联，但这不是这封邮件的重点。
+
+我的边界（也直说）：
+我不声称已经推翻了量子力学。我声称的是：这些实验的结论，高度依赖于分析协议的选择。这个声称有数据支持，有可复现代码，有公开审计路径。
+
+一个问题：
+您认为这类“协议依赖性”审计，应该如何表述，才能在科学上诚实，同时避免被误读为对整个量子理论的攻击？
+
+此致
+敬礼
+
+**English Version（定稿）**
+
+Dear Prof. Gisin,
+
+I am an independent researcher. Here is my work, stated directly.
+
+Repository (reproducible):
+https://github.com/tomnattle/chain-explosion-model
+
+Three papers (read in order):
+
+Paper 1: Bell/CHSH Denominator Audit
+https://doi.org/10.5281/zenodo.19784937
+Finding: On the same NIST 2015 event stream, changing only the pairing window shifts S from 2.34 to 2.84. This is not a physical change. It is a statistical protocol change.
+
+Paper 2: GHZ Post-Selection Audit
+https://doi.org/10.5281/zenodo.19785022
+Finding: High F-values are products of amplitude-gated post-selection. Without selection, F is on the order of 0.1. Approaching 4 requires discarding most samples. This is a geometric selection effect, not evidence of nonlocality.
+
+Paper 3: Audit Trilogy
+https://doi.org/10.5281/zenodo.19785083
+Content: A unified methodological framework combining Papers 1 and 2.
+
+My core view (directly):
+The “nonlocality” conclusions of Bell and GHZ experiments depend on statistical protocols that have never been independently audited. Our audit shows these protocols decisively shape the conclusions. I therefore consider the status of nonlocality as a physical fact to be fragile. We have a local geometric model that naturally reproduces these correlations, but that is a separate discussion.
+
+My boundary (also directly):
+I do not claim to have overturned quantum mechanics. I claim that the conclusions of these experiments are highly sensitive to analysis protocol choices. This claim is supported by data, by reproducible code, and by an open audit trail.
+
+One question:
+How would you phrase this kind of protocol-dependency audit so that it remains scientifically honest while minimizing misinterpretation as an attack on quantum theory as a whole?
+
+Best regards
+
 ### 2026-04-24 | 第二批待发送（4位）
 
 #### A02 | Markus P. Muller
