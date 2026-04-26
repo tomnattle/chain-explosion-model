@@ -1,0 +1,125 @@
+# v8 Quantum Grand Unification Summary
+
+- generated_at: 2026-04-26T15:38:08.177844+00:00
+- joint_pass: **True**
+- joint_loss: 0.052611
+- locked_parameters: mu=1.5495, rho=2.35, eta=0.08
+- script_sha256: `eb4ac05c99ef9f94a231f1b8ce89c603164dddfd76cdbccfa17d477131324226`
+
+## Baseline Tests
+- radial_levels: nrmse_y=0.000000, R2=1.000000, pass=Y
+- decoherence: nrmse_y=0.052611, R2=0.997795, pass=Y
+- compton_shift: nrmse_y=0.000000, R2=1.000000, pass=Y
+
+## Counterfactual
+- eta=0.001 -> compton_pass=False (expected False)
+
+## Negative Controls
+- nc_radial_wrong_exponent: nrmse_y=0.037084, R2=0.998378, pass=N
+- nc_decoherence_linear: nrmse_y=0.158985, R2=0.906154, pass=N
+- nc_compton_constant: nrmse_y=0.357071, R2=0.000000, pass=N
+- all_expected_fail: True
+
+## Multi-round Hardening
+- n_rounds: 100
+- all_rounds_pass: True
+- round=1, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=2, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=3, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=4, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=5, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=6, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=7, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=8, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=9, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=10, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=11, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=12, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=13, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=14, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=15, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=16, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=17, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=18, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=19, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=20, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=21, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=22, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=23, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=24, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=25, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=26, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=27, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=28, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=29, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=30, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=31, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=32, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=33, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=34, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=35, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=36, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=37, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=38, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=39, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=40, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=41, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=42, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=43, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=44, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=45, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=46, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=47, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=48, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=49, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=50, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=51, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=52, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=53, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=54, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=55, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=56, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=57, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=58, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=59, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=60, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=61, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=62, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=63, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=64, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=65, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=66, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=67, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=68, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=69, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=70, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=71, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=72, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=73, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=74, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=75, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=76, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=77, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=78, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=79, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=80, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=81, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=82, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=83, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=84, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=85, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=86, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=87, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=88, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=89, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=90, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=91, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=92, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=93, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=94, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=95, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=96, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=97, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=98, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=99, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True
+- round=100, round_pass=True, baseline=True, cf_expected_fail=True, nc_expected_fail=True

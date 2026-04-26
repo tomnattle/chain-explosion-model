@@ -1,0 +1,23 @@
+# SPDX-REUSE compliance hints (software vs docs)
+# See https://reuse.software/spec/
+
+version = 1
+
+[[annotations]]
+path = [
+  "**/*.py",
+  "scripts/**",
+  "run_*.py",
+  "ce_*.py",
+  "chain_explosion_numba.py",
+]
+SPDX-License-Identifier = "AGPL-3.0-or-later"
+SPDX-FileCopyrightText = "2026 wang, hui"
+
+[[annotations]]
+path = [
+  "papers_final/**",
+  "docs/**",
+]
+SPDX-License-Identifier = "CC-BY-NC-ND-4.0"
+SPDX-FileCopyrightText = "2026 wang, hui"

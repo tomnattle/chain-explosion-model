@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ripple Reality — Merged v7+v8 Manuscript</title>
+  <style>
+:root {
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --text: #1f2937;
+  --muted: #6b7280;
+  --line: #e5e7eb;
+  --accent: #2563eb;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+  color: var(--text);
+  background: #1a202c;
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+  line-height: 1.6;
+}
+.paper-container {
+  background: var(--card);
+  padding: 56px 48px;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+  border-top: 10px solid #4a5568;
+}
+.main-title-block {
+  text-align: center;
+  margin: 0 0 28px 0;
+  padding-bottom: 16px;
+  border-bottom: 3px solid #4a5568;
+}
+.main-title-block h1 {
+  color: #1a202c;
+  font-size: 2.1em;
+  text-align: center;
+  margin: 0 auto;
+  line-height: 1.25;
+}
+.main-title-block h1 + h1 {
+  margin-top: 0.4em;
+  font-size: 1.8em;
+  font-weight: 600;
+}
+.sub {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin: 8px 0 0 0;
+  text-align: center;
+}
+.metadata {
+  background: #f7fafc;
+  padding: 24px 20px;
+  border-radius: 8px;
+  margin: 32px 0;
+  border: 1px solid #e2e8f0;
+  text-align: center;
+  overflow-wrap: anywhere;
+  font-size: 0.95rem;
+  color: #4a5568;
+}
+.metadata .meta {
+  margin-top: 8px;
+  font-size: 0.86rem;
+  color: #6b7280;
+}
+.metadata a {
+  color: #1d4ed8;
+  text-decoration: none;
+  font-weight: 600;
+  word-break: break-word;
+}
+.metadata a:hover { text-decoration: underline; }
+.md-content h2 {
+  margin: 18px 0 10px 0;
+  font-size: 1.15rem;
+  color: #2d3748;
+  border-left: 8px solid #4a5568;
+  padding-left: 16px;
+}
+.md-content h3 {
+  margin: 14px 0 8px 0;
+  font-size: 1.02rem;
+  color: #374151;
+}
+.md-content p, .md-content li { font-size: 0.94rem; color: #374151; }
+.md-content code {
+  background: #f4f4f5;
+  padding: 0.1rem 0.28rem;
+  border-radius: 4px;
+  font-size: 0.86rem;
+}
+.md-content hr {
+  border: none;
+  border-top: 1px solid #e5e5e5;
+  margin: 1.6rem 0;
+}
+.md-content table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 12px 0;
+  font-size: 0.9rem;
+}
+.md-content th, .md-content td {
+  border: 1px solid var(--line);
+  padding: 8px 10px;
+  text-align: left;
+}
+.md-content tr:nth-child(even) { background: #f9fafb; }
+.md-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.card img {
+  width: 100%;
+  display: block;
+  background: #fff;
+}
+.cap {
+  padding: 10px 12px;
+  border-top: 1px solid var(--line);
+  font-size: 0.9rem;
+  color: #374151;
+}
+.cap code { color: var(--muted); font-size: 0.82rem; }
+.note {
+  margin-top: 16px;
+  padding: 10px 12px;
+  background: #eef2ff;
+  border: 1px solid #c7d2fe;
+  border-radius: 10px;
+  color: #374151;
+  font-size: 0.9rem;
+}
+.footer-repro {
+  margin-top: 1.25rem;
+  padding: 1rem 0 1.25rem 0;
+  border-top: 1px solid #e2e8f0;
+  text-align: left;
+  color: #4a5568;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+.footer-strip {
+  margin-top: 0.5rem;
+  padding: 1rem 1.15rem;
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  color: #718096;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+.footer-strip a { color: #2d3748; font-weight: 600; word-break: break-word; }
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  body { padding: 0 12px; margin: 16px auto; }
+  .paper-container { padding: 24px 16px; border-top-width: 6px; }
+}
+</style>
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+</head>
+<body>
+  <div class="paper-container">
+    <header class="main-title-block">
+      <h1>Ripple Reality: Merged Audit Manuscript (v6+v7+v8)</h1>
+      <h1>Ripple Reality：合并审计稿（v6+v7+v8）</h1>
+      <p class="sub">Includes v6 baseline, v7 rigidity metrics, the same audit-chain figure grid as <code>v7.html</code>, and the v8 deep-quantum figure panel. / 含 v6 基线、v7 刚性指标、与 <code>v7.html</code> 同源的审计链图阵、以及 v8 深水图像面板。</p>
+    </header>
+    <div class="metadata">
+      <strong>Source markdown / 源稿：</strong> <code>papers_final/04_Ripple_Rigidity_Audit/version_01/【0】_Ripple_Rigidity_Audit/files/07_Manuscript_Merged_v7_v8_Bilingual.md</code><br>
+      <strong>Companion figure manuscript / 图文姊妹篇：</strong> <code>v7.html</code>（同目录）<br>
+      <span class="meta">
+        <strong>GitHub / 仓库：</strong>
+        <a href="https://github.com/tomnattle/chain-explosion-model" rel="noopener noreferrer" target="_blank">https://github.com/tomnattle/chain-explosion-model</a><br>
+        Run figure and audit scripts from repository root. / 请在仓库根目录运行作图与审计脚本。
+      </span>
+    </div>
+    <div class="md-content">
+      <p><strong>Author / 作者</strong>: wang, hui<br />
+<strong>Status / 状态</strong>: Draft v1 (Merged v6+v7+v8)<br />
+<strong>Positioning / 定位</strong>: Methodological audit and reproducibility claim / 方法学审计与可复现性主张</p>
+<hr />
+<h2 id="abstract">Abstract / 摘要</h2>
+<p><strong>EN</strong><br />
+We present a merged v6+v7+v8 audit under one fixed parameter triplet $(\mu,\rho,\eta)=(1.5495,2.35,0.08)$. v6 establishes cross-benchmark baseline consistency (laser threshold, semiconductor cutoff, MRI Larmor, atomic-clock modes). v7 establishes rigidity and anti-tuning evidence (local <code>27/27</code>, random-global <code>18/20</code>, expected-fail counterfactual suite, 7-seed spin stability). v8 tests deeper cross-scale functionality at the same locked point on radial standing-wave levels, environment decoherence, and Compton-style nonlinear shift, with anti-cheat closure (<code>eta=0.001</code> counterfactual fail, all negative controls fail, <code>100/100</code> multi-round hardening pass). The combined chain addresses three audit questions: baseline consistency (v6), parameter identifiability (v7), and deeper joint explanatory scope (v8).</p>
+<p><strong>中</strong><br />
+本文给出 v6+v7+v8 合并审计：在同一固定参数 $(\mu,\rho,\eta)=(1.5495,2.35,0.08)$ 下，v6 先建立跨基准基线一致性（激光阈值、半导体截止、MRI Larmor、原子钟模态）；v7 再建立刚性与反凑数证据（局部 <code>27/27</code>、全局随机 <code>18/20</code>、反事实套件按预期失败、7 种子自旋稳定）；v8 最后在同一锁定点完成深层跨尺度验证（径向驻波能级、环境退相干、类 Compton 非线性位移），并形成反作弊闭环（<code>eta=0.001</code> 反事实失败、负对照全部失败、<code>100/100</code> 多轮加固通过）。合并后可同时回答三类问题：v6 的基线一致性、v7 的参数可辨识性、以及 v8 的深层联合解释能力。</p>
+<hr />
+<h2 id="1-audit-logic">1. Audit Logic / 审计逻辑</h2>
+<p><strong>EN</strong><br />
+This manuscript is intentionally merged. v6 is the baseline consistency layer, v7 is the rigidity foundation, and v8 is the cross-scale superstructure. Publishing separately weakens causal force; publishing jointly forms a closed evidence path.</p>
+<p><strong>中</strong><br />
+本文刻意合并。v6 是基线一致性层，v7 是刚性地基，v8 是跨尺度大厦。拆分发表会削弱因果链，合并发表可形成闭环证据路径。</p>
+<hr />
+<h2 id="2-fixed-parameter-contract">2. Fixed Parameter Contract / 固定参数契约</h2>
+<p>$$
+(\mu,\rho,\eta)=(1.549500,\,2.350000,\,0.080000)
+$$</p>
+<p><strong>EN</strong><br />
+The same triplet is reused across v6, v7 and v8. v6 defines baseline consistency; v7/v8 are audited at the same locked point; no optimization is allowed in v8.</p>
+<p><strong>中</strong><br />
+同一参数三元组贯穿 v6、v7 与 v8：v6 定义基线一致性，v7/v8 在同一锁定点继续审计，且 v8 阶段不允许再次优化。</p>
+<hr />
+<h2 id="3-section-v6-baseline-joint-consistency-v6">3. Section v6: Baseline Joint Consistency / 第三节：v6 基线联合一致性</h2>
+<p><strong>EN</strong><br />
+v6 provides the baseline four-benchmark joint consistency under the same shared triplet: <code>laser_threshold</code>, <code>semiconductor_cutoff</code>, <code>mri_larmor</code>, and <code>atomic_clock_modes</code>. The figure evidence is included in Section 7 (C-panel) via the same archive used by <code>v7.html</code>.</p>
+<p><strong>中</strong><br />
+v6 在同一共享三元组下提供四项基线联合一致性：<code>laser_threshold</code>、<code>semiconductor_cutoff</code>、<code>mri_larmor</code>、<code>atomic_clock_modes</code>。对应图证在第七节（C 区）与 <code>v7.html</code> 使用同一归档来源。</p>
+<hr />
+<h2 id="4-section-v7-rigidity-and-three-benchmarks-v7">4. Section v7: Rigidity and Three Benchmarks / 第四节：v7 三项基准与刚性审计</h2>
+<p><strong>EN</strong><br />
+v7 evaluates <strong>double-slit fringe spacing</strong>, <strong>tunneling attenuation</strong>, and <strong>spin-1/2</strong> $P(+|\theta)=\cos^2(\theta/2)$ under the same locked triplet. Below metrics are taken from <code>artifacts/ripple_quantum_tests_v7_three/RIPPLE_V7_THREE_RESULTS.json</code>.</p>
+<p><strong>中</strong><br />
+v7 在相同锁定三元组下评估 <strong>双缝条纹间距</strong>、<strong>隧穿衰减</strong>、以及 <strong>自旋 1/2</strong> 的 $P(+|\theta)=\cos^2(\theta/2)$。下列数值来自 <code>artifacts/ripple_quantum_tests_v7_three/RIPPLE_V7_THREE_RESULTS.json</code>。</p>
+<h3 id="41-v7-baseline-joint-pass-v7">4.1 v7 baseline (joint pass) / v7 基线（联合通过）</h3>
+<table>
+<thead>
+<tr>
+<th>Test / 测试</th>
+<th style="text-align: center;"><code>shape_ok</code></th>
+<th style="text-align: right;"><code>nrmse_y</code></th>
+<th style="text-align: right;"><code>R2</code></th>
+<th>Notes / 备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>double_slit</code></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: right;">≈ 0</td>
+<td style="text-align: right;">1.0</td>
+<td>shape match</td>
+</tr>
+<tr>
+<td><code>tunneling</code></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">≈ 1.0</td>
+<td><code>kappa_ripple</code> ≈ 3.1593</td>
+</tr>
+<tr>
+<td><code>spin_cos2</code></td>
+<td style="text-align: center;">✓</td>
+<td style="text-align: right;">0.001183</td>
+<td style="text-align: right;">0.999998</td>
+<td>Monte Carlo branch</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>joint_pass_v7</code> = <code>True</code>  </li>
+<li>Locked best (local scan): $(\mu,\rho,\eta)=(1.5495,2.35,0.08)$, <code>joint_loss</code> ≈ 0.001183</li>
+</ul>
+<h3 id="42-v7-rigidity-scans-v7">4.2 v7 rigidity scans / v7 参数扫描</h3>
+<table>
+<thead>
+<tr>
+<th>Scan / 扫描</th>
+<th style="text-align: right;">Pass / 通过</th>
+<th style="text-align: right;">Rate / 比例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local neighborhood</td>
+<td style="text-align: right;">27 / 27</td>
+<td style="text-align: right;">100%</td>
+</tr>
+<tr>
+<td>Random global</td>
+<td style="text-align: right;">18 / 20</td>
+<td style="text-align: right;">90%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-v7-counterfactual-suite-expected-fail-v7">4.3 v7 counterfactual suite (expected fail) / v7 反事实套件（应失败）</h3>
+<table>
+<thead>
+<tr>
+<th>Name / 名称</th>
+<th style="text-align: center;"><code>shape_ok</code></th>
+<th style="text-align: right;"><code>nrmse_y</code></th>
+<th style="text-align: right;"><code>R2</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cf_wrong_sign_mapping</code></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: right;">0.715</td>
+<td style="text-align: right;">≈ 1.0</td>
+</tr>
+<tr>
+<td><code>cf_wrong_angle_speed</code></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: right;">0.507</td>
+<td style="text-align: right;">≈ 0</td>
+</tr>
+<tr>
+<td><code>cf_phase_scramble</code></td>
+<td style="text-align: center;">✗</td>
+<td style="text-align: right;">0.583</td>
+<td style="text-align: right;">≈ 0.003</td>
+</tr>
+</tbody>
+</table>
+<p><code>counterfactual_expected_fail</code> = <code>True</code></p>
+<h3 id="44-v7-seed-stability-v7">4.4 v7 seed stability / v7 种子稳定性</h3>
+<p>Seeds 42–48: <strong>7/7</strong> pass; <code>nrmse</code> mean ≈ 0.001183, stdev ≈ 0 (numerically flat).</p>
+<h3 id="45-v7-figure-panel-v7">4.5 v7 figure panel / v7 图像面板</h3>
+<p><strong>EN</strong><br />
+Generated from the archived v7 JSON (<code>generate_v7_paper_figures.py</code>).</p>
+<p><strong>中</strong><br />
+由归档 v7 JSON 生成（脚本 <code>generate_v7_paper_figures.py</code>）。</p>
+<p><img alt="v7 rigidity pass rates" src="figures/v7_fig01_rigidity_pass_rates.png" /></p>
+<p><img alt="v7 counterfactual NRMSE" src="figures/v7_fig02_counterfactual_nrmse.png" /></p>
+<p><img alt="v7 seed stability" src="figures/v7_fig03_seed_stability.png" /></p>
+<p><strong>Interpretation / 解释</strong><br />
+v7 answers the identifiability question: this point is not an arbitrary fit.<br />
+v7 回答了可辨识性问题：该参数点并非任意凑数。</p>
+<hr />
+<h2 id="5-section-v8-cross-scale-results-v8">5. Section v8: Cross-Scale Results / 第五节：v8 跨尺度结果</h2>
+<ul>
+<li>baseline joint pass: <code>True</code></li>
+<li><code>radial_levels</code>: pass (<code>nrmse=0.000000</code>, <code>R2=1.000000</code>)</li>
+<li><code>decoherence</code>: pass (<code>nrmse=0.052611</code>, <code>R2=0.997795</code>)</li>
+<li><code>compton_shift</code>: pass (<code>nrmse=0.000000</code>, <code>R2=1.000000</code>)</li>
+<li>eta probe (<code>eta=0.001</code>): Compton expected fail</li>
+<li>negative controls: all expected fail</li>
+<li>multi-round hardening: <code>100/100</code> pass</li>
+</ul>
+<p><strong>Interpretation / 解释</strong><br />
+v8 answers the capability question: the same locked point sustains heterogeneous phenomena.<br />
+v8 回答了功能问题：同一锁定点可支撑异质现象联合通过。</p>
+<hr />
+<h2 id="6-robustness-closure">6. Robustness Closure / 稳健性封口链</h2>
+<ol>
+<li>v7 narrow feasible region (rigidity)  </li>
+<li>v8 baseline pass at locked point  </li>
+<li>eta counterfactual failure  </li>
+<li>negative controls failure  </li>
+<li>high-round hardening pass (<code>100/100</code>)</li>
+</ol>
+<p><strong>EN</strong><br />
+This chain blocks two common objections simultaneously: "only tuning" and "only isolated fit."</p>
+<p><strong>中</strong><br />
+该链条同时封堵两类常见质疑：“只是在调参”与“只是在单点拟合”。</p>
+<hr />
+<h2 id="7-audit-chain-figures-v6v7-context-mirrors-v7html-v7html">7. Audit chain figures (v6+v7 context; mirrors <code>v7.html</code>) / 第七节：审计链图示（与 <code>v7.html</code> 同源）</h2>
+<p><strong>EN</strong><br />
+The standalone <strong><code>v7.html</code></strong> manuscript is a figure-centric view of the broader audit chain (Bell → GHZ → v6 → bridges). This merged document embeds the <strong>same primary figures</strong> so v8 is not read in isolation. Image paths are relative to this folder (<code>files/</code>), five levels up to repository root.</p>
+<p><strong>中</strong><br />
+独立稿 <strong><code>v7.html</code></strong> 是以图为主的审计链总览（Bell → GHZ → v6 → 桥接图）。本合并稿<strong>嵌入相同主图</strong>，避免 v8 被误读为“脱离上下文的单点表演”。下图路径相对于本目录（<code>files/</code>），向上五级到仓库根目录。</p>
+<div class="grid">
+<article class="card"><img src="../../../../../artifacts/bell_window_scan_v1/WINDOW_SCAN_V1.png" alt="Bell window scan"><div class="cap">A. Bell window scan — protocol sensitivity.<br><code>artifacts/bell_window_scan_v1/WINDOW_SCAN_V1.png</code></div></article>
+<article class="card"><img src="../../../../../artifacts/public_validation_pack/fig1_s_comparison.png" alt="S comparison"><div class="cap">A. Public S comparison.<br><code>artifacts/public_validation_pack/fig1_s_comparison.png</code></div></article>
+<article class="card"><img src="../../../../../artifacts/public_validation_pack/fig3_nist_window_robustness.png" alt="NIST robustness"><div class="cap">A. NIST window robustness.<br><code>artifacts/public_validation_pack/fig3_nist_window_robustness.png</code></div></article>
+<article class="card"><img src="../../../../../artifacts/ghz_threshold_experiment/ghz_cost_benefit_curve_2p2_to_4p0.png" alt="GHZ cost"><div class="cap">B. GHZ cost–benefit.<br><code>artifacts/ghz_threshold_experiment/ghz_cost_benefit_curve_2p2_to_4p0.png</code></div></article>
+<article class="card"><img src="../../../../../artifacts/ghz_threshold_experiment/ghz_threshold_mechanism_heatmap.png" alt="GHZ heatmap"><div class="cap">B. GHZ threshold heatmap.<br><code>artifacts/ghz_threshold_experiment/ghz_threshold_mechanism_heatmap.png</code></div></article>
+<article class="card"><img src="../../../../../artifacts/ghz_medium_v10/V10_4_REAL_COST_CURVE.png" alt="V10.4 cost"><div class="cap">B. GHZ V10.4 cost curve.<br><code>artifacts/ghz_medium_v10/V10_4_REAL_COST_CURVE.png</code></div></article>
+<article class="card"><img src="../../../../../artifacts/ripple_quantum_tests_v6/RIPPLE_V6_JOINT_2x2.png" alt="v6 joint"><div class="cap">C. v6 default joint 2×2.<br><code>artifacts/ripple_quantum_tests_v6/RIPPLE_V6_JOINT_2x2.png</code></div></article>
+<article class="card"><img src="../../../../../artifacts/ripple_quantum_tests_v6_derived_alpha0/RIPPLE_V6_JOINT_2x2.png" alt="v6 alpha0"><div class="cap">C. v6 derived α=0 branch.<br><code>artifacts/ripple_quantum_tests_v6_derived_alpha0/RIPPLE_V6_JOINT_2x2.png</code></div></article>
+<article class="card"><img src="../../../../../artifacts/ripple_quantum_tests_v6_derived_v2/RIPPLE_V6_JOINT_2x2.png" alt="v6 fail"><div class="cap">C. v6 preserved fail branch.<br><code>artifacts/ripple_quantum_tests_v6_derived_v2/RIPPLE_V6_JOINT_2x2.png</code></div></article>
+<article class="card"><img src="../../../../../artifacts/ripple_quantum_tests_v6_stress_2d_demo/RIPPLE_V6_STRESS_2D.png" alt="v6 stress"><div class="cap">C. v6 stress 2D map.<br><code>artifacts/ripple_quantum_tests_v6_stress_2d_demo/RIPPLE_V6_STRESS_2D.png</code></div></article>
+<article class="card"><img src="../../../../../artifacts/ghz_medium_v10/V10_1_THREE_RULERS_MAPS.png" alt="three rulers"><div class="cap">D. Three-ruler maps (bridge).<br><code>artifacts/ghz_medium_v10/V10_1_THREE_RULERS_MAPS.png</code></div></article>
+<article class="card"><img src="../../../../../artifacts/ghz_medium_v10/V10_3_SELECTION_TAX_CURVES.png" alt="selection tax"><div class="cap">D. Selection-tax curves.<br><code>artifacts/ghz_medium_v10/V10_3_SELECTION_TAX_CURVES.png</code></div></article>
+<article class="card"><img src="../../../../../artifacts/reports/ncc_singles_bridge_real.png" alt="NCC bridge"><div class="cap">D. NCC singles bridge.<br><code>artifacts/reports/ncc_singles_bridge_real.png</code></div></article>
+</div>
+
+<p class="note"><strong>Note / 说明：</strong> Full-screen figure manuscript: open <code>v7.html</code> in this same folder. Text + JSON for v7 metrics: <code>artifacts/ripple_quantum_tests_v7_three/</code>.</p>
+
+<hr />
+<h2 id="8-v8-figure-panel-v8">8. v8 Figure Panel / 第八节：v8 图像面板</h2>
+<p><strong>EN</strong><br />
+The following figures are generated directly from the locked-parameter v8 script and the archived v8 JSON output.</p>
+<p><strong>中</strong><br />
+下列图像由锁定参数的 v8 脚本与已归档 v8 JSON 直接生成。</p>
+<h3 id="fig-1-radial-levels">Fig. 1 — Radial levels / 径向能级</h3>
+<p><img alt="v8 radial levels" src="figures/v8_fig01_radial_levels.png" /></p>
+<h3 id="fig-2-decoherence">Fig. 2 — Decoherence / 退相干</h3>
+<p><img alt="v8 decoherence" src="figures/v8_fig02_decoherence.png" /></p>
+<h3 id="fig-3-compton-counterfactual-compton">Fig. 3 — Compton + counterfactual / Compton 与反事实</h3>
+<p><img alt="v8 compton counterfactual" src="figures/v8_fig03_compton_counterfactual.png" /></p>
+<h3 id="fig-4-100-round-hardening-100">Fig. 4 — 100-round hardening / 100轮加固</h3>
+<p><img alt="v8 hardening rounds" src="figures/v8_fig04_hardening_rounds.png" /></p>
+<hr />
+<h2 id="9-boundary-statement">9. Boundary Statement / 边界声明</h2>
+<p><strong>EN</strong><br />
+Claimed: auditable model-class consistency under declared gates.<br />
+Not claimed: completed SI mapping, ontology uniqueness, direct falsification of standard QM.</p>
+<p><strong>中</strong><br />
+本文主张：在声明门槛下具备可审计的一致性。<br />
+本文不主张：SI 映射已完成、唯一本体论成立、可据此直接否定标准量子理论。</p>
+<hr />
+<h2 id="10-reproducibility">10. Reproducibility / 可复现</h2>
+<p>Run from repository root:</p>
+<p><strong>v6 baseline:</strong></p>
+<p><code>python scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v6_joint.py</code></p>
+<p><strong>v7 metrics:</strong> primary archive is <code>artifacts/ripple_quantum_tests_v7_three/RIPPLE_V7_THREE_RESULTS.json</code>. If the runnable script <code>ripple_quantum_tests_v7_three.py</code> is restored in your checkout, use the command recorded in <code>v7.html</code>; otherwise reproduce from the JSON and figure scripts:</p>
+<p><code>python scripts/explore/ripple_quantum_tests/generate_v7_paper_figures.py</code></p>
+<p><strong>v8 audit:</strong></p>
+<p><code>python scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v8_unify.py --rounds 100 --eta-probe 0.001</code></p>
+<p><code>python scripts/explore/ripple_quantum_tests/generate_v8_paper_figures.py</code></p>
+<p><strong>Merged HTML:</strong></p>
+<p><code>python scripts/explore/ripple_quantum_tests/build_merged_v7_v8_html.py</code></p>
+<p>Artifacts:
+- <code>artifacts/ripple_quantum_tests_v6/RIPPLE_V6_JOINT_2x2.png</code>
+- <code>artifacts/ripple_quantum_tests_v7_three/RIPPLE_V7_THREE_RESULTS.json</code>
+- <code>artifacts/ripple_quantum_tests_v8_unify/v8_quantum_grand_unification.json</code>
+- <code>artifacts/ripple_quantum_tests_v8_unify/RIPPLE_V8_UNIFY_SUMMARY.md</code>
+- <code>artifacts/ripple_quantum_tests_v8_unify/V7_V8_LOCKED_AUDIT_BRIEF.md</code>
+- <code>artifacts/ripple_quantum_tests_v8_unify/PARAMETER_TRAP_LIBRARY.json</code>
+- <code>docs/AUDIT_PARAMETER_TRAP_LIBRARY.md</code></p>
+<hr />
+<h2 id="11-seal-licensing-trap-library-and-human-audit-node">11. Seal: Licensing, Trap Library, and Human Audit Node / 封印：许可、陷阱库与人审节点</h2>
+<p><strong>EN — Licensing</strong><br />
+Software in this repository is under <strong>AGPL-3.0-or-later</strong> (<code>LICENSE</code>, <code>NOTICE</code>). Manuscripts and narrative documentation default to <strong>CC BY-NC-ND 4.0</strong> (<code>LICENSE-DOCS.md</code>): non-commercial use, attribution required, no derivatives. This split is intentional: strong copyleft for code; stricter protection for narrative assets. AGPL does not ban all commercial activity; it requires corresponding source to be made available when modified versions are distributed or provided over a network service. See <code>docs/LICENSE_AND_SEAL.md</code> for a plain-language summary.</p>
+<p><strong>中 — 许可</strong><br />
+本仓库程序源代码默认适用 <strong>AGPL-3.0 或更高版本</strong>（见 <code>LICENSE</code>、<code>NOTICE</code>）。论文稿与叙事性文档默认适用 <strong>CC BY-NC-ND 4.0</strong>（见 <code>LICENSE-DOCS.md</code>）：非商业、须署名、禁止演绎再分发。此为有意分工：代码走更强 copyleft，叙事资产走更严的 CC 条款。AGPL 并不禁止一切商业行为；它约束的是“分发或以网络服务方式提供衍生程序时须按 AGPL 提供对应源码”。平实说明见 <code>docs/LICENSE_AND_SEAL.md</code>。</p>
+<p><strong>EN — Trap library</strong><br />
+We publish not only the locked triplet ((1.5495,2.35,0.08)) but also a curated list of nearby triplets that <strong>fail</strong> the frozen v8 gates under the same script version. This is an audit aid, not a legal proof of copying. Machine-readable table: <code>artifacts/ripple_quantum_tests_v8_unify/PARAMETER_TRAP_LIBRARY.json</code>. Human-readable guide: <code>docs/AUDIT_PARAMETER_TRAP_LIBRARY.md</code>.</p>
+<p><strong>中 — 陷阱参数库</strong><br />
+除公布锁定三元组 ((1.5495,2.35,0.08)) 外，我们公开一组在<strong>同一冻结脚本版本</strong>下、数值上仍显“邻近”但 <strong>v8 联合不通过</strong> 的对照三元组，用于独立复现与审计对照。这是工程与学术上的可检验性设计，<strong>不能</strong>单独作为法律上的抄袭证据。机读表：<code>artifacts/ripple_quantum_tests_v8_unify/PARAMETER_TRAP_LIBRARY.json</code>；人读说明：<code>docs/AUDIT_PARAMETER_TRAP_LIBRARY.md</code>。</p>
+<p><strong>EN — Human audit node</strong><br />
+Acceptance gates, counterfactual probes, and round counts are <strong>authored choices</strong> recorded in script and artifacts. Any replication that changes the model class or gates must report a <strong>new protocol version</strong> and must not be silently equated with this deposit.</p>
+<p><strong>中 — 人审节点</strong><br />
+门槛、反事实探针与加固轮次均为<strong>作者显式选择</strong>，并写入脚本与归档。若复现方更改模型类或门槛，必须申报<strong>新协议版本</strong>，且不得与本文归档静默等同。</p>
+    </div>
+    <div class="footer-repro">
+      <strong>Rebuild / 重建 HTML：</strong>
+      <code>python scripts/explore/ripple_quantum_tests/build_merged_v7_v8_html.py</code>
+    </div>
+    <div class="footer-strip">
+      <strong>Manuscript folder / 论文目录：</strong> <code>papers_final/04_Ripple_Rigidity_Audit</code><br>
+      <strong>v7 artifacts / v7 产物：</strong> <code>artifacts/ripple_quantum_tests_v7_three/</code><br>
+      <strong>v8 artifacts / v8 产物：</strong> <code>artifacts/ripple_quantum_tests_v8_unify/</code>
+    </div>
+  </div>
+</body>
+</html>

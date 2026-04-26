@@ -1,0 +1,303 @@
+{
+  "generated_by": "inline_generator",
+  "script": "ripple_quantum_tests_v8_unify.py",
+  "gates": "see anti_cheat_manifest.criteria in v8 JSON output",
+  "rows": [
+    {
+      "id": "canonical_locked",
+      "mu": 1.5495,
+      "rho": 2.35,
+      "eta": 0.08,
+      "note": "Declared lock point; must pass v8 joint under current gates.",
+      "joint_pass": true,
+      "joint_loss": 0.052610578762668204,
+      "per_test": [
+        {
+          "test": "radial_levels",
+          "nrmse_y": 0.0,
+          "R2": 1.0,
+          "shape_ok": true,
+          "n_levels": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "test": "decoherence",
+          "nrmse_y": 0.052610578762668204,
+          "R2": 0.9977949188380022,
+          "shape_ok": true
+        },
+        {
+          "test": "compton_shift",
+          "nrmse_y": 0.0,
+          "R2": 1.0,
+          "shape_ok": true,
+          "scale_ratio": 1.0
+        }
+      ]
+    },
+    {
+      "id": "trap_eta_0_03",
+      "mu": 1.5495,
+      "rho": 2.35,
+      "eta": 0.03,
+      "note": "Looks like mild eta drift; fails compton_scale gate.",
+      "joint_pass": false,
+      "joint_loss": 0.45109020323916527,
+      "per_test": [
+        {
+          "test": "radial_levels",
+          "nrmse_y": 0.0,
+          "R2": 1.0,
+          "shape_ok": true,
+          "n_levels": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "test": "decoherence",
+          "nrmse_y": 0.06708377425652448,
+          "R2": 0.9965745083399131,
+          "shape_ok": true
+        },
+        {
+          "test": "compton_shift",
+          "nrmse_y": 0.3840064289826408,
+          "R2": 1.0,
+          "shape_ok": false,
+          "scale_ratio": 0.3750000000003125
+        }
+      ]
+    },
+    {
+      "id": "trap_eta_0_13",
+      "mu": 1.5495,
+      "rho": 2.35,
+      "eta": 0.13,
+      "note": "Looks like mild eta drift; fails compton_scale gate.",
+      "joint_pass": false,
+      "joint_loss": 0.42289032390626063,
+      "per_test": [
+        {
+          "test": "radial_levels",
+          "nrmse_y": 0.0,
+          "R2": 1.0,
+          "shape_ok": true,
+          "n_levels": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "test": "decoherence",
+          "nrmse_y": 0.03888389492361981,
+          "R2": 0.9987411175127955,
+          "shape_ok": true
+        },
+        {
+          "test": "compton_shift",
+          "nrmse_y": 0.3840064289826408,
+          "R2": 1.0,
+          "shape_ok": false,
+          "scale_ratio": 1.6249999999996876
+        }
+      ]
+    },
+    {
+      "id": "trap_rho_3_35_eta_lock",
+      "mu": 1.5495,
+      "rho": 3.35,
+      "eta": 0.08,
+      "note": "Rho plausible; fails decoherence gate.",
+      "joint_pass": false,
+      "joint_loss": 0.20374460657222473,
+      "per_test": [
+        {
+          "test": "radial_levels",
+          "nrmse_y": 0.0,
+          "R2": 1.0,
+          "shape_ok": true,
+          "n_levels": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "test": "decoherence",
+          "nrmse_y": 0.1616861677115449,
+          "R2": 0.9848890958859552,
+          "shape_ok": false
+        },
+        {
+          "test": "compton_shift",
+          "nrmse_y": 0.042058438860679837,
+          "R2": 1.0,
+          "shape_ok": true,
+          "scale_ratio": 0.9315466557225268
+        }
+      ]
+    },
+    {
+      "id": "trap_rho_1_35_eta_lock",
+      "mu": 1.5495,
+      "rho": 1.35,
+      "eta": 0.08,
+      "note": "Rho plausible; fails decoherence gate.",
+      "joint_pass": false,
+      "joint_loss": 0.17623484727743788,
+      "per_test": [
+        {
+          "test": "radial_levels",
+          "nrmse_y": 6.206335383118182e-18,
+          "R2": 1.0,
+          "shape_ok": true,
+          "n_levels": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "test": "decoherence",
+          "nrmse_y": 0.10420084376884468,
+          "R2": 0.9848468003042509,
+          "shape_ok": false
+        },
+        {
+          "test": "compton_shift",
+          "nrmse_y": 0.07203400350859318,
+          "R2": 1.0,
+          "shape_ok": true,
+          "scale_ratio": 1.11724088138869
+        }
+      ]
+    },
+    {
+      "id": "trap_rho_2_85_eta_0_03",
+      "mu": 1.5495,
+      "rho": 2.85,
+      "eta": 0.03,
+      "note": "Joint perturbation; fails decoherence+compton.",
+      "joint_pass": false,
+      "joint_loss": 0.5192493480653476,
+      "per_test": [
+        {
+          "test": "radial_levels",
+          "nrmse_y": 6.206335383118182e-18,
+          "R2": 1.0,
+          "shape_ok": true,
+          "n_levels": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "test": "decoherence",
+          "nrmse_y": 0.12652306018115433,
+          "R2": 0.9897946691848559,
+          "shape_ok": false
+        },
+        {
+          "test": "compton_shift",
+          "nrmse_y": 0.3927262878841933,
+          "R2": 0.9999999999999998,
+          "shape_ok": false,
+          "scale_ratio": 0.3608077589279269
+        }
+      ]
+    },
+    {
+      "id": "trap_swap_mu_rho",
+      "mu": 2.35,
+      "rho": 1.5495,
+      "eta": 0.08,
+      "note": "Digit-rearrangement style mistake; fails compton.",
+      "joint_pass": false,
+      "joint_loss": 0.2605790336844155,
+      "per_test": [
+        {
+          "test": "radial_levels",
+          "nrmse_y": 0.0,
+          "R2": 1.0,
+          "shape_ok": true,
+          "n_levels": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "test": "decoherence",
+          "nrmse_y": 0.052610578762668204,
+          "R2": 0.9977949188380022,
+          "shape_ok": true
+        },
+        {
+          "test": "compton_shift",
+          "nrmse_y": 0.20796845492174726,
+          "R2": 0.9999999999999998,
+          "shape_ok": false,
+          "scale_ratio": 1.338484656807407
+        }
+      ]
+    },
+    {
+      "id": "trap_eta_probe_0_001",
+      "mu": 1.5495,
+      "rho": 2.35,
+      "eta": 0.001,
+      "note": "Counterfactual probe used in audit; compton fails by design.",
+      "joint_pass": false,
+      "joint_loss": 0.6825719307516844,
+      "per_test": [
+        {
+          "test": "radial_levels",
+          "nrmse_y": 0.0,
+          "R2": 1.0,
+          "shape_ok": true,
+          "n_levels": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "test": "decoherence",
+          "nrmse_y": 0.07584177295911186,
+          "R2": 0.9957387817661538,
+          "shape_ok": true
+        },
+        {
+          "test": "compton_shift",
+          "nrmse_y": 0.6067301577925726,
+          "R2": 1.0,
+          "shape_ok": false,
+          "scale_ratio": 0.01250000000049375
+        }
+      ]
+    }
+  ]
+}

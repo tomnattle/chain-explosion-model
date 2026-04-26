@@ -1,0 +1,5804 @@
+{
+  "generated_at": "2026-04-26T15:38:08.177844+00:00",
+  "anti_cheat_manifest": {
+    "protocol_version": "v8-unify-anti-cheat-v2-multi-round",
+    "parameters_locked": true,
+    "locked_parameters": {
+      "mu": 1.5495,
+      "rho": 2.35,
+      "eta": 0.08
+    },
+    "optimization_used": false,
+    "script_path": "D:/workspace/chain-explosion-model/scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v8_unify.py",
+    "script_sha256": "eb4ac05c99ef9f94a231f1b8ce89c603164dddfd76cdbccfa17d477131324226",
+    "command": "python scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v8_unify.py",
+    "criteria": {
+      "radial_levels": {
+        "nrmse_y_max": 0.1,
+        "R2_min": 0.999
+      },
+      "decoherence": {
+        "nrmse_y_max": 0.15,
+        "R2_min": 0.99
+      },
+      "compton_shift": {
+        "nrmse_y_max": 0.15,
+        "R2_min": 0.99
+      }
+    },
+    "hardening": {
+      "n_rounds": 100,
+      "eta_probe": 0.001
+    }
+  },
+  "parameters": {
+    "mu": 1.5495,
+    "rho": 2.35,
+    "eta": 0.08
+  },
+  "results": [
+    {
+      "test": "radial_levels",
+      "n_levels": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "nrmse_y": 0.0,
+      "R2": 1.0,
+      "shape_ok": true
+    },
+    {
+      "test": "decoherence",
+      "nrmse_y": 0.052610578762668204,
+      "R2": 0.9977949188380022,
+      "shape_ok": true
+    },
+    {
+      "test": "compton_shift",
+      "nrmse_y": 0.0,
+      "R2": 1.0,
+      "shape_ok": true,
+      "scale_ratio": 1.0
+    }
+  ],
+  "joint_pass": true,
+  "joint_loss": 0.052610578762668204,
+  "counterfactual": {
+    "eta_probe": 0.001,
+    "compton_pass": false,
+    "expected_pass": false
+  },
+  "negative_controls": {
+    "rows": [
+      {
+        "name": "nc_radial_wrong_exponent",
+        "nrmse_y": 0.03708375534528816,
+        "R2": 0.9983776703863957,
+        "shape_ok": false
+      },
+      {
+        "name": "nc_decoherence_linear",
+        "nrmse_y": 0.1589852638506298,
+        "R2": 0.9061537831725187,
+        "shape_ok": false
+      },
+      {
+        "name": "nc_compton_constant",
+        "nrmse_y": 0.3570714214271425,
+        "R2": 0.0,
+        "shape_ok": false
+      }
+    ],
+    "all_expected_fail": true
+  },
+  "multi_round_hardening": {
+    "n_rounds": 100,
+    "eta_probe": 0.001,
+    "all_rounds_pass": true,
+    "rounds": [
+      {
+        "round": 1,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 2,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 3,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 4,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 5,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 6,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 7,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 8,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 9,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 10,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 11,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 12,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 13,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 14,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 15,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 16,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 17,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 18,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 19,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 20,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 21,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 22,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 23,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 24,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 25,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 26,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 27,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 28,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 29,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 30,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 31,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 32,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 33,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 34,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 35,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 36,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 37,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 38,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 39,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 40,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 41,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 42,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 43,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 44,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 45,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 46,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 47,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 48,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 49,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 50,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 51,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 52,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 53,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 54,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 55,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 56,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 57,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 58,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 59,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 60,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 61,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 62,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 63,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 64,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 65,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 66,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 67,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 68,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 69,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 70,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 71,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 72,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 73,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 74,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 75,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 76,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 77,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 78,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 79,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 80,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 81,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 82,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 83,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 84,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 85,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 86,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 87,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 88,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 89,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 90,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 91,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 92,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 93,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 94,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 95,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 96,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 97,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 98,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 99,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      },
+      {
+        "round": 100,
+        "baseline_joint_pass": true,
+        "counterfactual_eta_probe": 0.001,
+        "counterfactual_compton_pass": false,
+        "counterfactual_expected_fail": true,
+        "negative_controls_all_expected_fail": true,
+        "round_pass": true,
+        "baseline_results": [
+          {
+            "test": "radial_levels",
+            "n_levels": [
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true
+          },
+          {
+            "test": "decoherence",
+            "nrmse_y": 0.052610578762668204,
+            "R2": 0.9977949188380022,
+            "shape_ok": true
+          },
+          {
+            "test": "compton_shift",
+            "nrmse_y": 0.0,
+            "R2": 1.0,
+            "shape_ok": true,
+            "scale_ratio": 1.0
+          }
+        ],
+        "negative_controls": [
+          {
+            "name": "nc_radial_wrong_exponent",
+            "nrmse_y": 0.03708375534528816,
+            "R2": 0.9983776703863957,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_decoherence_linear",
+            "nrmse_y": 0.1589852638506298,
+            "R2": 0.9061537831725187,
+            "shape_ok": false
+          },
+          {
+            "name": "nc_compton_constant",
+            "nrmse_y": 0.3570714214271425,
+            "R2": 0.0,
+            "shape_ok": false
+          }
+        ]
+      }
+    ]
+  }
+}

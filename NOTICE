@@ -1,0 +1,19 @@
+Chain Explosion Model
+Copyright (C) 2026 wang, hui
+
+Software / 软件（本仓库内 `.py`、构建脚本等源代码）
+  Licensed under the GNU Affero General Public License v3.0 or later.
+  See the file `LICENSE` for the full license text.
+  完整许可证文本见仓库根目录 `LICENSE`。
+
+Manuscripts, figures, and narrative PDFs under `papers_final/`, `docs/`
+that are designated as documentation / 论文稿、图谱与说明性 PDF（默认归入 `papers_final/`、`docs/` 等文档类路径）
+  Licensed under Creative Commons Attribution-NonCommercial-NoDerivatives 4.0
+  International (CC BY-NC-ND 4.0), unless another license is explicitly stated
+  in the file itself.
+  Human-readable summary: https://creativecommons.org/licenses/by-nc-nd/4.0/
+  Legal code: https://creativecommons.org/licenses/by-nc-nd/4.0/legalcode
+
+For the project’s dual-licensing policy in plain language, see
+`docs/LICENSE_AND_SEAL.md`.
+

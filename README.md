@@ -124,8 +124,21 @@ The recommended reading order is: this file, the full monograph, the Bell protoc
 7. [battle_results/nist_round2_v2/README.md](battle_results/nist_round2_v2/README.md)
 8. [docs/RIPPLE_QUANTUM_TESTS_INDEX.md](docs/RIPPLE_QUANTUM_TESTS_INDEX.md)（涟漪量子四项玩具基准 v1–v6，与 CHSH 归档独立）
 
+## Licensing / 许可证
+
+- **Software / 软件**（本仓库 `.py` 等源代码）：**GNU Affero General Public License v3.0 or later** — 见根目录 [`LICENSE`](LICENSE) 与 [`NOTICE`](NOTICE)。  
+  AGPL 约束的是“分发或以网络服务方式提供衍生程序时，须按许可证提供对应源码”等 copyleft 义务；**并不**自动禁止一切收费或商业场景。若你需要“任何商业使用一律禁止”，须在具体合作中单签协议或使用额外条款。
+- **Manuscripts & docs / 论文稿与叙事文档**（默认 `papers_final/`、`docs/` 中的文档类材料）：**CC BY-NC-ND 4.0** — 见 [`LICENSE-DOCS.md`](LICENSE-DOCS.md)（非商业、署名、禁止演绎再分发）。
+- **Plain-language seal note / 平实说明（含陷阱参数库与人审节点）**：[`docs/LICENSE_AND_SEAL.md`](docs/LICENSE_AND_SEAL.md)、[`docs/AUDIT_PARAMETER_TRAP_LIBRARY.md`](docs/AUDIT_PARAMETER_TRAP_LIBRARY.md)。
+- **Contributor licensing policy / 贡献许可政策**：[`CONTRIBUTING_LICENSE.md`](CONTRIBUTING_LICENSE.md)（防止外部贡献许可污染）。
+- **Pull request template / PR 模板**：[`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md)（提交 PR 时的许可勾选框）。
+
 ## Quick Note
 
 仓库里仍有一部分旧文档存在历史编码污染，这会影响专业展示效果。新的入口文档、总文档和关键归档页已经按中英双语结构重写；后续如果继续优化，建议把其余历史文档也统一清洗为 UTF-8 版本。
 
 Some legacy documents in the repository still carry historical encoding pollution, which affects the professional presentation of the project. The new entry document, monograph, and key archive pages have already been rewritten in a bilingual structure; if we continue refining the repository, the remaining historical files should also be normalized to UTF-8.
+
+
+
+
