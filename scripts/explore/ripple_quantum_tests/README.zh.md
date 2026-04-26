@@ -46,6 +46,20 @@
   - `calibrated`：作为对照，允许近目标常数参考
 - 用于明确区分“可拟合通过”和“可推导通过”。
 
+严谨版（v5，双尺度 NRMSE + 可辨识性约束）：`scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v5_rigorous.py`
+
+- 同时报告 `nrmse_x`、`nrmse_y`（按参考曲线 \(y\) 量程归一）、\(R^2\)；默认可用 `--r2-min -1` 关闭 \(R^2\) 硬阈。
+- MRI：固定 \(\mu,\rho,\eta\)，由目标 \(\gamma\) **代数解** \(\kappa\)。
+- 原子钟：**\(v=c\)** 固定，由 \(f_0\) 与 \(n\) **代数求** \(L\)，仅优化线宽 `bw`。
+- 半导体可选 `--semi-tanh`（tanh 贴 logistic 参考，异族压力测试）。
+- 作图对照：`scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v4_plot_optimize.py`。
+
+全局联合版（v6）：`scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v6_joint.py`
+
+- **单一介质三元组** `(μ, ρ, η)` + 原子钟线宽 `bw` 经差分进化联合优化；MRI 仍用 **代数 κ** 锁定 γ；腔长按 `L = (n·v/(2f₀))·(ρ/ρ_ref)^α`（α 可调）。默认 **v=c**；可选 **`--wave-speed derived`**：`v=f(μ,ρ,η)`，在 `(μ_ref,ρ_ref,η_ref)` 处标定为 **`--c-ref-m-s`**（默认真空 c），见 `ripple_medium_dispersion.py`。**注意：** `derived` 与 **α>0** 同时开时，ρ 既进色散又进腔长，可行域变窄；可先试 **`--atomic-rho-exponent 0`**。
+- 激光/半导体由 **显式 toy bridge** 从 `(μ,ρ,η)` 映射到分段线 / Sigmoid 参数（见脚本 docstring，非第一性原理）。
+- 目标函数：四项 **`nrmse_y` 之和** + `f0` 相对误差惩罚；JSON 报告 `joint_pass`（四块 shape 门 + γ 精确 + `f0` 容差）。
+
 ---
 
 ## 输出位置
@@ -65,6 +79,18 @@
 
 - `artifacts/ripple_quantum_tests_v3/RIPPLE_QUANTUM_TESTS_V3_RESULTS.json`
 - `artifacts/ripple_quantum_tests_v3/RIPPLE_QUANTUM_TESTS_V3_SUMMARY.md`
+
+严谨版（v5）输出：
+
+- `artifacts/ripple_quantum_tests_v5/RIPPLE_QUANTUM_TESTS_V5_RESULTS.json`
+- `artifacts/ripple_quantum_tests_v5/RIPPLE_QUANTUM_TESTS_V5_SUMMARY.md`
+- `artifacts/ripple_quantum_tests_v5/RIPPLE_V5_RIGOROUS_2x2.png`
+
+联合版（v6）输出：
+
+- `artifacts/ripple_quantum_tests_v6/RIPPLE_QUANTUM_TESTS_V6_RESULTS.json`
+- `artifacts/ripple_quantum_tests_v6/RIPPLE_QUANTUM_TESTS_V6_SUMMARY.md`
+- `artifacts/ripple_quantum_tests_v6/RIPPLE_V6_JOINT_2x2.png`
 
 ---
 
@@ -90,6 +116,30 @@ python scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v2.py --shape-t
 
 ```bash
 python scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v3.py --constant-mode derived
+```
+
+严谨版 v5：
+
+```bash
+python scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v5_rigorous.py --maxiter 120 --seed 42
+python scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v5_rigorous.py --semi-tanh
+```
+
+联合优化 v6：
+
+```bash
+python scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v6_joint.py --maxiter 200 --seed 7
+python scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v6_joint.py --wave-speed derived --atomic-rho-exponent 0 --maxiter 220 --seed 7
+```
+
+应力扫描（观察 `joint_pass` 在 α 或 α×`w_f0` 网格上何时失效；每格用 `--stress-maxiter`，比正式 `--maxiter` 小以省时间）：
+
+```bash
+python scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v6_joint.py --stress --stress-alpha-max 1.2 --stress-alpha-steps 25 --stress-maxiter 72 --out-dir artifacts/ripple_quantum_tests_v6_stress
+python scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v6_joint.py --stress --stress-2d --stress-alpha-steps 12 --stress-wf0-steps 10 --stress-maxiter 48
+
+# 粗网格未过线时，对该点用更大迭代复跑（减轻假阴性）
+python scripts/explore/ripple_quantum_tests/ripple_quantum_tests_v6_joint.py --stress --stress-refine --stress-refine-maxiter 240 --stress-maxiter 48
 ```
 
 对照模式：
