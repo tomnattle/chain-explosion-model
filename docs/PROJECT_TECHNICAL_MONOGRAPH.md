@@ -24,6 +24,7 @@ Because the project also carries a strong author-side intuition about how propag
 5. [Chapter 4. Measurement as Local Intervention](#chapter-4-measurement-as-local-intervention)
 6. [Chapter 5. Phase, Coherence, and Visibility](#chapter-5-phase-coherence-and-visibility)
 7. [Chapter 6. Foundational Experiment Tree](#chapter-6-foundational-experiment-tree)
+   - **Sub-index (ripple toy four-panel suite v1–v6):** [RIPPLE_QUANTUM_TESTS_INDEX.md](RIPPLE_QUANTUM_TESTS_INDEX.md)
 8. [Chapter 7. CHSH Protocol Logic](#chapter-7-chsh-protocol-logic)
 9. [Chapter 8. Major Experiment I: NIST Completeblind Archive](#chapter-8-major-experiment-i-nist-completeblind-archive)
 10. [Chapter 9. Major Experiment II: Round 2 / NIST v2 Closure](#chapter-9-major-experiment-ii-round-2--nist-v2-closure)
@@ -37,6 +38,7 @@ Because the project also carries a strong author-side intuition about how propag
 - If you want the shortest book-like route: Chapter 1 -> Chapter 3 -> Chapter 7 -> Chapter 8 -> Chapter 9 -> Chapter 11
 - If you want the author's inner picture first: read [MODEL_INTUITION.md](docs/MODEL_INTUITION.md), then return here
 - If you only care about the archive-level conclusion structure: jump directly to Chapter 8, Chapter 9, and Chapter 11
+- If you want the **ripple quantum toy four-panel suite** (laser / semiconductor / MRI / atomic-clock curves, v1–v6): read [RIPPLE_QUANTUM_TESTS_INDEX.md](RIPPLE_QUANTUM_TESTS_INDEX.md) after Chapter 6
 
 ---
 
@@ -166,6 +168,16 @@ If the entire repository is drawn as a tree, then the foundational experiments f
 
 `ce_04_*` 至 `ce_07_*` 将测量效应推进为可参数扫描对象，而 `ce_08_*` 至 `ce_10_*` 则将分支传播、相位和相关性引入模型。这意味着CHSH层并非突然出现，而是从一系列低层实验中生长而来。
 `ce_04_*` through `ce_07_*` promote measurement effects into something that can be scanned parametrically, while `ce_08_*` through `ce_10_*` bring branch propagation, phase, and correlation into the model. This means the CHSH layer does not appear abruptly, but grows out of a sequence of lower-level experiments.
+
+### 涟漪量子测试（四项玩具基准）/ Ripple quantum tests (four toy benchmarks)
+
+与 `ce_*` 网格实验 **并行** 的一条 **explore** 管线（`scripts/explore/ripple_quantum_tests/`）：在四条一维曲线上对比「QM-like 解析参考」与「涟漪侧参数曲线」——**激光阈值**、**半导体截止**、**MRI 拉莫尔线性**、**原子钟谱线形状**。版本演进：v1–v2 形状与常数门禁；v3 区分 `derived` / `calibrated`；v4 作图与差分进化；v5 引入 `nrmse_x` / `nrmse_y` / `R²`、MRI 代数 κ、原子钟 \(v=c\) 与代数腔长；v6 在单一介质三元组上联合优化，并可选 **derived** 相速（`ripple_medium_dispersion.py`）与应力扫描。
+
+**解释边界：** 非 NIST 类原始事件数据；\(\mu,\rho,\eta\) 在脚本内为无量纲旋钮直至另行建立 SI 映射；v6 色散闭合仍为现象学形式。**完整脚本树、产物路径与命令**见专索 **[RIPPLE_QUANTUM_TESTS_INDEX.md](RIPPLE_QUANTUM_TESTS_INDEX.md)**。
+
+In **parallel** with the `ce_*` grid experiments, an **explore** pipeline (`scripts/explore/ripple_quantum_tests/`) compares four 1D **QM-like analytic references** to **ripple-side parametric curves**: laser threshold, semiconductor edge, MRI Larmor linearity, and atomic-clock line shape. Versions v1–v2 add shape/constant gates; v3 splits `derived` vs `calibrated`; v4 adds plots and differential evolution; v5 adds `nrmse_x` / `nrmse_y` / `R²`, algebraic MRI \(\kappa\), and atomic \(v=c\) with algebraic cavity length; v6 joint-optimizes a single medium triple and optional **derived** phase speed plus stress sweeps.
+
+**Interpretive limits:** not raw NIST-style event data; \(\mu,\rho,\eta\) are dimensionless knobs until an SI map is published; the v6 dispersion closure is still phenomenological. See **[RIPPLE_QUANTUM_TESTS_INDEX.md](RIPPLE_QUANTUM_TESTS_INDEX.md)** for the full script tree, artifact paths, and commands.
 
 ---
 

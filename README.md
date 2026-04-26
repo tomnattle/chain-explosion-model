@@ -55,6 +55,7 @@ If you want different ways to enter the repository, use one of these paths.
 - Bell / CHSH protocol layer: [BELL_PROTOCOL_NOTE.md](docs/BELL_PROTOCOL_NOTE.md)
 - Paper strategy package: [PAPER_STRATEGY_PACKAGE.md](docs/PAPER_STRATEGY_PACKAGE.md)
 - Research map: [RESEARCH_MAP.md](docs/RESEARCH_MAP.md)
+- **Ripple quantum tests (four toy benchmarks, v1–v6):** [docs/RIPPLE_QUANTUM_TESTS_INDEX.md](docs/RIPPLE_QUANTUM_TESTS_INDEX.md) — laser / semiconductor / MRI / atomic-clock curve suite; scripts under `scripts/explore/ripple_quantum_tests/`
 - Static site (navigator + treejs): [docs/site/index.html](docs/site/index.html)
   - Regenerate experiment pages: `python scripts/explore/generate_experiment_animation_pages.py`
 - Archived battle results: [battle_results/README.md](battle_results/README.md)
@@ -121,6 +122,7 @@ The recommended reading order is: this file, the full monograph, the Bell protoc
 5. [battle_results/README.md](battle_results/README.md)
 6. [battle_results/nist_completeblind_2015-09-19/README.md](battle_results/nist_completeblind_2015-09-19/README.md)
 7. [battle_results/nist_round2_v2/README.md](battle_results/nist_round2_v2/README.md)
+8. [docs/RIPPLE_QUANTUM_TESTS_INDEX.md](docs/RIPPLE_QUANTUM_TESTS_INDEX.md)（涟漪量子四项玩具基准 v1–v6，与 CHSH 归档独立）
 
 ## Quick Note
 

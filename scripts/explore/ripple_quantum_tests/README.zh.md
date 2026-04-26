@@ -1,5 +1,9 @@
 # Ripple Quantum Tests（任务目录说明）
 
+**文档树入口 / 上级索引：** [`docs/RIPPLE_QUANTUM_TESTS_INDEX.md`](../../../docs/RIPPLE_QUANTUM_TESTS_INDEX.md)（四条子实验、v1–v6 对照、归档路径、解释边界）
+
+---
+
 ## 目录初衷
 
 本目录用于执行一个明确的新任务：  
