@@ -1,0 +1,230 @@
+{
+  "generated_at": "2026-04-28T17:30:53.074439+00:00",
+  "anti_cheat_policy": "Preregistered gates + blind labels + counterfactual and ablation expected-fail checks.",
+  "preregistered": {
+    "target_triplet": {
+      "mu": 1.5495,
+      "rho": 2.35,
+      "eta": 0.08
+    },
+    "bounds": {
+      "mu": [
+        1.2,
+        1.9
+      ],
+      "rho": [
+        1.9,
+        2.8
+      ],
+      "eta": [
+        0.03,
+        0.13
+      ]
+    },
+    "optimization": "differential_evolution",
+    "optimization_used_for_fit": true
+  },
+  "observed_metrics": {
+    "v_front": 8.001424316548107,
+    "q_ring": 0.12426690734205549,
+    "h2_h1": 0.10320030758851001
+  },
+  "fit_best": {
+    "mu": 1.5931432628458488,
+    "rho": 2.6985110018323595,
+    "eta": 0.13,
+    "loss": 0.0004813077295733604,
+    "nit": 12,
+    "success": true,
+    "metrics": {
+      "v_front": 7.9571759259259265,
+      "q_ring": 0.1241915715752482,
+      "h2_h1": 0.10539038878824397
+    }
+  },
+  "fit_gate": {
+    "passed": true,
+    "errors": {
+      "v_front_rel_err": 0.005530064257518296,
+      "q_ring_rel_err": 0.0006062415844946215,
+      "h2_h1_rel_err": 0.021221653800359397
+    },
+    "gates": {
+      "v_front_rel_err_max": 0.02,
+      "q_ring_rel_err_max": 0.03,
+      "h2_h1_rel_err_max": 0.05
+    }
+  },
+  "ablations_expected_fail": [
+    {
+      "fixed": {
+        "mu": 1.7354400000000003
+      },
+      "mu": 1.7354400000000003,
+      "rho": 2.8,
+      "eta": 0.08197510602511138,
+      "loss": 0.00163264795285873,
+      "metrics": {
+        "v_front": 8.18452380952381,
+        "q_ring": 0.12578787555863244,
+        "h2_h1": 0.10639650899141623
+      },
+      "gate": {
+        "passed": false,
+        "errors": {
+          "v_front_rel_err": 0.022883362477981194,
+          "q_ring_rel_err": 0.012239527393969425,
+          "h2_h1_rel_err": 0.030970851517714594
+        },
+        "gates": {
+          "v_front_rel_err_max": 0.02,
+          "q_ring_rel_err_max": 0.03,
+          "h2_h1_rel_err_max": 0.05
+        }
+      }
+    },
+    {
+      "fixed": {
+        "rho": 2.7024999999999997
+      },
+      "mu": 1.593988709186715,
+      "rho": 2.7024999999999997,
+      "eta": 0.13,
+      "loss": 0.0004824058220117872,
+      "metrics": {
+        "v_front": 7.9571759259259265,
+        "q_ring": 0.12415045759568587,
+        "h2_h1": 0.10539181676367892
+      },
+      "gate": {
+        "passed": true,
+        "errors": {
+          "v_front_rel_err": 0.005530064257518296,
+          "q_ring_rel_err": 0.0009370937835371197,
+          "h2_h1_rel_err": 0.02123549073038723
+        },
+        "gates": {
+          "v_front_rel_err_max": 0.02,
+          "q_ring_rel_err_max": 0.03,
+          "h2_h1_rel_err_max": 0.05
+        }
+      }
+    },
+    {
+      "fixed": {
+        "eta": 0.001
+      },
+      "mu": 1.7984411965100635,
+      "rho": 2.7156440166561175,
+      "eta": 0.001,
+      "loss": 0.007979084963676943,
+      "metrics": {
+        "v_front": 8.61528822055138,
+        "q_ring": 0.12264277285825652,
+        "h2_h1": 0.1077251577435638
+      },
+      "gate": {
+        "passed": false,
+        "errors": {
+          "v_front_rel_err": 0.07671932892419077,
+          "q_ring_rel_err": 0.013069726434314493,
+          "h2_h1_rel_err": 0.043845316557540655
+        },
+        "gates": {
+          "v_front_rel_err_max": 0.02,
+          "q_ring_rel_err_max": 0.03,
+          "h2_h1_rel_err_max": 0.05
+        }
+      }
+    }
+  ],
+  "counterfactual_expected_fail": [
+    {
+      "id": "cf_eta_probe",
+      "mu": 1.5495,
+      "rho": 2.35,
+      "eta": 0.001,
+      "metrics": {
+        "v_front": 8.456334563345635,
+        "q_ring": 0.11307207004971695,
+        "h2_h1": 0.10782160458509303
+      },
+      "gate": {
+        "passed": false,
+        "errors": {
+          "v_front_rel_err": 0.05685365864883677,
+          "q_ring_rel_err": 0.09008703549307602,
+          "h2_h1_rel_err": 0.044779876189996376
+        },
+        "gates": {
+          "v_front_rel_err_max": 0.02,
+          "q_ring_rel_err_max": 0.03,
+          "h2_h1_rel_err_max": 0.05
+        }
+      }
+    },
+    {
+      "id": "cf_rho_shift",
+      "mu": 1.5495,
+      "rho": 3.25,
+      "eta": 0.08,
+      "metrics": {
+        "v_front": 7.929642445213381,
+        "q_ring": 0.1039220836370502,
+        "h2_h1": 0.10601085371704574
+      },
+      "gate": {
+        "passed": false,
+        "errors": {
+          "v_front_rel_err": 0.008971136699533665,
+          "q_ring_rel_err": 0.16371875779449785,
+          "h2_h1_rel_err": 0.027233892942860296
+        },
+        "gates": {
+          "v_front_rel_err_max": 0.02,
+          "q_ring_rel_err_max": 0.03,
+          "h2_h1_rel_err_max": 0.05
+        }
+      }
+    },
+    {
+      "id": "cf_mu_shift",
+      "mu": 1.7995,
+      "rho": 2.35,
+      "eta": 0.08,
+      "metrics": {
+        "v_front": 8.36374695863747,
+        "q_ring": 0.14420912556035048,
+        "h2_h1": 0.10617474555883404
+      },
+      "gate": {
+        "passed": false,
+        "errors": {
+          "v_front_rel_err": 0.04528226822567426,
+          "q_ring_rel_err": 0.16047891304965287,
+          "h2_h1_rel_err": 0.028821987451665216
+        },
+        "gates": {
+          "v_front_rel_err_max": 0.02,
+          "q_ring_rel_err_max": 0.03,
+          "h2_h1_rel_err_max": 0.05
+        }
+      }
+    }
+  ],
+  "bootstrap_recovery": {
+    "n_boot": 4,
+    "mu_mean": 1.5044649879739147,
+    "mu_std": 0.05288449218807559,
+    "rho_mean": 2.2012677369206246,
+    "rho_std": 0.20689714249836372,
+    "eta_mean": 0.08161312625552936,
+    "eta_std": 0.024015035528369186
+  },
+  "blind_protocol_pack": {},
+  "manifest": {
+    "script_path": "C:/Users/HUAWEI/Documents/GitHub/chain-explosion-model/scripts/explore/ripple_quantum_tests/ripple_thermal_triplet_preregistered_audit.py",
+    "script_sha256": "71a86d869f0a03c77e9361a0da1c92c7a6e03416e98cd650dfcb4b1ff0069682",
+    "command": "python scripts/explore/ripple_quantum_tests/ripple_thermal_triplet_preregistered_audit.py"
+  }
+}
