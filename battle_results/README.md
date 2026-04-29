@@ -34,6 +34,18 @@ Suggested first reads:
 - [ROUND2_ENGINEERING_BATTLE_REPORT.json](D:/workspace/golang/nakama/chain-explosion-model/battle_results/nist_round2_v2/ROUND2_ENGINEERING_BATTLE_REPORT.json)
 - [P4_PROTOCOL_AUDIT_SCOPE.md](D:/workspace/golang/nakama/chain-explosion-model/battle_results/nist_round2_v2/P4_PROTOCOL_AUDIT_SCOPE.md)
 
+### 3. `nist_clock_reference_audit_v1/`
+
+这是围绕“coincidence window 参考语义”单独设立的实验目录，用于区分外部时钟语义和事件锚定语义，避免把两者混写。  
+This is a focused experiment directory for the "coincidence-window reference semantics" question, separating external-clock semantics from event-anchored semantics to avoid conflation.
+
+建议先读：  
+Suggested first reads:
+
+- [README.md](D:/workspace/chain-explosion-model/battle_results/nist_clock_reference_audit_v1/README.md)
+- [EXPERIMENT_PROTOCOL.md](D:/workspace/chain-explosion-model/battle_results/nist_clock_reference_audit_v1/EXPERIMENT_PROTOCOL.md)
+- [SCHEME_MATRIX.json](D:/workspace/chain-explosion-model/battle_results/nist_clock_reference_audit_v1/SCHEME_MATRIX.json)
+
 ## How To Read These Archives
 
 阅读这些归档时，最重要的是分清三个层次：第一是工程层，第二是协议层，第三是解释层。工程层问的是流程能否跑通；协议层问的是换窗口、换映射、换筛选是否改变结果；解释层才讨论这些结果能否支持更强的叙述。  

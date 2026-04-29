@@ -34,7 +34,7 @@ python round2_phase0_kickoff.py
 | 1.2 | 若 SI 为 **16 列联合事件** 而非单边 ±1 | 在 `nist_convert_config` 或新 strategy 中 **显式**实现该统计，**禁止**静默沿用 `outcome_plus_slots` 占位 |
 | 1.3 | **radius → 可实现的配对窗** | 仅有 yaml 等价链或论文给定换算时才写入 `protocols.*.pairing.window`；否则保留 **仅 Δi=0** 为「无 yaml 时唯一无争议窗」 |
 
-联系人线索：`NIST_BUILD_SOURCES.md`、`belltest@nist.gov`
+联系人线索：`NIST_BUILD_SOURCES.md`、`[redacted-email]`
 
 ---
 

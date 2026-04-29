@@ -13,7 +13,7 @@
 
 ## 联系
 
-- `belltest@nist.gov`（官方文档所列）
+- `[redacted-email]`（官方文档所列）
 
 ## 写入 v2 时必须冻结的字段（示例）
 

@@ -1,0 +1,112 @@
+{
+  "version": "nist-unified-semantics-audit-v1",
+  "hdf5": "D:\\workspace\\chain-explosion-model\\data\\17_04_CH_pockel_100kHz.run.completeblind.dat.compressed.build.hdf5",
+  "window": 15.0,
+  "target_s": 2.82,
+  "tol": 0.02,
+  "real_matrix": {
+    "same_index": {
+      "pair_count": 128016.0,
+      "S_binary": 2.3294172230779164,
+      "Smax_binary": 2.3294172230779164,
+      "S_cont_raw": 1.1176832855605698,
+      "Smax_cont_raw": 1.1176832855605698,
+      "S_cont_norm": 2.320814810047326,
+      "Smax_cont_norm": 2.320814810047326
+    },
+    "external_clock_bin": {
+      "pair_count": 132990.0,
+      "S_binary": 2.8086655567931498,
+      "Smax_binary": 2.8086655567931498,
+      "S_cont_raw": 1.3457655413472684,
+      "Smax_cont_raw": 1.3457655413472684,
+      "S_cont_norm": 2.8254594983829957,
+      "Smax_cont_norm": 2.8254594983829957
+    },
+    "event_anchor_nearest": {
+      "pair_count": 138575.0,
+      "S_binary": 2.834670139694744,
+      "Smax_binary": 2.834670139694744,
+      "S_cont_raw": 1.354776528576919,
+      "Smax_cont_raw": 1.354776528576919,
+      "S_cont_norm": 2.8447554225925042,
+      "Smax_cont_norm": 2.8447554225925042
+    }
+  },
+  "counterfactual_shuffledB_matrix": {
+    "same_index": {
+      "pair_count": 128016.0,
+      "S_binary": 0.0013042336248564775,
+      "Smax_binary": 0.03007183511567888,
+      "S_cont_raw": 0.005678703528095533,
+      "Smax_cont_raw": 0.016030360133272942,
+      "S_cont_norm": 0.011308881739603423,
+      "Smax_cont_norm": 0.03400188684864165
+    },
+    "external_clock_bin": {
+      "pair_count": 132990.0,
+      "S_binary": 0.01242191557244562,
+      "Smax_binary": 0.02148141391697547,
+      "S_cont_raw": 0.0012795836017134785,
+      "Smax_cont_raw": 0.01896463873114365,
+      "S_cont_norm": 0.0025274074087529436,
+      "Smax_cont_norm": 0.039699492708315354
+    },
+    "event_anchor_nearest": {
+      "pair_count": 138575.0,
+      "S_binary": 0.011101966677955844,
+      "Smax_binary": 0.022516821705389864,
+      "S_cont_raw": 0.008429041318395787,
+      "Smax_cont_raw": 0.010665699945658788,
+      "S_cont_norm": 0.017574362936789593,
+      "Smax_cont_norm": 0.022237352795787278
+    }
+  },
+  "counterfactual_synthetic_cos_matrix": {
+    "same_index": {
+      "pair_count": 200000.0,
+      "S_binary": -2.0029865565978326,
+      "Smax_binary": 2.0029865565978326,
+      "S_cont_raw": -1.1923941531285926,
+      "Smax_cont_raw": 1.1923941531285926,
+      "S_cont_norm": -2.3847720813623057,
+      "Smax_cont_norm": 2.3847720813623057
+    },
+    "external_clock_bin": {
+      "pair_count": 200000.0,
+      "S_binary": -2.0029865565978326,
+      "Smax_binary": 2.0029865565978326,
+      "S_cont_raw": -1.1923941531285926,
+      "Smax_cont_raw": 1.1923941531285926,
+      "S_cont_norm": -2.3847720813623057,
+      "Smax_cont_norm": 2.3847720813623057
+    },
+    "event_anchor_nearest": {
+      "pair_count": 200000.0,
+      "S_binary": -2.0029865565978326,
+      "Smax_binary": 2.0029865565978326,
+      "S_cont_raw": -1.1923941531285926,
+      "Smax_cont_raw": 1.1923941531285926,
+      "S_cont_norm": -2.3847720813623057,
+      "Smax_cont_norm": 2.3847720813623057
+    }
+  },
+  "same_index_angle_sign_scan": {
+    "Smax_binary_equiv": 2.3294172230779164,
+    "Smax_cont_norm_equiv": 2.320814810047326,
+    "near_target_binary": false,
+    "near_target_cont_norm": false,
+    "E_binary": {
+      "ab": 0.9989600356559204,
+      "abp": 0.9983446057796906,
+      "apb": 0.9979602474899713,
+      "apbp": 0.6658476658476659
+    },
+    "E_cont_norm": {
+      "ab": 0.9988052273947099,
+      "abp": 0.9979075038875369,
+      "apb": 0.9977329654723329,
+      "apbp": 0.6736308867072536
+    }
+  }
+}

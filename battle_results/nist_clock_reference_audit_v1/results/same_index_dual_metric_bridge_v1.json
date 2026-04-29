@@ -1,0 +1,39 @@
+{
+  "version": "same-index-dual-metric-bridge-v1",
+  "hdf5": "D:\\workspace\\chain-explosion-model\\data\\17_04_CH_pockel_100kHz.run.completeblind.dat.compressed.build.hdf5",
+  "pairing_mode": "same_index_only",
+  "pair_count": 128016,
+  "angles_deg": {
+    "a": 0.0,
+    "ap": 45.0,
+    "b": 22.5,
+    "bp": 67.5
+  },
+  "counts_by_cell": {
+    "ab": 40386,
+    "abp": 42286,
+    "apb": 44123,
+    "apbp": 1221
+  },
+  "E_binary": {
+    "ab": 0.9989600356559204,
+    "abp": 0.9983446057796906,
+    "apb": 0.9979602474899713,
+    "apbp": 0.6658476658476659
+  },
+  "E_continuous_norm": {
+    "ab": 0.9988052273947099,
+    "abp": 0.9979075038875369,
+    "apb": 0.9977329654723329,
+    "apbp": 0.6736308867072536
+  },
+  "E_theory_neg_cos": {
+    "ab": -0.9238795325112867,
+    "abp": -0.38268343236508984,
+    "apb": -0.9238795325112867,
+    "apbp": -0.9238795325112867
+  },
+  "S_binary": 2.3294172230779164,
+  "S_continuous_norm": 2.320814810047326,
+  "S_theory_neg_cos": -1.3065629648763768
+}

@@ -20,21 +20,21 @@
 | ID | 分组 | 姓名 | 机构 | 方向 | 邮箱 | 状态 | 首发日期 | 跟进日期 | 回应结论 | 你要问的唯一问题 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | A01 | A | Roger Colbeck | University of York | 设备无关方法/量子基础 | 官网个人页联系入口 | 待发送 |  |  |  | 第X节统计检验在非独立噪声下是否有明显偏差来源？ |
-| A02 | A | Markus P. Muller | 个人研究组（量子信息与基础） | 理论可检验性/信息论基础 | markus.mueller@oeaw.ac.at | 已发送待回复 | 2026-04-24 |  |  | 我们的可证伪条件是否充分，是否仍存在不可判别区间？ |
+| A02 | A | Markus P. Muller | 个人研究组（量子信息与基础） | 理论可检验性/信息论基础 | [redacted-email] | 已发送待回复 | 2026-04-24 |  |  | 我们的可证伪条件是否充分，是否仍存在不可判别区间？ |
 | A03 | A | Martin Garttner | University of Jena | 量子态认证/纠缠定量 | 组内秘书联系入口 | 待发送 |  |  |  | 当前指标体系能否稳健区分真实效应与采样伪影？ |
 | A04 | A | Morgan W. Mitchell | Quside/ICFO 相关团队 | 随机源与统计分析 | 论文作者页联系入口 | 待发送 |  |  |  | 随机性与显著性评估流程是否存在过拟合或选择偏差？ |
 | A05 | A |  |  | 方法学/统计 |  | 待发送 |  |  |  |  |
 | A06 | A |  |  | 方法学/统计 |  | 待发送 |  |  |  |  |
 | A07 | A |  |  | 方法学/统计 |  | 待发送 |  |  |  |  |
 | A08 | A |  |  | 方法学/统计 |  | 待发送 |  |  |  |  |
-| B01 | B | Adrian Kent | University of Cambridge | 量子基础/现实论与测试 | a.p.a.kent@damtp.cam.ac.uk | 已发送待回复 | 2026-04-24 |  |  | 结论边界是否写得过满，哪些表述应降级为待验证命题？ |
-| B02 | B | Caslav Brukner | University of Vienna / IQOQI | 量子基础与信息论 | caslav.brukner@univie.ac.at | 已发送待回复 | 2026-04-24 |  |  | 从信息论视角看，我们的推断链条在哪一步最脆弱？ |
+| B01 | B | Adrian Kent | University of Cambridge | 量子基础/现实论与测试 | [redacted-email] | 已发送待回复 | 2026-04-24 |  |  | 结论边界是否写得过满，哪些表述应降级为待验证命题？ |
+| B02 | B | Caslav Brukner | University of Vienna / IQOQI | 量子基础与信息论 | [redacted-email] | 已发送待回复 | 2026-04-24 |  |  | 从信息论视角看，我们的推断链条在哪一步最脆弱？ |
 | B03 | B | Jens Eisert | FU Berlin | 量子信息理论/纠缠理论 | 组秘书联系入口 | 待发送 |  |  |  | 当前理论叙述是否混用了模型层与现象层结论？ |
-| B04 | B | Scott Aaronson | University of Texas at Austin | 量子计算复杂性/理论边界 | aaronson@cs.utexas.edu | 已回复-采纳建议 | 2026-04-25 |  | 建议转向 Bell 数据分析专家；认为“超 Tsirelson 更可能是统计伪影” | Tsirelson 界解释是否隐含固定配对规则假设？ |
+| B04 | B | Scott Aaronson | University of Texas at Austin | 量子计算复杂性/理论边界 | [redacted-email] | 已回复-采纳建议 | 2026-04-25 |  | 建议转向 Bell 数据分析专家；认为“超 Tsirelson 更可能是统计伪影” | Tsirelson 界解释是否隐含固定配对规则假设？ |
 | B05 | B |  |  | 量子基础（中立） |  | 待发送 |  |  |  |  |
 | B06 | B |  |  | 量子基础（中立） |  | 待发送 |  |  |  |  |
-| C01 | C | Anton Zeilinger | IQOQI Vienna | Bell/GHZ 实验基础 | Anton.Zeilinger@oeaw.ac.at | 待发送 |  |  |  | 如果结论不成立，最可能先坏在哪个实验假设或校准环节？ |
-| C02 | C | Joachim von Zanthier | FAU Erlangen-Nurnberg | 多体纠缠与实验量子光学 | joachim.vonzanthier@physik.uni-erlangen.de | 已发送待回复 | 2026-04-24 |  |  | GHZ 相关图示是否足以支撑机制解释，缺哪一个关键对照？ |
+| C01 | C | Anton Zeilinger | IQOQI Vienna | Bell/GHZ 实验基础 | [redacted-email] | 待发送 |  |  |  | 如果结论不成立，最可能先坏在哪个实验假设或校准环节？ |
+| C02 | C | Joachim von Zanthier | FAU Erlangen-Nurnberg | 多体纠缠与实验量子光学 | [redacted-email] | 已发送待回复 | 2026-04-24 |  |  | GHZ 相关图示是否足以支撑机制解释，缺哪一个关键对照？ |
 | C03 | C | Andreas Wallraff | ETH Zurich | loophole-free Bell 实验 | 论文作者页联系入口 | 待发送 |  |  |  | 我们与主流 loophole-free 统计标准相比，最薄弱的环节在哪里？ |
 | C04 | C |  |  | 基础争议/反例导向 |  | 待发送 |  |  |  |  |
 | C05 | C |  |  | 基础争议/反例导向 |  | 待发送 |  |  |  |  |
@@ -76,7 +76,7 @@
 
 ### 2026-04-24 | Nicolas Gisin（已发送）
 
-- 收件人：`nicolas.gisin@unige.ch`
+- 收件人：`[redacted-email]`
 - 主题：`Request for a methodological check: Bell 2.828 and GHZ threshold trade-off`
 - 状态：`已发送待回复`
 - 关联仓库：<https://github.com/tomnattle/chain-explosion-model>
@@ -109,7 +109,7 @@
 
 ### 2026-04-26 | Nicolas Gisin — 用户定稿（中英直述，记录）
 
-- 收件人：`nicolas.gisin@unige.ch`（与首封相同）
+- 收件人：`[redacted-email]`（与首封相同）
 - 用途：跟进/替换口径时推荐使用本稿；与 Zenodo 三篇 + 仓库一致。
 - 建议主题（中）：`贝尔/GHZ 协议审计：NIST 数据与仿真结论（三篇 Zenodo）+ 可复现代码`
 - 建议主题（英）：`Bell/GHZ protocol audit: NIST + in-silico GHZ (3 Zenodo DOIs) + reproducible repo`
@@ -188,7 +188,7 @@ Best regards
 
 #### A02 | Markus P. Muller
 
-- 邮箱：`markus.mueller@oeaw.ac.at`
+- 邮箱：`[redacted-email]`
 - 标题：`Request for one methodological check: falsifiability boundary in Bell/GHZ audit`
 
 邮件正文（建议）：
@@ -209,7 +209,7 @@ Best regards
 
 #### C02 | Joachim von Zanthier
 
-- 邮箱：`joachim.vonzanthier@physik.uni-erlangen.de`
+- 邮箱：`[redacted-email]`
 - 标题：`Request for one experimental check: GHZ mechanism claim vs missing controls`
 
 邮件正文（建议）：
@@ -230,7 +230,7 @@ Best regards
 
 #### B01 | Adrian Kent
 
-- 邮箱：`a.p.a.kent@damtp.cam.ac.uk`
+- 邮箱：`[redacted-email]`
 - 标题：`Request for one rigor check: boundary of claims in Bell/GHZ interpretation`
 
 邮件正文（建议）：
@@ -251,7 +251,7 @@ Best regards
 
 #### B02 | Caslav Brukner
 
-- 邮箱：`caslav.brukner@univie.ac.at`
+- 邮箱：`[redacted-email]`
 - 标题：`Request for one information-theoretic check: weakest link in our inference chain`
 
 邮件正文（建议）：
@@ -272,7 +272,7 @@ Best regards
 
 ### 2026-04-24 | Markus P. Muller（已发送）
 
-- 收件人：`markus.mueller@oeaw.ac.at`
+- 收件人：`[redacted-email]`
 - 主题：`Request for one methodological check: falsifiability boundary in Bell/GHZ audit`
 - 状态：`已发送待回复`
 - 关联仓库：<https://github.com/tomnattle/chain-explosion-model>
@@ -282,7 +282,7 @@ Best regards
 
 ### 2026-04-24 | Joachim von Zanthier（已发送）
 
-- 收件人：`joachim.vonzanthier@physik.uni-erlangen.de`
+- 收件人：`[redacted-email]`
 - 主题：`Request for one experimental check: GHZ mechanism claim vs missing controls`
 - 状态：`已发送待回复`
 - 关联仓库：<https://github.com/tomnattle/chain-explosion-model>
@@ -292,7 +292,7 @@ Best regards
 
 ### 2026-04-24 | Adrian Kent（已发送）
 
-- 收件人：`a.p.a.kent@damtp.cam.ac.uk`
+- 收件人：`[redacted-email]`
 - 主题：`Request for one rigor check: boundary of claims in Bell/GHZ interpretation`
 - 状态：`已发送待回复`
 - 关联仓库：<https://github.com/tomnattle/chain-explosion-model>
@@ -302,7 +302,7 @@ Best regards
 
 ### 2026-04-24 | Caslav Brukner（已发送）
 
-- 收件人：`caslav.brukner@univie.ac.at`
+- 收件人：`[redacted-email]`
 - 主题：`Request for one information-theoretic check: weakest link in our inference chain`
 - 状态：`已发送待回复`
 - 关联仓库：<https://github.com/tomnattle/chain-explosion-model>
@@ -312,7 +312,7 @@ Best regards
 
 ### 2026-04-25 | Scott Aaronson（已回复）
 
-- 收件人：`aaronson@cs.utexas.edu`
+- 收件人：`[redacted-email]`
 - 状态：`已回复-采纳建议`
 - 回信原文（关键句）：
 

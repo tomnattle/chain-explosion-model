@@ -1,0 +1,29 @@
+{
+  "version": "v1",
+  "purpose": "Clock-reference semantics audit on same events",
+  "schemes": [
+    {
+      "id": "event_anchor_nearest",
+      "reference_type": "detection_event",
+      "pairing_rule": "for each A event, nearest unused B within |tB-tA|<=w"
+    },
+    {
+      "id": "external_clock_bin",
+      "reference_type": "external_clock",
+      "pairing_rule": "pair only within same global time bin; nearest unused B in bin"
+    },
+    {
+      "id": "same_index_only",
+      "reference_type": "external_clock_index",
+      "pairing_rule": "pair only when tB==tA (index-level exact coincidence)"
+    }
+  ],
+  "default_windows": [
+    0,
+    1,
+    2,
+    5,
+    10,
+    15
+  ]
+}
