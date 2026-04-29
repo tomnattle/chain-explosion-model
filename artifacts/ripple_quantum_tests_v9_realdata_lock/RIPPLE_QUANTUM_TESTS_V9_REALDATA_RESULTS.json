@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "suite": "ripple_quantum_tests_v9_realdata_runner",
+    "data_dir": "artifacts/ripple_quantum_tests_v9_realdata_input_template",
+    "fit_ratio": 0.6,
+    "val_ratio": 0.2,
+    "blind_ratio": 0.2,
+    "seed": 2026,
+    "maxiter": 140,
+    "penalty_energy": 50.0
+  },
+  "optimum": {
+    "mu": 0.9248819899752544,
+    "rho": 1.85,
+    "eta": 0.042232345069263266
+  },
+  "gates": {
+    "val_r2_min": 0.9,
+    "blind_r2_min": 0.8,
+    "blind_nrmse_max_ratio": 2.0,
+    "final_pass": false
+  },
+  "experiments": [
+    {
+      "name": "dispersion_n_omega",
+      "fit_nrmse": 0.05446115930640657,
+      "val_nrmse": 0.2146297961796193,
+      "blind_nrmse": 0.22434879774972555,
+      "fit_r2": 0.9661163980597346,
+      "val_r2": 0.470310715666829,
+      "blind_r2": 0.4210427843382075
+    },
+    {
+      "name": "absorption_alpha_omega",
+      "fit_nrmse": 0.11852178208009854,
+      "val_nrmse": 0.5949839988428203,
+      "blind_nrmse": 0.8417619770136887,
+      "fit_r2": 0.8395572933032209,
+      "val_r2": -3.0710739309049497,
+      "blind_r2": -7.151070314745329
+    },
+    {
+      "name": "reflectance_r_theta",
+      "fit_nrmse": 0.13523965861296544,
+      "val_nrmse": 0.07462338705647613,
+      "blind_nrmse": 0.11519974224504295,
+      "fit_r2": 0.7886279610408573,
+      "val_r2": 0.9366954847074402,
+      "blind_r2": 0.8491033696031411
+    },
+    {
+      "name": "group_delay_tau_omega",
+      "fit_nrmse": 0.2893782551442747,
+      "val_nrmse": 1.3258242068746613,
+      "blind_nrmse": 1.5354916020428306,
+      "fit_r2": 0.011416360202962883,
+      "val_r2": -19.22924949003943,
+      "blind_r2": -26.13413846524455
+    }
+  ],
+  "experiment_gate_result": [
+    {
+      "name": "dispersion_n_omega",
+      "pass": false,
+      "ratio_ok": false
+    },
+    {
+      "name": "absorption_alpha_omega",
+      "pass": false,
+      "ratio_ok": false
+    },
+    {
+      "name": "reflectance_r_theta",
+      "pass": true,
+      "ratio_ok": true
+    },
+    {
+      "name": "group_delay_tau_omega",
+      "pass": false,
+      "ratio_ok": false
+    }
+  ]
+}

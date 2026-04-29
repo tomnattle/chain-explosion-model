@@ -1,0 +1,52 @@
+{
+  "meta": {
+    "suite": "ripple_quantum_tests_v10_fail_anatomy",
+    "data_dir": "artifacts/ripple_quantum_tests_v9_realdata_input_template",
+    "locked_triplet": {
+      "mu": 1.55,
+      "rho": 2.35,
+      "eta": 0.08
+    },
+    "assumption": "Triplet semantics OK; diagnose function family / data / cross-panel consistency."
+  },
+  "absorption": {
+    "peak_metrics": {
+      "d2y_rms": 2.1797388932382344e-06,
+      "n_points": 240
+    },
+    "locked_triplet_full_r2": 0.5939038389800363,
+    "locked_triplet_full_nrmse": 0.18905332980295972,
+    "residual_mean": 0.010867545877321453,
+    "residual_std": 0.015006257071505606,
+    "lorentz_on_residual": {
+      "skipped": false,
+      "best_x0": 9.181818181818182,
+      "best_w": 1.6585714285714286,
+      "best_A": 0.03749450095761329,
+      "r2_after_lorentz_on_full": 0.9655067134425166,
+      "nrmse_after_on_full": 0.05509817032307448
+    },
+    "diagnosis": [
+      "Diagnostic Lorentz bump materially reduces error at LOCKED triplet → missing resonance/broadband loss term in alpha(omega)."
+    ]
+  },
+  "group_delay": {
+    "locked_triplet_full_r2": 0.496390206765848,
+    "locked_triplet_full_nrmse": 0.20626695846707882,
+    "consistency_with_dispersion": {
+      "corr_tau_vs_abs_dn": 0.9973242212102806,
+      "corr_tau_vs_dn": 0.9973242212102806,
+      "corr_tau_vs_model_tau": 0.9998139678028224,
+      "note": "dn/domega is central to group delay; low corr suggests x-axis mismatch or missing phi(omega) link."
+    },
+    "diagnosis": []
+  },
+  "dispersion": {
+    "locked_triplet_full_r2": -5.566842731814479,
+    "locked_triplet_full_nrmse": 0.759373149739024
+  },
+  "reflectance": {
+    "locked_triplet_full_r2": 0.9731539770742418,
+    "locked_triplet_full_nrmse": 0.049343054378758744
+  }
+}

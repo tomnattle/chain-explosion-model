@@ -33,7 +33,10 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
-from scipy.optimize import differential_evolution
+try:
+    from scipy.optimize import differential_evolution
+except Exception:  # pragma: no cover - optional dependency
+    differential_evolution = None
 
 from ripple_medium_dispersion import maxwell_analogy_note, phase_speed_m_s
 
@@ -263,6 +266,52 @@ def eval_joint_loss(
     return float(loss)
 
 
+@dataclass
+class DEResult:
+    x: np.ndarray
+    fun: float
+    nit: int
+    success: bool
+
+
+def _run_de_numpy(
+    obj,
+    bounds: list[tuple[float, float]],
+    *,
+    seed: int,
+    maxiter: int,
+    popsize: int = 14,
+    f_scale: float = 0.82,
+    crossover: float = 0.78,
+) -> DEResult:
+    rng = np.random.default_rng(int(seed))
+    dim = len(bounds)
+    lo = np.array([b[0] for b in bounds], dtype=float)
+    hi = np.array([b[1] for b in bounds], dtype=float)
+    span = hi - lo
+    pop = lo + rng.random((int(popsize), dim)) * span
+    vals = np.array([obj(v) for v in pop], dtype=float)
+    nit = 0
+    for nit in range(1, int(maxiter) + 1):
+        for i in range(pop.shape[0]):
+            idxs = np.arange(pop.shape[0])
+            idxs = idxs[idxs != i]
+            a, b, c = rng.choice(idxs, size=3, replace=False)
+            mutant = pop[a] + f_scale * (pop[b] - pop[c])
+            mutant = np.clip(mutant, lo, hi)
+            trial = pop[i].copy()
+            j_rand = int(rng.integers(0, dim))
+            for j in range(dim):
+                if (rng.random() < crossover) or (j == j_rand):
+                    trial[j] = mutant[j]
+            tv = obj(trial)
+            if tv <= vals[i]:
+                pop[i] = trial
+                vals[i] = tv
+    bi = int(np.argmin(vals))
+    return DEResult(x=np.array(pop[bi], dtype=float), fun=float(vals[bi]), nit=int(nit), success=True)
+
+
 def run_de_joint(
     bounds: list[tuple[float, float]],
     mode_n: int,
@@ -277,13 +326,16 @@ def run_de_joint(
     def objective(v: np.ndarray) -> float:
         return eval_joint_loss(v, mode_n, alpha, mri_quad, w_f0, w_gamma, jcfg)
 
-    return differential_evolution(
-        objective,
-        bounds=bounds,
-        seed=int(seed),
-        maxiter=int(maxiter),
-        polish=True,
-    )
+    if differential_evolution is not None:
+        res = differential_evolution(
+            objective,
+            bounds=bounds,
+            seed=int(seed),
+            maxiter=int(maxiter),
+            polish=True,
+        )
+        return DEResult(x=np.array(res.x, dtype=float), fun=float(res.fun), nit=int(res.nit), success=bool(res.success))
+    return _run_de_numpy(objective, bounds=bounds, seed=int(seed), maxiter=int(maxiter))
 
 
 def state_after_de(

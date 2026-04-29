@@ -1,0 +1,45 @@
+{
+  "policy": {
+    "no_cheat": true,
+    "notes": [
+      "No optimizer or fitting routine is used.",
+      "All outputs are deterministic closed-form transforms of input triplet.",
+      "Reference ranges are comparison-only, never used to modify inputs."
+    ]
+  },
+  "input_triplet": {
+    "mu": 1.5495,
+    "rho_g_cm3": 2.35,
+    "eta": 0.08
+  },
+  "reference_windows": {
+    "n_literature_range": [
+      1.52,
+      1.58
+    ],
+    "rho_literature_range_g_cm3": [
+      2.2,
+      2.5
+    ],
+    "tau_planck_2018_mean_sigma": [
+      0.056,
+      0.007
+    ]
+  },
+  "in_range_flags": {
+    "mu_in_n_range": true,
+    "rho_in_density_range": true
+  },
+  "physics_from_formula": {
+    "lhs_lorentz_lorenz": 0.31832903587128714,
+    "molar_refractivity_cm3_per_mol": 8.138969059574968,
+    "molecular_polarizability_angstrom3": 3.2264867489663698,
+    "inverse_q_if_eta_is_loss": 0.08,
+    "q_if_eta_is_loss": 12.5,
+    "damping_ratio_if_eta_equals_2zeta": 0.04
+  },
+  "eta_to_tau_comparison": {
+    "eta_minus_tau_mean": 0.024,
+    "sigma_distance": 3.4285714285714284
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "audit": "bell_model_mismatch_audit_v2_aggressive",
+  "base_version": "v1 kept unchanged",
+  "seeds": [
+    7,
+    11,
+    19,
+    23,
+    42
+  ],
+  "n_per_seed_synth": 50000,
+  "experiments": {
+    "baseline_point": {
+      "S_mean": -1.9992447873047972,
+      "S_std": 0.018212756426218463,
+      "valid_pairs_mean": 50000.0
+    },
+    "exp1_geometry_caps": [
+      {
+        "cap_deg": 12.0,
+        "S_mean": -1.9877255575569268,
+        "S_std": 0.01382356469274082,
+        "valid_pairs_mean": 50000.0,
+        "delta_vs_baseline": 0.011519229747870341
+      },
+      {
+        "cap_deg": 25.0,
+        "S_mean": -1.957990098479036,
+        "S_std": 0.010456233402829541,
+        "valid_pairs_mean": 50000.0,
+        "delta_vs_baseline": 0.04125468882576122
+      },
+      {
+        "cap_deg": 35.0,
+        "S_mean": -1.9043042816464173,
+        "S_std": 0.012981531782621838,
+        "valid_pairs_mean": 50000.0,
+        "delta_vs_baseline": 0.09494050565837986
+      }
+    ],
+    "exp2_sampling_bias_levels": [
+      {
+        "bias_z": 0.25,
+        "S_mean": -1.9973368852016367,
+        "S_std": 0.01616632050528139,
+        "valid_pairs_mean": 50000.0,
+        "delta_vs_baseline": 0.001907902103160497
+      },
+      {
+        "bias_z": 0.45,
+        "S_mean": -1.9980109859902337,
+        "S_std": 0.013806014168770515,
+        "valid_pairs_mean": 50000.0,
+        "delta_vs_baseline": 0.0012338013145634097
+      }
+    ],
+    "exp3_nist_window_track": {
+      "source": "D:\\workspace\\golang\\nakama\\chain-explosion-model\\artifacts\\bell_window_scan_v1\\WINDOW_SCAN_V1.csv",
+      "rows": [
+        {
+          "window": 0.0,
+          "S": 2.33627586,
+          "valid_pairs": 136632
+        },
+        {
+          "window": 1.0,
+          "S": 2.56498303,
+          "valid_pairs": 137498
+        },
+        {
+          "window": 3.0,
+          "S": 2.73372222,
+          "valid_pairs": 139158
+        },
+        {
+          "window": 5.0,
+          "S": 2.79768072,
+          "valid_pairs": 140817
+        },
+        {
+          "window": 9.0,
+          "S": 2.83663849,
+          "valid_pairs": 143964
+        },
+        {
+          "window": 11.0,
+          "S": 2.84828061,
+          "valid_pairs": 145572
+        },
+        {
+          "window": 15.0,
+          "S": 2.83938722,
+          "valid_pairs": 148670
+        }
+      ]
+    }
+  }
+}

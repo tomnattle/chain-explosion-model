@@ -1,0 +1,438 @@
+{
+  "meta": {
+    "script": "bw_effective_sensitivity_v1.py",
+    "mu": 1.5495,
+    "eta": 0.08,
+    "mode_n": 1,
+    "alpha": 0.35,
+    "mri_quad": 0.0,
+    "thresholds": {
+      "th_x": 0.18,
+      "th_y": 0.18,
+      "r2_min": 0.999
+    },
+    "bw_bounds": [
+      1.8e-05,
+      8.5e-05
+    ],
+    "bw_scan_points": 800,
+    "rho_bounds": [
+      2.349,
+      2.351
+    ],
+    "rho_points": 41,
+    "F0_REL_TOL": 2.175655514155333e-06
+  },
+  "rows": [
+    {
+      "rho": 2.349,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.34905,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3491,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3491500000000003,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3492,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.34925,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3493000000000004,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3493500000000003,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3494,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.18229291655485833,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.34945,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.2264756594923184,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3495,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.2305827610298289,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3495500000000002,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.2305827610302413,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3496,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.23058276103018083,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.34965,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.23058276103008518,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3497000000000003,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.2305827610299845,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3497500000000002,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.23058276102991182,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3498,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.2305827610298757,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.34985,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.2305827575813989,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3499,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.23053321719749148,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.34995,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.2145664086712751,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.35,
+      "any_joint_pass": true,
+      "best_atomic_nrmse_y": 4.61061849515584e-05,
+      "best_atomic_bw": 2.9991239048811014e-05,
+      "atomic_shape_pass_exists": true,
+      "best_joint_bw": 2.9991239048811014e-05,
+      "best_joint_loss": 6.197758168458083e-05,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.35005,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.21456458150583058,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3501000000000003,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.23053317358689202,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.35015,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.2305827575711172,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3502,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.23058276102998346,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.35025,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.23058276102991856,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3503,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.23058276102999564,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.35035,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.23058276103009692,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3504,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.23058276103018932,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.35045,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.23058276103024464,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3505000000000003,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.2305827610302492,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.35055,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.23058276102521796,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3506,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.22305223308532976,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.35065,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822919225131249,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3507,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.35075,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3508,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.35085,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.3509,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.35095,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    },
+    {
+      "rho": 2.351,
+      "any_joint_pass": false,
+      "best_atomic_nrmse_y": 0.1822916785063365,
+      "best_atomic_bw": 1.8e-05,
+      "atomic_shape_pass_exists": false,
+      "best_joint_bw": null,
+      "best_joint_loss": null,
+      "notes": "Existential bw scan for joint_pass; f0 depends on rho only, atomic shape depends on bw."
+    }
+  ]
+}
