@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "script": "param_role_identification_v1.py",
+    "git_scope": "toy v6 gates only",
+    "lock": {
+      "mu": 1.5495,
+      "rho": 2.35,
+      "eta": 0.08,
+      "bw": 3e-05
+    },
+    "mode_n": 1,
+    "alpha": 0.35,
+    "mri_quad": 0.0,
+    "thresholds": {
+      "th_x": 0.18,
+      "th_y": 0.18,
+      "r2_min": 0.999
+    },
+    "F0_REL_TOL": 2.175655514155333e-06,
+    "gamma_gate": 1e-09,
+    "finite_diff_deltas": {
+      "mu": 0.0001,
+      "rho": 0.0001,
+      "eta": 0.0001,
+      "bw": 1e-08
+    },
+    "metrics_vector": [
+      "nrmse_y_laser_threshold",
+      "nrmse_y_semiconductor_cutoff",
+      "nrmse_y_mri_larmor",
+      "nrmse_y_atomic_clock_modes",
+      "f0_rel_err",
+      "gamma_rel_err"
+    ],
+    "params_vector": [
+      "mu",
+      "rho",
+      "eta",
+      "bw"
+    ]
+  },
+  "jacobian": {
+    "J_metric_by_param": [
+      [
+        -0.03174730011364999,
+        0.025938177299675645,
+        1.6940658945086007e-17,
+        0.0
+      ],
+      [
+        0.0,
+        -6.111201227326817e-08,
+        2.9143960844048506e-07,
+        0.0
+      ],
+      [
+        5.016175370786262e-13,
+        0.0,
+        9.631940008764224e-15,
+        0.0
+      ],
+      [
+        0.0,
+        -0.0021182096332506006,
+        0.0,
+        -0.43852561337153717
+      ],
+      [
+        0.0,
+        -4.277953781724241e-06,
+        0.0,
+        0.0
+      ],
+      [
+        8.344208560491582e-13,
+        0.0,
+        0.0,
+        0.0
+      ]
+    ],
+    "dominance": {
+      "nrmse_y_laser_threshold": {
+        "dominant_param": "mu",
+        "dmetric_dparam": -0.03174730011364999,
+        "abs_sensitivity": 0.03174730011364999
+      },
+      "nrmse_y_semiconductor_cutoff": {
+        "dominant_param": "eta",
+        "dmetric_dparam": 2.9143960844048506e-07,
+        "abs_sensitivity": 2.9143960844048506e-07
+      },
+      "nrmse_y_mri_larmor": {
+        "dominant_param": "mu",
+        "dmetric_dparam": 5.016175370786262e-13,
+        "abs_sensitivity": 5.016175370786262e-13
+      },
+      "nrmse_y_atomic_clock_modes": {
+        "dominant_param": "bw",
+        "dmetric_dparam": -0.43852561337153717,
+        "abs_sensitivity": 0.43852561337153717
+      },
+      "f0_rel_err": {
+        "dominant_param": "rho",
+        "dmetric_dparam": -4.277953781724241e-06,
+        "abs_sensitivity": 4.277953781724241e-06
+      },
+      "gamma_rel_err": {
+        "dominant_param": "mu",
+        "dmetric_dparam": 8.344208560491582e-13,
+        "abs_sensitivity": 8.344208560491582e-13
+      }
+    }
+  },
+  "gate_margins_at_lock": {
+    "worst_shape_margin": 0.0009999975757634116,
+    "f0_ok_margin": 2.175655514155333e-06,
+    "gamma_ok_margin": 9.999998331158288e-10
+  },
+  "identifiability": {
+    "rank_shape_f0": 4,
+    "condition_shape_f0": 1504860.104020826,
+    "note": "Higher rank and better conditioning imply parameters are locally distinguishable by these metrics."
+  },
+  "alpha_sweep_rho_slope": [
+    {
+      "alpha": 0.25,
+      "d(nrmse_y_atomic)/drho": -0.013258179536179693,
+      "atomic_nrmse_y_at_lock": 0.0
+    },
+    {
+      "alpha": 0.35,
+      "d(nrmse_y_atomic)/drho": -0.0021182096332506006,
+      "atomic_nrmse_y_at_lock": 0.0
+    },
+    {
+      "alpha": 0.45,
+      "d(nrmse_y_atomic)/drho": -0.0001251292899850931,
+      "atomic_nrmse_y_at_lock": 0.0
+    }
+  ]
+}

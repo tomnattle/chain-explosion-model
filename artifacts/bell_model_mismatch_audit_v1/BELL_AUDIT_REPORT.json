@@ -1,0 +1,42 @@
+{
+  "audit": "bell_model_mismatch_audit_v1",
+  "seeds": [
+    7,
+    11,
+    19,
+    23,
+    42
+  ],
+  "n_per_seed_synth": 100000,
+  "experiments": {
+    "exp1_geometry_kernel": {
+      "point_kernel": {
+        "S_mean": -2.007042912003088,
+        "S_std": 0.00764488203998446,
+        "valid_pairs_mean": 100000.0
+      },
+      "surface_kernel_cap12deg": {
+        "S_mean": -1.9967003495037967,
+        "S_std": 0.00954709390239017,
+        "valid_pairs_mean": 100000.0
+      },
+      "delta_S_surface_minus_point": 0.010342562499291219
+    },
+    "exp2_pairing_window_nist": {
+      "rows": []
+    },
+    "exp3_sampling_bias": {
+      "uniform": {
+        "S_mean": -2.000345174358478,
+        "S_std": 0.016496733350579437,
+        "valid_pairs_mean": 100000.0
+      },
+      "z_bias_0p25": {
+        "S_mean": -2.001437602532773,
+        "S_std": 0.01685290997628417,
+        "valid_pairs_mean": 100000.0
+      },
+      "delta_S_bias_minus_uniform": -0.0010924281742950015
+    }
+  }
+}

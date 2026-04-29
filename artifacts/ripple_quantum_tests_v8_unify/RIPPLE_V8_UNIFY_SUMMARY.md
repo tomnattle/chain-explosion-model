@@ -1,10 +1,10 @@
 # v8 Quantum Grand Unification Summary
 
-- generated_at: 2026-04-26T15:38:08.177844+00:00
+- generated_at: 2026-04-29T04:11:32.888435+00:00
 - joint_pass: **True**
 - joint_loss: 0.052611
 - locked_parameters: mu=1.5495, rho=2.35, eta=0.08
-- script_sha256: `eb4ac05c99ef9f94a231f1b8ce89c603164dddfd76cdbccfa17d477131324226`
+- script_sha256: `8b9c6c65abeb6d35652c63170ebe7bc27c5491e262d9fba27e33697e948b4313`
 
 ## Baseline Tests
 - radial_levels: nrmse_y=0.000000, R2=1.000000, pass=Y

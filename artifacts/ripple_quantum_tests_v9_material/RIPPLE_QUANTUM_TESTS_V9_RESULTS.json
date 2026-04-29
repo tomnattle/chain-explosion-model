@@ -1,0 +1,56 @@
+{
+  "meta": {
+    "suite": "ripple_quantum_tests_v9_material_extension",
+    "note": "Additive extension. Does not modify v6/v7/v8.",
+    "positioning": "Phenomenological material-property approximation scaffold.",
+    "fit_ratio": 0.6,
+    "val_ratio": 0.2,
+    "blind_ratio": 0.2,
+    "seed": 2026,
+    "maxiter": 120,
+    "penalty_energy": 50.0
+  },
+  "optimum": {
+    "mu": 0.9197983060713547,
+    "rho": 1.85,
+    "eta": 0.03862443360334271
+  },
+  "experiments": [
+    {
+      "name": "dispersion_n_omega",
+      "fit_nrmse": 0.08472297201298229,
+      "val_nrmse": 0.41551636084661725,
+      "blind_nrmse": 0.5851194382264194,
+      "fit_r2": 0.9165875779968183,
+      "val_r2": -0.9877967377717538,
+      "blind_r2": -2.942364656467597
+    },
+    {
+      "name": "absorption_alpha_omega",
+      "fit_nrmse": 0.11761009839406596,
+      "val_nrmse": 0.605198084600482,
+      "blind_nrmse": 0.8489166244477151,
+      "fit_r2": 0.8420160889945757,
+      "val_r2": -3.2120498893751224,
+      "blind_r2": -7.290220991889099
+    },
+    {
+      "name": "reflectance_r_theta",
+      "fit_nrmse": 0.13123487453453828,
+      "val_nrmse": 0.23090625892236458,
+      "blind_nrmse": 0.32270882078271,
+      "fit_r2": 0.8009611169266946,
+      "val_r2": 0.3938833929063298,
+      "blind_r2": -0.18412677106090425
+    },
+    {
+      "name": "group_delay_tau_omega",
+      "fit_nrmse": 0.29030206826018007,
+      "val_nrmse": 1.330269583678743,
+      "blind_nrmse": 1.5408035776378637,
+      "fit_r2": 0.0050943627896574695,
+      "val_r2": -19.365130848992226,
+      "blind_r2": -26.322202267038662
+    }
+  ]
+}

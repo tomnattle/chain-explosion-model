@@ -1,0 +1,133 @@
+{
+  "meta": {
+    "script": "verify_rho_mu2_constraint.py",
+    "note": "rho_mu2 audit under v6 joint loss + same gates as v6 main",
+    "mu_fixed": 1.5495,
+    "rho_target_mu_squared": 2.40095025,
+    "atomic_rho_exponent": 0.35
+  },
+  "test1_rho_free": {
+    "optimum": {
+      "mu": 1.5495,
+      "rho": 2.349999999997348,
+      "eta": 0.08000043378232771,
+      "bw_ghz": 3.0000007786729616e-05
+    },
+    "loss": 1.5940599970415956e-05,
+    "joint_pass": true,
+    "rho_minus_mu2": -0.050950250002652187,
+    "rel_err_rho_vs_mu2": 0.021220868696738796
+  },
+  "test2_rho_forced_mu2": {
+    "optimum": {
+      "mu": 1.5495,
+      "rho": 2.40095025,
+      "eta": 0.045237430147375676,
+      "bw_ghz": 6.041825614427648e-05
+    },
+    "loss": 0.22970541624921828,
+    "joint_pass": false
+  },
+  "test3_scan": {
+    "delta": 0.2,
+    "inner_maxiter": 80,
+    "points_requested": 11,
+    "rho_at_global_min_in_scan": 2.36095025,
+    "loss_at_that_rho": 0.18498728361285777,
+    "distance_rho_at_min_to_mu2": -0.040000000000000036,
+    "best_overall_in_scan": {
+      "loss": 0.18498728361285777,
+      "rho": 2.36095025,
+      "vec": [
+        1.5495,
+        2.36095025,
+        0.07247236900984781,
+        3.575330750513188e-05
+      ],
+      "joint_pass": false
+    },
+    "series": [
+      {
+        "rho": 2.20095025,
+        "loss": 0.6214980114167046,
+        "joint_pass": false,
+        "eta": 0.14,
+        "bw_ghz": 5.010768853743303e-05
+      },
+      {
+        "rho": 2.24095025,
+        "loss": 0.41310687440409855,
+        "joint_pass": false,
+        "eta": 0.14,
+        "bw_ghz": 7.680555286943664e-05
+      },
+      {
+        "rho": 2.28095025,
+        "loss": 0.2739229882442706,
+        "joint_pass": false,
+        "eta": 0.12790508108164983,
+        "bw_ghz": 4.009871153377354e-05
+      },
+      {
+        "rho": 2.32095025,
+        "loss": 0.19901152135569145,
+        "joint_pass": false,
+        "eta": 0.10003249441038436,
+        "bw_ghz": 4.8569496595144e-05
+      },
+      {
+        "rho": 2.36095025,
+        "loss": 0.18498728361285777,
+        "joint_pass": false,
+        "eta": 0.07247236900984781,
+        "bw_ghz": 3.575330750513188e-05
+      },
+      {
+        "rho": 2.40095025,
+        "loss": 0.22970541624921662,
+        "joint_pass": false,
+        "eta": 0.04523747054736452,
+        "bw_ghz": 5.920124108312079e-05
+      },
+      {
+        "rho": 2.44095025,
+        "loss": 0.32689070936884324,
+        "joint_pass": false,
+        "eta": 0.04,
+        "bw_ghz": 4.9714243112233285e-05
+      },
+      {
+        "rho": 2.4809502500000002,
+        "loss": 0.4731291385121102,
+        "joint_pass": false,
+        "eta": 0.04,
+        "bw_ghz": 8.452328975553905e-05
+      },
+      {
+        "rho": 2.5209502500000003,
+        "loss": 0.6648878615692113,
+        "joint_pass": false,
+        "eta": 0.04,
+        "bw_ghz": 4.065949883700524e-05
+      },
+      {
+        "rho": 2.5609502500000003,
+        "loss": 0.8991550516430571,
+        "joint_pass": false,
+        "eta": 0.04,
+        "bw_ghz": 3.1058528711931013e-05
+      },
+      {
+        "rho": 2.6009502500000004,
+        "loss": 1.173165394360793,
+        "joint_pass": false,
+        "eta": 0.04,
+        "bw_ghz": 4.027008810931609e-05
+      }
+    ]
+  },
+  "interpretation": [
+    "Test1: optimized rho is within 5% of mu^2 under free rho — consistent with rho≈mu^2 attractor in this toy objective.",
+    "Test3: loss minimum in scan at rho=2.36095, not mu^2=2.40095 — rho=mu^2 is not the unique minimizer on this interval."
+  ]
+}
