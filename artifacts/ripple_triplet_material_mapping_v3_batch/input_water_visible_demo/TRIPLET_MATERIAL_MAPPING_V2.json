@@ -1,0 +1,58 @@
+{
+  "generated_at_utc": "2026-04-30T08:22:57.762239+00:00",
+  "input_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_water_visible_demo.csv",
+  "config": {
+    "mu_ref": 1.55,
+    "rho_ref": 2.35,
+    "eta_ref": 0.08,
+    "expo_mu": 0.25,
+    "expo_rho": 0.25,
+    "k_eta_speed": 0.0,
+    "distance_unit_to_m": 1.0,
+    "rho_min": 1.0,
+    "rho_max": 4.0,
+    "rho_steps": 81,
+    "eta_min": 0.0,
+    "eta_max": 0.3,
+    "eta_steps": 81,
+    "w_n": 1.0,
+    "w_eta_target": 0.2,
+    "w_smooth_rho": 2.0,
+    "w_smooth_eta": 2.0
+  },
+  "rows": [
+    {
+      "wavelength_nm": 450.0,
+      "n_ref": 1.34,
+      "k_ref": 0.0,
+      "eta_target": 0.0,
+      "mu_fit": 4.997478008000002,
+      "rho_fit": 2.35,
+      "eta_fit": 0.0,
+      "n_model": 1.34,
+      "n_err": 0.0
+    },
+    {
+      "wavelength_nm": 550.0,
+      "n_ref": 1.334,
+      "k_ref": 0.0,
+      "eta_target": 0.0,
+      "mu_fit": 4.908570313560801,
+      "rho_fit": 2.35,
+      "eta_fit": 0.0,
+      "n_model": 1.334,
+      "n_err": 0.0
+    },
+    {
+      "wavelength_nm": 650.0,
+      "n_ref": 1.331,
+      "k_ref": 0.0,
+      "eta_target": 0.0,
+      "mu_fit": 4.86456398391755,
+      "rho_fit": 2.35,
+      "eta_fit": 0.0,
+      "n_model": 1.331,
+      "n_err": 0.0
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "generated_at_utc": "2026-04-30T08:23:00.062632+00:00",
+  "runs": [
+    {
+      "material": "input_air_visible_demo",
+      "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_air_visible_demo.csv",
+      "result_json": "artifacts\\ripple_triplet_material_mapping_v3_batch\\input_air_visible_demo\\TRIPLET_MATERIAL_MAPPING_V2.json"
+    },
+    {
+      "material": "input_water_visible_demo",
+      "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_water_visible_demo.csv",
+      "result_json": "artifacts\\ripple_triplet_material_mapping_v3_batch\\input_water_visible_demo\\TRIPLET_MATERIAL_MAPPING_V2.json"
+    },
+    {
+      "material": "input_sio2_malitson_visible",
+      "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_sio2_malitson_visible.csv",
+      "result_json": "artifacts\\ripple_triplet_material_mapping_v3_batch\\input_sio2_malitson_visible\\TRIPLET_MATERIAL_MAPPING_V2.json"
+    },
+    {
+      "material": "input_template_with_k_demo",
+      "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_template_with_k_demo.csv",
+      "result_json": "artifacts\\ripple_triplet_material_mapping_v3_batch\\input_template_with_k_demo\\TRIPLET_MATERIAL_MAPPING_V2.json"
+    },
+    {
+      "material": "input_si_green1995_demo",
+      "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+      "result_json": "artifacts\\ripple_triplet_material_mapping_v3_batch\\input_si_green1995_demo\\TRIPLET_MATERIAL_MAPPING_V2.json"
+    }
+  ],
+  "summary": [
+    {
+      "material": "input_air_visible_demo",
+      "rows": 3,
+      "n_mae": 0.0,
+      "mu_mean": 1.5516953618133993,
+      "rho_mean": 2.35,
+      "eta_mean": 0.0,
+      "k_nonzero_rows": 0,
+      "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_air_visible_demo.csv"
+    },
+    {
+      "material": "input_water_visible_demo",
+      "rows": 3,
+      "n_mae": 0.0,
+      "mu_mean": 4.92353743515945,
+      "rho_mean": 2.35,
+      "eta_mean": 0.0,
+      "k_nonzero_rows": 0,
+      "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_water_visible_demo.csv"
+    },
+    {
+      "material": "input_sio2_malitson_visible",
+      "rows": 7,
+      "n_mae": 0.0,
+      "mu_mean": 7.074946493858881,
+      "rho_mean": 2.35,
+      "eta_mean": 0.0,
+      "k_nonzero_rows": 0,
+      "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_sio2_malitson_visible.csv"
+    },
+    {
+      "material": "input_template_with_k_demo",
+      "rows": 5,
+      "n_mae": 0.0,
+      "mu_mean": 7.70178735709167,
+      "rho_mean": 2.35,
+      "eta_mean": 0.06599999999999999,
+      "k_nonzero_rows": 5,
+      "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_template_with_k_demo.csv"
+    },
+    {
+      "material": "input_si_green1995_demo",
+      "rows": 5,
+      "n_mae": 8.881784197001253e-17,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35,
+      "eta_mean": 0.3,
+      "k_nonzero_rows": 5,
+      "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv"
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+medium,n_eff_model,n_eff_ref,n_delta_model_minus_ref,n_ratio_model_over_ref,att_model_db_per_km,att_ref_db_per_km,att_delta_model_minus_ref,att_ratio_model_over_ref,note
+vacuum,1.0,1.0,0.0,1.0,0.6948711710452029,0.0,0.6948711710452029,694871171045.2029,ideal reference
+air_STP_visible,1.0,1.00027,-0.00026999999999999247,0.9997300728803223,0.6948711710452029,,,,weakly dispersive; near 1
+water_visible,1.0,1.333,-0.33299999999999996,0.7501875468867217,0.6948711710452029,,,,strong wavelength dependence
+silica_fiber_1550nm,1.0,1.444,-0.44399999999999995,0.6925207756232687,0.6948711710452029,0.2,0.4948711710452029,3.4743558552260145,telecom low-loss window
+silicon_1550nm,1.0,3.48,-2.48,0.28735632183908044,0.6948711710452029,,,,high index semiconductor

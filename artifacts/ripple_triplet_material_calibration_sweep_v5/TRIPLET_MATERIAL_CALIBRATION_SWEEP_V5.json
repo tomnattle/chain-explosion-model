@@ -1,0 +1,1063 @@
+{
+  "generated_at_utc": "2026-04-30T08:24:55.365176+00:00",
+  "input_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+  "runs": [
+    {
+      "case": "case_001",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_001",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_001",
+        "--distance-unit-to-m",
+        "1.0",
+        "--eta-max",
+        "0.3",
+        "--w-eta-target",
+        "0.05"
+      ]
+    },
+    {
+      "case": "case_002",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_002",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_002",
+        "--distance-unit-to-m",
+        "1.0",
+        "--eta-max",
+        "0.3",
+        "--w-eta-target",
+        "0.2"
+      ]
+    },
+    {
+      "case": "case_003",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_003",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_003",
+        "--distance-unit-to-m",
+        "1.0",
+        "--eta-max",
+        "0.3",
+        "--w-eta-target",
+        "1.0"
+      ]
+    },
+    {
+      "case": "case_004",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_004",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_004",
+        "--distance-unit-to-m",
+        "1.0",
+        "--eta-max",
+        "1.0",
+        "--w-eta-target",
+        "0.05"
+      ]
+    },
+    {
+      "case": "case_005",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_005",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_005",
+        "--distance-unit-to-m",
+        "1.0",
+        "--eta-max",
+        "1.0",
+        "--w-eta-target",
+        "0.2"
+      ]
+    },
+    {
+      "case": "case_006",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_006",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_006",
+        "--distance-unit-to-m",
+        "1.0",
+        "--eta-max",
+        "1.0",
+        "--w-eta-target",
+        "1.0"
+      ]
+    },
+    {
+      "case": "case_007",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_007",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_007",
+        "--distance-unit-to-m",
+        "1.0",
+        "--eta-max",
+        "2.0",
+        "--w-eta-target",
+        "0.05"
+      ]
+    },
+    {
+      "case": "case_008",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_008",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_008",
+        "--distance-unit-to-m",
+        "1.0",
+        "--eta-max",
+        "2.0",
+        "--w-eta-target",
+        "0.2"
+      ]
+    },
+    {
+      "case": "case_009",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_009",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_009",
+        "--distance-unit-to-m",
+        "1.0",
+        "--eta-max",
+        "2.0",
+        "--w-eta-target",
+        "1.0"
+      ]
+    },
+    {
+      "case": "case_010",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_010",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_010",
+        "--distance-unit-to-m",
+        "0.01",
+        "--eta-max",
+        "0.3",
+        "--w-eta-target",
+        "0.05"
+      ]
+    },
+    {
+      "case": "case_011",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_011",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_011",
+        "--distance-unit-to-m",
+        "0.01",
+        "--eta-max",
+        "0.3",
+        "--w-eta-target",
+        "0.2"
+      ]
+    },
+    {
+      "case": "case_012",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_012",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_012",
+        "--distance-unit-to-m",
+        "0.01",
+        "--eta-max",
+        "0.3",
+        "--w-eta-target",
+        "1.0"
+      ]
+    },
+    {
+      "case": "case_013",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_013",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_013",
+        "--distance-unit-to-m",
+        "0.01",
+        "--eta-max",
+        "1.0",
+        "--w-eta-target",
+        "0.05"
+      ]
+    },
+    {
+      "case": "case_014",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_014",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_014",
+        "--distance-unit-to-m",
+        "0.01",
+        "--eta-max",
+        "1.0",
+        "--w-eta-target",
+        "0.2"
+      ]
+    },
+    {
+      "case": "case_015",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_015",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_015",
+        "--distance-unit-to-m",
+        "0.01",
+        "--eta-max",
+        "1.0",
+        "--w-eta-target",
+        "1.0"
+      ]
+    },
+    {
+      "case": "case_016",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_016",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_016",
+        "--distance-unit-to-m",
+        "0.01",
+        "--eta-max",
+        "2.0",
+        "--w-eta-target",
+        "0.05"
+      ]
+    },
+    {
+      "case": "case_017",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_017",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_017",
+        "--distance-unit-to-m",
+        "0.01",
+        "--eta-max",
+        "2.0",
+        "--w-eta-target",
+        "0.2"
+      ]
+    },
+    {
+      "case": "case_018",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_018",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_018",
+        "--distance-unit-to-m",
+        "0.01",
+        "--eta-max",
+        "2.0",
+        "--w-eta-target",
+        "1.0"
+      ]
+    },
+    {
+      "case": "case_019",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_019",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_019",
+        "--distance-unit-to-m",
+        "0.0001",
+        "--eta-max",
+        "0.3",
+        "--w-eta-target",
+        "0.05"
+      ]
+    },
+    {
+      "case": "case_020",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_020",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_020",
+        "--distance-unit-to-m",
+        "0.0001",
+        "--eta-max",
+        "0.3",
+        "--w-eta-target",
+        "0.2"
+      ]
+    },
+    {
+      "case": "case_021",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_021",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_021",
+        "--distance-unit-to-m",
+        "0.0001",
+        "--eta-max",
+        "0.3",
+        "--w-eta-target",
+        "1.0"
+      ]
+    },
+    {
+      "case": "case_022",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_022",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_022",
+        "--distance-unit-to-m",
+        "0.0001",
+        "--eta-max",
+        "1.0",
+        "--w-eta-target",
+        "0.05"
+      ]
+    },
+    {
+      "case": "case_023",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_023",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_023",
+        "--distance-unit-to-m",
+        "0.0001",
+        "--eta-max",
+        "1.0",
+        "--w-eta-target",
+        "0.2"
+      ]
+    },
+    {
+      "case": "case_024",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_024",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_024",
+        "--distance-unit-to-m",
+        "0.0001",
+        "--eta-max",
+        "1.0",
+        "--w-eta-target",
+        "1.0"
+      ]
+    },
+    {
+      "case": "case_025",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_025",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_025",
+        "--distance-unit-to-m",
+        "0.0001",
+        "--eta-max",
+        "2.0",
+        "--w-eta-target",
+        "0.05"
+      ]
+    },
+    {
+      "case": "case_026",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_026",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_026",
+        "--distance-unit-to-m",
+        "0.0001",
+        "--eta-max",
+        "2.0",
+        "--w-eta-target",
+        "0.2"
+      ]
+    },
+    {
+      "case": "case_027",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_027",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_027",
+        "--distance-unit-to-m",
+        "0.0001",
+        "--eta-max",
+        "2.0",
+        "--w-eta-target",
+        "1.0"
+      ]
+    },
+    {
+      "case": "case_028",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_028",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_028",
+        "--distance-unit-to-m",
+        "1e-06",
+        "--eta-max",
+        "0.3",
+        "--w-eta-target",
+        "0.05"
+      ]
+    },
+    {
+      "case": "case_029",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_029",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_029",
+        "--distance-unit-to-m",
+        "1e-06",
+        "--eta-max",
+        "0.3",
+        "--w-eta-target",
+        "0.2"
+      ]
+    },
+    {
+      "case": "case_030",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_030",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_030",
+        "--distance-unit-to-m",
+        "1e-06",
+        "--eta-max",
+        "0.3",
+        "--w-eta-target",
+        "1.0"
+      ]
+    },
+    {
+      "case": "case_031",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_031",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_031",
+        "--distance-unit-to-m",
+        "1e-06",
+        "--eta-max",
+        "1.0",
+        "--w-eta-target",
+        "0.05"
+      ]
+    },
+    {
+      "case": "case_032",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_032",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_032",
+        "--distance-unit-to-m",
+        "1e-06",
+        "--eta-max",
+        "1.0",
+        "--w-eta-target",
+        "0.2"
+      ]
+    },
+    {
+      "case": "case_033",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_033",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_033",
+        "--distance-unit-to-m",
+        "1e-06",
+        "--eta-max",
+        "1.0",
+        "--w-eta-target",
+        "1.0"
+      ]
+    },
+    {
+      "case": "case_034",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_034",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_034",
+        "--distance-unit-to-m",
+        "1e-06",
+        "--eta-max",
+        "2.0",
+        "--w-eta-target",
+        "0.05"
+      ]
+    },
+    {
+      "case": "case_035",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_035",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_035",
+        "--distance-unit-to-m",
+        "1e-06",
+        "--eta-max",
+        "2.0",
+        "--w-eta-target",
+        "0.2"
+      ]
+    },
+    {
+      "case": "case_036",
+      "out_dir": "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_036",
+      "cmd": [
+        "python",
+        "scripts\\explore\\ripple_quantum_tests\\triplet_material_mapping_v2.py",
+        "--input-csv",
+        "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+        "--out-dir",
+        "artifacts\\ripple_triplet_material_calibration_sweep_v5\\case_036",
+        "--distance-unit-to-m",
+        "1e-06",
+        "--eta-max",
+        "2.0",
+        "--w-eta-target",
+        "1.0"
+      ]
+    }
+  ],
+  "summary": [
+    {
+      "case": "case_028",
+      "distance_unit_to_m": 1e-06,
+      "eta_max": 0.3,
+      "w_eta_target": 0.05,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.24075000000000002,
+      "eta_sat_ratio": 0.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_031",
+      "distance_unit_to_m": 1e-06,
+      "eta_max": 1.0,
+      "w_eta_target": 0.05,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.2975,
+      "eta_sat_ratio": 0.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_032",
+      "distance_unit_to_m": 1e-06,
+      "eta_max": 1.0,
+      "w_eta_target": 0.2,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.47000000000000003,
+      "eta_sat_ratio": 0.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_034",
+      "distance_unit_to_m": 1e-06,
+      "eta_max": 2.0,
+      "w_eta_target": 0.05,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.29500000000000004,
+      "eta_sat_ratio": 0.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_035",
+      "distance_unit_to_m": 1e-06,
+      "eta_max": 2.0,
+      "w_eta_target": 0.2,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.48999999999999994,
+      "eta_sat_ratio": 0.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_036",
+      "distance_unit_to_m": 1e-06,
+      "eta_max": 2.0,
+      "w_eta_target": 1.0,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.5800000000000001,
+      "eta_sat_ratio": 0.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_029",
+      "distance_unit_to_m": 1e-06,
+      "eta_max": 0.3,
+      "w_eta_target": 0.2,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.23700000000000002,
+      "eta_sat_ratio": 0.2,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_033",
+      "distance_unit_to_m": 1e-06,
+      "eta_max": 1.0,
+      "w_eta_target": 1.0,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.4925,
+      "eta_sat_ratio": 0.2,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_030",
+      "distance_unit_to_m": 1e-06,
+      "eta_max": 0.3,
+      "w_eta_target": 1.0,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.20475,
+      "eta_sat_ratio": 0.4,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_022",
+      "distance_unit_to_m": 0.0001,
+      "eta_max": 1.0,
+      "w_eta_target": 0.05,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.9974999999999999,
+      "eta_sat_ratio": 0.8,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_023",
+      "distance_unit_to_m": 0.0001,
+      "eta_max": 1.0,
+      "w_eta_target": 0.2,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.9925,
+      "eta_sat_ratio": 0.8,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_024",
+      "distance_unit_to_m": 0.0001,
+      "eta_max": 1.0,
+      "w_eta_target": 1.0,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.975,
+      "eta_sat_ratio": 0.8,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_025",
+      "distance_unit_to_m": 0.0001,
+      "eta_max": 2.0,
+      "w_eta_target": 0.05,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 1.9949999999999999,
+      "eta_sat_ratio": 0.8,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_026",
+      "distance_unit_to_m": 0.0001,
+      "eta_max": 2.0,
+      "w_eta_target": 0.2,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 1.975,
+      "eta_sat_ratio": 0.8,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_027",
+      "distance_unit_to_m": 0.0001,
+      "eta_max": 2.0,
+      "w_eta_target": 1.0,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 1.9100000000000001,
+      "eta_sat_ratio": 0.8,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_001",
+      "distance_unit_to_m": 1.0,
+      "eta_max": 0.3,
+      "w_eta_target": 0.05,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.3,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_002",
+      "distance_unit_to_m": 1.0,
+      "eta_max": 0.3,
+      "w_eta_target": 0.2,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.3,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_003",
+      "distance_unit_to_m": 1.0,
+      "eta_max": 0.3,
+      "w_eta_target": 1.0,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.3,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_004",
+      "distance_unit_to_m": 1.0,
+      "eta_max": 1.0,
+      "w_eta_target": 0.05,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 1.0,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_005",
+      "distance_unit_to_m": 1.0,
+      "eta_max": 1.0,
+      "w_eta_target": 0.2,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 1.0,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_006",
+      "distance_unit_to_m": 1.0,
+      "eta_max": 1.0,
+      "w_eta_target": 1.0,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 1.0,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_007",
+      "distance_unit_to_m": 1.0,
+      "eta_max": 2.0,
+      "w_eta_target": 0.05,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 2.0,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_008",
+      "distance_unit_to_m": 1.0,
+      "eta_max": 2.0,
+      "w_eta_target": 0.2,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 2.0,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_009",
+      "distance_unit_to_m": 1.0,
+      "eta_max": 2.0,
+      "w_eta_target": 1.0,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 2.0,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_010",
+      "distance_unit_to_m": 0.01,
+      "eta_max": 0.3,
+      "w_eta_target": 0.05,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.3,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_011",
+      "distance_unit_to_m": 0.01,
+      "eta_max": 0.3,
+      "w_eta_target": 0.2,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.3,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_012",
+      "distance_unit_to_m": 0.01,
+      "eta_max": 0.3,
+      "w_eta_target": 1.0,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.3,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_013",
+      "distance_unit_to_m": 0.01,
+      "eta_max": 1.0,
+      "w_eta_target": 0.05,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 1.0,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_014",
+      "distance_unit_to_m": 0.01,
+      "eta_max": 1.0,
+      "w_eta_target": 0.2,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 1.0,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_015",
+      "distance_unit_to_m": 0.01,
+      "eta_max": 1.0,
+      "w_eta_target": 1.0,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 1.0,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_016",
+      "distance_unit_to_m": 0.01,
+      "eta_max": 2.0,
+      "w_eta_target": 0.05,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 2.0,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_017",
+      "distance_unit_to_m": 0.01,
+      "eta_max": 2.0,
+      "w_eta_target": 0.2,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 2.0,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_018",
+      "distance_unit_to_m": 0.01,
+      "eta_max": 2.0,
+      "w_eta_target": 1.0,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 2.0,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_019",
+      "distance_unit_to_m": 0.0001,
+      "eta_max": 0.3,
+      "w_eta_target": 0.05,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.3,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_020",
+      "distance_unit_to_m": 0.0001,
+      "eta_max": 0.3,
+      "w_eta_target": 0.2,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.3,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    },
+    {
+      "case": "case_021",
+      "distance_unit_to_m": 0.0001,
+      "eta_max": 0.3,
+      "w_eta_target": 1.0,
+      "n_mae": 8.881784197001253e-17,
+      "eta_mean": 0.3,
+      "eta_sat_ratio": 1.0,
+      "mu_mean": 434.7167922703,
+      "rho_mean": 2.35
+    }
+  ],
+  "best_case": {
+    "case": "case_028",
+    "distance_unit_to_m": 1e-06,
+    "eta_max": 0.3,
+    "w_eta_target": 0.05,
+    "n_mae": 8.881784197001253e-17,
+    "eta_mean": 0.24075000000000002,
+    "eta_sat_ratio": 0.0,
+    "mu_mean": 434.7167922703,
+    "rho_mean": 2.35
+  }
+}

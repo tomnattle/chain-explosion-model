@@ -1,0 +1,73 @@
+{
+  "generated_at_utc": "2026-04-30T07:55:55.256192+00:00",
+  "probe_json": "artifacts\\ripple_triplet_light_probe_v1\\TRIPLET_LIGHT_PROBE_V1.json",
+  "unit_to_km": 1.0,
+  "model": {
+    "n_eff": 1.0,
+    "eta": 0.08,
+    "att_db_per_unit": 0.6948711710452029,
+    "att_db_per_km": 0.6948711710452029
+  },
+  "rows": [
+    {
+      "medium": "vacuum",
+      "n_eff_model": 1.0,
+      "n_eff_ref": 1.0,
+      "n_delta_model_minus_ref": 0.0,
+      "n_ratio_model_over_ref": 1.0,
+      "att_model_db_per_km": 0.6948711710452029,
+      "att_ref_db_per_km": 0.0,
+      "att_delta_model_minus_ref": 0.6948711710452029,
+      "att_ratio_model_over_ref": 694871171045.2029,
+      "note": "ideal reference"
+    },
+    {
+      "medium": "air_STP_visible",
+      "n_eff_model": 1.0,
+      "n_eff_ref": 1.00027,
+      "n_delta_model_minus_ref": -0.00026999999999999247,
+      "n_ratio_model_over_ref": 0.9997300728803223,
+      "att_model_db_per_km": 0.6948711710452029,
+      "att_ref_db_per_km": null,
+      "att_delta_model_minus_ref": null,
+      "att_ratio_model_over_ref": null,
+      "note": "weakly dispersive; near 1"
+    },
+    {
+      "medium": "water_visible",
+      "n_eff_model": 1.0,
+      "n_eff_ref": 1.333,
+      "n_delta_model_minus_ref": -0.33299999999999996,
+      "n_ratio_model_over_ref": 0.7501875468867217,
+      "att_model_db_per_km": 0.6948711710452029,
+      "att_ref_db_per_km": null,
+      "att_delta_model_minus_ref": null,
+      "att_ratio_model_over_ref": null,
+      "note": "strong wavelength dependence"
+    },
+    {
+      "medium": "silica_fiber_1550nm",
+      "n_eff_model": 1.0,
+      "n_eff_ref": 1.444,
+      "n_delta_model_minus_ref": -0.44399999999999995,
+      "n_ratio_model_over_ref": 0.6925207756232687,
+      "att_model_db_per_km": 0.6948711710452029,
+      "att_ref_db_per_km": 0.2,
+      "att_delta_model_minus_ref": 0.4948711710452029,
+      "att_ratio_model_over_ref": 3.4743558552260145,
+      "note": "telecom low-loss window"
+    },
+    {
+      "medium": "silicon_1550nm",
+      "n_eff_model": 1.0,
+      "n_eff_ref": 3.48,
+      "n_delta_model_minus_ref": -2.48,
+      "n_ratio_model_over_ref": 0.28735632183908044,
+      "att_model_db_per_km": 0.6948711710452029,
+      "att_ref_db_per_km": null,
+      "att_delta_model_minus_ref": null,
+      "att_ratio_model_over_ref": null,
+      "note": "high index semiconductor"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "generated_at_utc": "2026-04-30T08:24:37.435593+00:00",
+  "input_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+  "config": {
+    "mu_ref": 1.55,
+    "rho_ref": 2.35,
+    "eta_ref": 0.08,
+    "expo_mu": 0.25,
+    "expo_rho": 0.25,
+    "k_eta_speed": 0.0,
+    "distance_unit_to_m": 0.01,
+    "rho_min": 1.0,
+    "rho_max": 4.0,
+    "rho_steps": 81,
+    "eta_min": 0.0,
+    "eta_max": 1.0,
+    "eta_steps": 81,
+    "w_n": 1.0,
+    "w_eta_target": 1.0,
+    "w_smooth_rho": 2.0,
+    "w_smooth_eta": 2.0
+  },
+  "rows": [
+    {
+      "wavelength_nm": 450.0,
+      "n_ref": 4.7,
+      "k_ref": 0.15,
+      "eta_target": 20943.951023931953,
+      "mu_fit": 756.3505550000001,
+      "rho_fit": 2.35,
+      "eta_fit": 1.0,
+      "n_model": 4.7,
+      "n_err": 0.0
+    },
+    {
+      "wavelength_nm": 550.0,
+      "n_ref": 4.3,
+      "k_ref": 0.055,
+      "eta_target": 6283.185307179586,
+      "mu_fit": 529.9141549999999,
+      "rho_fit": 2.35,
+      "eta_fit": 1.0,
+      "n_model": 4.3,
+      "n_err": 0.0
+    },
+    {
+      "wavelength_nm": 650.0,
+      "n_ref": 3.88,
+      "k_ref": 0.02,
+      "eta_target": 1933.2877868244882,
+      "mu_fit": 351.284187008,
+      "rho_fit": 2.35,
+      "eta_fit": 1.0,
+      "n_model": 3.8800000000000003,
+      "n_err": 4.440892098500626e-16
+    },
+    {
+      "wavelength_nm": 850.0,
+      "n_ref": 3.68,
+      "k_ref": 0.006,
+      "eta_target": 443.5189628597355,
+      "mu_fit": 284.26472652800004,
+      "rho_fit": 2.35,
+      "eta_fit": 1.0,
+      "n_model": 3.68,
+      "n_err": 0.0
+    },
+    {
+      "wavelength_nm": 1000.0,
+      "n_ref": 3.57,
+      "k_ref": 0.001,
+      "eta_target": 62.83185307179586,
+      "mu_fit": 251.77033781549994,
+      "rho_fit": 2.35,
+      "eta_fit": 1.0,
+      "n_model": 3.57,
+      "n_err": 0.0
+    }
+  ]
+}

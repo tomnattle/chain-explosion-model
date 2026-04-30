@@ -1,0 +1,102 @@
+{
+  "generated_at_utc": "2026-04-30T08:22:58.730690+00:00",
+  "input_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_sio2_malitson_visible.csv",
+  "config": {
+    "mu_ref": 1.55,
+    "rho_ref": 2.35,
+    "eta_ref": 0.08,
+    "expo_mu": 0.25,
+    "expo_rho": 0.25,
+    "k_eta_speed": 0.0,
+    "distance_unit_to_m": 1.0,
+    "rho_min": 1.0,
+    "rho_max": 4.0,
+    "rho_steps": 81,
+    "eta_min": 0.0,
+    "eta_max": 0.3,
+    "eta_steps": 81,
+    "w_n": 1.0,
+    "w_eta_target": 0.2,
+    "w_smooth_rho": 2.0,
+    "w_smooth_eta": 2.0
+  },
+  "rows": [
+    {
+      "wavelength_nm": 404.7,
+      "n_ref": 1.4696,
+      "k_ref": 0.0,
+      "eta_target": 0.0,
+      "mu_fit": 7.229833093295944,
+      "rho_fit": 2.35,
+      "eta_fit": 0.0,
+      "n_model": 1.4696,
+      "n_err": 0.0
+    },
+    {
+      "wavelength_nm": 435.8,
+      "n_ref": 1.4667,
+      "k_ref": 0.0,
+      "eta_target": 0.0,
+      "mu_fit": 7.172934517043298,
+      "rho_fit": 2.35,
+      "eta_fit": 0.0,
+      "n_model": 1.4667,
+      "n_err": 0.0
+    },
+    {
+      "wavelength_nm": 486.1,
+      "n_ref": 1.4631,
+      "k_ref": 0.0,
+      "eta_target": 0.0,
+      "mu_fit": 7.102769799218079,
+      "rho_fit": 2.35,
+      "eta_fit": 0.0,
+      "n_model": 1.4631,
+      "n_err": 0.0
+    },
+    {
+      "wavelength_nm": 546.1,
+      "n_ref": 1.4601,
+      "k_ref": 0.0,
+      "eta_target": 0.0,
+      "mu_fit": 7.044693490567851,
+      "rho_fit": 2.35,
+      "eta_fit": 0.0,
+      "n_model": 1.4601,
+      "n_err": 0.0
+    },
+    {
+      "wavelength_nm": 589.3,
+      "n_ref": 1.4585,
+      "k_ref": 0.0,
+      "eta_target": 0.0,
+      "mu_fit": 7.013865476387346,
+      "rho_fit": 2.35,
+      "eta_fit": 0.0,
+      "n_model": 1.4585,
+      "n_err": 0.0
+    },
+    {
+      "wavelength_nm": 632.8,
+      "n_ref": 1.457,
+      "k_ref": 0.0,
+      "eta_target": 0.0,
+      "mu_fit": 6.985056209041551,
+      "rho_fit": 2.35,
+      "eta_fit": 0.0,
+      "n_model": 1.457,
+      "n_err": 0.0
+    },
+    {
+      "wavelength_nm": 656.3,
+      "n_ref": 1.4565,
+      "k_ref": 0.0,
+      "eta_target": 0.0,
+      "mu_fit": 6.975472871458096,
+      "rho_fit": 2.35,
+      "eta_fit": 0.0,
+      "n_model": 1.4565,
+      "n_err": 0.0
+    }
+  ]
+}
