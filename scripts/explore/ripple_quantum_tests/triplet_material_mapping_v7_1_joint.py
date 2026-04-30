@@ -25,6 +25,7 @@ class Cfg:
     distance_unit_to_m: float = 1e-6
     eta_min: float = 0.0
     eta_max: float = 1.0
+    eta_max_cap: float = 2.0
     eta_steps: int = 61
     mu_min: float = 0.2
     mu_max: float = 40.0
@@ -47,6 +48,12 @@ class Cfg:
     w_smooth_rho: float = 0.2
     w_smooth_eta: float = 1.0
     w_eta_floor: float = 0.6
+    w_eta_lowk_shape: float = 0.8
+    lowk_k_threshold: float = 1e-5
+    lowk_eta_base: float = 0.003
+    lowk_eta_span: float = 0.045
+    # material-specific eta upper bounds (v7.4: gaas widened to avoid hard saturation at 1.0)
+    eta_max_overrides: dict[str, float] | None = None
 
 
 def load_rows(path: Path, material: str) -> list[dict[str, float | str]]:
@@ -78,6 +85,56 @@ def eta_target(k_ref: float, wavelength_nm: float, cfg: Cfg) -> float:
     return 0.5 * alpha_i * cfg.distance_unit_to_m
 
 
+def percentile(values: list[float], q: float) -> float:
+    if not values:
+        return 0.0
+    ordered = sorted(values)
+    q_clip = min(max(q, 0.0), 1.0)
+    idx = q_clip * (len(ordered) - 1)
+    lo = int(math.floor(idx))
+    hi = int(math.ceil(idx))
+    if lo == hi:
+        return ordered[lo]
+    w = idx - lo
+    return ordered[lo] * (1.0 - w) + ordered[hi] * w
+
+
+def eta_max_for_material(rows: list[dict], cfg: Cfg) -> float:
+    material = str(rows[0]["material"]).strip().lower() if rows else ""
+    if cfg.eta_max_overrides and material in cfg.eta_max_overrides:
+        return min(max(float(cfg.eta_max_overrides[material]), cfg.eta_min), cfg.eta_max_cap)
+    targets = [eta_target(float(r["k_ref"]), float(r["wavelength_nm"]), cfg) for r in rows]
+    p90 = percentile(targets, 0.90)
+    auto_cap = max(cfg.eta_max, p90 * 1.20)
+    return min(max(auto_cap, cfg.eta_min), cfg.eta_max_cap)
+
+
+def eta_floor_weight_by_k(k_ref: float, cfg: Cfg) -> float:
+    # v7.4: piecewise floor penalty to keep low-k materials from collapsing to near-constant eta,
+    # while still forcing high-k materials to maintain physically reasonable absorption efficiency.
+    k = max(k_ref, 0.0)
+    if k <= 1e-5:
+        scale = 0.15
+    elif k <= 1e-4:
+        scale = 0.35
+    elif k <= 1e-3:
+        scale = 0.70
+    elif k <= 1e-2:
+        scale = 1.10
+    elif k <= 5e-2:
+        scale = 1.70
+    else:
+        scale = 2.40
+    return cfg.w_eta_floor * scale
+
+
+def lowk_shape_target(k_ref: float, k_min: float, k_max: float, cfg: Cfg) -> float:
+    if k_max <= k_min + 1e-18:
+        return cfg.lowk_eta_base
+    t = (max(k_ref, k_min) - k_min) / (k_max - k_min)
+    return cfg.lowk_eta_base + cfg.lowk_eta_span * min(max(t, 0.0), 1.0)
+
+
 def n_model(mu: float, rho: float, eta: float, x: float, k_ref: float, bias: float, cfg: Cfg) -> float:
     base = cfg.a0 + cfg.a1 * math.log1p(max(mu, 1e-12))
     curve = cfg.a2 * rho * (x * x)
@@ -91,11 +148,17 @@ def n_model(mu: float, rho: float, eta: float, x: float, k_ref: float, bias: flo
 def fit_one_material(rows: list[dict], cfg: Cfg) -> list[dict]:
     mu_grid = [cfg.mu_min + (cfg.mu_max - cfg.mu_min) * i / (cfg.mu_steps - 1) for i in range(cfg.mu_steps)]
     rho_grid = [cfg.rho_min + (cfg.rho_max - cfg.rho_min) * i / (cfg.rho_steps - 1) for i in range(cfg.rho_steps)]
-    eta_grid = [cfg.eta_min + (cfg.eta_max - cfg.eta_min) * i / (cfg.eta_steps - 1) for i in range(cfg.eta_steps)]
+    eta_max_material = eta_max_for_material(rows, cfg)
+    eta_grid = [cfg.eta_min + (eta_max_material - cfg.eta_min) * i / (cfg.eta_steps - 1) for i in range(cfg.eta_steps)]
+    k_values = [max(float(r["k_ref"]), 0.0) for r in rows]
+    k_nonzero = [k for k in k_values if k > 0.0]
+    is_lowk_material = bool(k_nonzero) and max(k_nonzero) <= cfg.lowk_k_threshold
+    lowk_min = min(k_nonzero) if k_nonzero else 0.0
+    lowk_max = max(k_nonzero) if k_nonzero else 0.0
 
     fit_rows = []
     for r in rows:
-        et = min(max(eta_target(float(r["k_ref"]), float(r["wavelength_nm"]), cfg), cfg.eta_min), cfg.eta_max)
+        et = min(max(eta_target(float(r["k_ref"]), float(r["wavelength_nm"]), cfg), cfg.eta_min), eta_max_material)
         fit_rows.append({**r, "eta_target": et, "mu_fit": 3.0, "rho_fit": 3.0, "eta_fit": et})
     material_bias = 0.0
 
@@ -111,10 +174,13 @@ def fit_one_material(rows: list[dict], cfg: Cfg) -> list[dict]:
                         nh = n_model(mu, rho, eta, float(r["x"]), float(r["k_ref"]), material_bias, cfg)
                         obj = cfg.w_n * (nh - float(r["n_ref"])) ** 2
                         obj += cfg.w_eta_target * (eta - float(r["eta_target"])) ** 2
+                        if is_lowk_material and float(r["k_ref"]) > 0.0:
+                            eta_shape = lowk_shape_target(float(r["k_ref"]), lowk_min, lowk_max, cfg)
+                            obj += cfg.w_eta_lowk_shape * (eta - eta_shape) ** 2
                         if float(r["k_ref"]) > 0:
                             eta_floor = max(0.02, min(0.25, 0.05 + 2.5 * float(r["k_ref"])))
                             if eta < eta_floor:
-                                obj += cfg.w_eta_floor * (eta_floor - eta) ** 2
+                                obj += eta_floor_weight_by_k(float(r["k_ref"]), cfg) * (eta_floor - eta) ** 2
                         if prev is not None:
                             obj += cfg.w_smooth_mu * (mu - float(prev["mu_fit"])) ** 2
                             obj += cfg.w_smooth_rho * (rho - float(prev["rho_fit"])) ** 2
@@ -150,7 +216,7 @@ def main() -> int:
     p.add_argument("--input", nargs="+", required=True, help="format: material=path.csv")
     p.add_argument("--out-dir", default="artifacts/ripple_triplet_material_mapping_v7_1_joint")
     a = p.parse_args()
-    cfg = Cfg()
+    cfg = Cfg(eta_max_overrides={"gaas": 2.0})
     all_rows: list[dict] = []
     mats_summary = []
     for item in a.input:
@@ -182,7 +248,7 @@ def main() -> int:
     (out / "TRIPLET_MATERIAL_MAPPING_V7_1_JOINT.json").write_text(
         json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8"
     )
-    lines = ["# Triplet Material Mapping v7.1 Joint", ""]
+    lines = ["# Triplet Material Mapping v7.4 Joint", ""]
     for m in mats_summary:
         lines.append(
             f"- {m['material']}: rows={m['rows']}, n_mae={m['n_mae']:.6e}, mu_mean={m['mu_mean']:.6f}, rho_mean={m['rho_mean']:.6f}, eta_mean={m['eta_mean']:.6f}"
