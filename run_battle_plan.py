@@ -13,8 +13,14 @@ import re
 import subprocess
 import sys
 import time
-import matplotlib.pyplot as plt
+from pathlib import Path
+
 import matplotlib.image as mpimg
+import matplotlib.pyplot as plt
+
+from repo_layout import find_script
+
+REPO_ROOT = Path(__file__).resolve().parent
 
 
 TARGETS = [
@@ -145,11 +151,32 @@ TARGETS = [
 
 def run_one(script_cfg):
     script = script_cfg["script"]
+    script_path = find_script(REPO_ROOT, script)
+    if not script_path.is_file():
+        dt = 0.0
+        return {
+            "script": script,
+            "ok": False,
+            "return_code": 2,
+            "elapsed_sec": dt,
+            "extracted": {},
+            "stdout_tail": "battle_plan: script not found -> %s" % script_path,
+        }
     t0 = time.time()
+    env = os.environ.copy()
+    env.setdefault("MPLBACKEND", "Agg")
+    # 与 run_with_mpl_compat 一致：子脚本需导入仓库根目录下 ce_engine_v2 等模块
+    _pp = str(REPO_ROOT)
+    if env.get("PYTHONPATH"):
+        env["PYTHONPATH"] = _pp + os.pathsep + env["PYTHONPATH"]
+    else:
+        env["PYTHONPATH"] = _pp
     p = subprocess.run(
-        [sys.executable, script],
+        [sys.executable, str(script_path)],
+        cwd=str(REPO_ROOT),
         stdout=subprocess.PIPE,
         stderr=subprocess.STDOUT,
+        env=env,
     )
     dt = time.time() - t0
     raw = p.stdout or b""
@@ -213,12 +240,22 @@ def run_one(script_cfg):
 
 
 def _safe_read_image(path):
-    if not os.path.isfile(path):
-        return None
-    try:
-        return mpimg.imread(path)
-    except Exception:
-        return None
+    """PNG 默认在仓库根（cwd）；否则尝试根目录与 scripts/explore/。"""
+    p = Path(path)
+    candidates = []
+    if p.is_absolute():
+        candidates.append(p)
+    else:
+        candidates.append(Path.cwd() / p)
+        candidates.append(REPO_ROOT / p.name)
+        candidates.append(REPO_ROOT / "scripts" / "explore" / p.name)
+    for c in candidates:
+        if c.is_file():
+            try:
+                return mpimg.imread(str(c))
+            except Exception:
+                return None
+    return None
 
 
 def build_dashboard(results, out_png):

@@ -1,0 +1,100 @@
+{
+  "generated_at_utc": "2026-05-01T13:49:20.221161+00:00",
+  "input_csv": "artifacts\\ripple_triplet_material_mapping_v7_1_joint\\extreme_pack_v3_20260501\\TRIPLET_MATERIAL_MAPPING_V7_1_JOINT.csv",
+  "global": {
+    "rows": 59,
+    "pearson_eta_vs_k": 0.3607916354685842
+  },
+  "materials": [
+    {
+      "material": "air",
+      "rows": 3,
+      "k_nonzero_rows": 0,
+      "pearson_eta_vs_k": 0.0,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.0,
+      "eta_max": 0.0
+    },
+    {
+      "material": "gaas",
+      "rows": 8,
+      "k_nonzero_rows": 8,
+      "pearson_eta_vs_k": 0.906382835240568,
+      "eta_monotonic_by_k": true,
+      "eta_min": 1.4666666984558105,
+      "eta_max": 1.6333333253860474
+    },
+    {
+      "material": "highnlowk",
+      "rows": 7,
+      "k_nonzero_rows": 7,
+      "pearson_eta_vs_k": 0.9773141166920585,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.05000000447034836,
+      "eta_max": 0.15000000596046448
+    },
+    {
+      "material": "kdemo",
+      "rows": 5,
+      "k_nonzero_rows": 5,
+      "pearson_eta_vs_k": 0.8578969184979102,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.01666666753590107,
+      "eta_max": 0.03333333507180214
+    },
+    {
+      "material": "metalx",
+      "rows": 7,
+      "k_nonzero_rows": 7,
+      "pearson_eta_vs_k": -0.992822934421734,
+      "eta_monotonic_by_k": false,
+      "eta_min": 0.46666666865348816,
+      "eta_max": 1.3533333539962769
+    },
+    {
+      "material": "midkcurve",
+      "rows": 7,
+      "k_nonzero_rows": 7,
+      "pearson_eta_vs_k": 0.9289110139835971,
+      "eta_monotonic_by_k": true,
+      "eta_min": 1.1333332061767578,
+      "eta_max": 1.2999999523162842
+    },
+    {
+      "material": "si",
+      "rows": 5,
+      "k_nonzero_rows": 5,
+      "pearson_eta_vs_k": 0.9157361862830719,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.7539822459220886,
+      "eta_max": 1.568282961845398
+    },
+    {
+      "material": "sio2",
+      "rows": 7,
+      "k_nonzero_rows": 0,
+      "pearson_eta_vs_k": 0.0,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.0,
+      "eta_max": 0.0
+    },
+    {
+      "material": "ultralowk",
+      "rows": 7,
+      "k_nonzero_rows": 7,
+      "pearson_eta_vs_k": 0.0,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.0,
+      "eta_max": 0.03333333507180214
+    },
+    {
+      "material": "water",
+      "rows": 3,
+      "k_nonzero_rows": 0,
+      "pearson_eta_vs_k": 0.0,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.0,
+      "eta_max": 0.0
+    }
+  ]
+}

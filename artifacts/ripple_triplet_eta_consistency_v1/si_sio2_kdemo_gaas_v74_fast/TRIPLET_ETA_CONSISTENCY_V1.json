@@ -1,0 +1,46 @@
+{
+  "generated_at_utc": "2026-04-30T14:02:48.256202+00:00",
+  "input_csv": "artifacts/ripple_triplet_material_mapping_v7_1_joint/si_sio2_kdemo_gaas_v74_fast/TRIPLET_MATERIAL_MAPPING_V7_1_JOINT.csv",
+  "global": {
+    "rows": 25,
+    "pearson_eta_vs_k": 0.5693855819202164
+  },
+  "materials": [
+    {
+      "material": "gaas",
+      "rows": 8,
+      "k_nonzero_rows": 8,
+      "pearson_eta_vs_k": 0.8937142136972139,
+      "eta_monotonic_by_k": false,
+      "eta_min": 1.4396049158811057,
+      "eta_max": 1.6220238532643798
+    },
+    {
+      "material": "kdemo",
+      "rows": 5,
+      "k_nonzero_rows": 5,
+      "pearson_eta_vs_k": 0.9920178234448136,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.005513067622708337,
+      "eta_max": 0.028356564820084133
+    },
+    {
+      "material": "si",
+      "rows": 5,
+      "k_nonzero_rows": 5,
+      "pearson_eta_vs_k": 0.9211296657584632,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.8535710797372278,
+      "eta_max": 1.8026714132251516
+    },
+    {
+      "material": "sio2",
+      "rows": 7,
+      "k_nonzero_rows": 0,
+      "pearson_eta_vs_k": 0.0,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.0,
+      "eta_max": 0.0
+    }
+  ]
+}

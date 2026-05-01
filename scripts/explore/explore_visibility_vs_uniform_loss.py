@@ -9,16 +9,32 @@ explore_visibility_vs_uniform_loss.py
 V **不变**。因此必须同时看「屏列总强度」或加「非均匀/随机」扰动才有区分度。
 
 运行: python explore_visibility_vs_uniform_loss.py
-输出: explore_visibility_loss_compare.png
+输出: explore_visibility_loss_compare.png（仓库根目录，与其它 explore_CHSH 脚本一致）
 """
-import os
 import sys
+from pathlib import Path
 
 import numpy as np
 import matplotlib.pyplot as plt
 
-sys.path.insert(0, os.path.dirname(__file__))
+_REPO_ROOT = Path(__file__).resolve().parents[2]
+# ce_engine_v2 在仓库根；直接运行本文件时需保证根目录在 path 上
+if str(_REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(_REPO_ROOT))
 from ce_engine_v2 import propagate_double_slit, compute_visibility
+
+
+def _finite_for_plot_vis(v: np.ndarray) -> np.ndarray:
+    """避免 inf/NaN 进入 matplotlib 轴刻度导致 OverflowError。"""
+    a = np.asarray(v, dtype=np.float64)
+    a = np.nan_to_num(a, nan=0.0, posinf=1.0, neginf=0.0)
+    return np.clip(a, 0.0, 1.5)
+
+
+def _finite_for_plot_intensity(i: np.ndarray, lo: float = 1e-300, hi: float = 1e300) -> np.ndarray:
+    a = np.asarray(i, dtype=np.float64)
+    a = np.nan_to_num(a, nan=lo, posinf=hi, neginf=lo)
+    return np.clip(a, lo, hi)
 
 HEIGHT = 301
 WIDTH = 800
@@ -80,24 +96,35 @@ def main():
     )
     print("=" * 60)
 
+    v0p = _finite_for_plot_vis(v0)
+    v1p = _finite_for_plot_vis(v1)
+    i0p = _finite_for_plot_intensity(i0)
+    i1p = _finite_for_plot_intensity(i1)
+
     fig, ax = plt.subplots(1, 2, figsize=(11, 4))
-    ax[0].plot(dist, v0, "b-o", lw=2, label="CE only")
-    ax[0].plot(dist, v1, "r--s", lw=2, label=f"CE + uniform η={ETA}/step")
+    ax[0].plot(dist, v0p, "b-o", lw=2, label="CE only")
+    ax[0].plot(dist, v1p, "r--s", lw=2, label=f"CE + uniform η={ETA}/step")
     ax[0].set_xlabel("distance from barrier (px)")
     ax[0].set_ylabel("visibility V")
     ax[0].set_title("V (scale-invariant to global factor)")
     ax[0].grid(alpha=0.3)
     ax[0].legend()
 
-    ax[1].semilogy(dist, i0 + 1e-20, "b-o", lw=2, label="CE only")
-    ax[1].semilogy(dist, i1 + 1e-20, "r--s", lw=2, label=f"+ uniform η")
+    # 用 log10 线性轴代替 semilogy，避免极大动态范围下 LogLocator 溢出
+    log_i0 = np.log10(np.maximum(i0p, 1e-300))
+    log_i1 = np.log10(np.maximum(i1p, 1e-300))
+    ax[1].plot(dist, log_i0, "b-o", lw=2, label="CE only")
+    ax[1].plot(dist, log_i1, "r--s", lw=2, label=f"+ uniform η")
     ax[1].set_xlabel("distance from barrier (px)")
-    ax[1].set_ylabel("sum(screen column)")
+    ax[1].set_ylabel("log10(sum screen column)")
     ax[1].set_title("Total intensity at screen (should differ)")
     ax[1].grid(alpha=0.3)
     ax[1].legend()
-    plt.tight_layout()
-    out = os.path.join(os.path.dirname(__file__), "explore_visibility_loss_compare.png")
+    try:
+        plt.tight_layout()
+    except Exception:
+        plt.subplots_adjust(left=0.08, right=0.98, top=0.92, bottom=0.12, wspace=0.25)
+    out = str(_REPO_ROOT / "explore_visibility_loss_compare.png")
     plt.savefig(out, dpi=140)
     print(f"Saved: {out}")
 

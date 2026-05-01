@@ -1,13 +1,13 @@
 {
-  "started_at": "2026-03-30 23:43:04",
-  "python": "3.6.5",
+  "started_at": "2026-05-01 22:06:05",
+  "python": "3.10.11",
   "all_ok": true,
   "results": [
     {
       "script": "explore_chsh_strict_protocol.py",
       "ok": true,
       "return_code": 0,
-      "elapsed_sec": 1.053,
+      "elapsed_sec": 0.942,
       "extracted": {
         "chsh_strict_S": 2.00127
       },
@@ -17,7 +17,7 @@
       "script": "explore_directional_emission.py",
       "ok": true,
       "return_code": 0,
-      "elapsed_sec": 2.784,
+      "elapsed_sec": 2.716,
       "extracted": {},
       "stdout_tail": "Directional emission comparison complete.\nnear-isotropic weights: A=0.42, S=0.3, B=0.28\ndirectional   weights: A=1.0, S=0.16, B=0.01\nenergy partitions [forward, side, backward]:\n  near-isotropic = [0.5406, 0.3736, 0.0858]\n  directional    = [1.0, 0.0, 0.0]\nsaved: directional_emission_comparison.png"
     },
@@ -25,7 +25,7 @@
       "script": "explore_directional_double_slit_compare.py",
       "ok": true,
       "return_code": 0,
-      "elapsed_sec": 3.593,
+      "elapsed_sec": 3.648,
       "extracted": {
         "V_near_isotropic": 0.4421,
         "V_directional": 0.7788
@@ -36,15 +36,15 @@
       "script": "explore_quantum_eraser_delayed_choice.py",
       "ok": true,
       "return_code": 0,
-      "elapsed_sec": 3.186,
+      "elapsed_sec": 3.105,
       "extracted": {},
-      "stdout_tail": "=== quantum eraser / delayed-choice toy (hard metric) ===\ninterference cross-term ratio = RMS(interf)/RMS(I_both) = 0.000004\n(I_plus - I_minus) RMS normalized = 0.000008\neraser marginal RMSE vs which-way marginal = 4.345e-17\nV(which-way marginal) = 0.0000\nV(coherent both)      = 1.0000\nV(eraser plus)       = 1.0000\nV(eraser minus)      = 1.0000\nV(eraser marginal)   = 0.0000\nInterpretation: look at interference cross-term metric, not just V.\nsaved: quantum_eraser_delayed_choice.png"
+      "stdout_tail": "=== quantum eraser / delayed-choice toy (hard metric) ===\ninterference cross-term ratio = RMS(interf)/RMS(I_both) = 0.000004\n(I_plus - I_minus) RMS normalized = 0.000008\neraser marginal RMSE vs which-way marginal = 5.669e-17\nV(which-way marginal) = 1.0000\nV(coherent both)      = 1.0000\nV(eraser plus)       = 1.0000\nV(eraser minus)      = 1.0000\nV(eraser marginal)   = 1.0000\nInterpretation: look at interference cross-term metric, not just V.\nsaved: quantum_eraser_delayed_choice.png"
     },
     {
       "script": "explore_bell_chsh_two_tracks.py",
       "ok": true,
       "return_code": 0,
-      "elapsed_sec": 1.809,
+      "elapsed_sec": 1.318,
       "extracted": {
         "S_strict": 0.4968,
         "S_wave_like": 2.8284
@@ -55,7 +55,7 @@
       "script": "explore_directionality_phase_diagram.py",
       "ok": true,
       "return_code": 0,
-      "elapsed_sec": 10.515,
+      "elapsed_sec": 6.031,
       "extracted": {
         "corr_V_logD": 0.5486,
         "fit_rmse": 0.0883
@@ -66,7 +66,7 @@
       "script": "explore_chsh_strict_vs_postselected_compare.py",
       "ok": true,
       "return_code": 0,
-      "elapsed_sec": 3.023,
+      "elapsed_sec": 3.774,
       "extracted": {},
       "stdout_tail": "CHSH strict-vs-postselected compare complete.\nstrict S range: [1.9702, 2.0087]\npostselected max S: 3.0000\nsaved: chsh_strict_vs_postselected.png"
     },
@@ -74,7 +74,7 @@
       "script": "explore_chsh_closure_protocol.py",
       "ok": true,
       "return_code": 0,
-      "elapsed_sec": 2.696,
+      "elapsed_sec": 2.309,
       "extracted": {
         "closure_strict_max_S": 1.81026,
         "closure_post_max_S": 2.02391,
@@ -86,7 +86,7 @@
       "script": "explore_chsh_local_wave_closure_full.py",
       "ok": true,
       "return_code": 0,
-      "elapsed_sec": 8.446,
+      "elapsed_sec": 5.177,
       "extracted": {
         "full_scan_strict_max_S": 1.67871,
         "full_scan_post_max_S": 2.66667,
@@ -98,7 +98,7 @@
       "script": "explore_threshold_detector_clicks.py",
       "ok": true,
       "return_code": 0,
-      "elapsed_sec": 3.386,
+      "elapsed_sec": 3.035,
       "extracted": {
         "threshold_hit_rate": 1.0,
         "threshold_pearson_r": 0.9227

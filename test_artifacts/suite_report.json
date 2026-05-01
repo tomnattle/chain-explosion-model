@@ -1,29 +1,142 @@
 {
-  "generated_at": "2026-03-30T22:53:42",
-  "python": "3.6.5",
-  "platform": "Windows-10-10.0.26100-SP0",
+  "generated_at": "2026-05-01T22:07:09",
+  "python": "3.10.11",
+  "platform": "Windows-10-10.0.26200-SP0",
   "suite_pass": true,
-  "elapsed_s": 22.645,
+  "elapsed_s": 22.701,
   "groups_ran": [
-    "research"
+    "explore"
   ],
   "relaxed": false,
   "rows": [
     {
-      "purpose_zh": "（未在 DOSSIER_BASE 注册）自动档案：请补全 experiment_dossier.DOSSIER_BASE。",
-      "code_principle_zh": "见脚本正文。",
+      "purpose_zh": "与格点无关：检验代码中使用的洛伦兹速度合成公式数值自洽。",
+      "code_principle_zh": "一元函数 add / inv_boost_velocity 浮点误差界内检查。",
       "assumptions_zh": [
-        "未逐项列出"
+        "一维同向；c=1",
+        "不与离散光锥因果混淆"
       ],
-      "script": "run_battle_plan.py",
-      "group": "research",
-      "title": "战斗路线聚合回归",
-      "expect_png": "battle_plan_dashboard.png",
+      "script": "explore_lorentz_selfcheck.py",
+      "group": "explore",
+      "title": "探索 洛伦兹代数自检",
+      "expect_png": "explore_lorentz_selfcheck.png",
       "status": "PASS",
-      "reason": "battle plan PASS（results=5；PNG OK(size=257997B, std=0.1825)）",
-      "elapsed_s": 22.511,
-      "stdout_tail": "[PASS] explore_directional_emission.py (2.595s)\n[PASS] explore_directional_double_slit_compare.py (3.499s)\n  metrics: {'V_near_isotropic': 0.4421, 'V_directional': 0.7788}\n[PASS] explore_quantum_eraser_delayed_choice.py (2.961s)\n[PASS] explore_bell_chsh_two_tracks.py (1.571s)\n  metrics: {'S_strict': 0.4968, 'S_wave_like': 2.8284}\n[PASS] explore_directionality_phase_diagram.py (10.119s)\n  metrics: {'corr_V_logD': 0.5486, 'fit_rmse': 0.0883}\n\nBattle plan run complete.\noverall: PASS\nsummary: test_artifacts\\battle_plan_summary.json\ndashboard: battle_plan_dashboard.png",
-      "archived_figure": "test_artifacts/figures/research__run_battle_plan.png"
+      "reason": "PNG OK(size=20294B, std=0.3090)；commute=0.000e+00, assoc=0.000e+00, v'=1.000000000",
+      "elapsed_s": 0.852,
+      "stdout_tail": "  \"artifacts_produced\": [\n    \"explore_lorentz_selfcheck.png\"\n  ],\n  \"observed_outcome\": {\n    \"commute_error_abs_a_plus_b_minus_b_plus_a\": 0.0,\n    \"associativity_error_abs\": 0.0,\n    \"w_from_add_vc_plus_02c\": 0.993322203672788,\n    \"v_prime_from_inv_boost_c_at_V_half_c\": 1.0,\n    \"verdict_pass\": true\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"\\u672c\\u68c0\\u9a8c\\u4ec5\\u8986\\u76d6\\u4e00\\u7ef4\\u540c\\u5411\\u5408\\u6210\\uff1b\\u53cd\\u5bf9\\u79f0\\u6216\\u591a\\u7ef4\\u5408\\u6210\\u672a\\u6d4b\\uff0c\\u9057\\u6f0f\\u662f\\u5426\\u4f1a\\u63a9\\u76d6 bug\\uff1f\",\n    \"\\u4e0a\\u8ff0 constants \\u662f\\u5426\\u4e0e\\u7269\\u7406\\u6587\\u732e\\u6807\\u51c6\\u7b26\\u53f7\\u4e00\\u4e00\\u5bf9\\u5e94\\uff1f\\u82e5\\u4e0d\\u5bf9\\u5e94\\uff0c\\u6df7\\u6dc6\\u70b9\\u5728\\u54ea\\u91cc\\uff1f\",\n    \"observed \\u4e2d\\u7684\\u91cf\\u662f\\u5426\\u5bf9\\u7f51\\u683c\\u5206\\u8fa8\\u7387/\\u8fb9\\u754c\\u6761\\u4ef6\\u654f\\u611f\\uff1f\\u80fd\\u5426\\u505a\\u4e00\\u4e2a\\u7c97\\u6536\\u655b\\u6027\\u5b9e\\u9a8c\\uff1f\",\n    \"assumptions \\u4e2d\\u54ea\\u4e00\\u6761\\u82e5\\u8fdd\\u80cc\\u540e\\u4f1a\\u63a8\\u7ffb\\u7ed3\\u8bba\\uff1f\",\n    \"engine \\u8c03\\u7528\\u94fe\\u662f\\u5426\\u53ef\\u80fd\\u5728\\u67d0\\u6b21\\u91cd\\u6784\\u4e2d\\u88ab\\u6084\\u6084\\u66ff\\u6362\\uff1f\\u5982\\u4f55\\u51bb\\u7ed3\\u56de\\u5f52\\uff1f\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========\nVERDICT: PASS (lorentz_algebra)",
+      "archived_figure": "test_artifacts/figures/explore__explore_lorentz_selfcheck.png"
+    },
+    {
+      "purpose_zh": "区分「几何导致的 V 变化」与「每步全局标度 loss」：V 应对后者近似不变，总强度应下降。",
+      "code_principle_zh": "ce_engine_v2 propagate；可选每步 grid*= (1-η)。",
+      "assumptions_zh": [
+        "η 常数；无空间关联噪声"
+      ],
+      "script": "explore_visibility_vs_uniform_loss.py",
+      "group": "explore",
+      "title": "探索 均匀损耗 vs V",
+      "expect_png": "explore_visibility_loss_compare.png",
+      "status": "PASS",
+      "reason": "PNG OK(size=86975B, std=0.1622)；强度比=0.0027（V 对全局标度不变是预期）",
+      "elapsed_s": 9.042,
+      "stdout_tail": "    \"\\u591a\\u5c4f\\u8ddd\",\n    \"\\u6709/\\u65e0 loss \\u53cc\\u8f68\",\n    \"\\u5bf9\\u6bd4 V \\u4e0e sum I\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_visibility_loss_compare.png\"\n  ],\n  \"observed_outcome\": {\n    \"V_baseline_last\": 0.0,\n    \"V_with_loss_last\": 0.0,\n    \"median_intensity_ratio_loss_over_base\": 0.002729474449961265\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"\\u4e0a\\u8ff0 constants \\u662f\\u5426\\u4e0e\\u7269\\u7406\\u6587\\u732e\\u6807\\u51c6\\u7b26\\u53f7\\u4e00\\u4e00\\u5bf9\\u5e94\\uff1f\\u82e5\\u4e0d\\u5bf9\\u5e94\\uff0c\\u6df7\\u6dc6\\u70b9\\u5728\\u54ea\\u91cc\\uff1f\",\n    \"observed \\u4e2d\\u7684\\u91cf\\u662f\\u5426\\u5bf9\\u7f51\\u683c\\u5206\\u8fa8\\u7387/\\u8fb9\\u754c\\u6761\\u4ef6\\u654f\\u611f\\uff1f\\u80fd\\u5426\\u505a\\u4e00\\u4e2a\\u7c97\\u6536\\u655b\\u6027\\u5b9e\\u9a8c\\uff1f\",\n    \"assumptions \\u4e2d\\u54ea\\u4e00\\u6761\\u82e5\\u8fdd\\u80cc\\u540e\\u4f1a\\u63a8\\u7ffb\\u7ed3\\u8bba\\uff1f\",\n    \"engine \\u8c03\\u7528\\u94fe\\u662f\\u5426\\u53ef\\u80fd\\u5728\\u67d0\\u6b21\\u91cd\\u6784\\u4e2d\\u88ab\\u6084\\u6084\\u66ff\\u6362\\uff1f\\u5982\\u4f55\\u51bb\\u7ed3\\u56de\\u5f52\\uff1f\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
+      "archived_figure": "test_artifacts/figures/explore__explore_visibility_vs_uniform_loss.png"
+    },
+    {
+      "purpose_zh": "审计 sum(E) 逐步是否增长（未全局归一核的常见行为）。",
+      "code_principle_zh": "每步 propagate_double_slit 后记录 sum。",
+      "assumptions_zh": [
+        "总和非概率守恒量；与 |ψ|² 守恒不是同一对象"
+      ],
+      "script": "explore_energy_budget.py",
+      "group": "explore",
+      "title": "探索 能量预算 sum(E)",
+      "expect_png": "explore_energy_budget.png",
+      "status": "PASS",
+      "reason": "PNG OK(size=53545B, std=0.1381)；步间中位比=2.0695>1",
+      "elapsed_s": 2.176,
+      "stdout_tail": "    \"\\u53cc\\u7f1d\\u8bbe\\u7f6e\",\n    \"MAX_STEPS \\u5faa\\u73af\",\n    \"\\u753b\\u56fe\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_energy_budget.png\"\n  ],\n  \"observed_outcome\": {\n    \"final_total_E\": 7.74801479487724e+127,\n    \"ratio_final_over_initial\": 7.74801479487724e+124,\n    \"median_stepwise_factor\": 2.0695352638329454\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"\\u4e0a\\u8ff0 constants \\u662f\\u5426\\u4e0e\\u7269\\u7406\\u6587\\u732e\\u6807\\u51c6\\u7b26\\u53f7\\u4e00\\u4e00\\u5bf9\\u5e94\\uff1f\\u82e5\\u4e0d\\u5bf9\\u5e94\\uff0c\\u6df7\\u6dc6\\u70b9\\u5728\\u54ea\\u91cc\\uff1f\",\n    \"observed \\u4e2d\\u7684\\u91cf\\u662f\\u5426\\u5bf9\\u7f51\\u683c\\u5206\\u8fa8\\u7387/\\u8fb9\\u754c\\u6761\\u4ef6\\u654f\\u611f\\uff1f\\u80fd\\u5426\\u505a\\u4e00\\u4e2a\\u7c97\\u6536\\u655b\\u6027\\u5b9e\\u9a8c\\uff1f\",\n    \"assumptions \\u4e2d\\u54ea\\u4e00\\u6761\\u82e5\\u8fdd\\u80cc\\u540e\\u4f1a\\u63a8\\u7ffb\\u7ed3\\u8bba\\uff1f\",\n    \"engine \\u8c03\\u7528\\u94fe\\u662f\\u5426\\u53ef\\u80fd\\u5728\\u67d0\\u6b21\\u91cd\\u6784\\u4e2d\\u88ab\\u6084\\u6084\\u66ff\\u6362\\uff1f\\u5982\\u4f55\\u51bb\\u7ed3\\u56de\\u5f52\\uff1f\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
+      "archived_figure": "test_artifacts/figures/explore__explore_energy_budget.png"
+    },
+    {
+      "purpose_zh": "无障碍点源：最右激活列速度是否约为 1 格/步（离散光锥隐喻）。",
+      "code_principle_zh": "每步 1 次 propagate；找 max x where E>thresh。",
+      "assumptions_zh": [
+        "THRESH 选取影响前缘检测"
+      ],
+      "script": "explore_causal_front.py",
+      "group": "explore",
+      "title": "探索 因果前缘 2D",
+      "expect_png": "explore_causal_front.png",
+      "status": "PASS",
+      "reason": "PNG OK(size=38609B, std=0.1338)；dx/dt 中位数=1.0000",
+      "elapsed_s": 1.968,
+      "stdout_tail": "    \"\\u70b9\\u6e90\",\n    \"\\u9010\\u6b65\\u63a8\\u8fdb\",\n    \"\\u8bb0\\u5f55 front \\u5e8f\\u5217\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_causal_front.png\"\n  ],\n  \"observed_outcome\": {\n    \"median_dx_dt_cells_per_step\": 1.0,\n    \"x_right_first\": 8.0,\n    \"x_right_last\": 128.0\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"\\u4e0a\\u8ff0 constants \\u662f\\u5426\\u4e0e\\u7269\\u7406\\u6587\\u732e\\u6807\\u51c6\\u7b26\\u53f7\\u4e00\\u4e00\\u5bf9\\u5e94\\uff1f\\u82e5\\u4e0d\\u5bf9\\u5e94\\uff0c\\u6df7\\u6dc6\\u70b9\\u5728\\u54ea\\u91cc\\uff1f\",\n    \"observed \\u4e2d\\u7684\\u91cf\\u662f\\u5426\\u5bf9\\u7f51\\u683c\\u5206\\u8fa8\\u7387/\\u8fb9\\u754c\\u6761\\u4ef6\\u654f\\u611f\\uff1f\\u80fd\\u5426\\u505a\\u4e00\\u4e2a\\u7c97\\u6536\\u655b\\u6027\\u5b9e\\u9a8c\\uff1f\",\n    \"assumptions \\u4e2d\\u54ea\\u4e00\\u6761\\u82e5\\u8fdd\\u80cc\\u540e\\u4f1a\\u63a8\\u7ffb\\u7ed3\\u8bba\\uff1f\",\n    \"engine \\u8c03\\u7528\\u94fe\\u662f\\u5426\\u53ef\\u80fd\\u5728\\u67d0\\u6b21\\u91cd\\u6784\\u4e2d\\u88ab\\u6084\\u6084\\u66ff\\u6362\\uff1f\\u5982\\u4f55\\u51bb\\u7ed3\\u56de\\u5f52\\uff1f\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
+      "archived_figure": "test_artifacts/figures/explore__explore_causal_front.png"
+    },
+    {
+      "purpose_zh": "扫缝距 d，测屏上主条纹间隔 Δy；log-log 斜率与远场 1/d 类比对照。",
+      "code_principle_zh": "每 d 双缝几何重配，传播，峰值/FFT 估周期。",
+      "assumptions_zh": [
+        "近场/离散使斜率不必为 -1"
+      ],
+      "script": "explore_fringe_spacing_vs_slit.py",
+      "group": "explore",
+      "title": "探索 条纹间隔 vs 缝距",
+      "expect_png": "explore_fringe_spacing.png",
+      "status": "PASS",
+      "reason": "斜率=0.762 与远场 Δy∝1/d（期望约 -1）偏离大；可能是离散/近场/有效波长定义，非 runner 硬失败条件",
+      "elapsed_s": 3.563,
+      "stdout_tail": "      0.9082326879954662,\n      0.9640926111409936\n    ],\n    \"spacing_per_d\": [\n      100.33333333333334,\n      50.16666666666667,\n      60.199999999999996,\n      60.199999999999996,\n      75.25,\n      75.25\n    ]\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"\\u4e0a\\u8ff0 constants \\u662f\\u5426\\u4e0e\\u7269\\u7406\\u6587\\u732e\\u6807\\u51c6\\u7b26\\u53f7\\u4e00\\u4e00\\u5bf9\\u5e94\\uff1f\\u82e5\\u4e0d\\u5bf9\\u5e94\\uff0c\\u6df7\\u6dc6\\u70b9\\u5728\\u54ea\\u91cc\\uff1f\",\n    \"observed \\u4e2d\\u7684\\u91cf\\u662f\\u5426\\u5bf9\\u7f51\\u683c\\u5206\\u8fa8\\u7387/\\u8fb9\\u754c\\u6761\\u4ef6\\u654f\\u611f\\uff1f\\u80fd\\u5426\\u505a\\u4e00\\u4e2a\\u7c97\\u6536\\u655b\\u6027\\u5b9e\\u9a8c\\uff1f\",\n    \"assumptions \\u4e2d\\u54ea\\u4e00\\u6761\\u82e5\\u8fdd\\u80cc\\u540e\\u4f1a\\u63a8\\u7ffb\\u7ed3\\u8bba\\uff1f\",\n    \"engine \\u8c03\\u7528\\u94fe\\u662f\\u5426\\u53ef\\u80fd\\u5728\\u67d0\\u6b21\\u91cd\\u6784\\u4e2d\\u88ab\\u6084\\u6084\\u66ff\\u6362\\uff1f\\u5982\\u4f55\\u51bb\\u7ed3\\u56de\\u5f52\\uff1f\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
+      "archived_figure": "test_artifacts/figures/explore__explore_fringe_spacing_vs_slit.png"
+    },
+    {
+      "purpose_zh": "比较 L1 菱形前缘与轴向+前向因果比 R，落在仓库 GOLD 公差内。",
+      "code_principle_zh": "多方向推进测最远激活曼哈顿/轴向步。",
+      "assumptions_zh": [
+        "GOLD 随内核版本固化；变更核须改常量"
+      ],
+      "script": "explore_causal_cone_anisotropy.py",
+      "group": "explore",
+      "title": "质疑 因果锥各向异性",
+      "expect_png": "explore_causal_cone_anisotropy.png",
+      "status": "PASS",
+      "reason": "PNG OK(size=61214B, std=0.1235)；ratio=1.3333≈1.3333",
+      "elapsed_s": 2.0,
+      "stdout_tail": "    \"\\u4f20\\u64ad\",\n    \"\\u6bd4 R\",\n    \"savefig\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_causal_cone_anisotropy.png\"\n  ],\n  \"observed_outcome\": {\n    \"median_anisotropy_ratio_R_L1_over_Rplus\": 1.3333333333333333,\n    \"median_dRplus_dt\": 1.0,\n    \"median_dR_L1_dt\": 1.0\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"\\u4e0a\\u8ff0 constants \\u662f\\u5426\\u4e0e\\u7269\\u7406\\u6587\\u732e\\u6807\\u51c6\\u7b26\\u53f7\\u4e00\\u4e00\\u5bf9\\u5e94\\uff1f\\u82e5\\u4e0d\\u5bf9\\u5e94\\uff0c\\u6df7\\u6dc6\\u70b9\\u5728\\u54ea\\u91cc\\uff1f\",\n    \"observed \\u4e2d\\u7684\\u91cf\\u662f\\u5426\\u5bf9\\u7f51\\u683c\\u5206\\u8fa8\\u7387/\\u8fb9\\u754c\\u6761\\u4ef6\\u654f\\u611f\\uff1f\\u80fd\\u5426\\u505a\\u4e00\\u4e2a\\u7c97\\u6536\\u655b\\u6027\\u5b9e\\u9a8c\\uff1f\",\n    \"assumptions \\u4e2d\\u54ea\\u4e00\\u6761\\u82e5\\u8fdd\\u80cc\\u540e\\u4f1a\\u63a8\\u7ffb\\u7ed3\\u8bba\\uff1f\",\n    \"engine \\u8c03\\u7528\\u94fe\\u662f\\u5426\\u53ef\\u80fd\\u5728\\u67d0\\u6b21\\u91cd\\u6784\\u4e2d\\u88ab\\u6084\\u6084\\u66ff\\u6362\\uff1f\\u5982\\u4f55\\u51bb\\u7ed3\\u56de\\u5f52\\uff1f\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
+      "archived_figure": "test_artifacts/figures/explore__explore_causal_cone_anisotropy.png"
+    },
+    {
+      "purpose_zh": "公式层逆变 v' 是否给出 c（与格点光锥叙述分离）。",
+      "code_principle_zh": "显式洛伦兹逆变数值代入。",
+      "assumptions_zh": [
+        "与 relativity_final 格子演示互不替代"
+      ],
+      "script": "explore_relativity_light_speed_invariant.py",
+      "group": "explore",
+      "title": "质疑 公式层光速不变自检",
+      "expect_png": "explore_relativity_light_speed_invariant.png",
+      "status": "PASS",
+      "reason": "PNG OK(size=60384B, std=0.1422)；v'=1.000000000c",
+      "elapsed_s": 0.721,
+      "stdout_tail": "    \"\\u8ba1\\u7b97\",\n    \"\\u6253\\u5370\\u6807\\u8bb0\",\n    \"\\u7b80\\u5355\\u56fe\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_relativity_light_speed_invariant.png\"\n  ],\n  \"observed_outcome\": {\n    \"v_track_COM\": 0.9950000000000001,\n    \"v_transformed_printed\": 1.0,\n    \"formula_layer_ok\": true\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"\\u4e0a\\u8ff0 constants \\u662f\\u5426\\u4e0e\\u7269\\u7406\\u6587\\u732e\\u6807\\u51c6\\u7b26\\u53f7\\u4e00\\u4e00\\u5bf9\\u5e94\\uff1f\\u82e5\\u4e0d\\u5bf9\\u5e94\\uff0c\\u6df7\\u6dc6\\u70b9\\u5728\\u54ea\\u91cc\\uff1f\",\n    \"observed \\u4e2d\\u7684\\u91cf\\u662f\\u5426\\u5bf9\\u7f51\\u683c\\u5206\\u8fa8\\u7387/\\u8fb9\\u754c\\u6761\\u4ef6\\u654f\\u611f\\uff1f\\u80fd\\u5426\\u505a\\u4e00\\u4e2a\\u7c97\\u6536\\u655b\\u6027\\u5b9e\\u9a8c\\uff1f\",\n    \"assumptions \\u4e2d\\u54ea\\u4e00\\u6761\\u82e5\\u8fdd\\u80cc\\u540e\\u4f1a\\u63a8\\u7ffb\\u7ed3\\u8bba\\uff1f\",\n    \"engine \\u8c03\\u7528\\u94fe\\u662f\\u5426\\u53ef\\u80fd\\u5728\\u67d0\\u6b21\\u91cd\\u6784\\u4e2d\\u88ab\\u6084\\u6084\\u66ff\\u6362\\uff1f\\u5982\\u4f55\\u51bb\\u7ed3\\u56de\\u5f52\\uff1f\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
+      "archived_figure": "test_artifacts/figures/explore__explore_relativity_light_speed_invariant.png"
+    },
+    {
+      "purpose_zh": "对称双缝几何下屏分布镜像残差 asym 与相关系数落在回归带。",
+      "code_principle_zh": "双缝 + 屏列翻转对比 + 相关。",
+      "assumptions_zh": [
+        "离散核破坏完美对称；带宽为经验非物理证明"
+      ],
+      "script": "explore_double_slit_mirror_parity.py",
+      "group": "explore",
+      "title": "质疑 双缝镜像宇称残差",
+      "expect_png": "explore_double_slit_mirror_parity.png",
+      "status": "PASS",
+      "reason": "PNG OK(size=66338B, std=0.1269)；asym=0.3139, r_mirror=0.9158",
+      "elapsed_s": 2.158,
+      "stdout_tail": "  \"steps_executed_zh\": [\n    \"\\u8dd1\\u53cc\\u7f1d\",\n    \"\\u955c\\u50cf\\u6bd4\\u8f83\",\n    \"savefig\"\n  ],\n  \"artifacts_produced\": [\n    \"explore_double_slit_mirror_parity.png\"\n  ],\n  \"observed_outcome\": {\n    \"asym_L1\": 0.3138621114599421,\n    \"pearson_I_vs_mirror_I\": 0.9157686341737531\n  },\n  \"invited_critiques_for_ai_zh\": [\n    \"\\u4e0a\\u8ff0 constants \\u662f\\u5426\\u4e0e\\u7269\\u7406\\u6587\\u732e\\u6807\\u51c6\\u7b26\\u53f7\\u4e00\\u4e00\\u5bf9\\u5e94\\uff1f\\u82e5\\u4e0d\\u5bf9\\u5e94\\uff0c\\u6df7\\u6dc6\\u70b9\\u5728\\u54ea\\u91cc\\uff1f\",\n    \"observed \\u4e2d\\u7684\\u91cf\\u662f\\u5426\\u5bf9\\u7f51\\u683c\\u5206\\u8fa8\\u7387/\\u8fb9\\u754c\\u6761\\u4ef6\\u654f\\u611f\\uff1f\\u80fd\\u5426\\u505a\\u4e00\\u4e2a\\u7c97\\u6536\\u655b\\u6027\\u5b9e\\u9a8c\\uff1f\",\n    \"assumptions \\u4e2d\\u54ea\\u4e00\\u6761\\u82e5\\u8fdd\\u80cc\\u540e\\u4f1a\\u63a8\\u7ffb\\u7ed3\\u8bba\\uff1f\",\n    \"engine \\u8c03\\u7528\\u94fe\\u662f\\u5426\\u53ef\\u80fd\\u5728\\u67d0\\u6b21\\u91cd\\u6784\\u4e2d\\u88ab\\u6084\\u6084\\u66ff\\u6362\\uff1f\\u5982\\u4f55\\u51bb\\u7ed3\\u56de\\u5f52\\uff1f\"\n  ]\n}\n======== EXPERIMENT_DOSSIER_JSON_END ========",
+      "archived_figure": "test_artifacts/figures/explore__explore_double_slit_mirror_parity.png"
     }
   ]
 }

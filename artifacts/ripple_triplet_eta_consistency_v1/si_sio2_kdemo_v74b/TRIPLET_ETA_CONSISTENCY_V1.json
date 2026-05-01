@@ -1,0 +1,37 @@
+{
+  "generated_at_utc": "2026-04-30T13:46:57.133264+00:00",
+  "input_csv": "artifacts/ripple_triplet_material_mapping_v7_1_joint/si_sio2_kdemo_v74b/TRIPLET_MATERIAL_MAPPING_V7_1_JOINT.csv",
+  "global": {
+    "rows": 17,
+    "pearson_eta_vs_k": 0.786184177182159
+  },
+  "materials": [
+    {
+      "material": "kdemo",
+      "rows": 5,
+      "k_nonzero_rows": 5,
+      "pearson_eta_vs_k": 0.85789691849791,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.016666666666666666,
+      "eta_max": 0.03333333333333333
+    },
+    {
+      "material": "si",
+      "rows": 5,
+      "k_nonzero_rows": 5,
+      "pearson_eta_vs_k": 0.9215182992367517,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.8444601052849363,
+      "eta_max": 1.8095573684677206
+    },
+    {
+      "material": "sio2",
+      "rows": 7,
+      "k_nonzero_rows": 0,
+      "pearson_eta_vs_k": 0.0,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.0,
+      "eta_max": 0.0
+    }
+  ]
+}

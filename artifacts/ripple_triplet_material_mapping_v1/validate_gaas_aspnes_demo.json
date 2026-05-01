@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_gaas_aspnes_demo.csv",
+  "rows": 8,
+  "k_nonzero_rows": 8,
+  "issues": [],
+  "warnings": [],
+  "generated_at_utc": "2026-04-30T13:48:26.304536+00:00"
+}
