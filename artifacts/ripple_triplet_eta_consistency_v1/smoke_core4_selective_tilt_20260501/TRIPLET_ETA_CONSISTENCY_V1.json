@@ -1,0 +1,46 @@
+{
+  "generated_at_utc": "2026-05-01T15:02:18.995758+00:00",
+  "input_csv": "artifacts\\ripple_triplet_material_mapping_v7_1_joint\\smoke_core4_selective_tilt_20260501\\TRIPLET_MATERIAL_MAPPING_V7_1_JOINT.csv",
+  "global": {
+    "rows": 25,
+    "pearson_eta_vs_k": 0.7985802799973071
+  },
+  "materials": [
+    {
+      "material": "gaas",
+      "rows": 8,
+      "k_nonzero_rows": 8,
+      "pearson_eta_vs_k": 0.9288999280771992,
+      "eta_monotonic_by_k": true,
+      "eta_min": 1.375,
+      "eta_max": 2.3333332538604736
+    },
+    {
+      "material": "kdemo",
+      "rows": 5,
+      "k_nonzero_rows": 5,
+      "pearson_eta_vs_k": 0.7543522007990507,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.0,
+      "eta_max": 0.01666666753590107
+    },
+    {
+      "material": "si",
+      "rows": 5,
+      "k_nonzero_rows": 5,
+      "pearson_eta_vs_k": 0.9327774303955638,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.3015928864479065,
+      "eta_max": 1.1158936023712158
+    },
+    {
+      "material": "sio2",
+      "rows": 7,
+      "k_nonzero_rows": 0,
+      "pearson_eta_vs_k": 0.0,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.0,
+      "eta_max": 0.0
+    }
+  ]
+}

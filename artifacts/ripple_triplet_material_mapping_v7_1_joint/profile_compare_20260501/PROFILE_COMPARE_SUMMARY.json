@@ -1,0 +1,48 @@
+{
+  "generated_at_utc": "2026-05-01T15:27:34.836878+00:00",
+  "profiles": {
+    "robust": {
+      "map_out": "artifacts/ripple_triplet_material_mapping_v7_1_joint/profile_robust_20260501",
+      "eta_out": "artifacts/ripple_triplet_eta_consistency_v1/profile_robust_20260501",
+      "n_mae": {
+        "si": 0.03755950927734375,
+        "sio2": 0.0046143872397286555,
+        "kdemo": 0.003956127166748047,
+        "gaas": 0.03198423981666565,
+        "air": 0.000786284605662028,
+        "water": 0.00012179215749104817,
+        "metalx": 0.08700033596583776,
+        "ultralowk": 0.011370939867837089,
+        "highnlowk": 0.03623533248901367,
+        "midkcurve": 0.02608663695199149
+      },
+      "max_n_mae": 0.08700033596583776,
+      "global_eta_k_pearson": 0.7358254913281658,
+      "nonmono_materials": [],
+      "all_monotonic_k_positive": true
+    },
+    "si_priority": {
+      "map_out": "artifacts/ripple_triplet_material_mapping_v7_1_joint/profile_si_priority_20260501",
+      "eta_out": "artifacts/ripple_triplet_eta_consistency_v1/profile_si_priority_20260501",
+      "n_mae": {
+        "si": 0.07913680076599121,
+        "sio2": 0.004832114492143903,
+        "kdemo": 0.0057620048522949215,
+        "gaas": 0.1386350691318512,
+        "air": 0.000786284605662028,
+        "water": 0.00306093692779541,
+        "metalx": 0.08418047428131104,
+        "ultralowk": 0.008712240627833776,
+        "highnlowk": 0.10041788646153041,
+        "midkcurve": 0.09928887231009347
+      },
+      "max_n_mae": 0.1386350691318512,
+      "global_eta_k_pearson": 0.6965925255273079,
+      "nonmono_materials": [
+        "gaas",
+        "metalx"
+      ],
+      "all_monotonic_k_positive": false
+    }
+  }
+}

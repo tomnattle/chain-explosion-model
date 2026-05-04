@@ -1,0 +1,19 @@
+{
+  "generated_at_utc": "2026-05-01T14:48:53.062852+00:00",
+  "input_csv": "artifacts\\ripple_triplet_material_mapping_v7_1_joint\\highnlowk_tilt_probe_20260501\\TRIPLET_MATERIAL_MAPPING_V7_1_JOINT.csv",
+  "global": {
+    "rows": 7,
+    "pearson_eta_vs_k": 0.0
+  },
+  "materials": [
+    {
+      "material": "highnlowk",
+      "rows": 7,
+      "k_nonzero_rows": 7,
+      "pearson_eta_vs_k": 0.0,
+      "eta_monotonic_by_k": true,
+      "eta_min": 0.0650000050663948,
+      "eta_max": 0.0650000050663948
+    }
+  ]
+}

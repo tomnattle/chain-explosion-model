@@ -24,6 +24,38 @@ from pathlib import Path
 import torch
 
 
+def apply_profile(cfg: "Cfg", profile: str) -> "Cfg":
+    """
+    预设配置：
+    - robust: 优先极端样本与单调性门禁
+    - si_priority: 优先 core4 中 si 的 n_mae
+    """
+    if profile == "robust":
+        cfg.fit_iters = 12
+        cfg.w_eta_floor = 0.5
+        cfg.w_eta_target = 0.2
+        cfg.w_eta_target_lowk_boost = 1.0
+        cfg.w_eta_abs_very_lowk = 0.0
+        cfg.auto_select_tilt = True
+        cfg.force_bias_only_materials = ()
+        cfg.force_tilt_materials = ("metalx", "gaas", "highnlowk", "midkcurve")
+        cfg.eta_max_overrides = {"gaas": 2.5, "metalx": 2.8, "highnlowk": 3.9}
+        return cfg
+    if profile == "si_priority":
+        cfg.fit_iters = 12
+        cfg.w_eta_floor = 0.5
+        cfg.w_eta_target = 0.2
+        cfg.w_eta_target_lowk_boost = 1.0
+        cfg.w_eta_abs_very_lowk = 0.0
+        # 关闭强制 tilt，优先让 si 保持原始结构拟合
+        cfg.auto_select_tilt = False
+        cfg.force_bias_only_materials = ()
+        cfg.force_tilt_materials = ()
+        cfg.eta_max_overrides = {"gaas": 2.5, "metalx": 2.8, "highnlowk": 3.9}
+        return cfg
+    raise SystemExit(f"unknown --profile: {profile}")
+
+
 # ─── 配置 ─────────────────────────────────────────────────────────────────────
 
 @dataclass
@@ -51,12 +83,18 @@ class Cfg:
     # losses
     w_n: float = 1.0
     w_eta_target: float = 0.2
+    # 对低 k 材料增强 eta_target 约束（1.0 表示关闭增强）
+    w_eta_target_lowk_boost: float = 1.0
+    eta_target_lowk_threshold: float = 1e-3
+    # 超低 k 下对 eta 绝对值加软惩罚（0.0 表示关闭）
+    w_eta_abs_very_lowk: float = 0.0
+    eta_abs_very_lowk_threshold: float = 5e-4
     w_smooth_mu: float = 0.2
     w_smooth_rho: float = 0.2
     w_smooth_eta: float = 1.0
-    w_eta_floor: float = 0.6
+    w_eta_floor: float = 0.5
     # 外层迭代次数（每轮一次正向扫描 + bias 更新；见 --bidirectional）
-    fit_iters: int = 20
+    fit_iters: int = 12
     # 每轮是否在正扫后再做一次反扫（对 si/sio2/kdemo 往往有益，强色散 GaAs 类可能略损 n_mae）
     bidirectional: bool = False
     w_eta_lowk_shape: float = 1.0
@@ -64,6 +102,12 @@ class Cfg:
     lowk_eta_base: float = 0.003
     lowk_eta_span: float = 0.045
     eta_max_overrides: dict[str, float] | None = None
+    # 自动在 bias-only 与 bias+tilt*x 间择优（按材料内 n_mae）
+    auto_select_tilt: bool = True
+    # 对这些材料强制 bias-only（优先级最高，用于保护已表现稳定的材料）
+    force_bias_only_materials: tuple[str, ...] = ()
+    # 对这些材料始终启用 affine tilt（优先于 auto_select_tilt）
+    force_tilt_materials: tuple[str, ...] = ("metalx", "gaas", "highnlowk", "midkcurve")
 
     # ── GPU 专属 ──────────────────────────────────────────────────────────────
     # 同时处理多少个数据点（增大可提升 GPU 利用率，但会占更多显存）
@@ -161,7 +205,7 @@ def build_grid(cfg: Cfg, eta_max_material: float, device: torch.device) -> tuple
 
 
 def n_model_vec(mu: torch.Tensor, rho: torch.Tensor, eta: torch.Tensor,
-                x: torch.Tensor, k: torch.Tensor, bias: float, cfg: Cfg) -> torch.Tensor:
+                x: torch.Tensor, k: torch.Tensor, bias: float, tilt: float, cfg: Cfg) -> torch.Tensor:
     """
     向量化版 n_model。
     mu/rho/eta : (G,)   网格候选点
@@ -181,7 +225,8 @@ def n_model_vec(mu: torch.Tensor, rho: torch.Tensor, eta: torch.Tensor,
     eta_term = cfg.a4 * (eta_ - cfg.eta_ref)
     k_term   = cfg.a5 * torch.log1p(k_.clamp(min=0.0) * 300.0) * eta_
     k_pow    = cfg.a6 * (k_.clamp(min=0.0) ** 0.35) * (0.3 + eta_)
-    return base + curve + coupling + eta_term + k_term + k_pow + bias
+    tilt_term = tilt * x_
+    return base + curve + coupling + eta_term + k_term + k_pow + tilt_term + bias
 
 
 def objective_batch(
@@ -191,15 +236,18 @@ def objective_batch(
     prev_mu: torch.Tensor | None, prev_rho: torch.Tensor | None, prev_eta: torch.Tensor | None,
     next_mu: torch.Tensor | None, next_rho: torch.Tensor | None, next_eta: torch.Tensor | None,
     is_lowk: bool, lowk_min: float, lowk_max: float,
-    cfg: Cfg, bias: float,
+    cfg: Cfg, bias: float, tilt: float,
 ) -> torch.Tensor:
     """
     返回 (B, G) 目标函数值张量。
     """
-    n_hat = n_model_vec(mu_g, rho_g, eta_g, x_b, k_b, bias, cfg)  # (B, G)
+    n_hat = n_model_vec(mu_g, rho_g, eta_g, x_b, k_b, bias, tilt, cfg)  # (B, G)
 
     obj = cfg.w_n * (n_hat - n_ref_b.unsqueeze(1)) ** 2
-    obj = obj + cfg.w_eta_target * (eta_g.unsqueeze(0) - eta_target_b.unsqueeze(1)) ** 2
+    # 低 k 下增强 eta_target 约束，防止 eta 在弱吸收数据上退化为无信息常数
+    lowk_mask = (k_b <= cfg.eta_target_lowk_threshold).to(cfg.dtype)
+    w_eta_row = cfg.w_eta_target * (1.0 + lowk_mask * (cfg.w_eta_target_lowk_boost - 1.0))
+    obj = obj + w_eta_row.unsqueeze(1) * (eta_g.unsqueeze(0) - eta_target_b.unsqueeze(1)) ** 2
 
     # low-k shape
     if is_lowk:
@@ -219,6 +267,8 @@ def objective_batch(
             w_floor   = eta_floor_weight_by_k(k_val, cfg)
             below     = (eta_g < eta_floor).float()
             obj[bi]   = obj[bi] + w_floor * below * (eta_floor - eta_g) ** 2
+            if k_val <= cfg.eta_abs_very_lowk_threshold:
+                obj[bi] = obj[bi] + cfg.w_eta_abs_very_lowk * (eta_g ** 2)
 
     # 平滑项（利用已选出的前/后邻居，形状 (B,)）
     for prev_val, w, grid in [
@@ -256,6 +306,7 @@ def _sweep_update_points(
     lowk_max: float,
     cfg: Cfg,
     bias: float,
+    tilt: float,
     N: int,
 ) -> None:
     """对给定下标序列做一次 Gauss-Seidel 更新（就地写 mu/rho/eta_fit）。"""
@@ -286,6 +337,7 @@ def _sweep_update_points(
             lowk_max,
             cfg,
             bias,
+            tilt,
         )
         best_idx = obj[0].argmin()
         mu_fit_all[i] = mu_g[best_idx]
@@ -296,6 +348,7 @@ def _sweep_update_points(
 # ─── 每种材料的拟合主循环 ─────────────────────────────────────────────────────
 
 def fit_one_material(rows: list[dict], cfg: Cfg, device: torch.device) -> list[dict]:
+    material_name = str(rows[0]["material"]).strip().lower() if rows else ""
     eta_max_mat = eta_max_for_material(rows, cfg)
     mu_g, rho_g, eta_g = build_grid(cfg, eta_max_mat, device)
 
@@ -314,6 +367,7 @@ def fit_one_material(rows: list[dict], cfg: Cfg, device: torch.device) -> list[d
 
     N = len(fit_rows)
     material_bias = 0.0
+    material_tilt = 0.0
 
     # 把全部数据打包为张量（一次性传 GPU）
     x_all         = torch.tensor([float(r["x"])          for r in fit_rows], dtype=cfg.dtype, device=device)
@@ -343,6 +397,7 @@ def fit_one_material(rows: list[dict], cfg: Cfg, device: torch.device) -> list[d
             lowk_max,
             cfg,
             material_bias,
+            material_tilt,
             N,
         )
         if cfg.bidirectional:
@@ -363,14 +418,31 @@ def fit_one_material(rows: list[dict], cfg: Cfg, device: torch.device) -> list[d
                 lowk_max,
                 cfg,
                 material_bias,
+                material_tilt,
                 N,
             )
 
-        # 更新 n_model 及 material_bias（逐元素，与网格版公式一致）
-        n_model_all = _n_model_elementwise(mu_fit_all, rho_fit_all, eta_fit_all, x_all, k_all, material_bias, cfg)
+        # 更新 n_model 的材料级修正：在 bias-only 与 bias+tilt*x 间自动择优
+        n_base_all = _n_model_elementwise(mu_fit_all, rho_fit_all, eta_fit_all, x_all, k_all, cfg)
+        bias_only, tilt_zero = _solve_bias_only(n_ref_all, n_base_all)
+        n_bias_only = n_base_all + bias_only + tilt_zero * x_all
+        mae_bias_only = float((n_bias_only - n_ref_all).abs().mean().cpu())
 
-        material_bias = float((n_ref_all - n_model_all).mean().cpu())
-        n_model_all   = n_model_all + material_bias
+        aff_bias, aff_tilt = _solve_affine_correction(n_ref_all, n_base_all, x_all)
+        n_aff = n_base_all + aff_bias + aff_tilt * x_all
+        mae_aff = float((n_aff - n_ref_all).abs().mean().cpu())
+
+        force_bias_only = material_name in {m.strip().lower() for m in cfg.force_bias_only_materials}
+        force_tilt = material_name in {m.strip().lower() for m in cfg.force_tilt_materials}
+        if force_bias_only:
+            material_bias, material_tilt = bias_only, tilt_zero
+            n_model_all = n_bias_only
+        elif force_tilt or (cfg.auto_select_tilt and mae_aff <= mae_bias_only):
+            material_bias, material_tilt = aff_bias, aff_tilt
+            n_model_all = n_aff
+        else:
+            material_bias, material_tilt = bias_only, tilt_zero
+            n_model_all = n_bias_only
 
         n_err_all = n_model_all - n_ref_all
 
@@ -388,12 +460,19 @@ def fit_one_material(rows: list[dict], cfg: Cfg, device: torch.device) -> list[d
         r["n_model"]       = nm_cpu[i]
         r["n_err"]         = ne_cpu[i]
         r["material_bias"] = material_bias
+        r["material_tilt"] = material_tilt
 
     return fit_rows
 
 
-def _n_model_elementwise(mu: torch.Tensor, rho: torch.Tensor, eta: torch.Tensor,
-                          x: torch.Tensor, k: torch.Tensor, bias: float, cfg: Cfg) -> torch.Tensor:
+def _n_model_elementwise(
+    mu: torch.Tensor,
+    rho: torch.Tensor,
+    eta: torch.Tensor,
+    x: torch.Tensor,
+    k: torch.Tensor,
+    cfg: Cfg,
+) -> torch.Tensor:
     """逐元素版本，所有输入均 (N,)，输出 (N,)。"""
     base     = cfg.a0 + cfg.a1 * torch.log1p(mu.clamp(min=1e-12))
     curve    = cfg.a2 * rho * x ** 2
@@ -401,14 +480,42 @@ def _n_model_elementwise(mu: torch.Tensor, rho: torch.Tensor, eta: torch.Tensor,
     eta_term = cfg.a4 * (eta - cfg.eta_ref)
     k_term   = cfg.a5 * torch.log1p(k.clamp(min=0.0) * 300.0) * eta
     k_pow    = cfg.a6 * (k.clamp(min=0.0) ** 0.35) * (0.3 + eta)
-    return base + curve + coupling + eta_term + k_term + k_pow + bias
+    return base + curve + coupling + eta_term + k_term + k_pow
+
+
+def _solve_affine_correction(
+    n_ref: torch.Tensor,
+    n_base: torch.Tensor,
+    x: torch.Tensor,
+) -> tuple[float, float]:
+    """
+    对 n_ref - n_base 拟合 affine: bias + tilt*x（最小二乘闭式解）。
+    """
+    y = n_ref - n_base
+    x_mean = x.mean()
+    y_mean = y.mean()
+    x_center = x - x_mean
+    y_center = y - y_mean
+    var_x = (x_center * x_center).mean()
+    if float(var_x.abs().cpu()) <= 1e-18:
+        tilt = 0.0
+    else:
+        tilt = float(((x_center * y_center).mean() / var_x).cpu())
+    bias = float((y_mean - tilt * x_mean).cpu())
+    return bias, tilt
+
+
+def _solve_bias_only(n_ref: torch.Tensor, n_base: torch.Tensor) -> tuple[float, float]:
+    """仅拟合材料级 bias，tilt 固定为 0。"""
+    bias = float((n_ref - n_base).mean().cpu())
+    return bias, 0.0
 
 
 # ─── I/O ─────────────────────────────────────────────────────────────────────
 
 def write_csv(path: Path, rows: list[dict]) -> None:
     keys = ["material", "wavelength_nm", "n_ref", "k_ref", "eta_target",
-            "mu_fit", "rho_fit", "eta_fit", "material_bias", "n_model", "n_err"]
+            "mu_fit", "rho_fit", "eta_fit", "material_bias", "material_tilt", "n_model", "n_err"]
     with path.open("w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=keys)
         w.writeheader()
@@ -437,6 +544,12 @@ def main() -> int:
         "--bidirectional",
         action="store_true",
         help="每轮在正扫后再反扫一次（改善部分材料的 η 轨迹，GaAs 类可能略增 n_mae）",
+    )
+    p.add_argument(
+        "--profile",
+        default="robust",
+        choices=["robust", "si_priority"],
+        help="内置参数预设：robust（默认）或 si_priority",
     )
     p.add_argument("--w-eta-target", type=float, default=None, help="覆盖 Cfg.w_eta_target")
     p.add_argument("--w-smooth-eta", type=float, default=None, help="覆盖 Cfg.w_smooth_eta")
@@ -479,18 +592,14 @@ def main() -> int:
             device_name = torch.cuda.get_device_name(device)
     print(f"[device] {device} ({device_name})")
 
-    # highnlowk：高 n + 极端 k 样例需要更大 η 搜索上界；gaas 略放宽以利色散/吸收形状
-    eta_max_overrides: dict[str, float] = {
-        "gaas": 2.5,
-        "metalx": 2.8,
-        "highnlowk": 3.9,
-    }
+    cfg = apply_profile(Cfg(), a.profile)
+    eta_max_overrides: dict[str, float] = dict(cfg.eta_max_overrides or {})
     for item in a.eta_max_override:
         if "=" not in item:
             raise SystemExit(f"invalid --eta-max-override (expected MAT=MAX): {item!r}")
         mat, vmax = item.split("=", 1)
         eta_max_overrides[mat.strip().lower()] = float(vmax)
-    cfg = Cfg(eta_max_overrides=eta_max_overrides)
+    cfg.eta_max_overrides = eta_max_overrides
     if a.fit_iters is not None:
         if a.fit_iters < 1:
             raise SystemExit("--fit-iters must be >= 1")
