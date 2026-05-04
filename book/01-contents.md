@@ -4,12 +4,13 @@
 
 ## 第一部分 · Part I　模型 · The model
 
-1. **第1章**　一个问题 · 探测器怎么知道它测到的是粒子？  
-   *Ch.1 · How does a detector know it measured a particle?*  
+1. **第1章**　追问的起点：一个被判死刑的模型与不愿放弃的执念  
+   *Ch.1 · Where inquiry begins: a condemned model and a refusal to abandon the fixation*  
    正文稿：`book/02-chapter01.md`
 
-2. **第2章**　球面涟漪模型的基本假设  
-   *Ch.2 · The spherical ripple model: core assumptions*
+2. **第2章**　球面涟漪模型的工作前提：从直觉草图到分析地基  
+   *Ch.2 · Working premises: from intuition sketch to analytical footing*  
+   正文稿：`book/03-chapter02.md`
 
 3. **第3章**　介质、损耗与热：已知与未知  
    *Ch.3 · Medium, loss, and heat: what is known and what is not*
