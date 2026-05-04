@@ -4,6 +4,9 @@
 
 ## 第一部分 · Part I　模型 · The model
 
+**体例（全书）**  
+读法、非本体论态度、非人身等边界，在《序言》**「全书读法与边界（写在前面一次）」**统一说明；各章**章首**仅作该章提示，**章内不单段重复**，以免打断正文。
+
 1. **第1章**　追问的起点：一个被判死刑的模型与不愿放弃的执念  
    *Ch.1 · Where inquiry begins: a condemned model and a refusal to abandon the fixation*  
    正文稿：`book/02-chapter01.md`

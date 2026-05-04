@@ -16,6 +16,15 @@
 
 书中若出现 CHSH 等具体数值，**以各章对统计定义与数据来源的说明为准**，避免把序言里的比喻直接当成实验判决书。
 
+## 全书读法与边界（写在前面一次）
+
+为避免**频繁打断**你的注意力，下列各条**只在序言与各章开头**交代；**章内正文不再逐段复述**，除非当下句子离开这一条就会必然被误读。
+
+1. **非法典**：本书不是「已写进教科书并由共同体盖棺定论」的定理汇编；推理、类比与数值示例**可错、可改**，以各章写明的定义、协议与数据来源为准。  
+2. **非本体论推销**：插图或口语里的「透明果冻」「连续背景」「介质」等，是为**眼睛与推演**服务的脚手架；**不**据此宣称「真空中存在机械以太」或替某种宇宙图景下判决书。  
+3. **非人身、非阴谋**：讨论的是记录、协议与统计对象是否透明，**不是**对具体实验者或机构的人身否定。  
+4. **与「反科学」脱钩**：声明边界，是为了**少误读**、把力气用在可复核的步骤上，而不是示弱或讨好。
+
 我不回避失败：书里有章节与后记，诚实记录没通过与仍开放的部分。
 
 这本书不挑战任何人。现有的物理学公式是人类几百年积累的智慧，我无意推翻它们。「推翻」这个词带着一种对抗的气息，而我内心没有对抗。我只是提供另一种语言——一种从球面波出发的语言——让有兴趣的人自己判断它是否有用。
@@ -52,6 +61,15 @@ Those layers deserve scrutiny; they belong to the same kind of honesty as reprod
 Where Bell, GHZ, and public data appear, I separate **in-model numerical experiments** from **audit-style discussion of public records and protocols**. Published measurement files are often **incomplete as a full continuous picture**; still, the book asks what **different statistical objects** say when applied to the **same** record.
 
 Any headline CHSH-style numbers are **binding only to the definitions and data sources stated in each chapter**, not to metaphors in this preface.
+
+## How to read this book — boundaries stated once
+
+To avoid **constant footnotes** that pull you out of the narrative, the following is stated **here and briefly at each chapter opening**; the main text **does not repeat** it paragraph by paragraph unless a sentence would otherwise be misread.
+
+1. **Not a textbook of finished laws** — claims, analogies, and numbers can be wrong or revised; trust the definitions, protocols, and data sources spelled out in each chapter.  
+2. **Not selling an ontology** — visual aids (“clear jelly,” “continuous backdrop,” “medium”) are scaffolding for intuition and calculation, **not** a claim that mechanical ether fills the vacuum or that a final picture of reality is settled.  
+3. **Not ad hominem** — scrutiny targets transparency of records and statistics, **not** personal verdicts on experimenters or labs.  
+4. **Not “anti‑science” by posture** — boundaries exist to **reduce misreading** and keep effort on auditable steps.
 
 I do not avoid failure: chapters and the afterword record what did not pass and what remains open.
 
