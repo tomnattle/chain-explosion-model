@@ -1,0 +1,71 @@
+{
+  "version": "nist-revival-20pct-closure-v4",
+  "source_audit": "D:\\workspace\\chain-explosion-model\\battle_results\\nist_clock_reference_audit_v1\\results\\nist_unified_semantics_audit_v4.json",
+  "same_index": {
+    "pair_count": 128016,
+    "S_binary_chsh": 2.3294172230779164,
+    "S_cont_norm_corr": 2.320814810047326
+  },
+  "same_index_strict": {
+    "pair_count": 128016,
+    "S_binary_chsh": 2.3294172230779164,
+    "S_cont_norm_corr": 2.320814810047326
+  },
+  "external_bucket_edge_sensitivity": {
+    "S_binary_min": 2.768034067277249,
+    "S_binary_max": 2.7904352917852306,
+    "S_binary_range": 0.022401224507981432,
+    "offset0_snapshot": {
+      "offset": 0,
+      "pair_count": 137431,
+      "S_binary_chsh": 2.7756867254631663,
+      "S_cont_norm_corr": 2.7756293938194054,
+      "S_cont_norm_fixedden_corr": 2.7631130626102887
+    }
+  },
+  "event_anchor_symmetry": {
+    "A_anchor_pair_count": 138575,
+    "B_anchor_pair_count": 138575,
+    "A_anchor_S_binary_chsh": 2.834670139694744,
+    "B_anchor_S_binary_chsh": 2.833314480983937,
+    "delta_abs": 0.0013556587108070062
+  },
+  "bootstrap_ci_binary": {
+    "same_index": {
+      "mean": 2.3301941552555583,
+      "lo": 2.2953001557018715,
+      "hi": 2.370162723102603
+    },
+    "same_index_strict": {
+      "mean": 2.3279174337638047,
+      "lo": 2.2914586091919245,
+      "hi": 2.3697774158638585
+    },
+    "event_anchor_A": {
+      "mean": 2.8350077604703783,
+      "lo": 2.8181452579894226,
+      "hi": 2.854569545845721
+    },
+    "event_anchor_B": {
+      "mean": 2.8325971252092117,
+      "lo": 2.8166030752649927,
+      "hi": 2.851462730561969
+    }
+  },
+  "raw_norm_split_explicit": true,
+  "second_sample_probe": {
+    "available": true,
+    "readable": true,
+    "top_level_keys": [
+      "alice",
+      "bob",
+      "config"
+    ]
+  },
+  "closure_checks": {
+    "same_index_not_near_2p82": true,
+    "pure_bucket_in_2p8_zone": true,
+    "anchor_asymmetry_small": true,
+    "edge_sensitivity_bounded": true
+  }
+}

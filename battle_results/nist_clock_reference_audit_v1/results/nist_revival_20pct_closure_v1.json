@@ -1,0 +1,95 @@
+{
+  "version": "nist-revival-20pct-closure-v1",
+  "main_hdf5": "D:\\workspace\\chain-explosion-model\\data\\17_04_CH_pockel_100kHz.run.completeblind.dat.compressed.build.hdf5",
+  "window": 15.0,
+  "n_boot": 120,
+  "full_run": {
+    "pair_counts": {
+      "same_index": 128016,
+      "external_clock_bin": 132990,
+      "event_anchor_nearest": 138575
+    },
+    "S": {
+      "same_binary": 2.3294172230779164,
+      "ext_binary": 2.8086655567931498,
+      "evt_binary": 2.834670139694744,
+      "same_cont_raw": 1.1176832855605698,
+      "ext_cont_raw": 1.3457655413472684,
+      "evt_cont_raw": 1.354776528576919,
+      "same_cont_norm": 2.320814810047326,
+      "ext_cont_norm": 2.8254594983829957,
+      "evt_cont_norm": 2.8447554225925042
+    }
+  },
+  "bootstrap_ci": {
+    "same_binary": {
+      "mean": 2.3302097336824152,
+      "lo": 2.291900775717766,
+      "hi": 2.370977824586275
+    },
+    "external_binary": {
+      "mean": 2.810843788381649,
+      "lo": 2.7899892646677347,
+      "hi": 2.831051930633499
+    },
+    "event_binary": {
+      "mean": 2.8344562915865934,
+      "lo": 2.814268518728401,
+      "hi": 2.851687057670449
+    },
+    "same_cont_norm": {
+      "mean": 2.325658071289106,
+      "lo": 2.2606708289782533,
+      "hi": 2.3759074540489147
+    },
+    "external_cont_norm": {
+      "mean": 2.8251052933055956,
+      "lo": 2.796368380668269,
+      "hi": 2.8561992253856987
+    },
+    "event_cont_norm": {
+      "mean": 2.8443693838307706,
+      "lo": 2.823595834356896,
+      "hi": 2.867295123774498
+    },
+    "delta_binary_external_minus_same": {
+      "mean": 0.4806340546992338,
+      "lo_rough": 0.4190114400814595,
+      "hi_rough": 0.5391511549157331
+    },
+    "delta_norm_external_minus_same": {
+      "mean": 0.4994472220164896,
+      "lo_rough": 0.4204609266193544,
+      "hi_rough": 0.5955283964074454
+    }
+  },
+  "slice_stability_main_same_index": {
+    "slice_0_33": {
+      "pair_count": 42704,
+      "S_binary": 2.2791820310981685,
+      "S_cont_norm": 2.277795692738668
+    },
+    "slice_33_66": {
+      "pair_count": 42404,
+      "S_binary": 2.2753075830463017,
+      "S_cont_norm": 2.3021985258319235
+    },
+    "slice_66_100": {
+      "pair_count": 42908,
+      "S_binary": 2.4286525378424404,
+      "S_cont_norm": 2.3763458946771014
+    }
+  },
+  "second_sample_same_index": {
+    "available": true,
+    "hdf5": "D:\\workspace\\chain-explosion-model\\data\\03_31_CH_pockel_100kHz.run4.afterTimingfix2_training.dat.compressed.build.hdf5",
+    "pair_count": 0,
+    "S_binary": 0.0,
+    "S_cont_norm": 0.0
+  },
+  "closure_checks": {
+    "same_index_not_near_2p82": true,
+    "pairing_pushes_to_2p8_zone": true,
+    "raw_and_norm_reported_separately": true
+  }
+}

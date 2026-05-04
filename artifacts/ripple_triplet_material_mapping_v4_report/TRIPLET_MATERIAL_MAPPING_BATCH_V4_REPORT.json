@@ -1,0 +1,36 @@
+{
+  "generated_at_utc": "2026-04-30T08:20:15.280757+00:00",
+  "source_v3_csv": "artifacts/ripple_triplet_material_mapping_v3_batch/TRIPLET_MATERIAL_MAPPING_BATCH_V3.csv",
+  "rows": [
+    {
+      "material": "input_air_visible_demo",
+      "mu_mean": 1.5516953618133993,
+      "rho_mean": 2.35,
+      "eta_mean": 0.0,
+      "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_air_visible_demo.csv",
+      "n_mean": 1.0002733333333333
+    },
+    {
+      "material": "input_water_visible_demo",
+      "mu_mean": 4.92353743515945,
+      "rho_mean": 2.35,
+      "eta_mean": 0.0,
+      "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_water_visible_demo.csv",
+      "n_mean": 1.3350000000000002
+    },
+    {
+      "material": "input_sio2_malitson_visible",
+      "mu_mean": 7.074946493858881,
+      "rho_mean": 2.35,
+      "eta_mean": 0.0,
+      "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_sio2_malitson_visible.csv",
+      "n_mean": 1.4616428571428572
+    }
+  ],
+  "diagnostics": {
+    "monotonic_by_n_mu": true,
+    "fit_a": 11.58368158443247,
+    "fit_b": -10.144029620806943,
+    "fit_r2": 0.9837436737055161
+  }
+}

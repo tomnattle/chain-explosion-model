@@ -17,7 +17,8 @@ The true center of this repository is not the scattered double-slit scripts, but
 5. [Audit Findings Summary](#audit-findings-summary)
 6. [Why The Project Has Value](#why-the-project-has-value)
 7. [Recommended Reading Order](#recommended-reading-order)
-8. [Quick Note](#quick-note)
+8. [Contact](#contact)
+9. [Quick Note](#quick-note)
 
 ## Reading Guide
 
@@ -123,6 +124,18 @@ The recommended reading order is: this file, the full monograph, the Bell protoc
 6. [battle_results/nist_completeblind_2015-09-19/README.md](battle_results/nist_completeblind_2015-09-19/README.md)
 7. [battle_results/nist_round2_v2/README.md](battle_results/nist_round2_v2/README.md)
 8. [docs/RIPPLE_QUANTUM_TESTS_INDEX.md](docs/RIPPLE_QUANTUM_TESTS_INDEX.md)（涟漪量子四项玩具基准 v1–v6，与 CHSH 归档独立）
+
+## Contact
+
+如果你愿意交流这个项目（研究讨论、复现反馈或合作可能），可以通过以下方式联系：
+
+- Email: `651775257 [at] qq [dot] com`
+- 或在本仓库开启 issue / discussion
+
+If you would like to discuss this project (research exchange, reproduction feedback, or potential collaboration), feel free to contact:
+
+- Email: `651775257 [at] qq [dot] com`
+- Or open an issue / discussion in this repository
 
 ## Licensing / 许可证
 

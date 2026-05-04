@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bell Audit (v5): Professional EN</title>
+  <style>
+    :root {
+      --text: #111;
+      --muted: #555;
+      --line: #ddd;
+      --bg: #fff;
+      --maxw: 900px;
+    }
+    html, body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Times New Roman", Georgia, serif;
+      line-height: 1.65;
+      margin: 0;
+      padding: 0;
+    }
+    .page {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 40px 28px 64px;
+    }
+    h1, h2, h3 {
+      line-height: 1.35;
+      margin-top: 1.2em;
+      margin-bottom: 0.5em;
+    }
+    h1 { font-size: 2rem; margin-top: 0; }
+    h2 { font-size: 1.35rem; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
+    h3 { font-size: 1.1rem; }
+    p { margin: 0.65em 0; }
+    ul, ol { margin: 0.4em 0 0.8em 1.4em; }
+    li { margin: 0.25em 0; }
+    .meta {
+      color: var(--muted);
+      margin-bottom: 1.2em;
+      font-size: 0.98rem;
+    }
+    .divider {
+      border: 0;
+      border-top: 1px solid var(--line);
+      margin: 1.4em 0;
+    }
+    figure {
+      margin: 1.2em 0 1em;
+      padding: 0;
+      text-align: center;
+    }
+    figure img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #ccc;
+    }
+    figcaption {
+      color: var(--muted);
+      font-size: 0.94rem;
+      margin-top: 0.45em;
+      text-align: left;
+    }
+    code {
+      background: #f5f5f5;
+      border: 1px solid #eee;
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-size: 0.95em;
+    }
+    .code-line {
+      font-family: Consolas, "Courier New", monospace;
+      background: #fafafa;
+      border: 1px solid #eee;
+      padding: 10px 12px;
+      margin: 8px 0;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    @media print {
+      .page { padding: 0; }
+      figure { break-inside: avoid; }
+      h2, h3 { break-after: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <h1>Bell Audit (v5): How Binarization and Pairing Semantics Co-Shape CHSH Metrics</h1>
+    <p class="meta"><strong>Author:</strong> Tom Nattle (Audit collaboration: Antigravity AI)<br />
+    <strong>Date:</strong> April 2026 (v5 rewrite)<br />
+    <strong>Project:</strong> Chain-Explosion Model<br />
+    <strong>Positioning:</strong> Professional manuscript for review (student-friendly edition)</p>
+
+    <hr class="divider" />
+
+    <h2>Abstract</h2>
+    <p>This manuscript rewrites and refocuses the Bell audit around one core question: <strong>if the underlying event stream is fixed, why can CHSH shift strongly when only binarization and pairing semantics are changed?</strong></p>
+    <p>On the NIST stream, we confirm: continuous <code>S_raw = 1.117683</code>, while binarized <code>S_raw(quant_2) = 2.297779</code>; under semantic decomposition, <code>same_index = 2.329417</code>, <code>external_bucket_all = 2.775687</code>, and <code>event_anchor_nearest = 2.834670</code>.</p>
+    <p>These results indicate that Bell headline values are shaped not only by physical mechanisms, but also by statistical pipeline definitions. We also provide an educational explanation so non-specialist readers can understand how denominator policy, pairing logic, and post-selection alter the apparent conclusion.</p>
+
+    <h2>1. Background and Problem Definition</h2>
+    <p>Bell/CHSH is often used to discuss whether classical explanations are sufficient. In engineering pipelines, however, the formula does not consume all raw events directly. It consumes processed, countable events:</p>
+    <ul>
+      <li>Step 1: discretize continuous observations (e.g., 2-level, 3-level quantization);</li>
+      <li>Step 2: pair events under a specific time/index rule;</li>
+      <li>Step 3: decide which pairs enter the denominator and which are discarded.</li>
+    </ul>
+    <p>If these steps strongly influence the result, then a high <code>S</code> is partly a <strong>pipeline-configuration effect</strong>, not purely a direct readout of the underlying mechanism.</p>
+
+    <h2>2. Data and Methods (v4 Re-audit Frame)</h2>
+    <h3>2.1 Data and script sources</h3>
+    <ul>
+      <li>Result package: <code>battle_results/nist_clock_reference_audit_v1/results/</code></li>
+      <li>Email summary: <code>battle_results/nist_clock_reference_audit_v1/email_pack_v4/EMAIL_SUMMARY_v4_EN.md</code></li>
+      <li>Key scripts: <code>scripts/explore/nist_same_index_quantization_sweep_v4.py</code>, <code>scripts/explore/nist_unified_semantics_audit_v4.py</code></li>
+    </ul>
+
+    <h3>2.2 Three evidence chains reproduced here</h3>
+    <ol>
+      <li><strong>Binarization chain</strong>: compare continuous and 2-level outputs under the same <code>same_index</code> pairing.</li>
+      <li><strong>Semantic premium chain</strong>: compare <code>same_index -&gt; external_bucket_all -&gt; event_anchor_nearest</code>.</li>
+      <li><strong>Robustness-boundary chain</strong>: verify closure checks (anchor symmetry, bounded edge sensitivity, etc.).</li>
+    </ol>
+
+    <h3>2.3 Experimental principle (to avoid "black-box statistics" concerns)</h3>
+    <p>This study does not alter the underlying event stream. It only changes the protocol that converts events into countable samples. Core principle: CHSH is computed from rule-filtered pairs, not from raw rows directly.</p>
+    <ul>
+      <li>Input layer: fixed event stream (same rows, same order);</li>
+      <li>Representation layer: continuous vs discretized outputs (2-level, 3-level, etc.);</li>
+      <li>Pairing layer: <code>same_index</code>, <code>external_bucket_all</code>, <code>event_anchor_nearest</code>;</li>
+      <li>Scoring layer: same CHSH form, compared across protocols.</li>
+    </ul>
+
+    <h2>3. Main Results</h2>
+    <h3>3.1 Large shift induced by binarization</h3>
+    <p>In <code>same_index_quantization_sweep_v4</code>:</p>
+    <ul>
+      <li>Continuous: <code>S_raw = 1.117683</code> (95% CI: <code>1.097130 ~ 1.138496</code>)</li>
+      <li>2-level quantized: <code>S_raw(quant_2) = 2.297779</code></li>
+    </ul>
+    <p>Meaning: <strong>with the same data and same pairing framework, changing representation alone can produce a large jump</strong>.</p>
+
+    <figure>
+      <img src="figures/chart1_same_index_quantization_v4.png" alt="same_index quantization sweep" />
+      <figcaption>Figure 1: Quantization sweep under same_index semantics (v4).</figcaption>
+    </figure>
+
+    <h3>3.2 Semantic premium decomposition (2.33 -&gt; 2.77 -&gt; 2.83)</h3>
+    <p>In <code>nist_unified_semantics_audit_v4</code>:</p>
+    <ul>
+      <li><code>same_index S_binary_chsh = 2.329417</code></li>
+      <li><code>external_bucket_all S_binary_chsh = 2.775687</code> (relative <code>+0.446270</code>)</li>
+      <li><code>event_anchor_nearest S_binary_chsh = 2.834670</code> (additional <code>+0.058983</code>)</li>
+    </ul>
+    <p>This forms a protocol-premium staircase: numerical uplift appears in sync with semantic escalation.</p>
+
+    <figure>
+      <img src="figures/chart2_protocol_premium_stair_v4.png" alt="protocol premium staircase" />
+      <figcaption>Figure 2: Protocol premium staircase from the v4 email package.</figcaption>
+    </figure>
+
+    <h3>3.3 Closure boundaries (to prevent over-interpretation)</h3>
+    <p>In <code>nist_revival_20pct_closure_v4</code>:</p>
+    <ul>
+      <li><code>same_index_not_near_2p82 = True</code></li>
+      <li><code>pure_bucket_in_2p8_zone = True</code></li>
+      <li><code>anchor_asymmetry_small = True</code> (<code>delta_abs = 0.001356</code>)</li>
+      <li><code>edge_sensitivity_bounded = True</code></li>
+    </ul>
+    <p>Interpretation: the <code>~2.8</code> zone is not a natural extension of <code>same_index</code>; it is tied to specific semantic layers.</p>
+
+    <figure>
+      <img src="figures/same_index_dual_metric_bridge_v1.png" alt="same_index dual-metric bridge" />
+      <figcaption>Figure 3: Dual-metric bridge under same_index, showing non-identity between metric views.</figcaption>
+    </figure>
+
+    <h3>3.4 Key numeric table (reviewer quick scan)</h3>
+    <ul>
+      <li>Fixed-stream pair count: <code>pair_count = 128016</code></li>
+      <li>Continuous metric: <code>S_raw = 1.117683</code> (95% CI: <code>1.097130 ~ 1.138496</code>)</li>
+      <li>2-level metric: <code>S_raw(quant_2) = 2.297779</code></li>
+      <li>Semantic staircase: <code>2.329417 -&gt; 2.775687 -&gt; 2.834670</code></li>
+      <li>Stair increments: <code>+0.446270</code> and <code>+0.058983</code></li>
+      <li>Anchor symmetry difference: <code>delta_abs = 0.001356</code></li>
+    </ul>
+
+    <h2>4. Student-Friendly Explanation: Why does this happen?</h2>
+    <p>You can treat CHSH like a score:</p>
+    <ul>
+      <li>Numerator: pairs that satisfy certain pattern rules;</li>
+      <li>Denominator: total pairs allowed into the statistic.</li>
+    </ul>
+    <p>If you change which items are counted in the total (denominator policy), or first force continuous values into pass/fail bins (binarization), the final average can change a lot. So this paper does not claim that one theory is fully overthrown. It argues that <strong>data-processing protocol must be audited as seriously as the physical model</strong>.</p>
+
+    <h2>5. Conclusions and Review Recommendations</h2>
+    <h3>5.1 Conclusions within scope</h3>
+    <ol>
+      <li>Bell metrics on this stream show strong <strong>binarization sensitivity</strong>.</li>
+      <li>Bell metrics on this stream also show strong <strong>pairing-semantics sensitivity</strong>.</li>
+      <li>Therefore, headline <code>S</code> claims should always publish denominator logs, semantic definitions, and counterfactual controls together.</li>
+    </ol>
+
+    <h3>5.2 Recommendations for follow-up review</h3>
+    <ul>
+      <li>Report inclusion rules with every headline <code>S</code> value;</li>
+      <li>Provide at least one side-by-side comparison between <code>same_index</code> and a more aggressive semantic mode;</li>
+      <li>Require closure checks to avoid mistaking protocol premium for mechanism inevitability.</li>
+    </ul>
+
+    <h2>6. Minimal Reproducibility Path</h2>
+    <p>Run from repository root:</p>
+    <div class="code-line">python scripts/explore/nist_same_index_quantization_sweep_v4.py</div>
+    <div class="code-line">python scripts/explore/nist_unified_semantics_audit_v4.py</div>
+    <div class="code-line">python scripts/explore/nist_revival_20pct_closure_v4.py</div>
+
+    <p>Core outputs:</p>
+    <ul>
+      <li><code>battle_results/nist_clock_reference_audit_v1/results/same_index_quantization_sweep_v4.json</code></li>
+      <li><code>battle_results/nist_clock_reference_audit_v1/results/nist_unified_semantics_audit_v4.json</code></li>
+      <li><code>battle_results/nist_clock_reference_audit_v1/results/nist_revival_20pct_closure_v4.json</code></li>
+    </ul>
+
+    <h2>7. Boundary Statement</h2>
+    <p>This is a <strong>methodological audit manuscript</strong>: it demonstrates that statistical conclusions are strongly protocol-dependent. It does <strong>not</strong> claim final ontology-level victory of any single theory. Stronger claims require cross-platform, cross-dataset, and cross-device joint validation.</p>
+
+    <h2>8. Anticipated Reviewer Questions and Responses</h2>
+    <p><strong>Q1: Is this just data cherry-picking?</strong><br />
+    A: No. The event stream is fixed; only quantization and pairing semantics are varied, with closure checks reported.</p>
+    <p><strong>Q2: Are favorable metrics selectively reported?</strong><br />
+    A: No. Continuous, binarized, and multi-semantic outputs are presented together, including low-value regions and explicit deltas.</p>
+    <p><strong>Q3: Does the ~2.8 zone imply mechanism inevitability?</strong><br />
+    A: No. Closure evidence shows this zone is tied to specific semantic modes, not an unavoidable extension of <code>same_index</code>.</p>
+    <p><strong>Q4: Does this paper falsify standard quantum theory?</strong><br />
+    A: No. This is a methodological audit showing protocol sensitivity; ontology-level claims require broader independent validation.</p>
+  </main>
+</body>
+</html>

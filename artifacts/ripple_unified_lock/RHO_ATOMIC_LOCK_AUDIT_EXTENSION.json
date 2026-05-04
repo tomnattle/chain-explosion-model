@@ -1,0 +1,29 @@
+{
+  "kind": "rho_atomic_lock_audit_extension",
+  "indexed_at_utc": "2026-04-29T04:48:53.056490+00:00",
+  "git_head_at_index": "50faa31d801fbb3e20dcbe0bf0c1ece6013e4aa3",
+  "scope_note": "Findings apply to v6 joint_curves + state_after_de gates. rho=2.35 coincides with v6 RHO_REF; not a laboratory material identification.",
+  "script_sha256": {
+    "rho_sensitivity_breakdown": "32505ee76a46eedd3b8bfe613426b4a9281fd4e422a488fbdd62f56d8f28b116",
+    "rho_gate_sensitivity_scan": "5f78f3b0927dd5998740e5541a06f95e229302220a0056a943c92a640771547c",
+    "rho_mu_feasibility_map": "9382390f126e9e9113bd6c8e5c34d6928fba287f0a7f22b3a645baac09ab7dc2",
+    "verify_rho_mu2_constraint": "896bea6608275f47e8ef22e4be3b4319024acb522b4e1ff09fcd5d6ec6a736f3"
+  },
+  "script_paths": [
+    "scripts/explore/ripple_quantum_tests/rho_sensitivity_breakdown.py",
+    "scripts/explore/ripple_quantum_tests/rho_gate_sensitivity_scan.py",
+    "scripts/explore/ripple_quantum_tests/rho_mu_feasibility_map.py",
+    "scripts/explore/ripple_quantum_tests/verify_rho_mu2_constraint.py"
+  ],
+  "primary_artifact_dirs": [
+    "artifacts/rho_sensitivity_breakdown",
+    "artifacts/rho_gate_sensitivity_scan",
+    "artifacts/rho_mu_feasibility_map",
+    "artifacts/verify_rho_mu2_constraint"
+  ],
+  "executioner_summary": {
+    "dominant_panel": "atomic_clock_modes",
+    "co_gate": "f0_gate",
+    "rho_mu_squared_hypothesis": "rejected_under_joint_gates (see verify_rho_mu2 artifacts)"
+  }
+}

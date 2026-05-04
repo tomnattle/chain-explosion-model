@@ -1,0 +1,206 @@
+{
+  "generated_at_utc": "2026-04-30T07:53:50.336007+00:00",
+  "config": {
+    "mu": 1.55,
+    "rho": 2.35,
+    "eta": 0.08,
+    "expo_mu": 0.25,
+    "expo_rho": 0.25,
+    "k_eta": 0.0,
+    "mu_ref": 1.55,
+    "rho_ref": 2.35,
+    "eta_ref": 0.08,
+    "c_ref": 299792458.0,
+    "distance_max": 50.0,
+    "n_points": 26,
+    "out_dir": "artifacts/ripple_triplet_light_probe_v1"
+  },
+  "derived": {
+    "v_ratio_to_c_ref": 1.0,
+    "v_eff_m_per_s": 299792458.0
+  },
+  "rows": [
+    {
+      "distance_unit": 0.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 1.0,
+      "intensity_ratio": 1.0
+    },
+    {
+      "distance_unit": 2.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.8521437889662113,
+      "intensity_ratio": 0.7261490370736909
+    },
+    {
+      "distance_unit": 4.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.7261490370736909,
+      "intensity_ratio": 0.5272924240430485
+    },
+    {
+      "distance_unit": 6.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.6187833918061408,
+      "intensity_ratio": 0.38289288597511206
+    },
+    {
+      "distance_unit": 8.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.5272924240430485,
+      "intensity_ratio": 0.27803730045319414
+    },
+    {
+      "distance_unit": 10.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.44932896411722156,
+      "intensity_ratio": 0.20189651799465538
+    },
+    {
+      "distance_unit": 12.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.38289288597511206,
+      "intensity_ratio": 0.14660696213035015
+    },
+    {
+      "distance_unit": 14.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.32627979462303947,
+      "intensity_ratio": 0.1064585043792528
+    },
+    {
+      "distance_unit": 16.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.27803730045319414,
+      "intensity_ratio": 0.07730474044329974
+    },
+    {
+      "distance_unit": 18.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.23692775868212176,
+      "intensity_ratio": 0.056134762834133725
+    },
+    {
+      "distance_unit": 20.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.20189651799465538,
+      "intensity_ratio": 0.04076220397836621
+    },
+    {
+      "distance_unit": 22.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.17204486382305054,
+      "intensity_ratio": 0.029599435167892
+    },
+    {
+      "distance_unit": 24.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.14660696213035015,
+      "intensity_ratio": 0.021493601345089923
+    },
+    {
+      "distance_unit": 26.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.12493021219858241,
+      "intensity_ratio": 0.01560755791998283
+    },
+    {
+      "distance_unit": 28.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.1064585043792528,
+      "intensity_ratio": 0.011333413154667387
+    },
+    {
+      "distance_unit": 30.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.09071795328941251,
+      "intensity_ratio": 0.00822974704902003
+    },
+    {
+      "distance_unit": 32.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.07730474044329974,
+      "intensity_ratio": 0.005976022895005943
+    },
+    {
+      "distance_unit": 34.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.06587475442640295,
+      "intensity_ratio": 0.004339483270738895
+    },
+    {
+      "distance_unit": 36.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.056134762834133725,
+      "intensity_ratio": 0.0031511115984444414
+    },
+    {
+      "distance_unit": 38.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.04783488949419837,
+      "intensity_ratio": 0.0022881766529221693
+    },
+    {
+      "distance_unit": 40.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.04076220397836621,
+      "intensity_ratio": 0.001661557273173934
+    },
+    {
+      "distance_unit": 42.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.03473525894473856,
+      "intensity_ratio": 0.0012065382139580404
+    },
+    {
+      "distance_unit": 44.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.029599435167892,
+      "intensity_ratio": 0.0008761265622582417
+    },
+    {
+      "distance_unit": 46.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.025222974835227212,
+      "intensity_ratio": 0.0006361984595385052
+    },
+    {
+      "distance_unit": 48.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.021493601345089923,
+      "intensity_ratio": 0.0004619748987816513
+    },
+    {
+      "distance_unit": 50.0,
+      "v_ratio_to_c_ref": 1.0,
+      "v_eff_m_per_s": 299792458.0,
+      "amp_ratio": 0.01831563888873418,
+      "intensity_ratio": 0.00033546262790251185
+    }
+  ]
+}

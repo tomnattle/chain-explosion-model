@@ -1,0 +1,9 @@
+{
+  "ok": true,
+  "source_csv": "artifacts\\ripple_triplet_material_mapping_v1\\input_si_green1995_demo.csv",
+  "rows": 5,
+  "k_nonzero_rows": 5,
+  "issues": [],
+  "warnings": [],
+  "generated_at_utc": "2026-04-30T08:22:56.489776+00:00"
+}

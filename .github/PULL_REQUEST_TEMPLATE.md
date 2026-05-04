@@ -32,4 +32,4 @@ Please read [`CONTRIBUTING_LICENSE.md`](../CONTRIBUTING_LICENSE.md) before submi
 
 If you agree, add to the last commit message:
 
-`Signed-off-by: Your Name <email@example.com>`
+`Signed-off-by: Your Name <[redacted-email]>`

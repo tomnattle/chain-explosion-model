@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "script": "param_role_identification_rho_zoom_v1.py",
+    "lock": {
+      "mu": 1.5495,
+      "rho": 2.35,
+      "eta": 0.08,
+      "bw": 3e-05
+    },
+    "mode_n": 1,
+    "alpha": 0.35,
+    "mri_quad": 0.0,
+    "thresholds": {
+      "th_x": 0.18,
+      "th_y": 0.18,
+      "r2_min": 0.999
+    },
+    "w_f0": 800.0,
+    "w_gamma": 400.0,
+    "panel_order": [
+      "laser_threshold",
+      "semiconductor_cutoff",
+      "mri_larmor",
+      "atomic_clock_modes"
+    ]
+  },
+  "rho_delta_scan": [
+    {
+      "rho_delta": 0.0001,
+      "dmetric_d_rho": {
+        "nrmse_y_laser_threshold": 0.025938177299675645,
+        "nrmse_y_semiconductor_cutoff": -6.111201227326817e-08,
+        "nrmse_y_mri_larmor": 0.0,
+        "nrmse_y_atomic_clock_modes": -0.0021182096332506006,
+        "f0_rel_err": -4.277953781724241e-06,
+        "gamma_rel_err": 0.0
+      },
+      "abs_dmetric_d_rho_ranked": [
+        {
+          "metric": "nrmse_y_laser_threshold",
+          "abs_sens": 0.025938177299675645
+        },
+        {
+          "metric": "nrmse_y_atomic_clock_modes",
+          "abs_sens": 0.0021182096332506006
+        },
+        {
+          "metric": "f0_rel_err",
+          "abs_sens": 4.277953781724241e-06
+        }
+      ]
+    },
+    {
+      "rho_delta": 3e-05,
+      "dmetric_d_rho": {
+        "nrmse_y_laser_threshold": 0.02604706466485973,
+        "nrmse_y_semiconductor_cutoff": -1.8333576350062482e-08,
+        "nrmse_y_mri_larmor": 0.0,
+        "nrmse_y_atomic_clock_modes": -0.03550641221270837,
+        "f0_rel_err": -1.2833901602903817e-06,
+        "gamma_rel_err": 0.0
+      },
+      "abs_dmetric_d_rho_ranked": [
+        {
+          "metric": "nrmse_y_atomic_clock_modes",
+          "abs_sens": 0.03550641221270837
+        },
+        {
+          "metric": "nrmse_y_laser_threshold",
+          "abs_sens": 0.02604706466485973
+        },
+        {
+          "metric": "f0_rel_err",
+          "abs_sens": 1.2833901602903817e-06
+        }
+      ]
+    },
+    {
+      "rho_delta": 1e-05,
+      "dmetric_d_rho": {
+        "nrmse_y_laser_threshold": 0.02605644806434168,
+        "nrmse_y_semiconductor_cutoff": -6.111048510780437e-09,
+        "nrmse_y_mri_larmor": 0.0,
+        "nrmse_y_atomic_clock_modes": -0.016248555447656576,
+        "f0_rel_err": -4.2778813178269036e-07,
+        "gamma_rel_err": 0.0
+      },
+      "abs_dmetric_d_rho_ranked": [
+        {
+          "metric": "nrmse_y_laser_threshold",
+          "abs_sens": 0.02605644806434168
+        },
+        {
+          "metric": "nrmse_y_atomic_clock_modes",
+          "abs_sens": 0.016248555447656576
+        },
+        {
+          "metric": "f0_rel_err",
+          "abs_sens": 4.2778813178269036e-07
+        }
+      ]
+    }
+  ]
+}

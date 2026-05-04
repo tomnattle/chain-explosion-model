@@ -1,0 +1,86 @@
+[
+  {
+    "rho": 2.35,
+    "mu": 1.5495,
+    "eta": 0.08,
+    "bw_ghz": 3e-05,
+    "joint_pass": true,
+    "f0_rel_err": 0.0,
+    "gamma_rel_err": 1.6688417120983165e-16,
+    "f0_ripple_ghz": 9.19263177,
+    "atom_nrmse_y": 0.0,
+    "failed_gates": true
+  },
+  {
+    "rho": 2.3501000000000003,
+    "mu": 1.5495,
+    "eta": 0.08,
+    "bw_ghz": 3e-05,
+    "joint_pass": false,
+    "f0_rel_err": 1.4893189240296469e-05,
+    "gamma_rel_err": 0.0,
+    "f0_ripple_ghz": 9.192494862395433,
+    "atom_nrmse_y": 0.2570919745202587,
+    "failed_gates": false
+  },
+  {
+    "rho": 2.3499,
+    "mu": 1.5495,
+    "eta": 0.08,
+    "bw_ghz": 3e-05,
+    "joint_pass": false,
+    "f0_rel_err": 1.4894044831052814e-05,
+    "gamma_rel_err": 0.0,
+    "f0_ripple_ghz": 9.192768685469698,
+    "atom_nrmse_y": 0.2570923981621854,
+    "failed_gates": false
+  },
+  {
+    "rho": 2.35005,
+    "mu": 1.5495,
+    "eta": 0.08,
+    "bw_ghz": 3e-05,
+    "joint_pass": false,
+    "f0_rel_err": 7.446701563509677e-06,
+    "gamma_rel_err": 1.6688417120983165e-16,
+    "f0_ripple_ghz": 9.192563315214626,
+    "atom_nrmse_y": 0.21995081637661693,
+    "failed_gates": false
+  },
+  {
+    "rho": 2.34995,
+    "mu": 1.5495,
+    "eta": 0.08,
+    "bw_ghz": 3e-05,
+    "joint_pass": false,
+    "f0_rel_err": 7.446915461247073e-06,
+    "gamma_rel_err": 0.0,
+    "f0_ripple_ghz": 9.192700226751658,
+    "atom_nrmse_y": 0.2199538900579022,
+    "failed_gates": false
+  },
+  {
+    "rho": 2.3501507507536,
+    "mu": 1.5495,
+    "eta": 0.08,
+    "bw_ghz": 3e-05,
+    "joint_pass": false,
+    "f0_rel_err": 2.2451267748074362e-05,
+    "gamma_rel_err": 1.6688417120983165e-16,
+    "f0_ripple_ghz": 9.192425383762822,
+    "atom_nrmse_y": 0.2577984271997465,
+    "failed_gates": false
+  },
+  {
+    "rho": 2.3498997488,
+    "mu": 1.5495,
+    "eta": 0.08,
+    "bw_ghz": 3e-05,
+    "joint_pass": false,
+    "f0_rel_err": 1.4931459748789008e-05,
+    "gamma_rel_err": 0.0,
+    "f0_ripple_ghz": 9.19276902941126,
+    "atom_nrmse_y": 0.25711070080868137,
+    "failed_gates": false
+  }
+]

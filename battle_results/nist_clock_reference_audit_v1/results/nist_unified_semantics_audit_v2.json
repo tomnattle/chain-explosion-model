@@ -1,0 +1,71 @@
+{
+  "version": "nist-unified-semantics-audit-v2",
+  "hdf5": "D:\\workspace\\chain-explosion-model\\data\\17_04_CH_pockel_100kHz.run.completeblind.dat.compressed.build.hdf5",
+  "window": 15.0,
+  "notes": {
+    "binary_chsh": "Only this family is Bell-CHSH object.",
+    "continuous_corr": "Diagnostic correlation family; not CHSH object.",
+    "external_clock_bucket_all": "Primary external-clock semantics without nearest matching.",
+    "nearest_modes": "Marked as loophole_probe."
+  },
+  "real_modes": {
+    "same_index": {
+      "role": "baseline",
+      "pair_count": 128016,
+      "S_binary_chsh": 2.3294172230779164,
+      "S_cont_raw_corr": 1.1176832855605698,
+      "S_cont_norm_corr": 2.320814810047326
+    },
+    "external_clock_bucket_all": {
+      "role": "primary_external_clock",
+      "pair_count": 137431,
+      "S_binary_chsh": 2.7756867254631663,
+      "S_cont_raw_corr": 1.3222729301620244,
+      "S_cont_norm_corr": 2.7756293938194054
+    },
+    "external_clock_nearest_1to1": {
+      "role": "loophole_probe",
+      "pair_count": 132990,
+      "S_binary_chsh": 2.8086655567931498,
+      "S_cont_raw_corr": 1.3457655413472684,
+      "S_cont_norm_corr": 2.8254594983829957
+    },
+    "event_anchor_nearest": {
+      "role": "loophole_probe",
+      "pair_count": 138575,
+      "S_binary_chsh": 2.834670139694744,
+      "S_cont_raw_corr": 1.354776528576919,
+      "S_cont_norm_corr": 2.8447554225925042
+    }
+  },
+  "counterfactual_shuffledB_modes": {
+    "same_index": {
+      "role": "baseline",
+      "pair_count": 128016,
+      "S_binary_chsh": 0.0013042336248564775,
+      "S_cont_raw_corr": 0.005678703528095533,
+      "S_cont_norm_corr": 0.011308881739603423
+    },
+    "external_clock_bucket_all": {
+      "role": "primary_external_clock",
+      "pair_count": 137431,
+      "S_binary_chsh": 0.022847692352934833,
+      "S_cont_raw_corr": 0.0017127610357175662,
+      "S_cont_norm_corr": 0.0034323488613178417
+    },
+    "external_clock_nearest_1to1": {
+      "role": "loophole_probe",
+      "pair_count": 132990,
+      "S_binary_chsh": 0.01242191557244562,
+      "S_cont_raw_corr": 0.0012795836017134785,
+      "S_cont_norm_corr": 0.0025274074087529436
+    },
+    "event_anchor_nearest": {
+      "role": "loophole_probe",
+      "pair_count": 138575,
+      "S_binary_chsh": 0.011101966677955844,
+      "S_cont_raw_corr": 0.008429041318395787,
+      "S_cont_norm_corr": 0.017574362936789593
+    }
+  }
+}

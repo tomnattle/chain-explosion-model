@@ -1,0 +1,85 @@
+{
+  "generated_at_utc": "2026-04-30T08:27:10.309899+00:00",
+  "input_csv": "artifacts/ripple_triplet_material_mapping_v1/input_si_green1995_demo.csv",
+  "config": {
+    "mu_ref": 1.55,
+    "rho_ref": 2.35,
+    "eta_ref": 0.08,
+    "expo_mu": 0.25,
+    "expo_rho": 2.0,
+    "k_eta_speed": 0.0,
+    "distance_unit_to_m": 1e-06,
+    "rho_min": 1.0,
+    "rho_max": 120.0,
+    "rho_steps": 81,
+    "eta_min": 0.0,
+    "eta_max": 1.0,
+    "eta_steps": 81,
+    "w_n": 1.0,
+    "w_eta_target": 0.05,
+    "w_smooth_rho": 1.0,
+    "w_smooth_eta": 1.0,
+    "w_smooth_mu": 0.1,
+    "w_mu_prior": 1.0,
+    "w_rho_prior": 0.001,
+    "mu_prior_scale": 10.0,
+    "rho_prior_scale": 40.0
+  },
+  "rows": [
+    {
+      "wavelength_nm": 450.0,
+      "n_ref": 4.7,
+      "k_ref": 0.15,
+      "eta_target": 2.0943951023931953,
+      "mu_fit": 479.91167216160414,
+      "rho_fit": 2.4875,
+      "eta_fit": 0.4875,
+      "n_model": 4.700000000000001,
+      "n_err": 8.881784197001252e-16
+    },
+    {
+      "wavelength_nm": 550.0,
+      "n_ref": 4.3,
+      "k_ref": 0.055,
+      "eta_target": 0.6283185307179585,
+      "mu_fit": 336.23560734764493,
+      "rho_fit": 2.4875,
+      "eta_fit": 0.425,
+      "n_model": 4.300000000000001,
+      "n_err": 8.881784197001252e-16
+    },
+    {
+      "wavelength_nm": 650.0,
+      "n_ref": 3.88,
+      "k_ref": 0.02,
+      "eta_target": 0.1933287786824488,
+      "mu_fit": 222.89318157628492,
+      "rho_fit": 2.4875,
+      "eta_fit": 0.3625,
+      "n_model": 3.8800000000000012,
+      "n_err": 1.3322676295501878e-15
+    },
+    {
+      "wavelength_nm": 850.0,
+      "n_ref": 3.68,
+      "k_ref": 0.006,
+      "eta_target": 0.044351896285973545,
+      "mu_fit": 180.36869192832626,
+      "rho_fit": 2.4875,
+      "eta_fit": 0.325,
+      "n_model": 3.680000000000001,
+      "n_err": 8.881784197001252e-16
+    },
+    {
+      "wavelength_nm": 1000.0,
+      "n_ref": 3.57,
+      "k_ref": 0.001,
+      "eta_target": 0.006283185307179586,
+      "mu_fit": 159.75069102941094,
+      "rho_fit": 2.4875,
+      "eta_fit": 0.3125,
+      "n_model": 3.5700000000000007,
+      "n_err": 8.881784197001252e-16
+    }
+  ]
+}

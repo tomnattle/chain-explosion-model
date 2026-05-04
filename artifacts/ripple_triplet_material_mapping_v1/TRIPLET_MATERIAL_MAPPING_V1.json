@@ -1,0 +1,45 @@
+{
+  "generated_at_utc": "2026-04-30T08:07:07.776428+00:00",
+  "input_csv": "artifacts/ripple_triplet_material_mapping_v1/input_template_refractive_index.csv",
+  "config": {
+    "mu_ref": 1.55,
+    "rho_ref": 2.35,
+    "eta_ref": 0.08,
+    "expo_mu": 0.25,
+    "expo_rho": 0.25,
+    "k_eta_speed": 0.0,
+    "distance_unit_to_m": 1.0
+  },
+  "rows": [
+    {
+      "wavelength_nm": 486.1,
+      "n_ref": 1.4631,
+      "k_ref": 0.0,
+      "mu_fit": 7.102769799218079,
+      "rho_fit": 2.35,
+      "eta_fit": 0.0,
+      "n_model": 1.4631,
+      "n_err": 0.0
+    },
+    {
+      "wavelength_nm": 589.3,
+      "n_ref": 1.4585,
+      "k_ref": 0.0,
+      "mu_fit": 7.013865476387346,
+      "rho_fit": 2.35,
+      "eta_fit": 0.0,
+      "n_model": 1.4585,
+      "n_err": 0.0
+    },
+    {
+      "wavelength_nm": 656.3,
+      "n_ref": 1.4569,
+      "k_ref": 0.0,
+      "mu_fit": 6.983138752041816,
+      "rho_fit": 2.35,
+      "eta_fit": 0.0,
+      "n_model": 1.4569,
+      "n_err": 0.0
+    }
+  ]
+}

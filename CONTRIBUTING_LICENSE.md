@@ -34,7 +34,7 @@ You represent that your contribution is original or properly licensed, and does 
 
 Recommended commit trailer:
 
-`Signed-off-by: Your Name <email@example.com>`
+`Signed-off-by: Your Name <[redacted-email]>`
 
 建议在提交信息尾部添加上述签署行，便于审计追踪。
 

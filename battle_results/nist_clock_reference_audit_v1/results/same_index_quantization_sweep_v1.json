@@ -1,0 +1,61 @@
+{
+  "version": "same-index-quantization-sweep-v1",
+  "hdf5": "D:\\workspace\\chain-explosion-model\\data\\17_04_CH_pockel_100kHz.run.completeblind.dat.compressed.build.hdf5",
+  "pair_count": 128016,
+  "rows": [
+    {
+      "label": "continuous",
+      "levels": 0,
+      "S_raw": 1.1176832855605698,
+      "S_norm": 2.320814810047326
+    },
+    {
+      "label": "quant_2",
+      "levels": 2,
+      "S_raw": 2.297778863489265,
+      "S_norm": 2.297778863489265
+    },
+    {
+      "label": "quant_3",
+      "levels": 3,
+      "S_raw": 0.8958336286101858,
+      "S_norm": 2.310797685890497
+    },
+    {
+      "label": "quant_4",
+      "levels": 4,
+      "S_raw": 0.8442733537134401,
+      "S_norm": 2.30954998635378
+    },
+    {
+      "label": "quant_6",
+      "levels": 6,
+      "S_raw": 1.1341837297245934,
+      "S_norm": 2.309958214109803
+    },
+    {
+      "label": "quant_8",
+      "levels": 8,
+      "S_raw": 0.9319646056204399,
+      "S_norm": 2.317158968083822
+    },
+    {
+      "label": "quant_12",
+      "levels": 12,
+      "S_raw": 1.1142722382971024,
+      "S_norm": 2.314776414085694
+    },
+    {
+      "label": "quant_16",
+      "levels": 16,
+      "S_raw": 1.099250064079207,
+      "S_norm": 2.316947392763966
+    },
+    {
+      "label": "quant_32",
+      "levels": 32,
+      "S_raw": 1.1043066098251306,
+      "S_norm": 2.3191754234366093
+    }
+  ]
+}

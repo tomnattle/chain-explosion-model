@@ -1,0 +1,32 @@
+{
+  "version": "nist-semantics-contribution-summary-v1",
+  "inputs": {
+    "unified_json": "D:\\workspace\\chain-explosion-model\\battle_results\\nist_clock_reference_audit_v1\\results\\nist_unified_semantics_audit_v1.json",
+    "quant_json": "D:\\workspace\\chain-explosion-model\\battle_results\\nist_clock_reference_audit_v1\\results\\same_index_quantization_sweep_v1.json"
+  },
+  "baseline": {
+    "same_index_S_binary": 2.3294172230779164,
+    "same_index_S_cont_raw": 1.1176832855605698,
+    "same_index_S_cont_norm": 2.320814810047326
+  },
+  "delta_pairing": {
+    "binary_external_minus_same": 0.47924833371523334,
+    "binary_event_minus_same": 0.5052529166168274,
+    "cont_norm_external_minus_same": 0.5046446883356697,
+    "cont_norm_event_minus_same": 0.5239406125451782
+  },
+  "delta_normalization": {
+    "same_index_cont_norm_minus_cont_raw": 1.2031315244867562,
+    "external_cont_norm_minus_cont_raw": 1.4796939570357273,
+    "event_cont_norm_minus_cont_raw": 1.4899788940155851
+  },
+  "delta_quantization_same_index": {
+    "raw_quant2_minus_continuous": 1.1800955779286952,
+    "norm_quant2_minus_continuous": -0.02303594655806096
+  },
+  "quick_read": {
+    "pairing_is_major_driver_binary": false,
+    "pairing_is_major_driver_norm": true,
+    "same_index_near_2p82": false
+  }
+}

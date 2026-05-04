@@ -1,0 +1,80 @@
+﻿{
+    "started_at":  "2026-04-29T12:10:46.2511904+08:00",
+    "env_name":  "audit-api",
+    "workspace":  "D:\\workspace\\golang\\nakama\\chain-explosion-model",
+    "python_version":  "Python 3.11.14",
+    "git_head":  "50faa31d801fbb3e20dcbe0bf0c1ece6013e4aa3",
+    "device_fingerprint":  {
+                               "os":  "Microsoft Windows NT 10.0.26200.0",
+                               "cpu_name":  "Intel(R) Core(TM) i7-10700 CPU @ 2.90GHz",
+                               "cpu_cores_logical":  16,
+                               "cpu_cores_physical":  8,
+                               "blas_info":  "{\"numpy_version\": \"2.4.1\", \"blas_opt_info\": {}, \"openblas_info\": {}, \"mkl_info\": {}}"
+                           },
+    "script_sha256":  {
+                          "v6_joint":  "27ac23eb7028e0cf003f68528b7b0d720ac346ad825e39236be8b81af4d7871d",
+                          "v8_unify":  "8b9c6c65abeb6d35652c63170ebe7bc27c5491e262d9fba27e33697e948b4313",
+                          "v9_material_extension":  "5a6fe52071149357c72dfe84c0187701a86a362f6bfc343b71b1ce520f873336",
+                          "run_ripple_unified_lock":  "191e82e3929c64d320e08104713ad6b4d06b6733a036fc99b4ea689c1d20e923",
+                          "v9_realdata_runner":  "75d0d8b3fcbd8c4cf624ba202ba8a7919788ae6ace860762f15fb15c063861a7",
+                          "v9_gate_report":  "c66a967fa13c4b72a03b13eeaf7887b0620c2bef804967d6533f8ac90fb7917e",
+                          "v10_fail_anatomy":  "ef5dfbdfdd87160676f1478744838a8e719dac7228ad4266808f9b60153b2be7"
+                      },
+    "runs":  [
+                 {
+                     "stage":  "v6_primary",
+                     "out_dir":  "artifacts/ripple_quantum_tests_v6_lock",
+                     "joint_pass":  false,
+                     "loss":  0.18232177592154905,
+                     "optimum":  {
+                                     "mu":  1.5495033833507836,
+                                     "rho":  2.3493951767457792,
+                                     "eta":  0.08039988941465061,
+                                     "bw_ghz":  1.8E-05
+                                 }
+                 },
+                 {
+                     "stage":  "v6_stress_refine",
+                     "out_dir":  "artifacts/ripple_quantum_tests_v6_lock_stress_refine",
+                     "note":  "Diagnostic sweep with refine enabled"
+                 },
+                 {
+                     "stage":  "v6_recovered_snapshot",
+                     "source":  "v6_stress_refine",
+                     "alpha":  0.1,
+                     "loss_final":  0,
+                     "optimum":  {
+                                     "mu":  1.55,
+                                     "rho":  2.35,
+                                     "eta":  0.08,
+                                     "bw_ghz":  3E-05
+                                 }
+                 },
+                 {
+                     "stage":  "v8_unified",
+                     "out_dir":  "artifacts/ripple_quantum_tests_v8_unify",
+                     "joint_pass":  true,
+                     "joint_loss":  0.052610578762668211
+                 },
+                 {
+                     "stage":  "v9_material_extension",
+                     "out_dir":  "artifacts/ripple_quantum_tests_v9_material_lock",
+                     "optimum":  {
+                                     "mu":  0.9197983060713547,
+                                     "rho":  1.85,
+                                     "eta":  0.03862443360334271
+                                 }
+                 },
+                 {
+                     "stage":  "v9_realdata",
+                     "skipped":  true,
+                     "reason":  "V9RealDataDir missing or not found"
+                 },
+                 {
+                     "stage":  "v10_fail_anatomy",
+                     "out_dir":  "artifacts/ripple_quantum_tests_v10_fail_anatomy_lock",
+                     "data_dir":  "artifacts/ripple_quantum_tests_v9_realdata_input_template"
+                 }
+             ],
+    "finished_at":  "2026-04-29T12:11:34.8395014+08:00"
+}
