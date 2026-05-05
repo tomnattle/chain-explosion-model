@@ -55,7 +55,7 @@ The **`book/`** folder holds a **chapter-style manuscript** (working Chinese tit
 
 **PDF 书稿（汇编）**：在仓库根目录执行 `.\activate_conda.ps1 base`（或已装 Pandoc 的 PATH）后运行 `.\scripts\build_book_pdf.ps1`；优先 `xelatex`，否则自动使用 conda **tectonic**；默认输出 **`book/_build/manuscript-zh.pdf`**（可用 `-OutPdf` 自定义路径）。*Build PDF*: `.\activate_conda.ps1 base` then `.\scripts\build_book_pdf.ps1` → `book/_build/manuscript-zh.pdf`.
 
-**中英稿 PDF（当前推荐阅读的导出件）**：叙事手稿另有**中英合并**导出，固定放在仓库内路径 **[book/_build/假大象与泡泡-zh-en.pdf](book/_build/假大象与泡泡-zh-en.pdf)**。该目录 `book/_build/` 已列入 `.gitignore`，Git 克隆里**不一定**自带此文件；请在你本机构建或从作者提供的渠道取得后，将 PDF 置于上述路径，再用此链接打开（本地 IDE / 文件管理器同样有效）。*Bilingual manuscript PDF*: **[book/_build/假大象与泡泡-zh-en.pdf](book/_build/假大象与泡泡-zh-en.pdf)** — `book/_build/` is gitignored; place or export the file locally for this path to resolve.
+**中英稿 PDF（当前推荐阅读的导出件）**：叙事手稿另有**中英合并**导出，路径 **[book/_build/假大象与泡泡-zh-en.pdf](book/_build/假大象与泡泡-zh-en.pdf)**。`book/_build/` 中的成品 PDF **已纳入本仓库版本控制**，克隆后即可使用；若本地重新执行 `.\scripts\build_book_pdf.ps1` 或覆盖导出件，请注意自行备份以免冲掉未提交的修改。*Bilingual manuscript PDF*: **[book/_build/假大象与泡泡-zh-en.pdf](book/_build/假大象与泡泡-zh-en.pdf)** — PDFs under `book/_build/` are **tracked in git**; re-running the build script may overwrite them locally.
 
 ## Quick Start Paths
 

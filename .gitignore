@@ -6,6 +6,3 @@ venv/
 .env
 data/
 .venv310
-
-# 书稿 PDF 构建输出（见 scripts/build_book_pdf.ps1）
-book/_build/
