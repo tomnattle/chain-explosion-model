@@ -3,14 +3,6 @@
 **涟漪动力系统的设想**  
 *A ripple-based propulsion concept*
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：科普里有时听到「靠涟漪推进」；本章问：**动量账怎么算**、介质反冲算不算、**开放系统**损耗在哪——**原理草图**，不是发动机图纸。
-> - **这章解决什么**：把口号拉回**可证伪指标**格式（参见路线图文档）；**不**给推力公式。
-> - **教科书常识**：动量守恒、亚伯拉罕–闵可夫斯基争论等，是**真问题**；需要**连续介质极限**才能严肃谈。
-> - **本书在干什么**：挂钩 **ROADMAP** 题1 的 toy 化思路；提醒**相对论未从格子导出**的批评脚本存在。
-> - **和物理学家们**：**不宣称**突破动量守恒；**不**提供专利级方案。
-
 > **本章任务**  
 > **构想章**：把**介质里传播的扰动**想象成一种**可记账的动量/能量交换**——讨论**在何种对称性与损耗模型下**，「涟漪推进」在**原理上**可能说什么、**不可能**说什么。
 
@@ -36,8 +28,6 @@
 > **本章边界**  
 > **纯设想**；**禁止**把本章当专利说明书或工程可行性背书。
 
-## 18.5　小结
-
 **泡泡**可以讲故事；**推进**要写**方程与账本**——仓库里已有**路线图模板**（`ROADMAP_7_PROBLEMS.md`），缺的只是你是否愿意把口号压成**指标与失败判据**。后记收束全书。
 
 ---
@@ -46,14 +36,6 @@
 
 **涟漪动力系统的设想**  
 *A ripple-based propulsion concept*
-
-> **For general readers — what this picture is about**
->
-> - **In plain words**: Pop science sometimes whispers “propulsion by ripples”; this chapter asks **how momentum is booked**, whether **medium recoil** counts, where **open-system** loss sits — a **principle sketch**, not an engine drawing.
-> - **What it does**: Pull slogans back into **falsifiable-metrics** format (see roadmap doc); **no** thrust formula.
-> - **Textbook baseline**: Momentum conservation, Abraham–Minkowski debates, etc. are **real questions**; serious talk needs a **continuum medium limit**.
-> - **What the book is doing**: Hook problem **1** in **`ROADMAP_7_PROBLEMS.md`** toy style; remind that **`explore_critique_04`** says **SR is not derived from the lattice**.
-> - **For working physicists**: **No** claim to break momentum conservation; **no** patent-grade blueprint.
 
 > **This chapter’s job**  
 > **Sketch**: imagine **disturbance propagating in a medium** as **bookable momentum / energy exchange** — under **which symmetry and loss models** “ripple propulsion” can **say** something in principle and **cannot**.
@@ -79,7 +61,5 @@
 
 > **Chapter boundary**  
 > **Pure speculation**; **do not** treat this chapter as a patent filing or engineering sign-off.
-
-## 18.5 Close
 
 **Bubbles** can tell stories; **propulsion** needs **equations and ledgers** — the repo already has a **roadmap template** (`ROADMAP_7_PROBLEMS.md`); what is missing is willingness to compress slogans into **metrics and failure criteria.** The afterword closes the book.

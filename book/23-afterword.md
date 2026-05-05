@@ -1,12 +1,6 @@
 # 后记
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **你刚读完的是一本什么书**：用**泡泡直觉**搭一座**假大象**，再用**公开数据与协议**问——**换一把尺子，故事会不会变**。不是教科书，也不是「推翻量子力学」的檄文。
-> - **实验与叙述怎么对齐**：**格子里的**（电脑模拟）和**磁盘上的**（公开记录审计）**分开**；**玩具一致**≠**实验室裁决**；**审计敏感**≠**科学家作假**。
-> - **和物理学家们总体关系**：主流物理学的**核心实验与公式**仍是人类知识的地基；本书贡献在**把假设写进代码、把边界写进文档**——**包括失败**。
-> - **你不必会什么**：**不必会代码**；各章开头的 **【给普通读者】** 就是为**零基础**能**带着答案离开**而设。
-> - **若仍有一处疑问**：优先查 **`book/02-contents.md`** 找到章节，再读该章开头的白话块；技术细节在 **`docs/PROJECT_TECHNICAL_MONOGRAPH.md`**。
+你刚读完的，是一本用**泡泡直觉**搭**假大象**、再用**公开数据与协议**问「换一把尺子故事会不会变」的手记；**格子里的**模拟与**磁盘上的**审计**分开写**，也不是「推翻量子力学」的檄文。若还有一处痒：从 **`book/02-contents.md`** 找章进正文，技术总图在 **`docs/PROJECT_TECHNICAL_MONOGRAPH.md`**；**不必会代码**也能抓住主张与边界。
 
 ## 开放问题与未完成的介质逻辑
 
@@ -50,13 +44,7 @@
 
 # Afterword
 
-> **For general readers — what this picture is about**
->
-> - **What you just read**: A **fake elephant** built from **bubble intuition**, then interrogated with **public data and protocols** — asking whether **changing the yardstick changes the story**. Not a textbook, and not a tract to “overthrow quantum mechanics.”
-> - **How experiments line up with narrative**: **On-grid** (simulation) and **on-disk** (public-record audit) stay **separate**; **toy agreement** ≠ **lab verdict**; **audit sensitivity** ≠ **scientist fraud.**
-> - **Relation to physicists overall**: **Core experiments and equations** of mainstream physics remain the bedrock; this book tries to **write assumptions into code and boundaries into documentation** — **including failures.**
-> - **What you do not need**: **No coding required**; the **【给普通读者】** blocks at chapter openings exist so **zero-background readers** can still **leave with the gist.**
-> - **If one thing still itches**: start from **`book/02-contents.md`** to find the chapter, reread that chapter’s plain opener; technical depth lives in **`docs/PROJECT_TECHNICAL_MONOGRAPH.md`**.
+You just read a **fake elephant** built from **bubble intuition**, then pressed with **public data and protocols** — asking whether **changing the yardstick changes the story**. **On-grid** simulation and **on-disk** audit stay **separate**; this is not a tract to “overthrow quantum mechanics.” If something still itches: **`book/02-contents.md`** for chapter paths, **`docs/PROJECT_TECHNICAL_MONOGRAPH.md`** for the technical spine — **no coding required** to grasp the claims and boundaries.
 
 ## Open questions and unfinished medium logic
 

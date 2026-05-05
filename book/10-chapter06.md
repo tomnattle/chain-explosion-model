@@ -3,14 +3,6 @@
 **栅格涟漪：延迟选择、测量相图与纠缠扫描**  
 *Ripple grid: delayed choice, measurement phase diagram, entanglement scans*
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：**延迟选择**在科普里像「晚做决定也能改写过去」；在这里先降级成**程序第几步插入吸收/分支规则**，看后面屏上图案变不变。
-> - **这章解决什么**：**因果顺序写进循环**后，图样是否可预测？再加：**多旋钮一起转**时，条纹「活/死」区域长什么样。
-> - **教科书常识**：惠勒等讨论**延迟选择量子实验**；**纠缠**在量子里有严格定义。本章是**格子玩具相关扫描**，**≠** 实验室纠缠见证。
-> - **本书在干什么**：`ce_06`–`ce_10` 把话说成**可算**；不要求你跑程序，只要知道「**晚插规则**」和「**早插规则**」可以对比。
-> - **和物理学家们**：**不宣称推翻**延迟选择实验结论；只提供**另一类可编程叙事**作对照。
-
 > **本章任务**  
 > 在格子上讨论：**吸收/分支规则晚一点插进去**，图样是否变；以及在多参数平面上**系统扫**「测量强度 × 耦合 × ……」时，可见度、对比度等**相图状**结构。
 
@@ -48,8 +40,6 @@
 > **本章边界**  
 > 格点上的「纠缠扫描」是**玩具相关矩阵**在定义下的行为；**不**自动等同于某实验室申报的纠缠见证。
 
-## 6.4　小结
-
 你现在能问：**测量规则何时介入、介入多狠、在参数平面上处于何区**——全是可复算问题。下一章把这些机制**接到 Bell/CHSH 标量与前沿曲线**（`ce_bell*`）。
 
 ---
@@ -58,14 +48,6 @@
 
 **栅格涟漪：延迟选择、测量相图与纠缠扫描**  
 *Ripple grid: delayed choice, measurement phase diagram, entanglement scans*
-
-> **For general readers — what this picture is about**
->
-> - **In plain words**: **Delayed choice** in pop science sounds like “late decisions rewrite the past”; here it downgrades to **which loop step inserts absorption / branching rules**, and whether downstream patterns move.
-> - **What this chapter does**: With **causal order written into the loop**, are patterns predictable? Plus: when **many knobs turn together**, what do “live / dead fringe” regions look like on a plane?
-> - **Textbook baseline**: Wheeler-style **delayed-choice quantum experiments**; **entanglement** is rigorously defined in quantum theory. This chapter is **grid toy scans**, **≠** lab entanglement certification.
-> - **What the book is doing**: `ce_06`–`ce_10` make the story **computable**; you need not run code — only know **late-insert rules** can be compared to **early-insert rules**.
-> - **For working physicists**: **No claim to overturn** lab delayed-choice results — only a **programmable counter-narrative** for contrast.
 
 > **This chapter’s job**  
 > On the lattice: **if absorption / branching rules are inserted late**, do patterns change; and on multi-parameter planes, **systematically scan** “measurement strength × coupling × …” for **phase-diagram-like** structure in visibility and contrast.
@@ -103,7 +85,5 @@ Data layouts follow each script’s **`split_mask`**, phase grid, output arrays.
 
 > **Chapter boundary**  
 > Grid “entanglement scans” are **toy correlation matrices** under stated definitions; they **do not** auto-equal a lab’s entanglement witness.
-
-## 6.4 Close
 
 You can now ask: **when measurement rules bite, how hard, and where in parameter space** — all recomputable. Next chapter pipes these mechanisms into **Bell/CHSH scalars and frontier curves** (`ce_bell*`).

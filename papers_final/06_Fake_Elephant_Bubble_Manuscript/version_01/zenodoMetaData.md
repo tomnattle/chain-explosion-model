@@ -18,7 +18,7 @@ This deposit is the **narrative manuscript** of the *chain-explosion-model* rese
 
 **What is included (source of truth):** Markdown chapters, two background archives (Bell, GHZ), preface, appendix on three phrasings, afterword, and `book/02-contents.md` as the table of contents. Technical monograph and frozen battle results remain in `docs/` and `battle_results/` in the same repo.
 
-**PDF build (optional):** From repo root, with Pandoc + XeLaTeX installed, run `.\scripts\build_book_pdf.ps1` — default output `book/_build/假大象与泡泡-书稿.pdf`.
+**PDF build (optional):** From repo root, run `.\activate_conda.ps1 -EnvName base` then `.\scripts\build_book_pdf.ps1` (uses **tectonic** from conda if `xelatex` is absent; CJK via **Microsoft YaHei**). Default output **`book/_build/manuscript-zh.pdf`**.
 
 **License note:** Manuscript-style docs in this project are typically **CC BY-NC-ND 4.0** (see repository `LICENSE-DOCS.md`); software in the repo may be under **AGPL-3.0**. Confirm the license you select on Zenodo matches the files you upload.
 
@@ -29,7 +29,7 @@ This deposit is the **narrative manuscript** of the *chain-explosion-model* rese
 
 **内容边界（以仓库为准）：** Markdown 章节、Bell/GHZ 两篇背景档案、序言、三种表述附录、后记；全书目录见 **`book/02-contents.md`**。技术专论与冻结战报仍在同仓库的 **`docs/`**、**`battle_results/`** 等处。
 
-**PDF 生成（可选）：** 在仓库根目录安装 Pandoc 与 XeLaTeX 后执行 **`.\scripts\build_book_pdf.ps1`**，默认输出 **`book/_build/假大象与泡泡-书稿.pdf`**。
+**PDF 生成（可选）：** 在仓库根执行 **`.\activate_conda.ps1 -EnvName base`** 后运行 **`.\scripts\build_book_pdf.ps1`**（若无 `xelatex` 则用 conda 自带 **tectonic**；中文用 **微软雅黑**）。默认输出 **`book/_build/manuscript-zh.pdf`**。
 
 **许可提示：** 书稿类文档在仓库中通常适用 **CC BY-NC-ND 4.0**（见 **`LICENSE-DOCS.md`**）；源代码可能为 **AGPL-3.0**。请在 Zenodo 所选许可与实际上传文件一致。
 

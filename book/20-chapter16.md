@@ -3,14 +3,6 @@
 **没通过的测量：诚实记录**  
 *What failed: an honest record*
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：科研里**失败**和**没做完**一样重要；本章是**错题本**，不是自我表扬。
-> - **这章解决什么**：哪些假设**没闭合**、哪些曲线**没过门**、哪些话**曾经说早**——**清单化**，方便后来者接着做。
-> - **教科书常识**：正规论文也有 **null result**；开放问题不是丢脸，是**诚实**。
-> - **本书在干什么**：把「没通过」从情绪改成**可复查条目**；**你读完应带走**：作者**哪里认输**。
-> - **和物理学家们**：**不违背**科学伦理；失败记录**不与**「量子错」划等号。
-
 > **本章任务**  
 > 把「失败」从情绪变成**清单**：哪些假设在数据或 in-silico 上**未闭合**、哪些曲线**未过门**、哪些**叙事曾写早**——并说明**是否归档、如何复查**。
 
@@ -40,8 +32,6 @@
 > **本章边界**  
 > 「没通过」**不是**对任何实验「判死刑」；它是**本书当前版本**在**自述规则**下的状态。下一版可能推翻——前提是**规则与数据一并更新**。
 
-## 16.4　小结
-
 **假大象**要量，也要**量不出来的地方**。第三部分换节奏：**设想**两条——**经典光力学计算路径**与**涟漪动力系统**——明确标为**构想**，不是成品。
 
 ---
@@ -50,14 +40,6 @@
 
 **没通过的测量：诚实记录**  
 *What failed: an honest record*
-
-> **For general readers — what this picture is about**
->
-> - **In plain words**: In research **failure** matters as much as **unfinished** work; this chapter is an **error log**, not self-congratulation.
-> - **What it does**: Which hypotheses **did not close**, which curves **missed gates**, which lines were **spoken too early** — **listed** so others can continue.
-> - **Textbook baseline**: Serious papers publish **null results**; open questions are **honesty**, not shame.
-> - **What the book is doing**: Turn “did not pass” from mood into **checklist items**; you should leave knowing **where the author conceded**.
-> - **For working physicists**: **No** ethics breach; failure logs **do not** equal “quantum is wrong.”
 
 > **This chapter’s job**  
 > Turn “failure” into a **list**: which assumptions stayed **open** on data or in-silico, which curves **missed gates**, which narratives were **premature** — and **whether archived, how to re-audit**.
@@ -87,7 +69,5 @@ Re-audit discipline: align **same commit** or **artifact-embedded hash**; **do n
 
 > **Chapter boundary**  
 > “Did not pass” is **not** a death sentence on any experiment; it is **this book’s current build** under **its own stated rules**. A later edition may reverse — only if **rules and data update together**.
-
-## 16.4 Close
 
 The **fake elephant** must be measured — and **where measurement stops**. Part III shifts tempo: two **sketches** — **classical optical computing pathway** and **ripple propulsion** — explicitly labeled **speculation**, not product.

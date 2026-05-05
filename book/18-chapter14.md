@@ -3,14 +3,6 @@
 **其他基线与探索**  
 *Other baselines and exploration*
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：**波恩规则**常被说成「概率 ∝ 波幅平方」；**不确定性**是「位置动量不能同时无限准」；**延迟选择**见第6章人话版。本章是**杂物抽屉里的对照实验**。
-> - **这章解决什么**：在主菜之外，回答一些「**格子上这类说法稳不稳**」的小问题——例如：蒙特卡洛撒点累积，会不会**长得像**连续场？（`verify_born_rule`）
-> - **教科书常识**：Born、海森堡不确定性、退相干叙事各有**严格数学**；脚本只是**卡通演示**或**内部批评**。
-> - **本书在干什么**：`verify_*`、`discover_*`、`explore_critique_*` **一张表导航**；书中快照告诉你**跑过一次会怎样**，你**不必亲自跑**。
-> - **和物理学家们**：**不宣称**推翻标准结论；`explore_critique_*` 更是**给自己挑错**的措辞练习。
-
 > **本章任务**  
 > 说明仓库中**未编入前述主线、仍值得知道**的探索：`verify_*`、`discover_*`、部分 `explore_critique_*`——**Born 规则抽查**、**不确定性扫描**、**退相干 toy**、**相对论格子批评**等。
 
@@ -109,9 +101,9 @@
 > **本章边界**  
 > 「探索」**不**都是成稿结论；部分脚本保留**失败输出**。引用前请**跑一遍**或读 artifact 注释。
 
-## 14.6　小结
-
 仓库的**可复现性**不仅来自主线，也来自这些**小基线**与**自我批评脚本**。下一章为**规划占位**：**Bell 类公开数据上 Alice/Bob 球面坐标联合拟合**（**文稿先行，代码待补**）；再下一章才是**诚实列出没通过的测量**。
+
+**路标**：**栅格 + NIST + CHSH 审计**的主线在中腹已大体铺完；**第12–13章的涟漪量子 toy**是**并行探索**，曲线再漂亮也要先问门禁与失败记录。若你**只要公开数据与读数规则的诚实记录**，可侧重**第8–10章与第16章**；**第17–18章**为**设想与动力系统草图**，读来完全可选。
 
 ---
 
@@ -119,14 +111,6 @@
 
 **其他基线与探索**  
 *Other baselines and exploration*
-
-> **For general readers — what this picture is about**
->
-> - **In plain words**: **Born’s rule** is often glossed as “probability ∝ amplitude squared”; **uncertainty** is “you cannot nail position and momentum both arbitrarily fine”; delayed choice in plain words is Chapter 6. This chapter is the **junk drawer of control experiments**.
-> - **What it does**: Beside the main dishes, small questions like **“does this claim stay stable on the lattice?”** — e.g., does Monte Carlo accumulation **look like** a continuous field? (`verify_born_rule`)
-> - **Textbook baseline**: Born, Heisenberg uncertainty, and decoherence stories have **tight math**; scripts are **cartoons** or **internal critique**.
-> - **What the book is doing**: One **table map** for `verify_*`, `discover_*`, `explore_critique_*`; snapshots show **what one run looked like** — **you do not have to run them**.
-> - **For working physicists**: **No** claim to overturn standard results; `explore_critique_*` is **language hygiene** for the author.
 
 > **This chapter’s job**  
 > Map explorations **not wired into the main line but still worth knowing**: `verify_*`, `discover_*`, selected `explore_critique_*` — **Born spot checks**, **uncertainty scans**, **decoherence toys**, **relativistic-lattice critique**, etc.
@@ -226,6 +210,6 @@ Ripple subtree: **`docs/RIPPLE_QUANTUM_TESTS_INDEX.md`**; otherwise **`scripts/e
 > **Chapter boundary**  
 > “Exploration” is **not** always a finished conclusion; some scripts keep **failure outputs**. **Rerun** or read artifact notes before citing.
 
-## 14.6 Close
-
 Reproducibility here comes from the **main line** and from these **small baselines** plus **self-critique scripts**. Next is a **planning placeholder**: **joint Alice/Bob sphere fit on Bell-type public data** (**manuscript first, code TBD**); after that comes the **honest list of measurements that did not pass**.
+
+**Layer cue**: The **grid + NIST + CHSH audit spine** is largely set by mid-book; **Chapters 12–13 ripple-quantum toys** are **parallel exploration** — ask which gates a curve passed before admiring it. If you mainly want **public-data / readout honesty**, lean on **Chapters 8–10 and 16**; **Chapters 17–18** are **optional sketches** of ideas and dynamics.

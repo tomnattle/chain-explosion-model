@@ -3,14 +3,6 @@
 **基于 NIST 数据：逐次测量拟合偏振装置在庞加莱球上的等效坐标**  
 *NIST-based experiment: per-trial fit of effective Poincaré-sphere coordinates*
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：**庞加莱球**可以想成「**偏振状态**在球面上的位置」；**拟合**=从读数反推**等效旋钮**转了多少。
-> - **这章解决什么**：在 **NIST 同批数据**上，换一条**独立**问题：**装置在数学上等效成什么**？与 **CHSH 主线**并行，互不顶替。
-> - **教科书常识**：斯托克斯参数、庞加莱球是**经典光学标准语言**；和量子密度矩阵的**布洛赫球**是亲戚图像。
-> - **本书在干什么**：检查**可辨识性**（算出来的旋钮是否靠谱）、**不确定度**；**不要求**你懂矩阵。
-> - **和物理学家们**：方法族与光学工程一致；结论层级是**拟合质量**，不是哲学判决。
-
 > **本章任务**  
 > 说明仓库中**独立于 CHSH 主线的拟合实验**：把单次 trial 的读出，放到**等效光学元件**（庞加莱球上的角度/相位）语言里，检验**可辨识性**与**不确定度预算**。
 
@@ -36,8 +28,6 @@ CHSH 关心**关联是否超界**。拟合路线问：**若把装置当成黑箱
 
 **与第十五章（规划稿）的关系**：**第15章**预留 **Bell 类公开数据上 Alice/Bob 球面坐标联合拟合** 的专章——**文稿占位、代码待作者有空再写**；**本章已述语言与纪律仍为准**，将来实现时应与此章**对齐定义**而非另起炉灶。
 
-## 9.4　小结
-
 你现在有两类对象：**Bell 型标量**与**装置几何型参数**。下一章专门把 **CHSH** 再拆：**二值化轨道 vs 连续代理轨道**，并用**合成样本**做**阴性对照**。
 
 ---
@@ -46,14 +36,6 @@ CHSH 关心**关联是否超界**。拟合路线问：**若把装置当成黑箱
 
 **基于 NIST 数据：逐次测量拟合偏振装置在庞加莱球上的等效坐标**  
 *NIST-based experiment: per-trial fit of effective Poincaré-sphere coordinates*
-
-> **For general readers — what this picture is about**
->
-> - **In plain words**: The **Poincaré sphere** is where **polarization states** sit as points on a ball; **fitting** means inferring **how far the effective knobs turned** from readouts.
-> - **What this chapter does**: On **the same NIST batch**, ask a **separate** question: **what does the hardware look like in math?** Runs **parallel** to the **CHSH main line**, not a substitute.
-> - **Textbook baseline**: Stokes parameters and the Poincaré sphere are **standard classical optics**; they are cousins of the **Bloch sphere** picture for qubits.
-> - **What the book is doing**: Check **identifiability** (whether inferred knobs are meaningful) and **uncertainty**; **no** matrix fluency required.
-> - **For working physicists**: Methods sit in the same family as optical engineering; conclusions are about **fit quality**, not philosophy.
 
 > **This chapter’s job**  
 > Describe **fitting experiments independent of the CHSH headline pipeline**: put per-trial readouts in the language of **effective optical elements** (angles / phases on the Poincaré sphere), and test **identifiability** plus an **uncertainty budget**.
@@ -79,7 +61,5 @@ If the data are **nearly insensitive** to some parameter combo, the fit returns 
 > Equivalent coordinates are **parameterizations inside a model class**; they do **not** automatically equal vendor calibration sheets. **Cross-talk with CHSH numbers** must share the **same trial subset and weights**.
 
 **Relation to Chapter 15 (planning draft)**: Chapter **15** reserves a dedicated slot for **joint Alice/Bob sphere-coordinate fitting on Bell-type public data** — **manuscript placeholder, code when the author has bandwidth**; **the language and discipline in this chapter remain authoritative**; future code should **align definitions** here rather than invent a parallel dialect.
-
-## 9.4 Close
 
 You now have two kinds of objects: **Bell-style scalars** and **device-geometry parameters**. Next chapter unpacks **CHSH** again: **binarization track vs continuous-proxy track**, with **synthetic** **negative controls**.

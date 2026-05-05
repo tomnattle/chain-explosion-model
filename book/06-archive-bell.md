@@ -1,12 +1,6 @@
 # 档案一 · Bell 实验与 Bell 不等式
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：**Bell 不等式**像一道**应用题上限**：若世界完全由「本地小抄」决定（测量前结果就写好了，且不能超光速通气），某些**关联统计**不能太高；实验上若反复测到更高，就逼你放弃「那种」本地解释。
-> - **这档案解决什么**：把**历史脉络**（EPR、隐变量、Bell、Aspect 以降）和**实验长什么样**说清楚，让你读后面章节时不至于「只见过一个 S 数字」。
-> - **教科书里的名字**：爱因斯坦—波多尔斯基—罗森（**EPR**）、**Bell（贝尔）**、**CHSH**（四人姓氏缩写，一种常用的 Bell 型检验）、**Aspect（阿斯佩）** 等实验家。**公式**在档案后文有，但**核心是比较界 vs 观测**。
-> - **本书立场**：仓库既做**格子玩具**，也做**公开数据审计**；**不**把某一趟仿真直接等同于「证伪整个量子力学」。**是否违背教科书**：实验共识支持量子预言；本书问的是**公开记录上统计对象怎么取**。
-> - **你需要会代码吗**：**不需要**；这是**背景说明书**。
+**人话一句**：**Bell 不等式**像一道「本地小抄」能解释的关联统计**上限**；实验若反复超过这道上限，就要放弃**那一类**局域预先赋值故事。下文把 **EPR、Bell、Aspect** 以降的脉络和**实验骨架**写清，后文用到的 **CHSH** 是四人姓氏缩写的一种常用检验组合；**公式**在后文，**核心是比较界与观测**。
 
 **文稿性质**：供本书读者对照的背景档案；**不是**对当代实验的完整综述，也不是对任何实验室的判决书。具体数值与协议以各章及原始论文为准。
 
@@ -108,13 +102,7 @@
 
 # Archive I · Bell tests and Bell inequalities
 
-> **For general readers — what this picture is about**
->
-> - **In plain words**: A **Bell inequality** is like a **homework upper bound**: if the world were entirely driven by **local hidden instructions** (outcomes fixed before measurement, no faster-than-light coordination), certain **correlation statistics** cannot get too large; if experiments keep exceeding the bound, you must give up **that** local picture.
-> - **What this archive does**: Lay out **history** (EPR, hidden variables, Bell, Aspect and after) and **what experiments look like**, so later chapters are not “just an S number.”
-> - **Textbook names**: Einstein–Podolsky–Rosen (**EPR**), **Bell**, **CHSH** (four surnames — a common Bell-type test), experimentalists like **Aspect**. **Formulas** appear below, but the spine is **bound vs observation**.
-> - **This book’s stance**: The repo runs **grid toys** and **public-data audits**; it does **not** equate one simulation run with “disproving all of quantum mechanics.” **Does it contradict textbooks?** Experimental consensus backs quantum predictions; this book asks **how statistical objects are chosen on public records**.
-> - **Code required?** **No** — this is **background**.
+**In one line**: a **Bell inequality** is an upper bound on certain correlations if outcomes were fixed by **local hidden instructions**; experiments that keep crossing it force you to drop **that** local story. Below: **EPR → Bell → Aspect-era** history, what labs actually measure, and **CHSH** as a common four-setting packaging — **formulas** follow, but the spine is **bound vs observation**.
 
 **Nature of this text**: background for readers of this book; **not** a full survey of contemporary experiments and **not** a verdict on any lab. Numbers and protocols follow each chapter and the primary literature.
 

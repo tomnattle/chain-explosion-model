@@ -29,14 +29,14 @@
 | [00-unified-writing-scheme.md](00-unified-writing-scheme.md) | **全书统一写作方案**（第4章起：结构、边界、交叉引用） |
 
 **零基础导读（不必读代码）**  
-各章、档案、附录一、后记在正文前设有 **`【给普通读者 · 这幅图在说什么】`** 白话块：说明**要解决什么、与教科书常识何关系、本书是否宣称违背主流物理**；详见 `00-preface.md`「零基础读者」与 `00-unified-writing-scheme.md` §2。
+术语在正文就地解释；序言里**一次**写清全书边界。若关心「读到哪里停」，见 **`book/REVISION_PLAN_NARRATIVE_LAYERING.md`** 与**第2、5、14章**末路标。
 
 ---
 
 ## 第一部分 · Part I　模型 · The model
 
 **体例（全书）**  
-读法、非本体论态度、非人身等边界，在《序言》**「全书读法与边界（写在前面一次）」**统一说明；**泡泡 / 涟漪 / 链式爆炸**三种表述及项目内离散公式见 **`book/01-appendix-three-phrasings.md`**。第4章起另遵 **`book/00-unified-writing-scheme.md`**。各章**章首**仅作该章提示，**章内不单段重复**，以免打断正文。
+读法、非本体论态度、非人身等边界，在《序言》**「全书读法与边界（写在前面一次）」**统一说明；**泡泡 / 涟漪 / 链式爆炸**三种表述及项目内离散公式见 **`book/01-appendix-three-phrasings.md`**。第4章起另遵 **`book/00-unified-writing-scheme.md`**。各章以叙事与可选的 **`本章任务`** 接入，**章内不单段重复**序言四条，以免打断正文。
 
 1. **第1章**　泡泡  
    *Ch.1 · The bubble*  
@@ -184,14 +184,14 @@
 | [00-unified-writing-scheme.md](00-unified-writing-scheme.md) | **Unified writing scheme** from Chapter 4: structure, boundaries, cross-refs |
 
 **Zero-background guides (no code required)**  
-Chapters, archives, Appendix I, and the afterword open with **`【给普通读者 · 这幅图在说什么】`**: what question is being answered, how this sits next to textbook lore, whether the book claims to overturn mainstream physics — see `00-preface.md` (“零基础读者”) and `00-unified-writing-scheme.md` §2.
+Jargon is glossed in-line; boundaries are stated once in the preface. For “where to stop reading,” see **`book/REVISION_PLAN_NARRATIVE_LAYERING.md`** and the short **layer cues** at the ends of **Chapters 2, 5, and 14**.
 
 ---
 
 ## Part I · The model
 
 **Style (whole book)**  
-How to read the book, the non-ontological stance, and the no–ad-hominem boundary are stated once in the preface under **“全书读法与边界”**; the three phrasings **bubble / ripple / chain explosion** and in-repo discrete formulas are in **`book/01-appendix-three-phrasings.md`**. From Chapter 4 on, also follow **`book/00-unified-writing-scheme.md`**. Each chapter **opens** with a short reminder; the **body does not restate** those bullets paragraph by paragraph, to avoid breaking flow.
+How to read the book, the non-ontological stance, and the no–ad-hominem boundary are stated once in the preface under **“全书读法与边界”**; the three phrasings **bubble / ripple / chain explosion** and in-repo discrete formulas are in **`book/01-appendix-three-phrasings.md`**. From Chapter 4 on, also follow **`book/00-unified-writing-scheme.md`**. Chapters enter with **narrative** and an optional **`This chapter’s job`** line; the **body does not restate** the preface’s four bullets paragraph by paragraph, to avoid breaking flow.
 
 1. **Chapter 1** · Bubble — *Ch.1 · The bubble* — `book/04-chapter.md`  
 2. **Chapter 2** · Why I started asking questions — *Ch.2* — `book/03-chapter.md`  

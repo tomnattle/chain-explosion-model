@@ -3,14 +3,6 @@
 **经典光力学计算路径的设想**  
 *A classical optical computing pathway*
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：**构想章**=作者**没想完**、但想**把条件列清**的草稿；不是产品说明书。
-> - **这章解决什么**：若坚持「**局域传播 + 可调损耗 + 读数规则写死**」，能不能想象一种**经典光学式**的信息处理？**天花板**在哪？
-> - **教科书常识**：光计算、硅光子在工程上是**真实赛道**；**量子计算**是另一条赛道。本书**不参与口水战**。
-> - **本书在干什么**：用仓库已有脚本当**思维脚手架**（`ce_*`、研究地图、计算机探索 README）；**无新实验数据**。
-> - **和物理学家们**：**不宣称**已替代量子器件；只列**若要认真必须补的课**。
-
 > **本章任务**  
 > **构想章**：若坚持**局域传播 + 可调损耗 + 显式测量规则**，能否在工程上走出一条**经典光学式**的信息处理路径——**不**宣称已替代量子器件，只列**必要条件**与**已知的硬天花板**。
 
@@ -43,8 +35,6 @@
 > **本章边界**  
 > 全章为**设想**；**无**新实验数据。若未来落地，应**另开技术专册**，本书不升格为工程手册。
 
-## 17.5　小结
-
 **经典路径**不是退路，是**一条需要重新定价的路**：仓库已证明**规则可编码、可审计**；**未证明**的是**尺度、噪声与多体边界**下的性价比。下一章换更「宏观」的涟漪想象：**动量/能量账本**——同样**只作构想**，但会挂钩 **`unsolved_problems_collision`** 里的**可证伪指标**思路。
 
 ---
@@ -53,14 +43,6 @@
 
 **经典光力学计算路径的设想**  
 *A classical optical computing pathway*
-
-> **For general readers — what this picture is about**
->
-> - **In plain words**: A **sketch chapter** — the author **has not finished thinking** but wants **conditions spelled out**; not a product manual.
-> - **What it does**: If we insist on **local propagation + tunable loss + frozen readout rules**, can we imagine **classical optics–style** information processing? Where is the **ceiling**?
-> - **Textbook baseline**: Optical computing and silicon photonics are **real engineering tracks**; **quantum computing** is another track. This book **does not** join flame wars.
-> - **What the book is doing**: Use existing repo scripts as **scaffolding** (`ce_*`, research map, `计算机探索/README_探索路线.md`); **no** new experimental data.
-> - **For working physicists**: **No** claim to replace quantum devices; only **homework** if you take it seriously.
 
 > **This chapter’s job**  
 > **Sketch**: With **local propagation + tunable loss + explicit measurement rules**, could an engineering path emerge for **classical optics–style** information processing — **without** claiming to replace quantum hardware; list **necessary conditions** and **known hard ceilings**.
@@ -93,7 +75,5 @@ This book **does not** join “quantum supremacy” shouting matches. Practical 
 
 > **Chapter boundary**  
 > Whole chapter is **speculation**; **no** new experimental data. If it ever ships, it deserves a **technical companion volume** — this book does not upgrade to an engineering handbook.
-
-## 17.5 Close
 
 The **classical path** is not a retreat; it is a **route that needs repricing**. The repo already shows **rules can be encoded and audited**; what is **not** proved is **cost–benefit under scale, noise, and many-body edges.** Next chapter widens the aperture: **momentum / energy ledgers** for a **ripple propulsion** sketch — still **speculation**, but hooks **`unsolved_problems_collision`** **falsifiable-metrics** style.

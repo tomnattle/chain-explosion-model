@@ -49,7 +49,7 @@ The **`book/`** folder holds a **chapter-style manuscript** (working Chinese tit
 - **Cover / half-title notes**：[book/cover.md](book/cover.md)  
 - **House style & cross-references**：[book/00-unified-writing-scheme.md](book/00-unified-writing-scheme.md)
 
-**PDF 书稿（汇编）**：在仓库根目录安装 [Pandoc](https://pandoc.org/) 与含 `xelatex` 的 TeX 发行版（如 MiKTeX / TeX Live）后执行 `.\scripts\build_book_pdf.ps1`，默认输出 `book/_build/假大象与泡泡-书稿.pdf`（详见脚本内说明）。*Build PDF (Chinese)*: from repo root, install Pandoc + XeLaTeX, run `.\scripts\build_book_pdf.ps1` → `book/_build/…pdf`.
+**PDF 书稿（汇编）**：在仓库根目录执行 `.\activate_conda.ps1 -EnvName base`（或已装 Pandoc 的 PATH）后运行 `.\scripts\build_book_pdf.ps1`；优先 `xelatex`，否则自动使用 conda **tectonic**；默认输出 **`book/_build/manuscript-zh.pdf`**（可用 `-OutPdf` 自定义路径）。*Build PDF*: `.\activate_conda.ps1 -EnvName base` then `.\scripts\build_book_pdf.ps1` → `book/_build/manuscript-zh.pdf`.
 
 ## Quick Start Paths
 

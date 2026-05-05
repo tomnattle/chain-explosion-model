@@ -3,14 +3,6 @@
 **栅格涟漪：缝口吸收、有限吸收体与探测器**  
 *Ripple grid: slit absorption and finite absorber–detector*
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：把「测量」暂时翻译成**在某一格抠走一部分能量**——像海绵挡在波纹路上**吸掉一截**。
-> - **这章解决什么**：**哪里吸、吸多狠**，条纹会怎样变淡或变形？这是**几何 + 损耗**问题，不是玄学。
-> - **教科书常识**：量子叙述里常用**坍缩、路径信息**；经典波动里**吸收/探测**也会破坏干涉。**本书用经典式损耗在格子上演示**，不自称替代量子测量理论。
-> - **本书在干什么**：`ce_04`–`ce_05` 给出**可对照的曲线**；书中快照告诉你**同一指标也可能误读**，要结合图看。
-> - **和物理学家们**：现象方向（**有吸收常削弱对比**）与常识一致；**定量**只对本仓库参数负责。
-
 > **本章任务**  
 > 把「探测器读到一点」落实为**可扫参数**：缝后吃多少、吸收片多大、多狠——看条纹与可见度**如何被洗掉**。
 
@@ -58,9 +50,9 @@
 > **本章边界**  
 > 吸收仍是**经典式损耗**在格点上的实现；**不**声称单独解决 Bell/GHZ 的赋值矛盾（见 **`07-archive-ghz.md`**）。
 
-## 5.4　小结
-
 同一泡泡内核上，你多了**两把旋钮**：哪里吃、吃多狠。下一章引入**延迟插入吸收**、**测量相图**与更复杂的**纠缠扫描**脚本（`ce_06`–`ce_10`）：问「**何时**吃」与「**多种测量设定**」会怎样改变图样与相关曲线。
+
+**路标**：栅格玩具段先告一段落；**Bell 与公开数据的主审计线**在**第8–11章**（NIST、装置拟合、CHSH 二值化、GHZ in-silico）。若你主要为那条线而来，**允许从目录直跳第8章**，不必把第4–7章当作前置考试。
 
 ---
 
@@ -68,14 +60,6 @@
 
 **栅格涟漪：缝口吸收、有限吸收体与探测器**  
 *Ripple grid: slit absorption and finite absorber–detector*
-
-> **For general readers — what this picture is about**
->
-> - **In plain words**: Treat “measurement” temporarily as **scraping away part of the energy at a cell** — a sponge on the ripple path **drinks a slice**.
-> - **What this chapter does**: **Where** you absorb and **how hard** — how fringes fade or distort? This is **geometry + loss**, not mysticism.
-> - **Textbook baseline**: Quantum language uses **collapse, which-path information**; classical waves also lose interference under **absorption / detection**. **This book demos classical-style loss on a grid**, not a replacement for quantum measurement theory.
-> - **What the book is doing**: `ce_04`–`ce_05` give **comparable curves**; snapshots warn that **the same scalar can mislead** — read with the figure.
-> - **For working physicists**: Qualitative direction (**absorption often weakens contrast**) matches intuition; **quantitative** claims bind to this repo’s parameters only.
 
 > **This chapter’s job**  
 > Turn “the detector touches a point” into **scannable knobs**: how much is eaten past the slit, how big and how hungry the absorber — watch fringes and visibility **wash out**.
@@ -124,6 +108,6 @@ From **2026-05-05**, repo root, `PYTHONPATH`, `MPLBACKEND=Agg`, `PYTHONIOENCODIN
 > **Chapter boundary**  
 > Absorption is still **classical-style loss** on lattice sites; it **does not** claim to settle Bell/GHZ assignment tensions alone (see **`07-archive-ghz.md`**).
 
-## 5.4 Close
-
 On the same bubble kernel you gained **two knobs**: where to eat, how hard. Next chapter adds **delayed insertion of absorption**, **measurement phase diagrams**, and richer **entanglement scans** (`ce_06`–`ce_10`): **when** you eat and **many measurement settings** — how patterns and correlation curves move.
+
+**Layer cue**: This pauses the grid-toy arc; the **main Bell / public-data audit line** is **Chapters 8–11** (NIST, apparatus fit, CHSH binarization, GHZ in-silico). If that is why you came, **jump to Chapter 8** — Chapters 4–7 are not a gate exam.

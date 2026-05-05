@@ -19,7 +19,7 @@
 **文稿导航（卷前与第一单元）**  
 阅读顺序建议：`00-preface.md`（本序言）→ `01-appendix-three-phrasings.md`（三种口语、离散核，可选）→ 第1–3章正文（见 `02-contents.md` 路径）→ 第4章起遵 `00-unified-writing-scheme.md`；**Bell / GHZ 背景档案**见 `06-archive-bell.md`、`07-archive-ghz.md`。全书目录与章节文件见 `02-contents.md`。
 
-**零基础读者**：几乎每一章（含档案、附录、后记）在标题下设有以 **【给普通读者 · 这幅图在说什么】** 开头的引用块导读——用白话说明**要解决什么疑问、与教科书常识何关系、本书是否与之违背、可否不读代码**；正文仍供愿意深入者阅读。
+**零基础读者**：章首不再设大块「导读框」，以免打断叙事；**专业词在正文里第一次需要处用一句话带过**即可。若你只想跟故事、不深究脚本，抓住各章主线仍读得下去；**想决定读到哪里为止**，可看**第2、5、14章**末尾的**分层路标**（见 `book/REVISION_PLAN_NARRATIVE_LAYERING.md` 方案说明）。
 
 ## 全书读法与边界（写在前面一次）
 
@@ -70,11 +70,11 @@ Any headline CHSH-style numbers are **binding only to the definitions and data s
 **Navigating the front matter (through Part I)**  
 Suggested reading order: `00-preface.md` (this file) → `01-appendix-three-phrasings.md` (three phrasings of the model; optional) → Chapters 1–3 via the paths listed in `02-contents.md` → from Chapter 4 onward, follow `00-unified-writing-scheme.md`. **Bell / GHZ background archives**: `06-archive-bell.md`, `07-archive-ghz.md`. The full table of contents and chapter files: `02-contents.md`.
 
-**If you are not a physicist**: nearly every chapter (plus archives, appendix, afterword) opens with a blockquote titled **For general readers — what this picture is about**, covering plain-language goals, how this relates to textbook accounts, whether the book “contradicts physics,” and the fact that **no code has to be run**. The main text remains for those who want detail.
+**If you are not a physicist**: there are **no** large chapter-opening “for general readers” boxes anymore — jargon is glossed **in-line** when it first matters. If you want to decide **how deep to read**, see the short **layer cues** at the ends of **Chapters 2, 5, and 14**, and **`book/REVISION_PLAN_NARRATIVE_LAYERING.md`**.
 
 ## How to read this book — boundaries stated once
 
-To avoid **constant footnotes** that pull you out of the narrative, the following is stated **here and briefly at each chapter opening**; the main text **does not repeat** it paragraph by paragraph unless a sentence would otherwise be misread.
+To avoid **constant footnotes** that pull you out of the narrative, the following is stated **here**; the main text **does not repeat** it paragraph by paragraph unless a sentence would otherwise be misread.
 
 1. **Not a textbook of finished laws** — claims, analogies, and numbers can be wrong or revised; trust the definitions, protocols, and data sources spelled out in each chapter.
 2. **Not selling an ontology** — visual aids (“clear jelly,” “continuous backdrop,” “medium”) are scaffolding for intuition and calculation, **not** a claim that mechanical ether fills the vacuum or that a final picture of reality is settled.

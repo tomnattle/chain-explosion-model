@@ -3,14 +3,6 @@
 **栅格 Bell/CHSH 玩具与前沿曲线**  
 *Grid Bell/CHSH toys and frontier curves*
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：**CHSH** 是把四处读数组合成一个数 **S**，用来和**经典上限**比；像**四次考试总分是否超红线**。
-> - **这章解决什么**：在**完全可控的电脑格子**里，当你改耦合、阈值、分束，**S 会怎么动**？这是**灵敏度地图**，不是新闻标题。
-> - **教科书常识**：**Bell/CHSH** 与量子纠缠检验相连；**马吕斯定律**描述偏振片透光随角度变（cos²）。`ce_bell` 里会出现**cos² 贴合**，那只是**曲线形状**自检，**不是**整套 Bell 认证。
-> - **本书在干什么**：**玩具层**与后文 **NIST 公开数据层**分开写；请勿把格子里的数直接说成实验室裁决。
-> - **和物理学家们**：玩具参数下可重现**类似形状**；**是否违背**要看**同一协议**下比的是不是同一对象——本书后文专门审计这一点。
-
 > **本章任务**  
 > 说明仓库如何用**同一套局域传播 + 分支/偏振规则**构造 **CHSH 型统计**；**S** 或等价量在参数空间里如何扫出**前沿**——以及这些结果**只**在脚本定义下有效。
 
@@ -54,8 +46,6 @@
 > **本章边界**  
 > 玩具层 **≠** NIST 审计层；前者服务**直觉与灵敏度**，后者服务**公开记录上的尺子**（第八至十章）。**禁止**把某次 `ce_bell` 的数值直接说成「实验室已证伪/证实」。
 
-## 7.4　小结
-
 你有了**从双缝可见度走到 CHSH 形状**的**内部桥梁**。下一章离开纯玩具，进入 **NIST complete-blind 类公开档案**：**分母、符合窗、索引语义**成为主角。
 
 ---
@@ -64,14 +54,6 @@
 
 **栅格 Bell/CHSH 玩具与前沿曲线**  
 *Grid Bell/CHSH toys and frontier curves*
-
-> **For general readers — what this picture is about**
->
-> - **In plain words**: **CHSH** packs four readouts into one number **S** and compares it to a **classical ceiling** — like asking whether a combined exam score crosses a red line.
-> - **What this chapter does**: On a **fully controlled lattice**, when you tune coupling, thresholds, and splitting, **how does S move?** That is a **sensitivity map**, not a news headline.
-> - **Textbook baseline**: **Bell/CHSH** ties to entanglement tests; **Malus’s law** says polarizer transmission goes like cos². `ce_bell` may show a **cos² fit** — that is a **curve-shape self-check**, **not** a full Bell certification.
-> - **What the book is doing**: Keep the **toy layer** **separate** from the later **NIST public-data layer**; do not read lattice numbers as lab verdicts.
-> - **For working physicists**: Toys can reproduce **similar shapes** under chosen parameters; whether anything is “violated” depends on comparing **the same object under the same protocol** — later chapters audit that.
 
 > **This chapter’s job**  
 > Explain how the repo builds **CHSH-style statistics** from **one local propagation stack + branching / polarization rules**; how **S** (or an equivalent) is scanned into **frontiers** in parameter space — and why these numbers are **only** valid under each script’s definition.
@@ -115,7 +97,5 @@ Typical ingredients: two or more paths, **binary tags / polarization proxies**, 
 
 > **Chapter boundary**  
 > Toy layer **≠** NIST audit layer; the former serves **intuition and sensitivity**, the latter **yardsticks on public records** (Chapters 8–10). **Do not** relabel a `ce_bell` number as “the lab has falsified / confirmed …”
-
-## 7.4 Close
 
 You now have an **internal bridge from double-slit visibility to CHSH-shaped curves**. Next chapter leaves pure toys and opens **NIST complete-blind-style public archives**: **denominators, coincidence windows, index semantics** take the lead.

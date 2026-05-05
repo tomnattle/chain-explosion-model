@@ -3,14 +3,6 @@
 **栅格涟漪：双缝与屏上统计**  
 *Ripple grid: double-slit and screen statistics*
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：**双缝实验**就是「光过两条缝，背后出现明暗条纹」；**可见度**粗想成**条纹清不清楚**。
-> - **这章解决什么**：不用实验室，先在**电脑格子**里回答：给定规则，**能不能自己长出条纹**、条纹如何随距离/参数变糊。
-> - **教科书常识**：**杨氏双缝**是经典波动光学名片；量子版会讨论**单光子**等。**本章是模型内演示**，不宣称新光学定律。
-> - **本书在干什么**：用 `ce_00` 等脚本（你**不必运行**）对应「**规则 → 图样**」；后文 **NIST** 才涉及真实事件表。
-> - **和物理学家们**：**不违背**波动图像的核心现象；数字只在**我们的离散规则**下有效。
-
 > **本章任务**  
 > 把第一章的泡泡**落实**为 `scripts/ce/` 里可跑的格子：双缝几何、屏上强度与**可见度**——并说明这些量如何随**距离与耦合**变化。
 
@@ -49,8 +41,6 @@
 > **本章边界**  
 > 本章是**模型内**栅格实验；**不**引用某次真实实验室的双缝原始迹。与公开数据的对照从**后文 NIST / CHSH 章**另起炉灶。
 
-## 4.5　小结
-
 你现在已经有一块**会漏、有缝、有屏**的**标准试验田**。下一章在同一格子上加 **缝口吸收与有限吸收体**：「测量」开始变成**局域乘子**与区域损耗——接续第三章的 **η** 语言。
 
 ---
@@ -59,14 +49,6 @@
 
 **栅格涟漪：双缝与屏上统计**  
 *Ripple grid: double-slit and screen statistics*
-
-> **For general readers — what this picture is about**
->
-> - **In plain words**: **Double-slit** means “light through two slits, bright/dark stripes behind”; **visibility** roughly means **how crisp the fringes are**.
-> - **What this chapter does**: Without a lab, ask on a **computer lattice**: under fixed rules, **can fringes grow on their own**, and how they blur with distance / parameters.
-> - **Textbook baseline**: **Young’s double slit** is classic wave optics; quantum versions discuss **single photons**, etc. **This chapter is an in-model demo**, not a claim of new optical laws.
-> - **What the book is doing**: Map `ce_00` scripts (you **need not run them**) to **rules → pattern**; real event tables come later with **NIST**.
-> - **For working physicists**: **No clash** with core wave phenomena; numbers are valid **only under our discrete rules**.
 
 > **This chapter’s job**  
 > Turn Chapter 1’s bubble into runnable grids in `scripts/ce/`: double-slit geometry, screen intensity, **visibility** — and show how those quantities move with **distance and coupling**.
@@ -105,7 +87,5 @@ Read `ce_02/03` after `ce_00` baseline: **which knobs moved, where CSV/figures l
 
 > **Chapter boundary**  
 > This is an **in-model** grid lab; it **does not** cite raw traces from a real double-slit run. Public-data contrast starts fresh in **later NIST / CHSH chapters**.
-
-## 4.5 Close
 
 You now have a **standard plot** that **leaks, has slits, has a screen.** Next chapter adds **slit absorption and finite absorbers** on the same lattice: “measurement” becomes **local multipliers** and regional loss — continuing Chapter 3’s **η** language.

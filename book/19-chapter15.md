@@ -3,15 +3,6 @@
 **（规划稿）Bell 类公开数据：联合拟合 Alice 与 Bob 的球面坐标**  
 *Planned: Bell-type public data — joint fit of Alice’s and Bob’s sphere coordinates*
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：**Alice 和 Bob** 是贝尔实验里的习惯叫法——两个各自做测量的人（或两台装置）。**球面**在这里指 **庞加莱球**：把「偏振怎么转」画成球面上的一点，像地球仪上的经纬度。
-> - **这章计划解决什么**：在**同一批公开的 Bell/CHSH 类 trial** 上，不只算一个总指标，而是尝试**反推**：两套装置在数学上等效于在球面上**站在哪儿、怎么转**——方便检查**装置漂移、对不齐、或统计口径**是否让故事变形。
-> - **与第9章分工**：**第九章**已写「基于 NIST 的逐 trial 拟合、可辨识性」；本章是**延伸选题**：更强调 **Bell 子样本、与 CHSH 二值化轨道的对齐、联合约束**——**目前仅有规划，没有成品脚本**。
-> - **教科书常识**：斯托克斯矢量、庞加莱球是**经典光学标准语言**；实验物理里**装置标定**是硬功夫。本书**不宣称**发明新光学，只做**可审计的拟合叙事**。
-> - **和物理学家们**：目标与**仪器科学、量子光学**的表述**同族**；若将来实现，应用**同一纪律**：定义先行、不确定度入册、失败也归档。
-> - **你需要会代码吗**：**当前不需要**——作者**动力不足**，实现留待日后；你读本章只为知道**书架上预留了这一格**。
-
 > **本章任务（当前为占位）**  
 > 预留**文稿位置**：说明**拟做什么、与第9章及第8–10章审计链如何衔接**；**正文实现（脚本、JSON、图）待补**。
 
@@ -39,8 +30,6 @@
 > **本章边界**  
 > **规划稿**；**无**可运行脚本、**无**新实验数据。读者**不得**把本章当作已完成工作引用。下一章回到**已写内容**：**没通过的测量**清单。
 
-## 15.4　小结
-
 **球面上的 Alice/Bob** 是**给仪器和统计对齐用的语言**；本书预留一章把 **Bell 类公开数据** 接进这套语言——**待办**。读完请直接去 **第十六章**：那里记录**已经发生的失败与未闭合**。
 
 ---
@@ -49,15 +38,6 @@
 
 **（规划稿）Bell 类公开数据：联合拟合 Alice 与 Bob 的球面坐标**  
 *Planned: Bell-type public data — joint fit of Alice’s and Bob’s sphere coordinates*
-
-> **For general readers — what this picture is about**
->
-> - **In plain words**: **Alice and Bob** are Bell-test nicknames — two people (or two boxes) measuring separately. **Sphere** here means the **Poincaré sphere**: “how polarization is rotated” drawn as a point on a globe.
-> - **What this chapter plans**: On **one public Bell/CHSH-style trial table**, not only a headline scalar but trying to **invert**: where on the sphere each apparatus **sits and turns** in math — to check whether **drift, misalignment, or statistical definition** bends the story.
-> - **Division of labor with Chapter 9**: Chapter **9** already carries **NIST → per-trial Poincaré fit + identifiability**; this chapter is an **extension**: emphasize **Bell subsamples, alignment with CHSH binarization tracks, joint constraints** — **planning only, no finished scripts yet**.
-> - **Textbook baseline**: Stokes vectors and the Poincaré sphere are **standard classical optics**; **instrument calibration** is hard experimental work. The book **does not** claim new optics — only **auditable fitting narrative**.
-> - **For working physicists**: Goals sit next to **instrument science / quantum optics** phrasing; if implemented later, same discipline: **definitions first, uncertainty on record, failures archived**.
-> - **Code right now?** **Not needed** — author **low on steam**; implementation later; read this to know **a shelf slot exists**.
 
 > **This chapter’s job (placeholder)**  
 > Reserve **manuscript space**: what is intended, how it hooks **Chapter 9** and the **Chapters 8–10 audit chain**; **implementation (scripts, JSON, figures) TBD**.
@@ -85,7 +65,5 @@ Shipping this chapter needs **sustained work**: data alignment, optimizers, diag
 
 > **Chapter boundary**  
 > **Planning draft**; **no** runnable scripts, **no** new experimental data. **Do not** cite this chapter as finished work. Next chapter returns to **written material**: a **list of measurements that did not pass**.
-
-## 15.4 Close
 
 **Alice/Bob on the sphere** is **language for aligning instruments and statistics**; this book reserves a chapter to plug **Bell-type public data** into that language — **todo**. Go next to **Chapter 16**: **failures and open loops already on record**.

@@ -1,12 +1,6 @@
 # 附录一　三种表述：泡泡、涟漪与链式爆炸（真空介质动力学版）
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：**泡泡、涟漪、链式爆炸**是**同一套直觉**的三种**口语昵称**，不是三套互相打架的宇宙论。
-> - **这附录解决什么**：你读到不同词时**别慌**——这里有一张**对照表**，把词**对齐到**书里的离散公式与代码习惯。
-> - **教科书常识**：正式论文用**场、波方程、量子态**；附录只是**翻译词典**。
-> - **本书在干什么**：降低**名词疲劳**；**不要求**你懂代码或希腊字母。
-> - **和物理学家们**：**不引入**新的实验预言；只是**命名约定**。
+**泡泡、涟漪、链式爆炸**是**同一套直觉**的三种**口语昵称**，不是三套宇宙论；下面这张表把它们对齐到离散公式与代码习惯。
 
 > **导读与契约**
 > 下文中，您将看到同一套物理图像在不同语境下使用不同的名称。**这不是三套彼此矛盾的理论，而是描述同一套“真空介质动力学”的三个直觉入口**。您可以选择最容易在脑海中成像的表述，再对照本章的公式与代码核对。
@@ -79,13 +73,7 @@ U[t+1](x,y) = λ × (
 
 # Appendix I · Three phrasings: bubbles, ripples, and chain explosion (vacuum-medium dynamics)
 
-> **For general readers — what this picture is about**
->
-> - **In plain words**: **bubble, ripple, chain explosion** are three **colloquial nicknames** for the **same intuition**, not three competing cosmologies.
-> - **What this appendix does**: When you see different words, **don’t panic** — here is a **crosswalk** that lines them up with the book’s discrete formulas and coding habits.
-> - **Textbook baseline**: Formal papers speak in **fields, wave equations, quantum states**; this appendix is a **phrasebook**.
-> - **What the book is doing**: Reducing **terminology fatigue**; **no** expectation that you know code or Greek letters.
-> - **For working physicists**: **No** new experimental predictions — only **naming conventions**.
+**bubble, ripple, chain explosion** are three **nicknames** for the **same discrete kernel** — this appendix is a **crosswalk** to formulas and code habits, not a second cosmology.
 
 > **Guide and compact**
 > Below you will see the same physical picture named differently in different contexts. **These are not three contradictory theories; they are three intuitive entry points into the same “vacuum-medium dynamics” story.** Pick the image that sticks, then check it against the formulas and code in this chapter.

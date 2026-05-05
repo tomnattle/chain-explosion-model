@@ -3,14 +3,6 @@
 **GHZ 与 in-silico 协议审计**  
 *GHZ and in-silico protocol audit*
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：**in-silico**=在**硅片里**（电脑里）跑；**门控/保留率**=「哪些数据算数、哪些扔掉」的过滤器。
-> - **这章解决什么**：**档案里的 GHZ 逻辑**（见 **`07-archive-ghz.md`**）和**仓库里的介质模拟**各管一段；分清**不能互相顶替**。
-> - **教科书常识**：多体 GHZ 态、违背检验是**严肃实验前沿**；真实数据有噪声与漏洞分析。
-> - **本书在干什么**：展示**协议透明**时故事如何写；**不**拿仿真输出冒充实验室原始迹。
-> - **和物理学家们**：**不宣称**「GHZ 被推翻」；只做**边界内**的可复现叙述。
-
 > **本章任务**  
 > 分清三件事：**标准 GHZ 叙事**（见 **`07-archive-ghz.md`**）、仓库 **in-silico** 里**门控/保留率/介质 toy**在干什么、以及**为什么不能**用本脚本输出替代实验室原始迹。
 
@@ -41,8 +33,6 @@
 > **本章边界**  
 > **in-silico GHZ** 是**模型内**探索；**不**构成对具体实验室 GHZ 实验的复刻结论。 headline 数字以 **`artifacts/ghz_*`** 或章内引用的 JSON 为准。
 
-## 11.4　小结
-
 多体线是**硬**的：直觉上泡泡再美，也要过 **GHZ 类相关**这一关——档案说明**关卡的逻辑形状**，代码说明**我们离那形状还有多远**。下一章换一条**并行管线**：**涟漪量子**四项玩具基准（激光、半导体、MRI、原子钟）。
 
 ---
@@ -51,14 +41,6 @@
 
 **GHZ 与 in-silico 协议审计**  
 *GHZ and in-silico protocol audit*
-
-> **For general readers — what this picture is about**
->
-> - **In plain words**: **in-silico** means “on silicon” — **inside a computer**; **gating / retention** is the filter for **which rows count and which get thrown away**.
-> - **What this chapter does**: Keep **GHZ logic in the archive** (see **`07-archive-ghz.md`**) **separate** from **medium simulation in the repo** — they **must not replace each other**.
-> - **Textbook baseline**: Many-body GHZ states and violation tests are **serious experimental frontiers**; real data carry noise and loophole analysis.
-> - **What the book is doing**: Show how the story reads when **protocols stay transparent**; **do not** pass simulation output off as raw lab traces.
-> - **For working physicists**: **No** claim that “GHZ experiments are overturned”; only **in-bounds**, reproducible narrative.
 
 > **This chapter’s job**  
 > Separate three things: **standard GHZ narrative** (see **`07-archive-ghz.md`**), what **in-silico gating / retention / medium toys** do in the repo, and **why** script output cannot stand in for laboratory raw traces.
@@ -89,7 +71,5 @@ The repo keeps **open loops** and **red self-checks** on purpose: stop narrative
 
 > **Chapter boundary**  
 > **in-silico GHZ** is **in-model** exploration; it is **not** a replication verdict on any specific lab GHZ run. Headline numbers follow **`artifacts/ghz_*`** or JSON cited in-chapter.
-
-## 11.4 Close
 
 The many-body thread is **hard**: however pretty the bubble intuition, it still faces **GHZ-style correlations** — the archive states **the logical shape of the hurdle**, the code states **how far we still are from that shape**. Next chapter switches to a **parallel pipeline**: the **ripple-quantum** four toy benchmarks (laser, semiconductor, MRI, atomic clock).

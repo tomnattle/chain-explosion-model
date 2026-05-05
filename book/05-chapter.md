@@ -3,16 +3,6 @@
 **介质、损耗与热**  
 *Medium, loss, and heat*
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：**λ（lambda）** 在程序里常表示「每一步还剩百分之几的能量」——像传接力时**每一棒都掉一点球**；**热**在这里多半是**漏掉的能量还没细讲去哪**，诚实留空。
-> - **这章回答什么**：漂亮泡泡进电脑后，**为什么条纹会糊、为什么能量不会无限堆**？也就是：**理想故事和带损耗的模拟差在哪**。
-> - **教科书常识**：真实介质有吸收、色散；热力学里损耗常对应**不可逆**。本书格子是**极简卡通**，不是材料手册。
-> - **本书在干什么**：把「漏」写成**你能调的数字**，避免嘴上说衰减、图上却永远不衰减；**不要求**你打开代码，看见希腊字母可**整段跳过**。
-> - **和物理学家们**：**不宣称新热力学定律**；只交代**模型里哪些已写、哪些故意没写**。
-
----
-
 ## 3.1　理想图与真实模拟
 
 主画面可以略写细节，**一进具体程序就要把「漏」接上线**。
@@ -64,13 +54,7 @@
 - 很多旋钮还是**没有和现实米、秒一一钉死**的「纯数字把手」；  
 - 环境口袋里到底该装哪种微观图像、格子极限能不能和某条连续方程**严丝合缝对上**——**书里没有装成已经做完的定理**。
 
----
-
-## 3.5　小结
-
-**世界会饿，传播会瘦**——这不是模型丢脸，而是**后面谈测量、谈统计时，默认站着的地面**。下一部分（从第4章起，见 `02-contents.md`）会把同一套「会吃能量的格子」接进**双缝、吸收体、延迟选择与 Bell/CHSH 玩具**——条纹怎么弱、曲线怎么弯，都站在本章这块地上；统计尺子怎么换，则接续第二章那条线。
-
-本章把**「会漏」**接进程序，与第一章主画面形成**有意的分工**，而不是互相打架。
+**世界会饿，传播会瘦**——这不是模型丢脸，而是**后面谈测量、谈统计时，默认站着的地面**。下一部分（从第4章起，见 `02-contents.md`）会把同一套「会吃能量的格子」接进**双缝、吸收体、延迟选择与 Bell/CHSH 玩具**——条纹怎么弱、曲线怎么弯，都站在本章这块地上；统计尺子怎么换，则接续第二章那条线。本章把**「会漏」**接进程序，与第一章主画面形成**有意的分工**，而不是互相打架。
 
 ---
 
@@ -78,16 +62,6 @@
 
 **介质、损耗与热**  
 *Medium, loss, and heat*
-
-> **For general readers — what this picture is about**
->
-> - **In plain words**: **λ (lambda)** in code often means “what fraction of energy survives each step” — like **dropping the baton a little every relay leg**; **heat** here mostly means **energy that leaked out without a full micro-story yet** — honestly left open.
-> - **What this chapter answers**: Once the pretty bubble enters the computer, **why fringes blur and why energy does not pile up forever** — i.e., **what changes between the ideal story and a lossy simulation**.
-> - **Textbook baseline**: Real media absorb and disperse; thermodynamics ties loss to **irreversibility**. This lattice is a **minimal cartoon**, not a materials handbook.
-> - **What the book is doing**: Write the “leak” as **knobs you can turn**, so we do not preach decay while plots never decay; **no** code required — if Greek letters irritate you, **skip the paragraph**.
-> - **For working physicists**: **No claim of new thermodynamic laws**; only **what is implemented vs deliberately omitted** in the model.
-
----
 
 ## 3.1 Ideal pictures vs honest simulation
 
@@ -140,10 +114,4 @@ There is also an audit script with **thermal** in the name (`scripts/explore/rip
 - many knobs are still **pure numbers**, not pinned to real meters and seconds;  
 - what belongs inside the environment pocket, whether the lattice limit **locks cleanly** to a chosen continuum equation — **the book does not pretend those theorems are finished.**
 
----
-
-## 3.5 Close
-
-**The world gets hungry; propagation gets thin** — not a shame for the model, but **the floor assumed when we later talk measurement and statistics.** From Chapter 4 on (see `02-contents.md`), the same **energy-eating lattice** meets **double slits, absorbers, delayed choice, and Bell/CHSH toys** — fringe weakening and curve bending stand on this ground; swapping statistical yardsticks continues Chapter 2’s thread.
-
-This chapter wires **leakage** into the program, **on purpose alongside** Chapter 1’s main picture — they **divide labor**, they do not fight.
+**The world gets hungry; propagation gets thin** — not a shame for the model, but **the floor assumed when we later talk measurement and statistics.** From Chapter 4 on (see `02-contents.md`), the same **energy-eating lattice** meets **double slits, absorbers, delayed choice, and Bell/CHSH toys** — fringe weakening and curve bending stand on this ground; swapping statistical yardsticks continues Chapter 2’s thread. This chapter wires **leakage** into the program, **on purpose alongside** Chapter 1’s main picture — they **divide labor**, they do not fight.

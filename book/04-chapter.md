@@ -3,14 +3,6 @@
 **泡泡**  
 *The bubble*
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：「波」常被画成一条弯线；这里先把它想成**石头落水后一圈圈往外传的动静**——水并没有整盆泼到对岸，只是**相邻的地方依次晃了一下**。
-> - **这章回答什么**：光（或任何「干扰」）到底是**小球直飞**，还是**某种状态在空间里接力传递**？
-> - **教科书里常见说法**：经典光学用**波动**也能解释干涉；量子物理会再引入**波粒二象性**等框架。**本章不站队、不推翻**，只给你一张能看懂的**动图**。
-> - **本书在干什么**：用泡泡/水波画面，建立**不必先背公式**也能跟上的「传播」直觉；**不要求**你读代码。
-> - **和物理学家们**：**不矛盾**——这是**看图说话**的一层翻译，不是替代麦克斯韦或量子力学方程。
-
 ## 1.1　一块石头落进水里
 
 你见过石头落进平静水面的样子。
@@ -85,14 +77,6 @@
 
 **泡泡**  
 *The bubble*
-
-> **For general readers — what this picture is about**
->
-> - **In plain words**: “Wave” is often drawn as a wiggly line; here, think first of **rings spreading after a stone hits water** — the water does not fly across the pond; **neighboring patches nudge each other in turn**.
-> - **What this chapter answers**: Is light (or any “disturbance”) **a pellet in straight flight**, or **something handed along through space**?
-> - **Textbook baseline**: Classical optics already explains interference with **waves**; quantum physics adds **wave–particle** language and more. **This chapter does not pick a camp or “disprove” anything** — it offers a **picture you can animate in your head**.
-> - **What the book is doing**: Use bubble / water imagery to build a propagation intuition **before** you memorize formulas; **no** code required.
-> - **For working physicists**: **No contradiction** — this is a **visual gloss**, not a replacement for Maxwell or quantum equations.
 
 ## 1.1 A stone drops into still water
 

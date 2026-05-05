@@ -23,12 +23,12 @@
 | 块 | 要求 |
 | :--- | :--- |
 | **标题** | `# 第N章 · Chapter N` → `**中文副题**` → `*English*` |
-| **给普通读者（必填）** | 紧接标题三联之后、`本章任务` 之前：`> **【给普通读者 · 这幅图在说什么】**` 引用块，含 **人话词解 / 解决何疑问 / 教科书常识 / 本书做法 / 与主流物理关系（是否违背）/ 不必读代码**；档案、附录、后记、第1–3章亦同。 |
+| **章首** | **不再**使用大块 **`【给普通读者 · 这幅图在说什么】`**；术语在**正文**里就地一句带过；序言已写的边界**章内不复读**。 |
 | **章首提示**（可选） | `> **本章任务**` 一句：本章把读者带到链上哪一环。 |
 | **承接** | 第一节或首段：**从上章落地**（不重复序言四条）。 |
 | **小节** | `## N.1` … 用中文全角顿号式编号，与前三章一致。 |
-| **边界** | 每章至少一个 `> **本章边界**` 或 `> **挑剔的读者**`：数据/模型/结论各属什么。 |
-| **收束** | 最后一节 **小结**：三句话以内 + **下一章钩子**。 |
+| **边界** | 每章至少一个 `> **本章边界**`（或等价的**一句正文边界**）：数据/模型/结论各属什么。**避免**单独「挑剔的读者」大引用框打断流。 |
+| **收束** | **不单立「小结」节**；必要时在末段用**一两句**承上启下 + **下一章钩子**；分层路标仅见 **第2 / 5 / 14 章**末（见 `REVISION_PLAN_NARRATIVE_LAYERING.md`）。 |
 
 ---
 
@@ -82,6 +82,7 @@
 - 2026-05-05（十二续）：**`ce_bell.py`** 作图改为 **`scripts/ce/bell_test_result.png`**；第7章 **`ce_bell` 马吕斯/cos² 快照**（基线、RMSE、脚本自检说明）。  
 - 2026-05-05（十三续）：全书相关稿 **`【给普通读者 · 这幅图在说什么】`** 块：第1–3章、第4–17章、档案、附录一、后记、序言导航；体例写入本章 §2 表格。  
 - 2026-05-05（十四续）：**新增第15章（规划稿）** Bell 类公开数据 **Alice/Bob 庞加莱球联合拟合**；原第15–17章顺延为 **第16–18章**；后记改为 **`23-afterword.md`**；目录与 §5 文件表同步。
+- 2026-05-05（十五续 / narrative-layering）：**取消**章首 **`【给普通读者】`** 大块；**小结**改为末段收束；序言/目录/本方案同步；**第2/5/14章末**加**分层路标**；详见 **`book/REVISION_PLAN_NARRATIVE_LAYERING.md`**。
 
 ---
 
@@ -110,12 +111,12 @@ Each chapter should **explicitly hook back** to at least one of the above (not n
 | Block | Requirement |
 | :--- | :--- |
 | **Title** | `# Chapter N · Chapter N` → `**Chinese subtitle**` → `*English*` |
-| **For general readers (required)** | Immediately after the title triad and before `本章任务`: a `> **【给普通读者 · 这幅图在说什么】**` block with **plain words / what question this answers / textbook baseline / what the book does / relation to mainstream physics (does it “violate”?) / no code required**; same for archives, appendix, afterword, Chapters 1–3. |
+| **Chapter opening** | **No** large **`【给普通读者 · 这幅图在说什么】`** blocks; gloss jargon **in the body**; do not repeat preface boundaries in every chapter. |
 | **Chapter opener (optional)** | `> **本章任务**` one line: which link in the chain this chapter advances. |
 | **Bridge** | First section or first paragraph: **land from the prior chapter** (do not repeat the preface’s four bullets). |
 | **Subsections** | `## N.1` … use the same Chinese full-width enumeration style as the first three chapters. |
-| **Boundaries** | At least one `> **本章边界**` or `> **挑剔的读者**`: what belongs to data vs model vs conclusion. |
-| **Close** | Final section **小结**: three sentences max + **hook to the next chapter**. |
+| **Boundaries** | At least one `> **本章边界**` (or an equivalent **one-sentence in-text boundary**): what belongs to data vs model vs conclusion. Avoid large “skeptical reader” pull-quotes. |
+| **Close** | **No standalone “小结” section**; if needed, **one or two sentences** at the end of the last substantive section + **hook**; layer cues only at ends of **Chapters 2 / 5 / 14** (see `REVISION_PLAN_NARRATIVE_LAYERING.md`). |
 
 ---
 
@@ -169,3 +170,4 @@ Chapters 1–3 paths (TOC-aligned): `book/04-chapter.md`, `book/03-chapter.md`, 
 - 2026-05-05 (twelfth): **`ce_bell.py`** writes **`scripts/ce/bell_test_result.png`**; Chapter 7 **`ce_bell` Malus / cos² snapshot** (baseline, RMSE, script self-check note).  
 - 2026-05-05 (thirteenth): Manuscript-wide **`【给普通读者 · 这幅图在说什么】`** blocks: Chapters 1–3, 4–17, archives, Appendix I, afterword, preface nav; style written into §2 table here.  
 - 2026-05-05 (fourteenth): **New Chapter 15 (planning)** Bell-type public data **joint Alice/Bob Poincaré-sphere fit**; former Chapters 15–17 become **16–18**; afterword file **`23-afterword.md`**; TOC and §5 file table synced.
+- 2026-05-05 (fifteenth / narrative-layering): **Removed** large chapter-opening reader blocks; **小结** folded into closing paragraphs; **layer cues** at ends of **Chapters 2, 5, 14**; see **`book/REVISION_PLAN_NARRATIVE_LAYERING.md`**.

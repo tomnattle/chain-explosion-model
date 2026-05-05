@@ -11,7 +11,7 @@
   在仓库根目录执行：
     .\scripts\build_book_pdf.ps1
 
-  输出默认： book/_build/假大象与泡泡-书稿.pdf
+  输出默认： book/_build/manuscript-zh.pdf（ASCII 文件名，避免部分终端乱码；可用 -OutPdf 指定中文名）
 
   若中文缺字，可改 -MainFont 为本机已装字体（如 "Source Han Serif SC", "SimSun"）。
 
@@ -35,7 +35,7 @@ if (-not (Test-Path $BuildDir)) {
     New-Item -ItemType Directory -Path $BuildDir | Out-Null
 }
 if (-not $OutPdf) {
-    $OutPdf = Join-Path $BuildDir "假大象与泡泡-书稿.pdf"
+    $OutPdf = Join-Path $BuildDir "manuscript-zh.pdf"
 }
 
 $rel = @(

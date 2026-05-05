@@ -3,14 +3,6 @@
 **为什么我开始怀疑**  
 *Why I started asking questions*
 
-> **【给普通读者 · 这幅图在说什么】**
->
-> - **人话词解**：**Bell 实验**可以粗想成「两处读数有多同步」的考场；**NIST** 是美国国家标准与技术研究院，这里主要把它当作**公开实验数据从哪下载**的一个名字。
-> - **这章回答什么**：模型再美，别人凭什么信？当公开记录显示**同一批数，换一步处理，故事会从 1.1 变到 2.3**，普通人该不该问一句：**规则写清了吗？**
-> - **教科书常识**：Bell、CHSH 等与**量子纠缠、非经典关联**绑在一起；主流共识有牢固实验支撑。**本书不宣称「一夜推翻教科书」**。
-> - **本书在干什么**：作者以**非学院派**身份交代：**为什么去抠公开数据、为什么关心「怎么计数」**；你可以把它当**侦探手记的前传**。
-> - **和物理学家们**：**不做人身攻击**；争论对象是**记录、协议、统计口径**是否透明，不是「谁笨」。
-
 ## 2.0　先说说我是谁
 
 我不是物理学家，也没有受过任何正规的物理训练。我是一个普通人，平时对数字和逻辑感兴趣，业余时间会读一些科普文章、跑一些代码。
@@ -27,9 +19,9 @@
 
 ## 2.1　模型很美，但被判了死刑
 
-Bell 实验是物理学里一个著名的实验，它讨论「两处读数的同步性能强到什么地步」。
+第一章里的泡泡模型，对我个人而言是一幅能算、能画的图像。可我很快遇到一个朴素问题：**别人凭什么要相信它？世界上有没有什么现成的检验，能对准这种「一圈圈往外递消息」的图像开枪？**
 
-它有一个结论（在通行的理论表述里）：如果世界是像涟漪一样「一步步局域传递」的——就像我的球面泡泡模型——那么那种同步性在 **S** 这类指标上**过不了某道栏杆**。许多实验报告说栏杆被跨过去了。于是**在那一套叙述里**，我的模型像是被判了死刑。
+有人提醒我：有这一类东西，一般叫作 **Bell 实验**——它把两处相隔很远的读数放在一起，看它们「步调」能紧到什么程度；论文里常用 **S** 这样的数来描述那种紧度。**Bell 实验**在物理学里已经名气很大；在通行的理论表述里，它常被用来讨论：如果世界真的是像涟漪那样一步一步局域传递的，那么那种同步性在 **S** 这类指标上**过不了某道栏杆**。许多实验报告说栏杆被跨过去了。于是**在那一套叙述里**，我的球面泡泡模型像是被判了死刑。
 
 我接受了这个判决，暂时放下了这个问题。
 
@@ -37,7 +29,7 @@ Bell 实验是物理学里一个著名的实验，它讨论「两处读数的同
 
 一段时间之后，我开始好奇：论文里那个 **S**（同步分数），到底是怎么算出来的？
 
-我找到了一组公开的实验数据——美国国家标准与技术研究院（NIST）在 2015 年公开的一批实验记录。任何人都可以下载。我就下载了，然后开始用代码分析。
+我找到了一组公开的实验数据——**NIST**（美国国家标准与技术研究院）在 2015 年公开的一批实验记录；这里把它当作「这批数从哪下载」的名字就行。任何人都可以下载。我就下载了，然后开始用代码分析。
 
 我做了一件很简单的事：用两种方式处理同一批数据，看看那个「同步分数」**S**会不会不一样。
 
@@ -61,8 +53,7 @@ S 从 1.1 跳到了 2.3。
 
 那道栏杆在 **S = 2**。很多人把「跨过去」当作量子世界的证据。但我发现：**跨过去的那一段高度，有很大一块是后来「把连续读数砍成 +1/-1」这一步抬出来的**——不是原始记录自己变高了，是我们换了一把尺子。
 
-> **挑剔的读者会问：** 这两个数是不是「放之四海而皆准」？  
-> **不是。** 它们来自**一批具体的公开记录 + 一套写进代码的后处理**。换数据子集、换符合窗、换归一化，数字会变——本书后面要做的，正是把**尺子**一条条摊开；**任何 headline 数字都以该章写明的定义为准**，不要把本章当成中学实验室的操作指南。
+你当然会问：这两个数是不是「放之四海而皆准」？**不是。** 它们来自**一批具体的公开记录 + 一套写进代码的后处理**。换数据子集、换符合窗、换归一化，数字会变——本书后面要做的，正是把**尺子**一条条摊开；**任何 headline 数字都以该章写明的定义为准**，不要把本章当成中学实验室的操作指南。
 
 ## 2.4　这让我想到了什么
 
@@ -74,13 +65,9 @@ S 从 1.1 跳到了 2.3。
 
 这个问题，我对着数据和规则**查了好几个月**。后面各章，就是我沿着这个问题往下挖的过程。我不会只给你看两个数字，我会把每一把尺子都摆在桌上，让你自己去比。
 
-## 2.5　小结与下一章
+下一章不接着吵 Bell，而是回到更底层：**格子程序里，能量为什么会「漏」、书里说的「热」指什么**——那是后面所有「洗掉条纹、改掉统计」的共同地面。Bell 与 GHZ 的**历史、不等式到底排除什么、实验长什么样**，见档案 **`06-archive-bell.md`**、**`07-archive-ghz.md`**（可与本章交叉阅读）。
 
-这一章只完成一件事：让你记住**同一批记录，换一把后处理尺子，故事会变**——并且记住：**任何数字都要回到「定义与管道」**，不要把我举的 **1.1 / 2.3** 当成放之四海皆准的实验课结论。
-
-下一章不接着吵 Bell，而是回到更底层：**格子程序里，能量为什么会「漏」、书里说的「热」指什么**——那是后面所有「洗掉条纹、改掉统计」的共同地面。
-
-Bell 与 GHZ 的**历史、不等式到底排除什么、实验长什么样**，见档案 **`06-archive-bell.md`**、**`07-archive-ghz.md`**（可与本章交叉阅读）。
+**路标**：若你只想跟完「泡泡直觉 + 我为什么去盯公开数据」这条线，读完本章可以停一停透口气。要继续看格子上的损耗与测量怎么写成规则，顺着读第3章；若你主要冲 **NIST 档案和 CHSH 的尺子**来，也允许从目录**直跳第8章起**，本书不假设你必须按页码顺序通关。
 
 ---
 
@@ -88,14 +75,6 @@ Bell 与 GHZ 的**历史、不等式到底排除什么、实验长什么样**，
 
 **为什么我开始怀疑**  
 *Why I started asking questions*
-
-> **For general readers — what this picture is about**
->
-> - **In plain words**: A **Bell test** is roughly an exam in **how tightly two distant readouts line up**; **NIST** is the U.S. National Institute of Standards and Technology — here, mainly **where a public dataset was downloaded**.
-> - **What this chapter answers**: However pretty a model is, why should anyone trust it? When public records show **the same batch of numbers can move the story from 1.1 to 2.3 after one processing step**, shouldn’t a lay reader ask: **were the rules written down?**
-> - **Textbook baseline**: Bell, CHSH, etc. are tied to **entanglement and nonclassical correlations**; the mainstream consensus has strong experimental support. **This book does not claim to “overturn the textbook overnight.”**
-> - **What the book is doing**: The author, **outside the academy**, explains **why public data and “how we count” matter**; treat it as **prequel to a detective notebook**.
-> - **For working physicists**: **No personal attacks**; the argument is whether **records, protocols, and statistical definitions** are transparent — not “who is dumb.”
 
 ## 2.0 Who I am, briefly
 
@@ -113,9 +92,9 @@ I was stubborn enough to **pull public data and try it in code**.
 
 ## 2.1 A beautiful model, “sentenced”
 
-Bell tests are famous: they probe **how correlated two distant readouts can be**.
+Chapter 1’s bubble picture was, for me, something I could draw and compute. A blunt question followed: **why should anyone trust it — is there an off-the-shelf test that takes aim at this “hand the message along, ring by ring” image?**
 
-In the standard theoretical packaging: if the world propagates **locally, step by step** — like my spherical-bubble picture — then a quantity like **S** cannot cross a certain bar. Many experiments report crossing it. **In that narrative**, my model looks **dead on arrival**.
+People pointed me to what are usually called **Bell tests**: you compare two distant readouts and ask how tightly their steps can line up; papers often summarize that tightness with a figure like **S**. Bell tests are famous; in the standard theoretical packaging, if the world propagates **locally, step by step** — like my spherical-bubble picture — then a quantity like **S** cannot cross a certain bar. Many experiments report crossing it. **In that narrative**, my model looks **dead on arrival**.
 
 I accepted the verdict and set the question aside — for a while.
 
@@ -123,7 +102,7 @@ I accepted the verdict and set the question aside — for a while.
 
 Later I wondered: in papers, how exactly is **S** computed?
 
-I found a public dataset — NIST released experimental records in 2015. Anyone can download them. I did, and started analyzing in code.
+I found a public dataset — **NIST** (the U.S. National Institute of Standards and Technology) released experimental records in 2015; here, treat that name as **where the CSV came from**. Anyone can download them. I did, and started analyzing in code.
 
 I did something simple: process **the same batch** two ways and see whether **S** moved.
 
@@ -147,8 +126,7 @@ S jumped from 1.1 to 2.3.
 
 The bar sits at **S = 2**. Many treat crossing it as evidence of the quantum world. What I saw: **a chunk of the “height” over the bar came from the step that hard-bins continuous readouts into ±1** — the raw record did not magically rise; **we swapped yardsticks.**
 
-> **A skeptical reader asks:** Are these two numbers universal?  
-> **No.** They come from **one specific public record + one pipeline frozen in code.** Change the subset, coincidence window, normalization — numbers move. Later chapters **lay out each yardstick**; **any headline figure follows the definition in that chapter** — do not treat this as a high-school lab recipe.
+You should ask: are these two numbers universal? **No.** They come from **one specific public record + one pipeline frozen in code.** Change the subset, coincidence window, normalization — numbers move. Later chapters **lay out each yardstick**; **any headline figure follows the definition in that chapter** — do not treat this as a high-school lab recipe.
 
 ## 2.4 What that suggested
 
@@ -160,10 +138,6 @@ If so, the jump in **S** might owe less to “mysterious entanglement” and mor
 
 I spent **months** on the data and the rules. The following chapters are the dig. I will not flash only two numbers; I will put **every ruler on the table** so you can compare.
 
-## 2.5 Close and next chapter
+Next chapter does not keep arguing Bell; it goes under the floor: **why energy “leaks” on the lattice and what “heat” means here** — the shared ground for later “washing out fringes” and “moving statistics.” Bell and GHZ **history, what inequalities rule out, what experiments look like**: archives **`06-archive-bell.md`**, **`07-archive-ghz.md`** (can be read alongside this chapter).
 
-This chapter does one job: remember **one record, swap post-processing, the story moves** — and remember **every number returns to “definition and pipeline”**; do not treat my **1.1 / 2.3** as a universal lab moral.
-
-Next chapter does not keep arguing Bell; it goes under the floor: **why energy “leaks” on the lattice and what “heat” means here** — the shared ground for later “washing out fringes” and “moving statistics.”
-
-Bell and GHZ **history, what inequalities rule out, what experiments look like**: archives **`06-archive-bell.md`**, **`07-archive-ghz.md`** (can be read alongside this chapter).
+**Layer cue**: If you only want the thread “bubble intuition + why I stared at public data,” you can **pause here**. To follow loss and measurement-as-rules on the grid, continue Chapter 3. If you came mainly for **NIST files and CHSH yardsticks**, you may **jump in at Chapter 8** — the book does not assume a cover-to-cover grind.
