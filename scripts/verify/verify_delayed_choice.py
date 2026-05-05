@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import matplotlib.pyplot as plt
 from ce_engine_v2 import propagate_double_slit_n_steps, compute_visibility
@@ -97,8 +99,9 @@ plt.ylabel("Normalized Intensity")
 plt.legend()
 plt.grid(alpha=0.3)
 plt.tight_layout()
-plt.savefig("verify_delayed_choice.png", dpi=150)
-print("\n图片已保存: verify_delayed_choice.png")
+_out_png = os.path.join(os.path.dirname(__file__), "verify_delayed_choice.png")
+plt.savefig(_out_png, dpi=150)
+print("\n图片已保存:", _out_png)
 
 from experiment_dossier import emit_case_dossier
 

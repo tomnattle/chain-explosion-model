@@ -5,7 +5,7 @@
       "metric": "nrmse",
       "pass_threshold": 0.18
     },
-    "seed": 2026,
+    "seed": 42,
     "results": {
       "laser_threshold": {
         "nrmse": 0.009502744328174823,

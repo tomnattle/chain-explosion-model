@@ -1,4 +1,5 @@
 import logging
+import os
 import time
 
 import numpy as np
@@ -335,10 +336,12 @@ plt.ylabel('Normalized Correlation (Coincidence)', fontsize=12)
 plt.title('Bell Test: Polarization Correlation\nYour Model vs Quantum Mechanics', fontsize=14)
 plt.legend()
 plt.grid(True, alpha=0.3)
-plt.savefig('bell_test_result.png', dpi=150)
+_out_png = os.path.join(os.path.dirname(__file__), "bell_test_result.png")
+plt.savefig(_out_png, dpi=150)
+print("Saved:", _out_png)
 plt.show()
 
-logger.info("Figure written: bell_test_result.png")
+logger.info("Figure written: %s", _out_png)
 
 if np.allclose(correlations, qm_curve, atol=0.1):
     logger.info(

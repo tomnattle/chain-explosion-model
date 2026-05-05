@@ -168,9 +168,9 @@ plt.suptitle(f'验证B：单光子随机游走积累 vs 连续场（波恩规则
              f'N={N_PHOTONS:,}光子  命中率={hit_rate*100:.1f}%  相关系数 r={corr:.4f}',
              color='white', fontsize=13)
 plt.tight_layout()
-plt.savefig('verify_born_rule.png', dpi=150, bbox_inches='tight',
-            facecolor='#0d1117')
-print("图片已保存: verify_born_rule.png")
+_out_png = os.path.join(os.path.dirname(__file__), "verify_born_rule.png")
+plt.savefig(_out_png, dpi=150, bbox_inches="tight", facecolor="#0d1117")
+print("图片已保存:", _out_png)
 
 # ============================================================
 # 总结

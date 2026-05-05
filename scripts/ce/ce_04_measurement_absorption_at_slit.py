@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -139,7 +141,9 @@ plt.ylabel('能量')
 plt.grid(True, alpha=0.3)
 
 plt.tight_layout()
-plt.savefig('measurement_effect.png', dpi=150)
+_out_png = os.path.join(os.path.dirname(__file__), "measurement_effect.png")
+plt.savefig(_out_png, dpi=150)
+print("Saved:", _out_png)
 plt.show()
 
 # ============================================================
@@ -169,7 +173,7 @@ else:
     print("\n⚠️ 完全吸收一个缝后仍有干涉，检查代码。")
 
 print("\n" + "=" * 60)
-print("实验完成！图片已保存为 measurement_effect.png")
+print("实验完成！图片已保存为", _out_png)
 print("请将以上输出（包括对比度数值）反馈给我。")
 print("=" * 60)
 

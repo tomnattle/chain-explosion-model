@@ -1,3 +1,5 @@
+import os
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -155,11 +157,13 @@ axes[2].set_xlabel('X 位置')
 axes[2].set_ylabel('Y 位置')
 
 plt.tight_layout()
-plt.savefig('delayed_choice.png', dpi=150)
+_out_png = os.path.join(os.path.dirname(__file__), "delayed_choice.png")
+plt.savefig(_out_png, dpi=150)
+print("Saved:", _out_png)
 plt.show()
 
 print("\n" + "=" * 60)
-print("实验完成！图片已保存为 delayed_choice.png")
+print("实验完成！图片已保存为", _out_png)
 print("=" * 60)
 
 # ============================================================

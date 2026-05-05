@@ -11,14 +11,15 @@ The true center of this repository is not the scattered double-slit scripts, but
 ## Contents
 
 1. [Reading Guide](#reading-guide)
-2. [Quick Start Paths](#quick-start-paths)
-3. [What This Repository Contains](#what-this-repository-contains)
-4. [The Two Major Experiments](#the-two-major-experiments)
-5. [Audit Findings Summary](#audit-findings-summary)
-6. [Why The Project Has Value](#why-the-project-has-value)
-7. [Recommended Reading Order](#recommended-reading-order)
-8. [Contact](#contact)
-9. [Quick Note](#quick-note)
+2. [Book manuscript · 叙事手稿《假大象与泡泡》](#book-manuscript)
+3. [Quick Start Paths](#quick-start-paths)
+4. [What This Repository Contains](#what-this-repository-contains)
+5. [The Two Major Experiments](#the-two-major-experiments)
+6. [Audit Findings Summary](#audit-findings-summary)
+7. [Why The Project Has Value](#why-the-project-has-value)
+8. [Recommended Reading Order](#recommended-reading-order)
+9. [Contact](#contact)
+10. [Quick Note](#quick-note)
 
 ## Reading Guide
 
@@ -29,6 +30,26 @@ If you want a fast understanding of the project, start with this entry document 
 如果你想先看作者对传播、测量和模型直觉的自我图景，再进入技术主线，可以阅读 [MODEL_INTUITION.md](docs/MODEL_INTUITION.md)。这个文件被刻意与结果文档分开，以避免把“直觉”和“结论”混写在一起。
 
 If you want to see the author's intuitive picture of propagation and measurement before diving into the technical structure, read [MODEL_INTUITION.md](docs/MODEL_INTUITION.md). That file is intentionally separated from the result documents so that intuition and conclusion are not conflated.
+
+## Book manuscript · 叙事手稿《假大象与泡泡》
+
+<a id="book-manuscript"></a>
+
+仓库 **`book/`** 下有一份按章组织的**叙事手稿**（工作书名 **《假大象与泡泡》**，英文并列名见目录页）。它把「泡泡直觉 → 格子与损耗 → 公开数据与 Bell/GHZ 审计 → 构想章」串成可读主线，并与代码、归档路径交叉引用；**不等同**于专论里的全部技术细节。
+
+- **目录与章节链接**：[book/02-contents.md](book/02-contents.md)  
+- **序言与读法边界**：[book/00-preface.md](book/00-preface.md)  
+- **封面稿（含扉页说明）**：[book/cover.md](book/cover.md)  
+- **全书体例与交叉引用**：[book/00-unified-writing-scheme.md](book/00-unified-writing-scheme.md)
+
+The **`book/`** folder holds a **chapter-style manuscript** (working Chinese title **《假大象与泡泡》**; English subtitle on the contents page). It threads bubble intuition, lattice/loss models, public-data and Bell/GHZ audits, and closing “concept” chapters, with pointers into scripts and archives. It is **not** a full substitute for the technical monograph.
+
+- **Table of contents**：[book/02-contents.md](book/02-contents.md)  
+- **Preface & reading boundaries**：[book/00-preface.md](book/00-preface.md)  
+- **Cover / half-title notes**：[book/cover.md](book/cover.md)  
+- **House style & cross-references**：[book/00-unified-writing-scheme.md](book/00-unified-writing-scheme.md)
+
+**PDF 书稿（汇编）**：在仓库根目录安装 [Pandoc](https://pandoc.org/) 与含 `xelatex` 的 TeX 发行版（如 MiKTeX / TeX Live）后执行 `.\scripts\build_book_pdf.ps1`，默认输出 `book/_build/假大象与泡泡-书稿.pdf`（详见脚本内说明）。*Build PDF (Chinese)*: from repo root, install Pandoc + XeLaTeX, run `.\scripts\build_book_pdf.ps1` → `book/_build/…pdf`.
 
 ## Quick Start Paths
 
@@ -112,9 +133,13 @@ The strongest value of this project is not that it simply claims to explain quan
 
 ## Recommended Reading Order
 
-建议按这个顺序阅读：本文档、总文档、Bell 协议说明、两轮 battle 归档，再回头看基础脚本。这样主线和支线不会混在一起。
+**若偏好叙事线**：先 [book/00-preface.md](book/00-preface.md)，再按 [book/02-contents.md](book/02-contents.md) 逐章打开（档案 `06`/`07`，第 4–18 章正文稿约 `08`–`22`，后记 [book/23-afterword.md](book/23-afterword.md)）；需要核对脚本与归档时再回到本文档与专论。
 
-The recommended reading order is: this file, the full monograph, the Bell protocol note, the two battle archives, and only then the foundational scripts. This keeps the main line and supporting branches from being confused.
+**若偏好技术线**：建议按下面编号顺序阅读：本文档、总文档、Bell 协议说明、两轮 battle 归档，再回头看基础脚本。这样主线和支线不会混在一起。
+
+**Narrative-first**: start with [book/00-preface.md](book/00-preface.md), then follow [book/02-contents.md](book/02-contents.md) chapter by chapter (archives `06`/`07`, chapter bodies roughly `08`–`22`, afterword [book/23-afterword.md](book/23-afterword.md)); dip into this README and the monograph when you need executable detail.
+
+**Technical-first** (recommended if you are reproducing numbers): use the numbered list below.
 
 1. [PROJECT_TECHNICAL_MONOGRAPH.md](docs/PROJECT_TECHNICAL_MONOGRAPH.md)
 2. [MODEL_INTUITION.md](docs/MODEL_INTUITION.md)
