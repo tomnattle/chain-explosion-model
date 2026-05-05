@@ -67,7 +67,7 @@ S 从 1.1 跳到了 2.3。
 
 下一章不接着吵 Bell，而是回到更底层：**格子程序里，能量为什么会「漏」、书里说的「热」指什么**——那是后面所有「洗掉条纹、改掉统计」的共同地面。Bell 与 GHZ 的**历史、不等式到底排除什么、实验长什么样**，见档案 **`06-archive-bell.md`**、**`07-archive-ghz.md`**（可与本章交叉阅读）。
 
-**路标**：若你只想跟完「泡泡直觉 + 我为什么去盯公开数据」这条线，读完本章可以停一停透口气。要继续看格子上的损耗与测量怎么写成规则，顺着读第3章；若你主要冲 **NIST 档案和 CHSH 的尺子**来，也允许从目录**直跳第8章起**，本书不假设你必须按页码顺序通关。
+**路标**：若你只想跟完「泡泡直觉 + 我为什么去盯公开数据」这条线，读完本章可以停一停透口气。要继续看格子上的损耗与测量怎么写成规则，顺着读第3章；若你主要冲 **NIST 档案和 CHSH 的尺子**来，也允许从目录**直跳第8章起**。你可以在这里停一停。后面的路还很长，但不急。
 
 ---
 
@@ -140,4 +140,4 @@ I spent **months** on the data and the rules. The following chapters are the dig
 
 Next chapter does not keep arguing Bell; it goes under the floor: **why energy “leaks” on the lattice and what “heat” means here** — the shared ground for later “washing out fringes” and “moving statistics.” Bell and GHZ **history, what inequalities rule out, what experiments look like**: archives **`06-archive-bell.md`**, **`07-archive-ghz.md`** (can be read alongside this chapter).
 
-**Layer cue**: If you only want the thread “bubble intuition + why I stared at public data,” you can **pause here**. To follow loss and measurement-as-rules on the grid, continue Chapter 3. If you came mainly for **NIST files and CHSH yardsticks**, you may **jump in at Chapter 8** — the book does not assume a cover-to-cover grind.
+**Layer cue**: If you only want the thread “bubble intuition + why I stared at public data,” you can **pause here**. To follow loss and measurement-as-rules on the grid, continue Chapter 3. If you came mainly for **NIST files and CHSH yardsticks**, you may **jump in at Chapter 8**. You can rest here — the road ahead is long, and there is no rush.

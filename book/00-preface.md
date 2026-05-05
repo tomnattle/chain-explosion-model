@@ -12,10 +12,6 @@
 
 这些层面值得被认真审视；它与工程上可复现、预先固定规则的审计式阅读是同一类诚实，而不是对具体实验者的人身否定。
 
-涉及 Bell、GHZ 与公开数据的部分，我会把**模型内的数值实验**与**对公开记录与协议的审计式讨论**分开写清。公开测量文件对「连续物理图像」而言往往是**不完备的**；本书在承认这一点的前提下，仍讨论同一记录上**不同统计对象**会讲出怎样不同的故事。
-
-书中若出现 CHSH 等具体数值，**以各章对统计定义与数据来源的说明为准**，避免把序言里的比喻直接当成实验判决书。
-
 **文稿导航（卷前与第一单元）**  
 阅读顺序建议：`00-preface.md`（本序言）→ `01-appendix-three-phrasings.md`（三种口语、离散核，可选）→ 第1–3章正文（见 `02-contents.md` 路径）→ 第4章起遵 `00-unified-writing-scheme.md`；**Bell / GHZ 背景档案**见 `06-archive-bell.md`、`07-archive-ghz.md`。全书目录与章节文件见 `02-contents.md`。
 
@@ -23,12 +19,14 @@
 
 ## 全书读法与边界（写在前面一次）
 
-为避免**频繁打断**你的注意力，下列各条**只在序言与各章开头**交代；**章内正文不再逐段复述**，除非当下句子离开这一条就会必然被误读。
+为避免**频繁打断**你的注意力，下列各条**在序言里写清一次**；**章内正文不再逐段复述**，除非当下句子离开这一条就会必然被误读。
 
 1. **非法典**：本书不是「已写进教科书并由共同体盖棺定论」的定理汇编；推理、类比与数值示例**可错、可改**，以各章写明的定义、协议与数据来源为准。
 2. **非本体论推销**：插图或口语里的「透明果冻」「连续背景」「介质」等，是为**眼睛与推演**服务的脚手架；**不**据此宣称「真空中存在机械以太」或替某种宇宙图景下判决书。
 3. **非人身、非阴谋**：讨论的是记录、协议与统计对象是否透明，**不是**对具体实验者或机构的人身否定。
 4. **与「反科学」脱钩**：声明边界，是为了**少误读**、把力气用在可复核的步骤上，而不是示弱或讨好。
+
+涉及 Bell、GHZ 与公开数据的部分，我会把**模型内的数值实验**与**对公开记录与协议的审计式讨论**分开写清。公开测量文件对「连续物理图像」而言往往是**不完备的**；本书在承认这一点的前提下，仍讨论同一记录上**不同统计对象**会讲出怎样不同的故事。书中若出现 CHSH 等具体数值，**以各章对统计定义与数据来源的说明为准**，避免把序言里的比喻直接当成实验判决书。
 
 我不回避失败：书里有章节与后记，诚实记录没通过与仍开放的部分。
 
@@ -63,10 +61,6 @@ Where the measurements pass, I may have gotten something right. Where they fail,
 
 Those layers deserve scrutiny; they belong to the same kind of honesty as reproducible, preregistered audit-style reading, not a personal verdict on any experimenter.
 
-Where Bell, GHZ, and public data appear, I separate **in-model numerical experiments** from **audit-style discussion of public records and protocols**. Published measurement files are often **incomplete as a full continuous picture**; still, the book asks what **different statistical objects** say when applied to the **same** record.
-
-Any headline CHSH-style numbers are **binding only to the definitions and data sources stated in each chapter**, not to metaphors in this preface.
-
 **Navigating the front matter (through Part I)**  
 Suggested reading order: `00-preface.md` (this file) → `01-appendix-three-phrasings.md` (three phrasings of the model; optional) → Chapters 1–3 via the paths listed in `02-contents.md` → from Chapter 4 onward, follow `00-unified-writing-scheme.md`. **Bell / GHZ background archives**: `06-archive-bell.md`, `07-archive-ghz.md`. The full table of contents and chapter files: `02-contents.md`.
 
@@ -74,12 +68,14 @@ Suggested reading order: `00-preface.md` (this file) → `01-appendix-three-phra
 
 ## How to read this book — boundaries stated once
 
-To avoid **constant footnotes** that pull you out of the narrative, the following is stated **here**; the main text **does not repeat** it paragraph by paragraph unless a sentence would otherwise be misread.
+To avoid **constant footnotes** that pull you out of the narrative, the following is stated **once in this preface**; the main text **does not repeat** it paragraph by paragraph unless a sentence would otherwise be misread.
 
 1. **Not a textbook of finished laws** — claims, analogies, and numbers can be wrong or revised; trust the definitions, protocols, and data sources spelled out in each chapter.
 2. **Not selling an ontology** — visual aids (“clear jelly,” “continuous backdrop,” “medium”) are scaffolding for intuition and calculation, **not** a claim that mechanical ether fills the vacuum or that a final picture of reality is settled.
 3. **Not ad hominem** — scrutiny targets transparency of records and statistics, **not** personal verdicts on experimenters or labs.
 4. **Not “anti‑science” by posture** — boundaries exist to **reduce misreading** and keep effort on auditable steps.
+
+Where Bell, GHZ, and public data appear, I separate **in-model numerical experiments** from **audit-style discussion of public records and protocols**. Published measurement files are often **incomplete as a full continuous picture**; still, the book asks what **different statistical objects** say when applied to the **same** record. Any headline CHSH-style numbers are **binding only to the definitions and data sources stated in each chapter**, not to metaphors in this preface.
 
 I do not avoid failure: chapters and the afterword record what did not pass and what remains open.
 
