@@ -35,6 +35,10 @@ If you want to see the author's intuitive picture of propagation and measurement
 
 <a id="book-manuscript"></a>
 
+**这本书写什么（几句）**：《假大象与泡泡》是一份**第一人称**的研究手记——先用「球面泡泡」式的局域传播直觉搭一座**假大象**，再拿**同一批公开实验记录**追问：当**读数规则、二值化、分母与符合窗**等统计口径改变时，故事会不会跟着变（主线落在 **NIST / Bell–CHSH** 一类审计上）。它不是量子教科书，也**无意**宣称一夜推翻教科书；正文里把**模型内的格子模拟**与**磁盘上的协议审计**分开写，并如实记下**没过门禁的结果**与仍开放的模型设想，方便不同读者**分层阅读**、各取所需。
+
+*What this book is (in short):* **The Fake Elephant and the Bubble** is a first-person research notebook — a “spherical bubble” picture as scaffolding, then pressing the **same public lab records** to ask whether the narrative moves when **yardsticks move** (binarization, denominators, coincidence windows), centered on **NIST / Bell–CHSH-style** audits. It is **not** a quantum textbook and does **not** claim to overturn mainstream physics overnight; **in-model grid runs** stay separate from **on-disk protocol audits**, with failed gates and speculative chapters labeled honestly so readers can **stop at different depths**.
+
 仓库 **`book/`** 下有一份按章组织的**叙事手稿**（工作书名 **《假大象与泡泡》**，英文并列名见目录页）。它把「泡泡直觉 → 格子与损耗 → 公开数据与 Bell/GHZ 审计 → 构想章」串成可读主线，并与代码、归档路径交叉引用；**不等同**于专论里的全部技术细节。
 
 - **目录与章节链接**：[book/02-contents.md](book/02-contents.md)  
@@ -49,7 +53,9 @@ The **`book/`** folder holds a **chapter-style manuscript** (working Chinese tit
 - **Cover / half-title notes**：[book/cover.md](book/cover.md)  
 - **House style & cross-references**：[book/00-unified-writing-scheme.md](book/00-unified-writing-scheme.md)
 
-**PDF 书稿（汇编）**：在仓库根目录执行 `.\activate_conda.ps1 -EnvName base`（或已装 Pandoc 的 PATH）后运行 `.\scripts\build_book_pdf.ps1`；优先 `xelatex`，否则自动使用 conda **tectonic**；默认输出 **`book/_build/manuscript-zh.pdf`**（可用 `-OutPdf` 自定义路径）。*Build PDF*: `.\activate_conda.ps1 -EnvName base` then `.\scripts\build_book_pdf.ps1` → `book/_build/manuscript-zh.pdf`.
+**PDF 书稿（汇编）**：在仓库根目录执行 `.\activate_conda.ps1 base`（或已装 Pandoc 的 PATH）后运行 `.\scripts\build_book_pdf.ps1`；优先 `xelatex`，否则自动使用 conda **tectonic**；默认输出 **`book/_build/manuscript-zh.pdf`**（可用 `-OutPdf` 自定义路径）。*Build PDF*: `.\activate_conda.ps1 base` then `.\scripts\build_book_pdf.ps1` → `book/_build/manuscript-zh.pdf`.
+
+**中英稿 PDF（当前推荐阅读的导出件）**：叙事手稿另有**中英合并**导出，固定放在仓库内路径 **[book/_build/假大象与泡泡-zh-en.pdf](book/_build/假大象与泡泡-zh-en.pdf)**。该目录 `book/_build/` 已列入 `.gitignore`，Git 克隆里**不一定**自带此文件；请在你本机构建或从作者提供的渠道取得后，将 PDF 置于上述路径，再用此链接打开（本地 IDE / 文件管理器同样有效）。*Bilingual manuscript PDF*: **[book/_build/假大象与泡泡-zh-en.pdf](book/_build/假大象与泡泡-zh-en.pdf)** — `book/_build/` is gitignored; place or export the file locally for this path to resolve.
 
 ## Quick Start Paths
 
